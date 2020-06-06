@@ -8,3 +8,6 @@ Integrantes: [Matheus Palinkas](https://www.linkedin.com/in/matheus-palinkas/),
 
 
 [Link para arquivos no drive](https://drive.google.com/drive/folders/17vXJTFi-uhJ_oOf2tmRV0r_MPpUXcZnn?usp=sharing)
+
+[Link para o figma](https://www.figma.com/file/Z0HPB23kt7YKAJmQ3CTIPF/Aplicativo-lojas)
+
