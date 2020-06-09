@@ -1,0 +1,49 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "idComercio": 1,
+      "idCategoria": 3,
+      "nome": "Xaomi",
+      "preco": 200.5,
+      "descricao": "O melhor celular",
+      "url": "https://unsplash.com/photos/6wdRuK7bVTE"
+    },
+    {
+      "id": 2,
+      "idComercio": 1,
+      "idCategoria": 2,
+      "nome": "Prancha de surf",
+      "preco": 2000.5,
+      "descricao": "A melhor prancha de surf",
+      "url": "https://unsplash.com/photos/XFMjz4X3hGs"
+    },
+    {
+      "id": 3,
+      "idComercio": 2,
+      "idCategoria": 3,
+      "nome": "Iphone X-man",
+      "preco": 180900,
+      "descricao": "Apple",
+      "url": "https://unsplash.com/photos/6wdRuK7bVTE"
+    },
+    {
+      "id": 4,
+      "idComercio": 2,
+      "idCategoria": 3,
+      "nome": "Nokia",
+      "preco": 2.5,
+      "descricao": "Inquebravel",
+      "url": "https://unsplash.com/photos/F5V6d7nPsLQ"
+    },
+    {
+      "id": 5,
+      "idComercio": 3,
+      "idCategoria": 1,
+      "nome": "Vestido rosa",
+      "preco": 200.5,
+      "descricao": "O melhor vestido para sair",
+      "url": "https://unsplash.com/photos/0C2qrwkR1dI"
+    }
+  ]
+}
