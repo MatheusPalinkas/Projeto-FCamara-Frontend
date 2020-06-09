@@ -1,14 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: 0;
-    background: #F5EDE9;
-}
 
-html, body {
-    min-height: 100vh;
-}
 
 .container {
     min-height: 100vh;
