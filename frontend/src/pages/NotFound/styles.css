@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+    background: #F5EDE9;
+}
+
+html, body {
+    min-height: 100vh;
+}
+
+.container {
+    min-height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.not h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #f44f00;
+}
+
+.s404 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 18em;
+    font-weight: bold
+}
+
+.snot {
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+}
+  
+.cimg {
+    width: 960px;
+}
+
+.img img {
+    max-width: 800px;
+}
