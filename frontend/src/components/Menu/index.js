@@ -1,5 +1,5 @@
 import React from "react";
-import { MdMenu, MdClose, MdSearch, MdShoppingBasket } from "react-icons/md";
+import { MdMenu, MdShoppingBasket } from "react-icons/md";
 import { FiLogIn } from "react-icons/fi";
 
 import "./styles.css";
@@ -7,32 +7,32 @@ import "./styles.css";
 export default function Menu() {
   return (
     <>
-      <nav>
-        <div className="nav-wrapper div-menu">
-          <div className="btn-menu-burger">
-            <MdMenu />
-          </div>
-          <a href="#!" className="brand-logo">
+      <nav className="nav-menu">
+        <div class="nav-wrapper">
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li>
+              <div className="btn-menu-categorias">
+                <MdMenu />
+              </div>
+            </li>
+          </ul>
+          <a href="#!" class="brand-logo">
             Logo
           </a>
-          <div>
-            <form action="">
-              <div className="input-field">
-                <input id="search" type="search" required></input>
-                <label class="label-icon" for="search">
-                  <MdSearch />
-                </label>
-                <MdClose />
+
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <div className="btn-meu-carrinho">
+                <MdShoppingBasket />
               </div>
-            </form>
-          </div>
-          <div className="btn-menu-burger">
-            <MdShoppingBasket />
-          </div>
-          <a class="waves-effect waves-light btn">
-            <FiLogIn className="material-icons left" />
-            Entrar
-          </a>
+            </li>
+            <li>
+              <a class="waves-effect waves-light btn btn-entrar">
+                <FiLogIn className="icon-entrar" />
+                Entrar
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
     </>
