@@ -1,0 +1,25 @@
+.btn {
+    background: #148ACC;
+    border-radius: 2%;
+    max-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    padding-right: 2px ;
+}
+
+.ent {
+    padding-left: 2px;
+}
+
+.btn:hover { 
+    background: #f44f00;
+}
+
+.btn:active {
+    background: #C0C0C0;
+    color: black;
+}
