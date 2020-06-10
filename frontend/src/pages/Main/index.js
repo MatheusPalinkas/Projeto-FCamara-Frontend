@@ -1,8 +1,9 @@
 import React from "react";
 import "./styles.css";
 
+import Menu from "../../components/Menu";
 function Main() {
-  return  <h1>Pagina principal</h1>;
+  return <Menu />;
 }
 
 export default Main;
