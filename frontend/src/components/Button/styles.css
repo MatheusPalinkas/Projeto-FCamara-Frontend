@@ -1,5 +1,4 @@
 .btn {
-    background: #148ACC;
     border-radius: 2%;
     max-width: 100px;
     display: flex;
@@ -8,18 +7,31 @@
 }
 
 .icon {
-    padding-right: 2px ;
+    padding-right: 4px ;
 }
 
 .ent {
-    padding-left: 2px;
+    padding-left: 4px;
 }
 
-.btn:hover { 
+.btn-primaria { 
+    background: #148ACC;
+}
+.btn-secundario { 
     background: #f44f00;
 }
+.btn-desabilitado { 
+    background: rgb(137, 144, 161);
+    color: rgb(68, 79, 102);
+}
 
-.btn:active {
-    background: #C0C0C0;
-    color: black;
+.btn-primaria:hover { 
+    background: rgba(20, 137, 204, 0.800);   
+}
+.btn-secundario:hover { 
+    background: rgba(244, 77, 0, 0.800);
+}
+.btn-desabilitado:hover { 
+    background: rgba(137, 144, 161, 0.800);
+    color: rgb(68, 79, 102);
 }
