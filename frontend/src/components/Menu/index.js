@@ -1,63 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { MdMenu, MdShoppingBasket, MdKeyboardArrowRight } from "react-icons/md";
+import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
 import { FiLogIn } from "react-icons/fi";
-import api from "../../services/Api";
+
+import SideBar from "../SideBar";
 
 import "./styles.css";
 
-import M from "materialize-css/dist/js/materialize.min.js";
-import "materialize-css/dist/css/materialize.min.css";
-
-const SideBar = () => {
-  const [categorias, setCategorias] = useState([]);
-
-  useEffect(() => {
-    async function Data() {
-      const elem = document.querySelector(".sidenav");
-      const instance = M.Sidenav.init(elem, {
-        edge: "left",
-        inDuration: 250,
-      });
-      const { data } = await api.get("/categorias");
-      setCategorias(data);
-    }
-    Data();
-  }, []);
-
+const PhotoUserLogged = ({ url }) => {
   return (
-    <div>
-      <ul id="slide-out" className="sidenav">
-        <li className="header-categorias">
-          <h2>Categorias</h2>
-        </li>
-        <li className="btn-voltar-categorias">
-          <Link class="sidenav-close">
-            <span className="txt-voltar-categorias">
-              Voltar
-              <MdKeyboardArrowRight />
-            </span>
-          </Link>
-        </li>
-        {categorias.map((categoria) => (
-          <li key={categoria.id} className="item-categoria">
-            <Link className="waves-effect">{categoria.nome}</Link>
-          </li>
-        ))}
-      </ul>
+    <div className="container-foto">
+      {url ? (
+        <img src={`${url}`} alt="Foto de perfil" className="foto-perfil" />
+      ) : (
+        <MdPermIdentity />
+      )}
     </div>
   );
 };
+const BtnLogin = () => (
+  <Link class="waves-effect waves-light btn btn-entrar">
+    <span className="txt-btn-entrar">
+      <FiLogIn className="icon-entrar" />
+      Entrar
+    </span>
+  </Link>
+);
+const MenuVendedor = () => (
+  <div className="nav-content menu-vendedor">
+    <ul className="tabs  tabs-transparent ul-menu-vendedor">
+      <li className="tab">
+        <Link>Meus Produtos</Link>
+      </li>
+      <li className="tab">
+        <Link>Meus Pedidos</Link>
+      </li>
+      <li className="tab">
+        <Link>Meu comercio</Link>
+      </li>
+    </ul>
+  </div>
+);
 
-export default function Menu() {
+const Menu = ({ user = {} }) => {
   return (
     <>
-      <nav className="nav-menu">
+      <nav className="nav-extended nav-menu">
         <div className="nav-wrapper">
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <ul id="nav-mobile" className="left ">
             <li>
               <div
-                className="sidenav-trigger btn-menu-categorias"
+                className="sidenav-trigger btn-menu-categorias "
                 data-target="slide-out"
               >
                 <MdMenu />
@@ -66,24 +59,20 @@ export default function Menu() {
           </ul>
           <div className="brand-logo">Logo</div>
 
-          <ul class="right hide-on-med-and-down">
+          <ul className="right ">
             <li>
-              <div className="btn-meu-carrinho">
+              <div className="hide-on-med-and-down btn-meu-carrinho">
                 <MdShoppingBasket />
               </div>
             </li>
-            <li>
-              <Link class="waves-effect waves-light btn btn-entrar">
-                <span className="txt-btn-entrar">
-                  <FiLogIn className="icon-entrar" />
-                  Entrar
-                </span>
-              </Link>
-            </li>
+            <li>{user ? <PhotoUserLogged url={user.url} /> : <BtnLogin />}</li>
           </ul>
         </div>
+        {user.idComercio && <MenuVendedor />}
+        <SideBar />
       </nav>
-      <SideBar />
     </>
   );
-}
+};
+
+export default Menu;
