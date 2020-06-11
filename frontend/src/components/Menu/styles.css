@@ -36,6 +36,11 @@
   height: 100%;
   border-radius: 50%;
 }
+.foto-perfil{
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
 .container-foto  > svg{
   font-size: 3em;
   width: 50px;

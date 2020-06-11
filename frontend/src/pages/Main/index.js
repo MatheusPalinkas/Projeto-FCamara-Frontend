@@ -1,7 +1,17 @@
 import React from "react";
+
+import Card from "../../components/Card";
+
 import "./styles.css";
 
+const url =
+  "https://images.unsplash.com/photo-1520116468816-95b69f847357?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80";
+
 function Main() {
-  return <h1>Pagina principal</h1>;
+  return (
+    <div class="container-main">
+      <Card url={url} />
+    </div>
+  );
 }
 export default Main;

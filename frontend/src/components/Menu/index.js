@@ -80,7 +80,7 @@ const Menu = ({ user = {} }) => {
               </div>
             </li>
             <li>
-              {user.url ? (
+              {user.id ? (
                 <PhotoUserLogged url={user.url} />
               ) : (
                 <Button

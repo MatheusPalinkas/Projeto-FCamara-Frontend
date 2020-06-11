@@ -19,6 +19,10 @@ html, body {
     src: url('./assets/fonts/NunitoSans-Regular.ttf');
 }
 @font-face {
+    font-family: NunitoSansSemiBold;
+    src: url('./assets/fonts/NunitoSans-SemiBold.ttf');
+}
+@font-face {
     font-family: Lato;
     src: url('./assets/fonts/Lato-Regular.ttf');
 }
@@ -38,6 +42,7 @@ h1, h2, h3, h4, h5, h6{
 svg{
     height: 100%;
 }
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -54,7 +59,8 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+    vertical-align: baseline;
+    
 }
 :focus {
     outline: 0;
