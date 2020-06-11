@@ -1,0 +1,37 @@
+.btn {
+    border-radius: 2%;
+    max-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    padding-right: 4px ;
+}
+
+.ent {
+    padding-left: 4px;
+}
+
+.btn-primaria { 
+    background: #148ACC;
+}
+.btn-secundario { 
+    background: #f44f00;
+}
+.btn-desabilitado { 
+    background: rgb(137, 144, 161);
+    color: rgb(68, 79, 102);
+}
+
+.btn-primaria:hover { 
+    background: rgba(20, 137, 204, 0.800);   
+}
+.btn-secundario:hover { 
+    background: rgba(244, 77, 0, 0.800);
+}
+.btn-desabilitado:hover { 
+    background: rgba(137, 144, 161, 0.800);
+    color: rgb(68, 79, 102);
+}
