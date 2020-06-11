@@ -19,13 +19,7 @@
   color: #F5EDE9;
 }
 .btn-entrar{
-  background-color: #148ACC;
-}
-.txt-btn-entrar{
-  display: block;
-}
-.btn-entrar:hover{
-  background-color: #00528C;
+  margin-top: 10px;
 }
 .icon-entrar{
   margin-right: 8px;

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
 import { FiLogIn } from "react-icons/fi";
+import Button from "../Button";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import SideBar from "../SideBar";
@@ -23,19 +24,6 @@ const PhotoUserLogged = ({ url }) => {
     </div>
   );
 };
-
-const BtnLogin = () => (
-  <Link
-    class="waves-effect waves-light tooltipped btn btn-entrar"
-    data-position="bottom"
-    data-tooltip="Entrar na minha conta"
-  >
-    <span className="txt-btn-entrar">
-      <FiLogIn className="icon-entrar" />
-      Entrar
-    </span>
-  </Link>
-);
 
 const MenuVendedor = () => (
   <div className="nav-content menu-vendedor">
@@ -91,7 +79,17 @@ const Menu = ({ user = {} }) => {
                 <MdShoppingBasket />
               </div>
             </li>
-            <li>{user ? <PhotoUserLogged url={user.url} /> : <BtnLogin />}</li>
+            <li>
+              {user.url ? (
+                <PhotoUserLogged url={user.url} />
+              ) : (
+                <Button
+                  Icon={FiLogIn}
+                  position="bottom"
+                  tooltip="Entrar na minha conta"
+                />
+              )}
+            </li>
           </ul>
         </div>
         {user.idComercio && <MenuVendedor />}

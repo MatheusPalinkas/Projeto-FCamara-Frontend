@@ -21,7 +21,7 @@ export default function Button({
     })();
   }, []);
 
-  let classButton = "btn";
+  let classButton = "button";
 
   if (typeButton === "primaria") {
     classButton += " btn-primaria";
@@ -32,6 +32,7 @@ export default function Button({
       classButton += " btn-desabilitado";
     }
   }
+
   return (
     <>
       <Link
@@ -40,10 +41,12 @@ export default function Button({
         data-tooltip={`${tooltip}`}
         onClick={onClick}
       >
-        <div className="icon">
-          {Icon && <Icon className="material-icons left" />}
-        </div>
-        <div className="ent">{text}</div>
+        <span className="text-align-btn">
+          <div className="icon">
+            {Icon && <Icon className="material-icons left" />}
+          </div>
+          {text}
+        </span>
       </Link>
     </>
   );

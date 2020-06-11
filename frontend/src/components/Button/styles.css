@@ -1,28 +1,30 @@
-.btn {
+.button{
     border-radius: 2%;
     max-width: 100px;
-    display: flex;
+    display: flex ;
     justify-content: center;
     align-items: center;
+    font-family: LatoBold;
+    font-size: 1.33em;
 }
-
-.icon {
-    padding-right: 4px ;
+.text-align-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
 }
-
-.ent {
-    padding-left: 4px;
+.icon{
+    margin-right: 8px;
 }
-
 .btn-primaria { 
-    background: #148ACC;
+    background: #148ACC !important;
 }
 .btn-secundario { 
-    background: #f44f00;
+    background: #f44f00 !important;
 }
 .btn-desabilitado { 
-    background: rgb(137, 144, 161);
-    color: rgb(68, 79, 102);
+    background: rgb(137, 144, 161) !important;
+    color: rgb(68, 79, 102) !important;
 }
 
 .btn-primaria:hover { 
