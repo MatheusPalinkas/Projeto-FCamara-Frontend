@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
 import { FiLogIn } from "react-icons/fi";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 import SideBar from "../SideBar";
 
@@ -9,7 +10,11 @@ import "./styles.css";
 
 const PhotoUserLogged = ({ url }) => {
   return (
-    <div className="container-foto">
+    <div
+      className="tooltipped container-foto"
+      data-position="bottom"
+      data-tooltip="Editar meu perfil"
+    >
       {url ? (
         <img src={`${url}`} alt="Foto de perfil" className="foto-perfil" />
       ) : (
@@ -18,14 +23,20 @@ const PhotoUserLogged = ({ url }) => {
     </div>
   );
 };
+
 const BtnLogin = () => (
-  <Link class="waves-effect waves-light btn btn-entrar">
+  <Link
+    class="waves-effect waves-light tooltipped btn btn-entrar"
+    data-position="bottom"
+    data-tooltip="Entrar na minha conta"
+  >
     <span className="txt-btn-entrar">
       <FiLogIn className="icon-entrar" />
       Entrar
     </span>
   </Link>
 );
+
 const MenuVendedor = () => (
   <div className="nav-content menu-vendedor">
     <ul className="tabs  tabs-transparent ul-menu-vendedor">
@@ -43,6 +54,15 @@ const MenuVendedor = () => (
 );
 
 const Menu = ({ user = {} }) => {
+  useEffect(() => {
+    (async function () {
+      const elem = document.querySelectorAll(".tooltipped");
+      M.Tooltip.init(elem, {
+        position: "bottom",
+      });
+    })();
+  }, []);
+
   return (
     <>
       <nav className="nav-extended nav-menu">
@@ -50,8 +70,10 @@ const Menu = ({ user = {} }) => {
           <ul id="nav-mobile" className="left ">
             <li>
               <div
-                className="sidenav-trigger btn-menu-categorias "
+                className="sidenav-trigger tooltipped btn-menu-categorias "
                 data-target="slide-out"
+                data-position="bottom"
+                data-tooltip="Menu de categorias"
               >
                 <MdMenu />
               </div>
@@ -61,7 +83,11 @@ const Menu = ({ user = {} }) => {
 
           <ul className="right ">
             <li>
-              <div className="hide-on-med-and-down btn-meu-carrinho">
+              <div
+                className="hide-on-med-and-down  tooltipped btn-meu-carrinho"
+                data-position="bottom"
+                data-tooltip="Meu carrinho"
+              >
                 <MdShoppingBasket />
               </div>
             </li>

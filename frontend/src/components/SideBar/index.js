@@ -12,7 +12,7 @@ const SideBar = () => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    async function Data() {
+    (async function () {
       const elem = document.querySelector(".sidenav");
       M.Sidenav.init(elem, {
         edge: "left",
@@ -20,8 +20,7 @@ const SideBar = () => {
       });
       const { data } = await api.get("/categorias");
       setCategorias(data);
-    }
-    Data();
+    })();
   }, []);
 
   return (
