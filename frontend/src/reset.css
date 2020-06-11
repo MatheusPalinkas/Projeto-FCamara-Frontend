@@ -11,6 +11,32 @@ body{
 
 html, body {
     min-height: 100vh;
+    font-size: 20px;
+}
+
+@font-face {
+    font-family: NunitoSans;
+    src: url('./assets/fonts/NunitoSans-Regular.ttf');
+}
+@font-face {
+    font-family: Lato;
+    src: url('./assets/fonts/Lato-Regular.ttf');
+}
+@font-face {
+    font-family: LatoLight;
+    src: url('./assets/fonts/Lato-Light.ttf');
+}
+@font-face {
+    font-family: LatoBold;
+    src: url('./assets/fonts/Lato-Black.ttf');
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: NunitoSans;
+}
+
+svg{
+    height: 100%;
 }
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -324,7 +350,7 @@ button,
 input,
 select,
 textarea {
-    color: #222;
+    color: #1D273B;
 }
 
 
@@ -355,6 +381,6 @@ textarea {
 .chromeframe {
     margin: 0.2em 0;
     background: #ccc;
-    color: #000;
+    color: #1D273B;
     padding: 0.2em 0;
 }

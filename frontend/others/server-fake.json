@@ -45,5 +45,15 @@
       "descricao": "O melhor vestido para sair",
       "url": "https://unsplash.com/photos/0C2qrwkR1dI"
     }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Tech"
+    },
+    {
+      "id": 2,
+      "nome": "Roupas"
+    }
   ]
 }
