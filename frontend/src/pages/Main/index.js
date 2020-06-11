@@ -1,11 +1,12 @@
-import React, { Children } from "react";
+import React from "react";
+
+import { FiLogIn } from "react-icons/fi";
+
 import "./styles.css";
 
+import Button from '../../components/Button';
 
 function Main() {
-  return <h1>Pagina principal</h1>
+  return <Button  />;
 }
-
-
-
 export default Main;
