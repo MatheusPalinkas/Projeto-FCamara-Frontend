@@ -13,6 +13,7 @@ export default function Routes() {
       <Menu />
       <Switch>
         <Route exact path="/" component={Main} />
+        <Route exact path="/:idCategoria" component={Main} />
         <Route exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>

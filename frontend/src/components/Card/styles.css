@@ -7,7 +7,7 @@
 .div-card-imagem img{
     max-height:250px;
     width: auto;
-    height: auto;
+    height: 250px;
     object-fit: cover;
 }
 span.span-card-title{
