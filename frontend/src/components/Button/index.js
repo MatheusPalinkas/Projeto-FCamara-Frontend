@@ -36,7 +36,7 @@ export default function Button({
   return (
     <>
       <Link
-        className={`tooltipped btn ${classButton}`}
+        className={`tooltipped btn ${classButton} `}
         data-position={`${position}`}
         data-tooltip={`${tooltip}`}
         onClick={onClick}

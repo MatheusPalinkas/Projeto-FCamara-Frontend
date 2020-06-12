@@ -1,0 +1,18 @@
+.modal {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.head {
+    float: right;
+    margin: 15px; 
+}
+
+.close {
+    width: 45px; 
+}
+
+.vai{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} 

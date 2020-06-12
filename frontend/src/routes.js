@@ -10,7 +10,7 @@ import Menu from "./components/Menu";
 export default function Routes() {
   return (
     <BrowserRouter>
-      <Menu />
+     <Menu />
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="*" component={NotFound} />
