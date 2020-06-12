@@ -17,21 +17,23 @@
 
 .s404 {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 18em;
-    font-weight: bold
+    font-size: 5em;
+    font-weight: bold;
+    padding: 100px;
 }
 
 .snot {
     font-family: 'Lato', sans-serif;
     width: 100%;
     text-align: center;
-    font-size: 3em;
+    font-size: 1.2em;
+    padding: 50px;
 }
   
 .cimg {
     width: 960px;
 }
 
-.img img {
-    max-width: 800px;
+img {
+    max-width: 5000px;
 }
