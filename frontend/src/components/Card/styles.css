@@ -17,14 +17,15 @@ span.span-card-title{
     flex-direction: row;
     justify-content: space-between;
     font-family: NunitoSansSemiBold;
+    margin-bottom: 0!important;
 }
-.div-add-carrinho{
+.div-add-carrinho, .div-editar-produto{
     max-width: 50px;
     max-height: 50px;
     width: 100%;
     height: 100%;
 }
-.add-carrinho, .icon-menos-infos{
+.add-carrinho, .icon-menos-infos, .editar-produto{
     background: #1D273B;
     color: #FFF !important;
     padding: 8px;
@@ -47,15 +48,32 @@ span.span-card-title{
     align-content: center;
 
 }
-.descricao{
+.descricao, .excluir-produto{
     text-transform: uppercase;
     font-size: 1em;
     font-family: Lato;
     text-decoration: underline;
+}
+.excluir-produto{
+    margin-bottom: 32px;
+}
+.p-descricao-link{
+    border-top: 1px solid #D9C4BA;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
 }
 .p-descricao{
     margin-top: 20px;
     line-height: 1.5em;
     font-family: LatoLight;
     font-size: 1.33em;
+    word-break: break-all;
+}
+.preco{
+    display: block;
+    font-size: 1.33em;
+    color: #006CA8;
+    font-family: Lato;
+    margin-bottom: 16px;
 }

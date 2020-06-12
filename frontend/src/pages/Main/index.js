@@ -10,7 +10,20 @@ const url =
 function Main() {
   return (
     <div class="container-main">
-      <Card url={url} />
+      <Card
+        titulo="Van"
+        descricao="Uma nav"
+        produto={{ preco: 20.5 }}
+        url={url}
+      />
+      <Card
+        titulo="Van"
+        descricao="Uma nav"
+        produto={{ preco: 20.5 }}
+        url={url}
+        idVendedor={2}
+      />
+      <Card titulo="Van2" descricao="Uma nav" url={url} />
     </div>
   );
 }
