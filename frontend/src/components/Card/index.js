@@ -24,7 +24,14 @@ const ButtonAddCarrinho = () => (
   </div>
 );
 
-const Card = ({ url, titulo, descricao, produto = {}, idVendedor = null }) => {
+const Card = ({
+  url,
+  titulo,
+  descricao,
+  produto = {},
+  idVendedor = null,
+  idComercio = null,
+}) => {
   useEffect(() => {
     (async function () {
       const elem = document.querySelectorAll(".tooltipped");
@@ -43,14 +50,24 @@ const Card = ({ url, titulo, descricao, produto = {}, idVendedor = null }) => {
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {!idVendedor ? <ButtonAddCarrinho /> : <ButtonEditarProduto />}
+            {!idComercio && (
+              <>
+                {!idVendedor ? <ButtonAddCarrinho /> : <ButtonEditarProduto />}
+              </>
+            )}
           </span>
           {produto.preco && <span className="preco">{produto.preco}</span>}
           <p className="p-descricao-link">
             {idVendedor && (
               <Link className="activator excluir-produto">Excluir produto</Link>
             )}
-            <Link className="activator descricao">Ver descrição</Link>
+            {idComercio ? (
+              <Link className="activator link-pagina-produto">
+                Pagina do comercio
+              </Link>
+            ) : (
+              <Link className="activator descricao">Ver descrição</Link>
+            )}
           </p>
         </div>
         <div className="card-reveal infos-card">
