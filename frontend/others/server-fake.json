@@ -49,11 +49,43 @@
   "categorias": [
     {
       "id": 1,
-      "nome": "Tech"
+      "nome": "Tecnologia e informática"
     },
     {
       "id": 2,
       "nome": "Roupas"
+    },
+    {
+      "id": 3,
+      "nome": "Automotivo"
+    },
+    {
+      "id": 4,
+      "nome": "Brinquedos"
+    },
+    {
+      "id": 5,
+      "nome": "Casa e construção"
+    },
+    {
+      "id": 6,
+      "nome": "Brinquedos"
+    },
+    {
+      "id": 7,
+      "nome": "Artesanato"
+    }
+  ],
+  "comercios": [
+    { 
+      "id": 5,
+      "nome": "Padaria do zé",
+      "url": "https://images.unsplash.com/photo-1556191041-c2401936d851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      "id": 1,
+      "nome": "Adega do fulano",
+      "url": "https://images.unsplash.com/photo-1585350719166-940cf9e674a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80"
     }
   ]
 }
