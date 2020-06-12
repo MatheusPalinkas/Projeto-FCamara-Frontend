@@ -1,0 +1,12 @@
+.background-breadcrumb{
+    background: #F47C31;
+}
+.background-breadcrumb > a{
+    font-size: 1.33em;
+    font-family: LatoBold;
+    padding: 8px 16px;
+    color: #FFF !important;
+}
+.background-breadcrumb > a.ativo{
+    color: #148acc !important;
+}
