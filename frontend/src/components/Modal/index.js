@@ -24,7 +24,7 @@ export default function Modal({ children }){
                <MdClose className="close "  />
             </div> 
             <div className="modal-content children" >
-                <div className="vai" align="center">{children}</div>
+                <div className="children" align="center">{children}</div>
             </div>
         </div>
     );

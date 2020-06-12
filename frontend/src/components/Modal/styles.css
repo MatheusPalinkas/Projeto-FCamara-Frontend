@@ -1,5 +1,5 @@
 .modal {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: NunitoSans;
 }
 
 .head {
@@ -11,7 +11,7 @@
     width: 45px; 
 }
 
-.vai{
+.children{
     display: flex;
     flex-direction: column;
     justify-content: center;
