@@ -28,7 +28,11 @@ git clone https://github.com/MatheusPalinkas/Projeto-FCamara-Frontend.git
 cd frontend
 yarn install
 ```
-### 3. Iniciar aplicação
+### 3. Iniciar Json Server
+```
+yarn start:server
+```
+### 4. Iniciar aplicação
 ```
 yarn start
 ```
