@@ -5,6 +5,7 @@ import Breadcrumb from "../../components/Breadcrumb";
 import FormDadosPessoais from "../../components/FormDadosPessoais";
 import FormDadosConta from "../../components/FormDadosConta";
 import FormDadosEndereco from "../../components/FormDadosEndereco";
+import FormDadosComercio from "../../components/FormDadosComercio";
 
 import "./styles.css";
 
@@ -60,6 +61,20 @@ const Cadastro = () => {
 
           {etapa === 2 && (
             <FormDadosEndereco
+              handleSubmit={(values) => {
+                setEndereco(values);
+                setEtapa(etapa + 1);
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                setEtapa(etapa - 1);
+              }}
+              initialValues={endereco}
+            />
+          )}
+
+          {etapa === 3 && (
+            <FormDadosComercio
               handleSubmit={(values) => {
                 setEndereco(values);
                 setEtapa(etapa + 1);
