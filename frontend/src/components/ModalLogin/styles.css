@@ -4,30 +4,37 @@
   outline: 0;
   box-sizing: border-box;
 }
-.container {
-  height: auto;
-  font-family: NunitoSans;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
+
+.titulo {
+  width: 300px;
 }
 
-.container h1 {
+.titulo h1 {
   font-size: 2.5em;
+  
+}
+ p {
+  float: left;
+  width: 300px;
 }
 
-.container p {
-  align-self: flex-start;
-  width: 68%;
+.conp {
+  width: 300px;
+ 
+}
+
+.conpa {
+  width: 300px;
+  color: red;
 }
 
 .containerbtn {
-  height: auto;
-  width: 200px;
   display: flex;
+  justify-content: center;
+  width: 300px;
 }
 
 .btncon {
   padding: 5px;
+  float: center;
 }

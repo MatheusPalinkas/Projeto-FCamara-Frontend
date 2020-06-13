@@ -26,12 +26,13 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
       onSubmit={handleSubmit}
       validationSchema={validations}
     >
-      <FormikForm>
-        <div className="container">
-          <h1>ENTRAR</h1>
+      <FormikForm  >
+     
+          <div className="titulo"><h1>ENTRAR</h1></div>
 
+          <div className="conp">
           <p>Email</p>
-
+          </div>
           <div className="conp">
             <Field name="user" placeholder="Digite seu email" type="text" />
           </div>
@@ -39,8 +40,9 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
             <ErrorMessage className="Foem-Error" component="span" name="user" />
           </div>
 
+          <div className="conp">
           <p>Senha</p>
-
+          </div>
           <div className="conp">
             <Field
               name="password"
@@ -58,7 +60,7 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
 
           <div className="containerbtn">
             <div className="btncon">
-              <Button tipo={"submit"} text={"CRIAR"} Icon={MdPersonAdd} />
+              <Button tipo={"submit"} text={"CRIAR CONTA"} Icon={MdPersonAdd} />
             </div>
             <div className="btncon">
               <Button
@@ -68,7 +70,6 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
               />
             </div>
           </div>
-        </div>
       </FormikForm>
     </Formik>
   </Modal>
