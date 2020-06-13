@@ -7,6 +7,12 @@ import Card from "../../components/Card";
 
 import ModalLogin from "../../components/ModalLogin";
 
+import Button from "../../components/Button";
+
+function abre() {
+  return alert("aaaaaaaa")
+}
+
 function Main() {
   const [comercios, setComercios] = useState([]);
   const { idCategoria } = useParams();
@@ -42,10 +48,16 @@ function Main() {
           />
         ))}
       </div>
+
       <a class="waves-effect waves-light btn modal-trigger" href="#modal1">
-        Modal
+        Modal com a
       </a>
+      <button data-target="modal1" class="btn modal-trigger">Modal com bun</button>
+
+      <Button />
+
       <ModalLogin handleSubmit={handleSubmit} initialValues={initialValues} />
+      
     </>
   );
 }

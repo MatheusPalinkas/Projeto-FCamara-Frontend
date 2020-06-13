@@ -20,7 +20,7 @@ const validations = yup.object().shape({
 });
 
 const ModalLogin = ({ handleSubmit, initialValues }) => (
-  <Modal>
+  <Modal tipo={"login"}>
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}

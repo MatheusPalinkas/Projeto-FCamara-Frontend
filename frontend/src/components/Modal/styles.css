@@ -8,6 +8,10 @@
   font-family: NunitoSans;
 }
 
+.login {
+  max-width: 380px;
+}
+
 .head {
   float: right;
   margin: 15px;

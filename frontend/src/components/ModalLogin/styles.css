@@ -11,16 +11,16 @@
 
 .titulo h1 {
   font-size: 2.5em;
-  
 }
- p {
+
+p {
   float: left;
   width: 300px;
 }
 
 .conp {
   width: 300px;
- 
+  text-align: left;
 }
 
 .conpa {
