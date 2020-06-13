@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import FormDadosPessoais from "../../components/FormDadosPessoais";
 import FormDadosConta from "../../components/FormDadosConta";
+import FormDadosEndereco from "../../components/FormDadosEndereco";
+
 import "./styles.css";
 
 const Cadastro = () => {
   const [etapa, setEtapa] = useState(0);
   const [dadosPessoais, setDadosPessoais] = useState({});
+  const [endereco, setEndereco] = useState({});
 
   return (
     <div className="row container-cadastro">
@@ -52,6 +55,20 @@ const Cadastro = () => {
                 setEtapa(etapa - 1);
               }}
               initialValues={dadosPessoais}
+            />
+          )}
+
+          {etapa === 2 && (
+            <FormDadosEndereco
+              handleSubmit={(values) => {
+                setEndereco(values);
+                setEtapa(etapa + 1);
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                setEtapa(etapa - 1);
+              }}
+              initialValues={endereco}
             />
           )}
         </div>

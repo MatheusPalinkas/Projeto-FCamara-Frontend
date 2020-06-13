@@ -1,0 +1,32 @@
+.input-field > label{
+    font-family: Lato;
+    font-size: 1.33em;
+}
+.input-field > span.helper-text{
+    color: rgb(224, 17, 17);
+    font-family: Lato;
+    font-size: 1em;
+}
+.radio-tipoUser{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.form-submit{
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+}
+.inputs-mesma-linha{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.inputs-mesma-linha > div.input-field{
+width: 100%;
+}
+.input-uf, .input-numero{
+    margin-left: 16px;
+    max-width: 100px;
+}
