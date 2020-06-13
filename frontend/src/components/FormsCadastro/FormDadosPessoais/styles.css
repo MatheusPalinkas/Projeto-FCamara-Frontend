@@ -1,0 +1,18 @@
+.div-tipo-user{
+    border: 2px solid #F47C31;
+    padding-bottom: 16px;
+}
+.div-tipo-user .div-radio{
+    padding: 8px 0;
+}
+.div-tipo-user .div-radio:first-of-type(p){
+    border-right: 2px solid #F47C31;
+}
+.div-tipo-user > p{
+    font-size: 1em;
+    border-top: 2px solid #F47C31;
+     color: #1D273B;
+    text-align: center;
+    font-family: Lato;
+    padding-top: 16px;
+}

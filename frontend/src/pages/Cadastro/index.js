@@ -2,17 +2,23 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Breadcrumb from "../../components/Breadcrumb";
-import FormDadosPessoais from "../../components/FormDadosPessoais";
-import FormDadosConta from "../../components/FormDadosConta";
-import FormDadosEndereco from "../../components/FormDadosEndereco";
-import FormDadosComercio from "../../components/FormDadosComercio";
+import FormDadosPessoais from "../../components/FormsCadastro/FormDadosPessoais";
+import FormDadosConta from "../../components/FormsCadastro/FormDadosConta";
+import FormDadosEndereco from "../../components/FormsCadastro/FormDadosEndereco";
+import FormDadosComercio from "../../components/FormsCadastro/FormDadosComercio";
 
 import "./styles.css";
 
 const Cadastro = () => {
   const [etapa, setEtapa] = useState(0);
-  const [dadosPessoais, setDadosPessoais] = useState({});
+  const [dadosPessoais, setDadosPessoais] = useState({ tipoUser: "Cliente" });
   const [endereco, setEndereco] = useState({});
+
+  const handleBackStage = (e) => {
+    e.preventDefault();
+    if (etapa === 0) return;
+    setEtapa(etapa - 1);
+  };
 
   return (
     <div className="row container-cadastro">
@@ -51,10 +57,7 @@ const Cadastro = () => {
                 setDadosPessoais({ ...dadosPessoais, ...values });
                 setEtapa(etapa + 1);
               }}
-              onClick={(e) => {
-                e.preventDefault();
-                setEtapa(etapa - 1);
-              }}
+              handleBackStage={handleBackStage}
               initialValues={dadosPessoais}
             />
           )}
@@ -65,10 +68,7 @@ const Cadastro = () => {
                 setEndereco(values);
                 setEtapa(etapa + 1);
               }}
-              onClick={(e) => {
-                e.preventDefault();
-                setEtapa(etapa - 1);
-              }}
+              handleBackStage={handleBackStage}
               initialValues={endereco}
             />
           )}
@@ -79,10 +79,7 @@ const Cadastro = () => {
                 setEndereco(values);
                 setEtapa(etapa + 1);
               }}
-              onClick={(e) => {
-                e.preventDefault();
-                setEtapa(etapa - 1);
-              }}
+              handleBackStage={handleBackStage}
               initialValues={endereco}
             />
           )}

@@ -103,22 +103,17 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-input:not([type]):focus:not([readonly]), 
-input[type=text]:not(.browser-default):focus:not([readonly]), 
-input[type=password]:not(.browser-default):focus:not([readonly]), 
-input[type=email]:not(.browser-default):focus:not([readonly]), 
-input[type=url]:not(.browser-default):focus:not([readonly]), 
-input[type=time]:not(.browser-default):focus:not([readonly]), 
-input[type=date]:not(.browser-default):focus:not([readonly]), 
-input[type=datetime]:not(.browser-default):focus:not([readonly]), 
-input[type=datetime-local]:not(.browser-default):focus:not([readonly]), 
-input[type=tel]:not(.browser-default):focus:not([readonly]), 
-input[type=number]:not(.browser-default):focus:not([readonly]), 
-input[type=search]:not(.browser-default):focus:not([readonly]), 
-textarea.materialize-textarea:focus:not([readonly]){
+
+.input-field label, .input-field input[type=text]:focus + label, .input-field > label  {
+    color: #1D273B !important;
+    font-family: Lato;
+    font-size: 1em !important;
+}
+.input-field input[type=text]:focus {
     border-bottom: 1px solid #F46825 !important;
     box-shadow: 0 1px 0 0 #F46825 !important;
 }
+
 [type="radio"]:checked+span:after, 
 [type="radio"].with-gap:checked+span:after {
     background-color: #F46825 !important;

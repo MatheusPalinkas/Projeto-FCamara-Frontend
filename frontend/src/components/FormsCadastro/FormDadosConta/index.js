@@ -1,12 +1,10 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
 
-import Button from "../Button";
-
+import "../styles.css";
 import "./styles.css";
 
 const validates = yup.object().shape({
@@ -27,7 +25,7 @@ const validates = yup.object().shape({
     .oneOf([yup.ref("senha")], "As senhas estão diferentes"),
 });
 
-const FormDadosConta = ({ initialValues, handleSubmit, onClick }) => {
+const FormDadosConta = ({ initialValues, handleSubmit, handleBackStage }) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -61,7 +59,7 @@ const FormDadosConta = ({ initialValues, handleSubmit, onClick }) => {
           </div>
 
           <div className="form-submit">
-            <button onClick={onClick}>Voltar</button>
+            <button onClick={handleBackStage}>Voltar</button>
             <button type="submit">Proximo</button>
           </div>
         </div>

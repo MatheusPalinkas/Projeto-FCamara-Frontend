@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import MaskInput from "react-text-mask";
-import { MdKeyboardArrowRight } from "react-icons/md";
+
 import M from "materialize-css/dist/js/materialize.min.js";
 
-import api from "../../services/Api";
+import api from "../../../services/Api";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
 
-import Button from "../Button";
-
+import "../styles.css";
 import "./styles.css";
 
 const validates = yup.object().shape({
@@ -30,7 +29,11 @@ const validates = yup.object().shape({
 
 const hoursNumberMask = [/[1-9]/, /\d/, ":", /\d/, /\d/];
 
-const FormDadosComercio = ({ initialValues, handleSubmit, onClick }) => {
+const FormDadosComercio = ({
+  initialValues,
+  handleSubmit,
+  handleBackStage,
+}) => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -192,7 +195,7 @@ const FormDadosComercio = ({ initialValues, handleSubmit, onClick }) => {
             </div>
           </div>
           <div className="form-submit">
-            <button onClick={onClick}>Voltar</button>
+            <button onClick={handleBackStage}>Voltar</button>
             <button type="submit">Proximo</button>
           </div>
         </div>

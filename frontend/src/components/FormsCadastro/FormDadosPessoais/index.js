@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import MaskInput from "react-text-mask";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
 
-import Button from "../Button";
-
+import "../styles.css";
 import "./styles.css";
 
 const optionsDate = {
@@ -72,6 +70,7 @@ const validates = yup.object().shape({
     .trim()
     .required("O CPF é obrigatorio"),
   telefone: yup.string("O Telefone deve ser um texto").optional(),
+  tipoUser: yup.string().required("O tipo de usuario é obrigatorio"),
 });
 
 const phoneNumberMask = [
@@ -120,11 +119,12 @@ const DateNumberMask = [
   /[0-9]/,
 ];
 
-const FormDadosPessoais = ({ initialValues, handleSubmit, handleChance }) => {
+const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
   useEffect(() => {
     const elems = document.querySelectorAll(".datepicker");
     M.Datepicker.init(elems, optionsDate);
   }, []);
+
   return (
     <Formik
       initialValues={initialValues}
@@ -192,8 +192,8 @@ const FormDadosPessoais = ({ initialValues, handleSubmit, handleChance }) => {
               component="span"
             />
           </div>
-          <div className="input-field">
-            <div className="radio-tipoUser">
+          <div className="input-field div-tipo-user">
+            <div className="div-radio">
               <p>
                 <label htmlFor="Cliente">
                   <Field
@@ -217,6 +217,16 @@ const FormDadosPessoais = ({ initialValues, handleSubmit, handleChance }) => {
                 </label>
               </p>
             </div>
+            {initialValues.tipoUser === "Cliente" ? (
+              <p>Estou a procura de produtos para comprar</p>
+            ) : (
+              <p>Estou a procurando divulgar e vender de produtos</p>
+            )}
+            <ErrorMessage
+              className="helper-text"
+              name="tipoUser"
+              component="span"
+            />
           </div>
           <div className="form-submit">
             <button type="submit">Proximo</button>

@@ -8,5 +8,6 @@
     color: #FFF !important;
 }
 .background-breadcrumb > a.ativo{
-    color: #148acc !important;
+    color: #F5EDE9 !important;
+    text-decoration: underline;
 }

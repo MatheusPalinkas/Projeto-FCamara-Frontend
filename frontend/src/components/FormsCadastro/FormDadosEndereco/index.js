@@ -1,12 +1,10 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
 
-import Button from "../Button";
-
+import "../styles.css";
 import "./styles.css";
 
 const validates = yup.object().shape({
@@ -25,7 +23,11 @@ const validates = yup.object().shape({
   complemento: yup.string().optional(),
 });
 
-const FormDadosEndereco = ({ initialValues, handleSubmit, onClick }) => {
+const FormDadosEndereco = ({
+  initialValues,
+  handleSubmit,
+  handleBackStage,
+}) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -99,7 +101,7 @@ const FormDadosEndereco = ({ initialValues, handleSubmit, onClick }) => {
           </div>
 
           <div className="form-submit">
-            <button onClick={onClick}>Voltar</button>
+            <button onClick={handleBackStage}>Voltar</button>
             <button type="submit">Proximo</button>
           </div>
         </div>
