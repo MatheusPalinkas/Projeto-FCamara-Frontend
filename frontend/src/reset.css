@@ -8,12 +8,23 @@
 body{
     background: #F5EDE9;
 }
-
+#root{
+    height: auto;
+    min-height: 100vh;
+    max-height: 100vh;
+}
 html, body {
     min-height: 100vh;
     font-size: 20px;
 }
-
+.div-container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+.datepicker-date-display {
+    background-color: #F46825 !important;
+}
 @font-face {
     font-family: NunitoSans;
     src: url('./assets/fonts/NunitoSans-Regular.ttf');
@@ -91,6 +102,22 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+input:not([type]):focus:not([readonly]), 
+input[type=text]:not(.browser-default):focus:not([readonly]), 
+input[type=password]:not(.browser-default):focus:not([readonly]), 
+input[type=email]:not(.browser-default):focus:not([readonly]), 
+input[type=url]:not(.browser-default):focus:not([readonly]), 
+input[type=time]:not(.browser-default):focus:not([readonly]), 
+input[type=date]:not(.browser-default):focus:not([readonly]), 
+input[type=datetime]:not(.browser-default):focus:not([readonly]), 
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]), 
+input[type=tel]:not(.browser-default):focus:not([readonly]), 
+input[type=number]:not(.browser-default):focus:not([readonly]), 
+input[type=search]:not(.browser-default):focus:not([readonly]), 
+textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom: 1px solid #F46825 !important;
+    box-shadow: 0 1px 0 0 #F46825 !important;
 }
 
 input[type=search]::-webkit-search-cancel-button,
