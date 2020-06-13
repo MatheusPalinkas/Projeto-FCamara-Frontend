@@ -4,12 +4,19 @@ import PropTypes from "prop-types";
 import { ErrorMessage, Formik, Form as FormikForm, Field } from "formik";
 import "./styles.css";
 import { FiLogIn } from "react-icons/fi";
+import { MdPersonAdd } from "react-icons/md";
 import Modal from "../Modal";
 import Button from "../Button";
 
 const validations = yup.object().shape({
-  user: yup.string().email().required(),
-  password: yup.string().min(8).required(),
+  user: yup
+    .string()
+    .email("O email deve ser valido")
+    .required("O email não deve ser vazio"),
+  password: yup
+    .string()
+    .min(8, "A senha deve ter mais de 8 caracteris")
+    .required("A senha não deve ser vazia"),
 });
 
 const ModalLogin = ({ handleSubmit, initialValues }) => (
@@ -19,34 +26,49 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
       onSubmit={handleSubmit}
       validationSchema={validations}
     >
-      <FormikForm className="Form">
-        <h1 className="Form-Welcome">ENTRAR</h1>
-        <div className="Form-Group">
-          <Field
-            className="Form-Field"
-            name="user"
-            placeholder="Digite seu email"
-            type="text"
-          />
-          <ErrorMessage className="Foem-Error" component="span" name="user" />
-        </div>
-        <div className="Form-Group">
-          <Field
-            className="Form-Field"
-            name="password"
-            placeholder="Digite sua senha"
-            type="password"
-          />
-          <ErrorMessage
-            className="Form-Error"
-            component="span"
-            name="password"
-          />
-        </div>
+      <FormikForm>
+        <div className="container">
+          <h1>ENTRAR</h1>
 
-        <Button tipo={"submit"} text={"CRIAR" + "CONTA"} />
+          <p>Email</p>
 
-        <Button tipo={"submit"} typeButton={"secundaria"} Icon={FiLogIn} />
+          <div className="conp">
+            <Field name="user" placeholder="Digite seu email" type="text" />
+          </div>
+          <div className="conpa">
+            <ErrorMessage className="Foem-Error" component="span" name="user" />
+          </div>
+
+          <p>Senha</p>
+
+          <div className="conp">
+            <Field
+              name="password"
+              placeholder="Digite sua senha"
+              type="password"
+            />
+          </div>
+          <div className="conpa">
+            <ErrorMessage
+              className="Form-Error"
+              component="span"
+              name="password"
+            />
+          </div>
+
+          <div className="containerbtn">
+            <div className="btncon">
+              <Button tipo={"submit"} text={"CRIAR"} Icon={MdPersonAdd} />
+            </div>
+            <div className="btncon">
+              <Button
+                tipo={"submit"}
+                typeButton={"secundaria"}
+                Icon={FiLogIn}
+              />
+            </div>
+          </div>
+        </div>
       </FormikForm>
     </Formik>
   </Modal>

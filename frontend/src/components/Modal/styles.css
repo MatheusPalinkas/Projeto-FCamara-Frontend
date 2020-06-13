@@ -1,18 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
 .modal {
-    font-family: NunitoSans;
+  font-family: NunitoSans;
 }
 
 .head {
-    float: right;
-    margin: 15px; 
+  float: right;
+  margin: 15px;
 }
 
 .close {
-    width: 45px; 
+  width: auto;
 }
 
-.children{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} 
+.children {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

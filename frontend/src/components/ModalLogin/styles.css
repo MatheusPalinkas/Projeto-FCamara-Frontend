@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+.container {
+  height: auto;
+  font-family: NunitoSans;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h1 {
+  font-size: 2.5em;
+}
+
+.container p {
+  align-self: flex-start;
+  width: 68%;
+}
+
+.containerbtn {
+  height: auto;
+  width: 200px;
+  display: flex;
+}
+
+.btncon {
+  padding: 5px;
+}
