@@ -11,6 +11,7 @@ export default function Button({
   text = "ENTRAR",
   position = "top",
   tooltip = `Botão de ${text}`,
+  tipo,
 }) {
   useEffect(() => {
     (async function () {
@@ -33,8 +34,24 @@ export default function Button({
     }
   }
 
-  return (
-    <>
+  if (tipo === "submit") {
+    return (
+      <button
+        className={`btn waves-effect waves-light tooltipped btn ${classButton} `}
+        type="submit"
+        data-position={`${position}`}
+        data-tooltip={`${tooltip}`}
+      >
+        <span className="text-align-btn">
+          <div className="icon">
+            {Icon && <Icon className="material-icons left" />}
+          </div>
+          {text}
+        </span>
+      </button>
+    );
+  } else {
+    return (
       <Link
         className={`tooltipped btn ${classButton} `}
         data-position={`${position}`}
@@ -48,6 +65,6 @@ export default function Button({
           {text}
         </span>
       </Link>
-    </>
-  );
+    );
+  }
 }

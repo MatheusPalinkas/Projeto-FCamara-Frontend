@@ -5,9 +5,14 @@ import "./styles.css";
 
 import Card from "../../components/Card";
 
+import ModalLogin from "../../components/ModalLogin";
+
 function Main() {
   const [comercios, setComercios] = useState([]);
   const { idCategoria } = useParams();
+
+  const handleSubmit = (values) => alert(JSON.stringify(values));
+  const initialValues = {};
 
   useEffect(() => {
     (async function () {
@@ -37,8 +42,12 @@ function Main() {
           />
         ))}
       </div>
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">
+        Modal
+      </a>
+      <ModalLogin handleSubmit={handleSubmit} initialValues={initialValues} />
     </>
-  );        
+  );
 }
 
 export default Main;
