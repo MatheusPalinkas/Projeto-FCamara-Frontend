@@ -7,3 +7,14 @@
     font-family: Lato;
     font-size: 1em;
 }
+.radio-tipoUser{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.form-submit{
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+}

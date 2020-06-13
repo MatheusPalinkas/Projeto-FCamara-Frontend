@@ -18,6 +18,11 @@
     .div-form{
         max-width: 500px;
     }
+    .form-dados-pessoais{
+        max-width: 400px;
+    
+        margin: 80px auto 40px auto;
+    }
 }
 
 @media only screen and (max-width: 520px){
@@ -26,5 +31,10 @@
     }
     .container-cadastro{ 
         margin: 40px  auto;
+    }
+    .form-dados-pessoais{
+        max-width: 400px;
+    
+        margin: 136px auto 40px auto;
     }
 }
