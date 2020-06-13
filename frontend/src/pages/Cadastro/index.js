@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Breadcrumb from "../../components/Breadcrumb";
 import FormDadosPessoais from "../../components/FormDadosPessoais";
+import FormDadosConta from "../../components/FormDadosConta";
 import "./styles.css";
 
 const Cadastro = () => {
@@ -23,18 +24,36 @@ const Cadastro = () => {
             <Link className={`breadcrumb ${etapa === 2 && "ativo"}`}>
               Adicionar endereço
             </Link>
-            <Link className={`breadcrumb ${etapa === 3 && "ativo"}`}>
-              Comercio
-            </Link>
+            {dadosPessoais.tipoUser === "Vendedor" && (
+              <Link className={`breadcrumb ${etapa === 3 && "ativo"}`}>
+                Comercio
+              </Link>
+            )}
           </Breadcrumb>
 
-          <FormDadosPessoais
-            handleSubmit={(values) => {
-              setDadosPessoais(values);
-              setEtapa(etapa + 1);
-            }}
-            initialValues={dadosPessoais}
-          />
+          {etapa === 0 && (
+            <FormDadosPessoais
+              handleSubmit={(values) => {
+                setDadosPessoais(values);
+                setEtapa(etapa + 1);
+              }}
+              initialValues={dadosPessoais}
+            />
+          )}
+
+          {etapa === 1 && (
+            <FormDadosConta
+              handleSubmit={(values) => {
+                setDadosPessoais({ ...dadosPessoais, ...values });
+                setEtapa(etapa + 1);
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                setEtapa(etapa - 1);
+              }}
+              initialValues={dadosPessoais}
+            />
+          )}
         </div>
       </div>
     </div>
