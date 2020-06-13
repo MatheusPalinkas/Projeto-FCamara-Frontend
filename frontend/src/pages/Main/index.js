@@ -2,23 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/Api";
 import "./styles.css";
-
 import Card from "../../components/Card";
-
-import ModalLogin from "../../components/ModalLogin";
-
-import Button from "../../components/Button";
-
-function abre() {
-  return alert("aaaaaaaa")
-}
 
 function Main() {
   const [comercios, setComercios] = useState([]);
   const { idCategoria } = useParams();
-
-  const handleSubmit = (values) => alert(JSON.stringify(values));
-  const initialValues = {};
 
   useEffect(() => {
     (async function () {
@@ -47,17 +35,7 @@ function Main() {
             idComercio={comercio.id}
           />
         ))}
-      </div>
-
-      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">
-        Modal com a
-      </a>
-      <button data-target="modal1" class="btn modal-trigger">Modal com bun</button>
-
-      <Button />
-
-      <ModalLogin handleSubmit={handleSubmit} initialValues={initialValues} />
-      
+      </div>   
     </>
   );
 }

@@ -63,11 +63,13 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
               <Button tipo={"submit"} text={"CRIAR CONTA"} Icon={MdPersonAdd} />
             </div>
             <div className="btncon">
-              <Button
-                tipo={"submit"}
-                typeButton={"secundaria"}
-                Icon={FiLogIn}
-              />
+            <Button
+                  Icon={FiLogIn}
+                  tipo={"submit"}
+                  position="bottom"
+                  tooltip="Entrar na minha conta"
+                  type={"submit"}
+                />
             </div>
           </div>
       </FormikForm>
