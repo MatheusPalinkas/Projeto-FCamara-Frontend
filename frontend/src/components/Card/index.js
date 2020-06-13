@@ -59,24 +59,24 @@ const Card = ({
           {produto.preco && <span className="preco">{produto.preco}</span>}
           <p className="p-descricao-link">
             {idVendedor && (
-              <Link className="activator excluir-produto">Excluir produto</Link>
+              <Link className="excluir-produto">Excluir produto</Link>
             )}
             {idComercio ? (
-              <Link className="activator link-pagina-produto">
-                Pagina do comercio
-              </Link>
+              <Link className="link-pagina-produto">Pagina do comercio</Link>
             ) : (
               <Link className="activator descricao">Ver descrição</Link>
             )}
           </p>
         </div>
-        <div className="card-reveal infos-card">
-          <span className="card-title activator span-card-title">
-            Notebook
-            <MdClose className="activator  icon-menos-infos" />
-          </span>
-          <p className="p-descricao">{descricao}</p>
-        </div>
+        {!idComercio && (
+          <div className="card-reveal infos-card">
+            <span className="card-title activator span-card-title">
+              Notebook
+              <MdClose className="activator  icon-menos-infos" />
+            </span>
+            <p className="p-descricao">{descricao}</p>
+          </div>
+        )}
       </div>
     </>
   );
