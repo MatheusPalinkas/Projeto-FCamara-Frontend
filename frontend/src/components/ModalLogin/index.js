@@ -62,6 +62,7 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
               position="bottom"
               tooltip="Entrar na minha conta"
               type={"submit"}
+              typeButton={"secundaria"}
             />
           </div>
         </div>
