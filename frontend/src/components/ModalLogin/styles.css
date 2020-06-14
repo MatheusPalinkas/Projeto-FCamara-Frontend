@@ -13,28 +13,30 @@
   font-size: 2.5em;
 }
 
-p {
+label {
   float: left;
   width: 300px;
+  font-weight: bold;
+  color: black !important;
 }
 
-.conp {
+.formLogin {
   width: 300px;
   text-align: left;
 }
 
-.conpa {
+.formLoginError {
   width: 300px;
   color: red;
 }
 
-.containerbtn {
+.containerBtn {
   display: flex;
   justify-content: center;
   width: 300px;
 }
 
-.btncon {
+.btnLogin {
   padding: 5px;
   float: center;
 }

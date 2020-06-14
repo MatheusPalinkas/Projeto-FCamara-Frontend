@@ -9,11 +9,11 @@ import Modal from "../Modal";
 import Button from "../Button";
 
 const validations = yup.object().shape({
-  user: yup
+  email: yup
     .string()
     .email("O email deve ser valido")
     .required("O email não deve ser vazio"),
-  password: yup
+  senha: yup
     .string()
     .min(8, "A senha deve ter mais de 8 caracteris")
     .required("A senha não deve ser vazia"),
@@ -26,52 +26,45 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
       onSubmit={handleSubmit}
       validationSchema={validations}
     >
-      <FormikForm  >
-     
-          <div className="titulo"><h1>ENTRAR</h1></div>
+      <FormikForm>
+        <div className="titulo">
+          <h1>ENTRAR</h1>
+        </div>
 
-          <div className="conp">
-          <p>Email</p>
-          </div>
-          <div className="conp">
-            <Field name="user" placeholder="Digite seu email" type="text" />
-          </div>
-          <div className="conpa">
-            <ErrorMessage className="Foem-Error" component="span" name="user" />
-          </div>
+        <div className="formLogin">
+          <label>Email</label>
+        </div>
+        <div className="formLogin">
+          <Field name="email" placeholder="Digite seu email" type="text" />
+        </div>
+        <div className="formLoginError">
+          <ErrorMessage className="Foem-Error" component="span" name="email" />
+        </div>
 
-          <div className="conp">
-          <p>Senha</p>
-          </div>
-          <div className="conp">
-            <Field
-              name="password"
-              placeholder="Digite sua senha"
-              type="password"
-            />
-          </div>
-          <div className="conpa">
-            <ErrorMessage
-              className="Form-Error"
-              component="span"
-              name="password"
-            />
-          </div>
+        <div className="formLogin">
+          <label>Senha</label>
+        </div>
+        <div className="formLogin">
+          <Field name="senha" placeholder="Digite sua senha" type="password" />
+        </div>
+        <div className="formLoginError">
+          <ErrorMessage className="Form-Error" component="span" name="senha" />
+        </div>
 
-          <div className="containerbtn">
-            <div className="btncon">
-              <Button tipo={"submit"} text={"CRIAR CONTA"} Icon={MdPersonAdd} />
-            </div>
-            <div className="btncon">
+        <div className="containerBtn">
+          <div className="btnLogin">
+            <Button text={"CRIAR CONTA"} Icon={MdPersonAdd} />
+          </div>
+          <div className="btnLogin">
             <Button
-                  Icon={FiLogIn}
-                  tipo={"submit"}
-                  position="bottom"
-                  tooltip="Entrar na minha conta"
-                  type={"submit"}
-                />
-            </div>
+              Icon={FiLogIn}
+              tipo={"submit"}
+              position="bottom"
+              tooltip="Entrar na minha conta"
+              type={"submit"}
+            />
           </div>
+        </div>
       </FormikForm>
     </Formik>
   </Modal>
