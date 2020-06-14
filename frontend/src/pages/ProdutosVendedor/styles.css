@@ -1,13 +1,20 @@
-.btnCadastro {
-  float: left;
-  padding: 50px;
+.containerBtn {
+  width: auto !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
+  padding-top: 10px;
 }
 
-.btnVoltar {
-  float: right;
-  padding: 50px;
+.btnVendedor {
+  margin: 50px 0 0 0;
 }
 
 .produtos {
-  float: right;
+  width: auto !important;
+  margin: 0 auto;
+  padding: 100px 0 0 0;
 }

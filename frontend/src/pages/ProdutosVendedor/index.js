@@ -7,7 +7,7 @@ import Card from "../../components/Card";
 import Button from "../../components/Button";
 
 export default function ProdutosVendedor() {
-  const [comercios, setComercios] = useState([]);
+  const [produtos, setProdutos] = useState([]);
   const { idCategoria } = useParams();
 
   useEffect(() => {
@@ -15,30 +15,35 @@ export default function ProdutosVendedor() {
       let filtro = "";
       if (idCategoria) filtro = `?idCategoria=${idCategoria}`;
       console.log(filtro);
-      const { data } = await api.get(`/comercios${filtro}`);
-      setComercios(data);
+      const { data } = await api.get(`/produtos${filtro}`);
+      setProdutos(data);
     })();
   }, [idCategoria]);
 
   return (
     <>
-      <div className="btnCadastro">
-        <Button text={"Cadastra novo produto"} />
-      </div>
-      <div className="btnVoltar">
-        <Button text={"VOLTAR"} typeButton={"secundaria"} />
+      <div className="containerBtn">
+        <div className="btnVendedor">
+          <Button text={"Cadastra novo produto"} />
+        </div>
+        <div className="btnVendedor">
+          <Button text={"VOLTAR"} typeButton={"secundaria"} />
+        </div>
       </div>
 
       <div className="container-comercios produtos">
-        {comercios.map((comercio) => (
+        {produtos.map((produto) => (
           <Card
-            key={comercio.id}
-            titulo={comercio.nome}
-            url={comercio.url}
-            idVendedor={54654655485}
+            key={produto.id}
+            idVendedor={produto.idComercio}
+            titulo={produto.nome}
+            url={produto.url}
+            descricao={produto.descricao}
+            preco={produto.preco}
           />
         ))}
       </div>
     </>
   );
 }
+/** https://unsplash.com/photos/6wdRuK7bVTE */
