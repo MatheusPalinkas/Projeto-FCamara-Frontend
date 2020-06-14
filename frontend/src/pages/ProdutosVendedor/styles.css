@@ -1,0 +1,13 @@
+.btnCadastro {
+  float: left;
+  padding: 50px;
+}
+
+.btnVoltar {
+  float: right;
+  padding: 50px;
+}
+
+.produtos {
+  float: right;
+}
