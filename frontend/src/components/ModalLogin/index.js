@@ -53,16 +53,21 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
 
         <div className="containerBtn">
           <div className="btnLogin">
-            <Button text={"CRIAR CONTA"} Icon={MdPersonAdd} />
+            <Button
+              text={"CRIAR CONTA"}
+              Icon={MdPersonAdd}
+              tipo="Link"
+              to="/cadastro"
+            />
           </div>
           <div className="btnLogin">
             <Button
               Icon={FiLogIn}
-              tipo={"submit"}
               position="bottom"
               tooltip="Entrar na minha conta"
               type={"submit"}
               typeButton={"secundaria"}
+              submit="submit"
             />
           </div>
         </div>

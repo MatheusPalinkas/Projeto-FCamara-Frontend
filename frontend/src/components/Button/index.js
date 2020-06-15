@@ -11,8 +11,11 @@ export default function Button({
   text = "ENTRAR",
   position = "top",
   tooltip = `Botão de ${text}`,
-  tipo,
-  type,
+  tipo = "Button",
+  className,
+  dataTarget = "",
+  to = "",
+  submit = "",
 }) {
   useEffect(() => {
     (async function () {
@@ -35,46 +38,31 @@ export default function Button({
     }
   }
 
-  if(tipo === "submit"){
-    return(
-      <button 
-      className={`tooltipped waves-light waves-effect btn ${classButton} `}
-      data-position={`${position}`}
-      type="submit"
-      data-tooltip={`${tooltip}`}
-      data-target="modal1" >
+  if (tipo === "Button") {
+    return (
+      <button
+        className={`tooltipped waves-light waves-effect btn  modal-trigger ${classButton} ${className}`}
+        data-position={`${position}`}
+        type={submit}
+        data-tooltip={`${tooltip}`}
+        data-target={dataTarget}
+      >
         <span className="text-align-btn">
-        <div className="icon">
-              {Icon && <Icon className="material-icons left" />}
-            </div>
-            {text}
-        </span>
-        </button>
-      );
-
-  } else {
-  if(tipo === "login"){ 
-    return(
-    <button 
-    className={`modal-trigger tooltipped waves-light waves-effect btn ${classButton} `}
-    data-position={`${position}`}
-    data-tooltip={`${tooltip}`}
-    data-target="modal1" >
-      <span className="text-align-btn">
-      <div className="icon">
+          <div className="icon">
             {Icon && <Icon className="material-icons left" />}
           </div>
           {text}
-      </span>
+        </span>
       </button>
     );
   } else {
     return (
       <Link
-        className={`tooltipped btn ${classButton} `}
+        className={`tooltipped waves-light waves-effect btn  modal-trigger ${classButton} ${className}`}
         data-position={`${position}`}
         data-tooltip={`${tooltip}`}
         onClick={onClick}
+        to={to}
       >
         <span className="text-align-btn">
           <div className="icon">
@@ -86,5 +74,3 @@ export default function Button({
     );
   }
 }
-}
-

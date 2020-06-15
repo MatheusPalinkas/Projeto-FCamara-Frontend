@@ -6,11 +6,10 @@
   font-size: 2.5em;
 }
 
-label {
+.formLogin > label {
   font-family: Lato;
   font-size: 1em;
   float: left;
-  width: 300px;
   color: black !important;
 }
 

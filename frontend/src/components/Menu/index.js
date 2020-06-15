@@ -12,7 +12,7 @@ import SideBar from "../SideBar";
 import "./styles.css";
 
 const handleSubmit = (values) => alert(JSON.stringify(values));
-  const initialValues = {};
+const initialValues = {};
 
 const PhotoUserLogged = ({ url }) => {
   return (
@@ -90,9 +90,11 @@ const Menu = ({ user = {} }) => {
               ) : (
                 <Button
                   Icon={FiLogIn}
-                  tipo={"login"}
+                  tipo="Button"
                   position="bottom"
                   tooltip="Entrar na minha conta"
+                  className="btn-entrar-conta"
+                  dataTarget="modal1"
                 />
               )}
             </li>
