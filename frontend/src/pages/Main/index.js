@@ -12,7 +12,7 @@ function Main() {
     (async function () {
       let filtro = "";
       if (idCategoria) filtro = `?idCategoria=${idCategoria}`;
-      console.log(filtro);
+
       const { data } = await api.get(`/comercios${filtro}`);
       setComercios(data);
     })();
@@ -35,7 +35,7 @@ function Main() {
             idComercio={comercio.id}
           />
         ))}
-      </div>   
+      </div>
     </>
   );
 }

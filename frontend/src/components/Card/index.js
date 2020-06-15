@@ -71,7 +71,7 @@ const Card = ({
         {!idComercio && (
           <div className="card-reveal infos-card">
             <span className="card-title activator span-card-title">
-              Notebook
+              {titulo}
               <MdClose className="activator  icon-menos-infos" />
             </span>
             <p className="p-descricao">{descricao}</p>

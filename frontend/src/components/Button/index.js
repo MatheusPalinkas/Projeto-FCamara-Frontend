@@ -12,7 +12,7 @@ export default function Button({
   position = "top",
   tooltip = `Botão de ${text}`,
   tipo = "Button",
-  className,
+  className = "",
   dataTarget = "",
   to = "",
   submit = "",
