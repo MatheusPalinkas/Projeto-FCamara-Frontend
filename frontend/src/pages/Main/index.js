@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/Api";
 import "./styles.css";
-
 import Card from "../../components/Card";
 
 function Main() {
@@ -36,7 +35,7 @@ function Main() {
             idComercio={comercio.id}
           />
         ))}
-      </div>
+      </div>   
     </>
   );
 }
