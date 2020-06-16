@@ -1,45 +1,28 @@
-.input-field > label{
-    font-family: Lato;
-    font-size: 1.33em;
+.hr-funcionamento > .input-field{
+    max-width: 45%;
 }
-.input-field > span.helper-text{
-    color: rgb(224, 17, 17);
-    font-family: Lato;
-    font-size: 1em;
+.label-hora{
+    top: -10px !important;
 }
-.radio-tipoUser{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.hr-funcionamento >.lbl-ate{
+    margin-top: auto;
+    margin-bottom: 32px;
 }
-.form-submit{
-    margin-top: 24px;
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-}
-.input-mesma-linha{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.input-mesma-linha > div.input-field{
-width: 45%;
-}
-.input-uf, .input-numero{
-    margin-left: 16px;
-    max-width: 100px;
-}
-.inputs-servico-entrega{
-    display: flex;
-    flex-direction: co;
-}
-.inputs-possui-servico{
-    height: 3rem;
-}
-.inputs-possui-servico .input-mesma-linha{
+.div-radios-form{
+    max-width: 200px;
+    margin-right: auto;
     margin-top: 16px;
 }
-.input-mesma-linha{
-justify-content: space-around;
+.inputs-possui-servico > label.label-possui-servico-entregas,
+.inputs-formas-pagamento > label.label-formas-pagamento{
+    position: relative;
+}
+.div-formas-pagamento{
+    justify-content: space-between;
+    margin-right: 0;
+    max-width: none;
+    margin-top: 16px;
+}
+.buttons-comercio{
+    margin-top: 32px;
 }

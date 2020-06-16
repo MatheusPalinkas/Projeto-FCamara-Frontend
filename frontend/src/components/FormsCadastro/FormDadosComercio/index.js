@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import MaskInput from "react-text-mask";
-
+import { MdReply, MdKeyboardArrowRight } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
+
+import Button from "../../Button";
 
 import api from "../../../services/Api";
 
@@ -14,12 +16,10 @@ import "./styles.css";
 
 const validates = yup.object().shape({
   nome: yup.string().required("O nome do comercio é obrigadotio"),
-  horaAbertura: yup.string().required("O horario de atendimento é obrigadotio"),
-  horaFechamento: yup
-    .string()
-    .required("O horario de atendimento é obrigadotio"),
+  horaAbertura: yup.string().required("Campo obrigatório"),
+  horaFechamento: yup.string().required("Campo obrigatório"),
   foto: yup.object().optional(),
-  possuiEntregas: yup.boolean().optional(),
+  possuiEntregas: yup.string().optional(),
   categoria: yup.number().required("A sua categoria de comercio é obrigatoria"),
   cnpj: yup.string().optional(),
   pagamentoCartao: yup.boolean().optional(),
@@ -38,11 +38,11 @@ const FormDadosComercio = ({
 
   useEffect(() => {
     (async function () {
-      const elems = document.querySelectorAll("select");
-      M.FormSelect.init(elems, {});
-
       const { data } = await api.get("/categorias");
       setCategorias(data);
+
+      const elems = document.querySelectorAll("select");
+      M.FormSelect.init(elems, {});
     })();
   }, []);
 
@@ -55,7 +55,7 @@ const FormDadosComercio = ({
       <Form>
         <div className="form-dados-pessoais">
           <div className="input-field">
-            <label htmlFor="nome">Nome</label>
+            <label htmlFor="nome">Nome do comercio</label>
             <Field type="text" id="nome" name="nome" />
             <ErrorMessage
               className="helper-text"
@@ -64,8 +64,8 @@ const FormDadosComercio = ({
             />
           </div>
           <div className="input-field">
-            <label>Horario de funcionamento</label>
-            <div className="input-mesma-linha">
+            <label className="label-hora">Horario de funcionamento</label>
+            <div className="div-buttons-form hr-funcionamento">
               <div className="input-field">
                 <Field name="horaAbertura">
                   {({ field }) => (
@@ -77,8 +77,13 @@ const FormDadosComercio = ({
                     />
                   )}
                 </Field>
+                <ErrorMessage
+                  className="helper-text"
+                  name="horaAbertura"
+                  component="span"
+                />
               </div>
-
+              <div className="input-field lbl-ate">Até</div>
               <div className="input-field">
                 <Field name="horaFechamento">
                   {({ field }) => (
@@ -90,27 +95,28 @@ const FormDadosComercio = ({
                     />
                   )}
                 </Field>
+                <ErrorMessage
+                  className="helper-text"
+                  name="horaFechamento"
+                  component="span"
+                />
               </div>
             </div>
-            <ErrorMessage
-              className="helper-text"
-              name="horaFechamento"
-              component="span"
-            />
-            <ErrorMessage
-              className="helper-text"
-              name="horaAbertura"
-              component="span"
-            />
           </div>
           <div className="input-field inputs-possui-servico">
-            <div className="input-mesma-linha">
+            <label
+              htmlFor="possuiEntregas"
+              className="label-possui-servico-entregas"
+            >
+              Possui serviço de entregas
+            </label>
+            <div className="div-radios-form">
               <p>
                 <label htmlFor="Sim">
                   <Field
                     name="possuiEntregas"
                     type="radio"
-                    value={true}
+                    value="true"
                     id="Sim"
                   />
                   <span>Sim </span>
@@ -121,7 +127,7 @@ const FormDadosComercio = ({
                   <Field
                     name="possuiEntregas"
                     type="radio"
-                    value={false}
+                    value="false"
                     id="Nao"
                   />
                   <span>Não</span>
@@ -132,9 +138,7 @@ const FormDadosComercio = ({
           <div className="input-field">
             <div className="input-field ">
               <Field as="select" id="categoria" name="categoria">
-                <option value="" disabled selected>
-                  Escolha uma categoria
-                </option>
+                <option value={false}>Selecione uma categoria</option>
                 {categorias.map((categoria) => (
                   <option value={categoria.id} key={categoria.id}>
                     {categoria.nome}
@@ -157,8 +161,11 @@ const FormDadosComercio = ({
               component="span"
             />
           </div>
-          <div className="input-field">
-            <div className="radio-tipoUser">
+          <div className="input-field inputs-formas-pagamento">
+            <label className="label-formas-pagamento">
+              Quais formas de pagamento vc aceita
+            </label>
+            <div className="div-radios-form div-formas-pagamento">
               <p>
                 <label htmlFor="pagamentoCartao">
                   <Field
@@ -167,7 +174,7 @@ const FormDadosComercio = ({
                     value="pagamentoCartao"
                     id="pagamentoCartao"
                   />
-                  <span>Sim </span>
+                  <span>Cartão</span>
                 </label>
               </p>
               <p>
@@ -178,7 +185,7 @@ const FormDadosComercio = ({
                     value="pagamentoDinheiro"
                     id="pagamentoDinheiro"
                   />
-                  <span>Não</span>
+                  <span>Dinheiro</span>
                 </label>
               </p>
               <p>
@@ -189,14 +196,18 @@ const FormDadosComercio = ({
                     value="pagamentoBoleto"
                     id="pagamentoBoleto"
                   />
-                  <span>Não</span>
+                  <span>Boleto</span>
                 </label>
               </p>
             </div>
           </div>
-          <div className="form-submit">
-            <button onClick={handleBackStage}>Voltar</button>
-            <button type="submit">Proximo</button>
+          <div className="div-buttons-form buttons-comercio">
+            <Button onClick={handleBackStage} text="Voltar" Icon={MdReply} />
+            <Button
+              submit="submit"
+              text="Proximo"
+              Icon={MdKeyboardArrowRight}
+            />
           </div>
         </div>
       </Form>
@@ -207,7 +218,7 @@ const FormDadosComercio = ({
 FormDadosComercio.propTypes = {
   initialValues: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
+  handleBackStage: PropTypes.func.isRequired,
 };
 
 export default FormDadosComercio;

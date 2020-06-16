@@ -1,8 +1,11 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { MdReply, MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
+
+import Button from "../../Button";
 
 import "../styles.css";
 import "./styles.css";
@@ -100,9 +103,13 @@ const FormDadosEndereco = ({
             />
           </div>
 
-          <div className="form-submit">
-            <button onClick={handleBackStage}>Voltar</button>
-            <button type="submit">Proximo</button>
+          <div className="div-buttons-form">
+            <Button onClick={handleBackStage} text="Voltar" Icon={MdReply} />
+            <Button
+              submit="submit"
+              text="Proximo"
+              Icon={MdKeyboardArrowRight}
+            />
           </div>
         </div>
       </Form>
@@ -113,7 +120,7 @@ const FormDadosEndereco = ({
 FormDadosEndereco.propTypes = {
   initialValues: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
+  handleBackStage: PropTypes.func.isRequired,
 };
 
 export default FormDadosEndereco;

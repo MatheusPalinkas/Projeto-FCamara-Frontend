@@ -18,7 +18,7 @@
     justify-content: flex-end;
     align-content: center;
 }
-.div-buttons-form{
+.div-buttons-form, .div-radios-form{
     display: flex;
     justify-content: space-between;
 }

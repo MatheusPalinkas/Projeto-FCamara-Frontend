@@ -54,6 +54,13 @@ svg{
     height: 100%;
 }
 
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right-color: #F46825 !important;
+    border-bottom-color: #F46825 !important;
+}
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #148ACC !important;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
