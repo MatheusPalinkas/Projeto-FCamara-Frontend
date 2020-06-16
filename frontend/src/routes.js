@@ -13,11 +13,11 @@ import Menu from "./components/Menu";
 export default function Routes() {
   return (
     <BrowserRouter>
-      <Menu />
+      <Menu user={{ idComercio: 3 }} />
       <Switch>
         <Route exact path="/" component={Main} />
 
-        <Route exact path="/produtovendedor" component={ProdutosVendedor} />
+        <Route exact path="/produto/vendedor" component={ProdutosVendedor} />
         <Route exact path="/:idCategoria" component={ProdutosVendedor} />
 
         <Route exact path="*" component={NotFound} />

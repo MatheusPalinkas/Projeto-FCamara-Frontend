@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../services/Api";
 import "./styles.css";
 import Card from "../../components/Card";
+import { MdReply } from "react-icons/md";
 
 import Button from "../../components/Button";
 
@@ -24,10 +25,13 @@ export default function ProdutosVendedor() {
     <>
       <div className="containerBtn">
         <div className="btnVendedor">
-          <Button text={"Cadastra novo produto"} />
+          <Button
+            text={"Cadastra novo produto"}
+            tooltip={"Cadastre um novo produto"}
+          />
         </div>
         <div className="btnVendedor">
-          <Button text={"VOLTAR"} typeButton={"secundaria"} />
+          <Button text={"VOLTAR"} typeButton={"secundaria"} Icon={MdReply} />
         </div>
       </div>
 
@@ -39,11 +43,10 @@ export default function ProdutosVendedor() {
             titulo={produto.nome}
             url={produto.url}
             descricao={produto.descricao}
-            preco={produto.preco}
+            produto={{ preco: produto.preco }}
           />
         ))}
       </div>
     </>
   );
 }
-/** https://unsplash.com/photos/6wdRuK7bVTE */

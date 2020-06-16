@@ -12,7 +12,7 @@ import SideBar from "../SideBar";
 import "./styles.css";
 
 const handleSubmit = (values) => alert(JSON.stringify(values));
-  const initialValues = {};
+const initialValues = {};
 
 const PhotoUserLogged = ({ url }) => {
   return (
@@ -34,7 +34,7 @@ const MenuVendedor = () => (
   <div className="nav-content menu-vendedor">
     <ul className="tabs  tabs-transparent ul-menu-vendedor">
       <li className="tab">
-        <Link>Meus Produtos</Link>
+        <Link to="/produto/vendedor">Meus Produtos</Link>
       </li>
       <li className="tab">
         <Link>Meus Pedidos</Link>

@@ -1,9 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  box-sizing: border-box;
-}
 .modal {
   font-family: NunitoSans;
 }
@@ -15,6 +9,9 @@
 .head {
   float: right;
   margin: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .close {
