@@ -66,10 +66,12 @@ const Cadastro = () => {
             <FormDadosEndereco
               handleSubmit={(values) => {
                 setEndereco(values);
-                setEtapa(etapa + 1);
+
+                if (dadosPessoais.tipoUser === "Vendedor") setEtapa(etapa + 1);
               }}
               handleBackStage={handleBackStage}
               initialValues={endereco}
+              vendedor={dadosPessoais.tipoUser === "Vendedor"}
             />
           )}
 

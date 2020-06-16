@@ -30,6 +30,7 @@ const FormDadosEndereco = ({
   initialValues,
   handleSubmit,
   handleBackStage,
+  vendedor,
 }) => {
   return (
     <Formik
@@ -104,12 +105,26 @@ const FormDadosEndereco = ({
           </div>
 
           <div className="div-buttons-form">
-            <Button onClick={handleBackStage} text="Voltar" Icon={MdReply} />
             <Button
-              submit="submit"
-              text="Proximo"
-              Icon={MdKeyboardArrowRight}
+              tipo="Link"
+              onClick={handleBackStage}
+              text="Voltar"
+              Icon={MdReply}
             />
+            {vendedor === true ? (
+              <Button
+                submit="submit"
+                text="Proximo"
+                Icon={MdKeyboardArrowRight}
+              />
+            ) : (
+              <Button
+                submit="submit"
+                text="Finalizar"
+                tooltip="Finalizar cadastro"
+                Icon={MdKeyboardArrowRight}
+              />
+            )}
           </div>
         </div>
       </Form>
@@ -121,6 +136,7 @@ FormDadosEndereco.propTypes = {
   initialValues: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleBackStage: PropTypes.func.isRequired,
+  vendedor: PropTypes.bool.isRequired,
 };
 
 export default FormDadosEndereco;

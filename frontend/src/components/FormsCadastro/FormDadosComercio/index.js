@@ -202,10 +202,16 @@ const FormDadosComercio = ({
             </div>
           </div>
           <div className="div-buttons-form buttons-comercio">
-            <Button onClick={handleBackStage} text="Voltar" Icon={MdReply} />
+            <Button
+              tipo="Link"
+              onClick={handleBackStage}
+              text="Voltar"
+              Icon={MdReply}
+            />
             <Button
               submit="submit"
-              text="Proximo"
+              text="Finalizar"
+              tooltip="Finalizar cadastro"
               Icon={MdKeyboardArrowRight}
             />
           </div>
