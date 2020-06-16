@@ -1,11 +1,13 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { MdReply, MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
 
+import Button from "../../Button";
+
 import "../styles.css";
-import "./styles.css";
 
 const validates = yup.object().shape({
   email: yup
@@ -58,9 +60,21 @@ const FormDadosConta = ({ initialValues, handleSubmit, handleBackStage }) => {
             <ErrorMessage className="helper-text" name="cpf" component="span" />
           </div>
 
-          <div className="form-submit">
-            <button onClick={handleBackStage}>Voltar</button>
-            <button type="submit">Proximo</button>
+          <div className="div-buttons-form">
+            <Button
+              onClick={handleBackStage}
+              text="Voltar"
+              tipo="Link"
+              tooltip="Voltar para etapa anterior"
+              Icon={MdReply}
+            />
+            <Button
+              onClick={() => {}}
+              submit="submit"
+              text="Proximo"
+              tooltip="Continuar cadastro"
+              Icon={MdKeyboardArrowRight}
+            />
           </div>
         </div>
       </Form>
@@ -71,7 +85,7 @@ const FormDadosConta = ({ initialValues, handleSubmit, handleBackStage }) => {
 FormDadosConta.propTypes = {
   initialValues: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
+  handleBackStage: PropTypes.func.isRequired,
 };
 
 export default FormDadosConta;

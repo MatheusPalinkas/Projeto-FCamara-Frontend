@@ -1,3 +1,7 @@
+.input-field > label{
+    font-family: Lato;
+    font-size: 1.33em;
+}
 .input-field > span.helper-text{
     color: rgb(224, 17, 17);
     font-family: Lato;
@@ -13,4 +17,8 @@
     display: flex;
     justify-content: flex-end;
     align-content: center;
+}
+.div-buttons-form{
+    display: flex;
+    justify-content: space-between;
 }

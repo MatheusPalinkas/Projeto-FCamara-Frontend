@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import MaskInput from "react-text-mask";
 import M from "materialize-css/dist/js/materialize.min.js";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
+
+import Button from "../../Button";
 
 import "../styles.css";
 import "./styles.css";
@@ -131,108 +134,119 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
       onSubmit={handleSubmit}
       validationSchema={validates}
     >
-      <Form>
-        <div className="form-dados-pessoais">
-          <div className="input-field">
-            <label htmlFor="nome">Nome completo</label>
-            <Field type="text" id="nome" name="nome" />
-            <ErrorMessage
-              className="helper-text"
-              name="nome"
-              component="span"
-            />
-          </div>
-          <div className="input-field">
-            <label htmlFor="dataNascimento">Data de nascimento</label>
-            <Field name="dataNascimento">
-              {({ field }) => (
-                <MaskInput
-                  {...field}
-                  type="text"
-                  id="dataNascimento"
-                  mask={DateNumberMask}
-                />
-              )}
-            </Field>
-            <ErrorMessage
-              className="helper-text"
-              name="dataNascimento"
-              component="span"
-            />
-          </div>
-          <div className="input-field">
-            <label htmlFor="cpf">CPF</label>
-            <Field name="cpf">
-              {({ field }) => (
-                <MaskInput
-                  {...field}
-                  type="text"
-                  id="cpf"
-                  mask={cpfNumberMask}
-                />
-              )}
-            </Field>
-            <ErrorMessage className="helper-text" name="cpf" component="span" />
-          </div>
-          <div className="input-field">
-            <label htmlFor="telefone">Telefone</label>
-            <Field name="telefone">
-              {({ field }) => (
-                <MaskInput
-                  {...field}
-                  type="text"
-                  id="telefone"
-                  mask={phoneNumberMask}
-                />
-              )}
-            </Field>
-            <ErrorMessage
-              className="helper-text"
-              name="telefone"
-              component="span"
-            />
-          </div>
-          <div className="input-field div-tipo-user">
-            <div className="div-radio">
-              <p>
-                <label htmlFor="Cliente">
-                  <Field
-                    name="tipoUser"
-                    type="radio"
-                    value="Cliente"
-                    id="Cliente"
-                  />
-                  <span>Cliente</span>
-                </label>
-              </p>
-              <p>
-                <label htmlFor="Vendedor">
-                  <Field
-                    name="tipoUser"
-                    type="radio"
-                    value="Vendedor"
-                    id="Vendedor"
-                  />
-                  <span>Vendedor</span>
-                </label>
-              </p>
+      {({ values, handleSubmit }) => (
+        <form onSubmit={handleSubmit}>
+          <div className="form-dados-pessoais">
+            <div className="input-field">
+              <label htmlFor="nome">Nome completo</label>
+              <Field type="text" id="nome" name="nome" />
+              <ErrorMessage
+                className="helper-text"
+                name="nome"
+                component="span"
+              />
             </div>
-            {initialValues.tipoUser === "Cliente" ? (
-              <p>Estou a procura de produtos para comprar</p>
-            ) : (
-              <p>Estou a procurando divulgar e vender de produtos</p>
-            )}
-            <ErrorMessage
-              className="helper-text"
-              name="tipoUser"
-              component="span"
-            />
+            <div className="input-field">
+              <label htmlFor="dataNascimento">Data de nascimento</label>
+              <Field name="dataNascimento">
+                {({ field }) => (
+                  <MaskInput
+                    {...field}
+                    type="text"
+                    id="dataNascimento"
+                    mask={DateNumberMask}
+                  />
+                )}
+              </Field>
+              <ErrorMessage
+                className="helper-text"
+                name="dataNascimento"
+                component="span"
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="cpf">CPF</label>
+              <Field name="cpf">
+                {({ field }) => (
+                  <MaskInput
+                    {...field}
+                    type="text"
+                    id="cpf"
+                    mask={cpfNumberMask}
+                  />
+                )}
+              </Field>
+              <ErrorMessage
+                className="helper-text"
+                name="cpf"
+                component="span"
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="telefone">Telefone</label>
+              <Field name="telefone">
+                {({ field }) => (
+                  <MaskInput
+                    {...field}
+                    type="text"
+                    id="telefone"
+                    mask={phoneNumberMask}
+                  />
+                )}
+              </Field>
+              <ErrorMessage
+                className="helper-text"
+                name="telefone"
+                component="span"
+              />
+            </div>
+            <div className="input-field div-tipo-user">
+              <div className="div-radio">
+                <p>
+                  <label htmlFor="Cliente">
+                    <Field
+                      name="tipoUser"
+                      type="radio"
+                      value="Cliente"
+                      id="Cliente"
+                    />
+                    <span>Cliente</span>
+                  </label>
+                </p>
+                <p>
+                  <label htmlFor="Vendedor">
+                    <Field
+                      name="tipoUser"
+                      type="radio"
+                      value="Vendedor"
+                      id="Vendedor"
+                    />
+                    <span>Vendedor</span>
+                  </label>
+                </p>
+              </div>
+              {values.tipoUser === "Cliente" ? (
+                <p>Estou a procura de produtos para comprar</p>
+              ) : (
+                <p>Estou a procurando divulgar e vender meus produtos</p>
+              )}
+              <ErrorMessage
+                className="helper-text"
+                name="tipoUser"
+                component="span"
+              />
+            </div>
+            <div className="form-submit">
+              <Button
+                submit="submit"
+                text="Proximo"
+                tooltip="Continuar no cadastro"
+                Icon={MdKeyboardArrowRight}
+              />
+            </div>
           </div>
-          <div className="form-submit">
-            <button type="submit">Proximo</button>
-          </div>
-        </div>
-      </Form>
+        </form>
+      )}
     </Formik>
   );
 };
