@@ -30,7 +30,6 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
         <div className="titulo">
           <h1>ENTRAR</h1>
         </div>
-
         <div className="formLogin">
           <label>Email</label>
         </div>
@@ -40,7 +39,6 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
         <div className="formLoginError">
           <ErrorMessage className="Foem-Error" component="span" name="email" />
         </div>
-
         <div className="formLogin">
           <label>Senha</label>
         </div>
@@ -51,15 +49,17 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
           <ErrorMessage className="Form-Error" component="span" name="senha" />
         </div>
 
-        <div className="containerBtn">
-          <div className="btnLogin">
+        <div className="containerBtnLogin">
+          <div className="modal-close btnLogin">
             <Button
               text={"CRIAR CONTA"}
+              tooltip={"Criar uma nova conta"}
               Icon={MdPersonAdd}
               tipo="Link"
               to="/cadastro"
             />
           </div>
+
           <div className="btnLogin">
             <Button
               Icon={FiLogIn}

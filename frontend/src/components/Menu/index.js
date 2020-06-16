@@ -34,7 +34,7 @@ const MenuVendedor = () => (
   <div className="nav-content menu-vendedor">
     <ul className="tabs  tabs-transparent ul-menu-vendedor">
       <li className="tab">
-        <Link>Meus Produtos</Link>
+        <Link to="/produto/vendedor">Meus Produtos</Link>
       </li>
       <li className="tab">
         <Link>Meus Pedidos</Link>

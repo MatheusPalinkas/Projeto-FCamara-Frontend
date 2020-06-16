@@ -1,38 +1,38 @@
-.button{
-    border-radius: 2%;
-    display: flex ;
-    justify-content: center;
-    align-items: center;
-    font-family: LatoBold;
-    font-size: 1.33em;
+.button {
+  border-radius: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: LatoBold;
+  font-size: 1.33em;
 }
 .text-align-btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
 }
-.icon{
-    margin-right: 8px;
+.icon {
+  margin-right: 2px;
 }
-.btn-primaria { 
-    background: #148ACC !important;
+.btn-primaria {
+  background: #148acc !important;
 }
-.btn-secundario { 
-    background: #f44f00 !important;
+.btn-secundario {
+  background: #f44f00 !important;
 }
-.btn-desabilitado { 
-    background: rgb(137, 144, 161) !important;
-    color: rgb(68, 79, 102) !important;
+.btn-desabilitado {
+  background: rgb(137, 144, 161) !important;
+  color: rgb(68, 79, 102) !important;
 }
 
-.btn-primaria:hover { 
-    background: rgba(20, 137, 204, 0.800);   
+.btn-primaria:hover {
+  background: rgba(20, 137, 204, 0.8);
 }
-.btn-secundario:hover { 
-    background: rgba(244, 77, 0, 0.800);
+.btn-secundario:hover {
+  background: rgba(244, 77, 0, 0.8);
 }
-.btn-desabilitado:hover { 
-    background: rgba(137, 144, 161, 0.800);
-    color: rgb(68, 79, 102);
+.btn-desabilitado:hover {
+  background: rgba(137, 144, 161, 0.8);
+  color: rgb(68, 79, 102);
 }
