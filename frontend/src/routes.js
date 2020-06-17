@@ -14,7 +14,7 @@ import Menu from "./components/Menu";
 export default function Routes() {
   return (
     <BrowserRouter>
-      <Menu user={{ idComercio: 3 }} />
+      <Menu user={{ idComercio: 3, id: 2 }} />
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/home/:idCategoria" component={Main} />
