@@ -21,6 +21,9 @@ export default function ProdutosVendedor() {
     })();
   }, [idCategoria]);
 
+  //const handle = (values) => alert(JSON.stringify(values));
+  //const initial = {};
+
   return (
     <>
       <div className="containerBtn">

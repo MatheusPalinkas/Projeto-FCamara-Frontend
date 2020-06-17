@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { MdShoppingCart, MdClose, MdEdit } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
-
 import "./styles.css";
+import ModalEstoque from "../../components/ModalEstoque";
 
 const ButtonEditarProduto = () => (
   <div
@@ -11,7 +11,9 @@ const ButtonEditarProduto = () => (
     data-position="top"
     data-tooltip="Editar produto"
   >
-    <MdEdit className="editar-produto" />
+    <a class="waves-effect waves-light  modal-trigger" href="#modal2">
+      <MdEdit className="editar-produto " />
+    </a>
   </div>
 );
 const ButtonAddCarrinho = () => (
@@ -78,6 +80,7 @@ const Card = ({
           </div>
         )}
       </div>
+      <ModalEstoque />
     </>
   );
 };

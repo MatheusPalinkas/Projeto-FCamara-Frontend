@@ -3,8 +3,7 @@ import * as yup from "yup";
 import PropTypes from "prop-types";
 import { ErrorMessage, Formik, Form as FormikForm, Field } from "formik";
 import "./styles.css";
-import { FiLogIn } from "react-icons/fi";
-import { MdPersonAdd } from "react-icons/md";
+
 import Modal from "../Modal";
 import Button from "../Button";
 
@@ -19,8 +18,8 @@ const validations = yup.object().shape({
     .required("A senha não deve ser vazia"),
 });
 
-const ModalLogin = ({ handleSubmit, initialValues }) => (
-  <Modal tipo={"login"} id={"modal1"}>
+const ModalEstoque = ({ handleSubmit, initialValues }) => (
+  <Modal tipo={"login"} id={"modal2"}>
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
@@ -28,7 +27,7 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
     >
       <FormikForm>
         <div className="titulo">
-          <h1>ENTRAR</h1>
+          <h1>Estoque</h1>
         </div>
         <div className="formLogin">
           <label>Email</label>
@@ -39,35 +38,30 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
         <div className="formLoginError">
           <ErrorMessage className="Foem-Error" component="span" name="email" />
         </div>
+
         <div className="formLogin">
-          <label>Senha</label>
+          <label>Categoria</label>
         </div>
-        <div className="formLogin">
-          <Field name="senha" placeholder="Digite sua senha" type="password" />
+        <div className="input-field ">
+          <Field as="select" id="categoria" name="categoria">
+            <option>Selecione uma categoria</option>
+            <option value="Disponivel">Disponivel</option>
+            <option vaalue="Indisponivel">Indisponivel</option>
+          </Field>
         </div>
         <div className="formLoginError">
           <ErrorMessage className="Form-Error" component="span" name="senha" />
         </div>
 
         <div className="containerBtnLogin">
-          <div className="modal-close btnLogin">
-            <Button
-              text={"CRIAR CONTA"}
-              tooltip={"Criar uma nova conta"}
-              Icon={MdPersonAdd}
-              tipo="Link"
-              to="/cadastro"
-            />
-          </div>
-
           <div className="btnLogin">
             <Button
-              Icon={FiLogIn}
               position="bottom"
               tooltip="Entrar na minha conta"
               type={"submit"}
               typeButton={"secundaria"}
               submit="submit"
+              text={"CONFIRMA"}
             />
           </div>
         </div>
@@ -76,9 +70,9 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
   </Modal>
 );
 
-ModalLogin.propTypes = {
+ModalEstoque.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
 };
 
-export default ModalLogin;
+export default ModalEstoque;
