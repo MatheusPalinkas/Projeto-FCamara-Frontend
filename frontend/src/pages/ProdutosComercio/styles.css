@@ -1,0 +1,17 @@
+.container-btn-voltar{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 80px;
+}
+.container-comercios{
+    padding-top: 0;
+    margin-top: 32px;
+}
+.form-filtros{
+    display: contents;
+}
+input.input-filtro{
+    min-width: 350px;
+    max-width: 400px;
+}

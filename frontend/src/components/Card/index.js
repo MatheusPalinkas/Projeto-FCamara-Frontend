@@ -45,7 +45,11 @@ const Card = ({
     <>
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light div-card-imagem">
-          <img className="activator" src={`${url}`} />
+          <img
+            className="activator"
+            src={url}
+            alt="Foto ilustrativa do produto"
+          />
         </div>
         <div className="card-content">
           <span className="card-title span-card-title">
@@ -56,13 +60,25 @@ const Card = ({
               </>
             )}
           </span>
-          {produto.preco && <span className="preco">{produto.preco}</span>}
+          {produto.preco && (
+            <span className="preco">
+              {produto.preco.toLocaleString("pt-br", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </span>
+          )}
           <p className="p-descricao-link">
             {idVendedor && (
               <Link className="excluir-produto">Excluir produto</Link>
             )}
             {idComercio ? (
-              <Link className="link-pagina-produto">Pagina do comercio</Link>
+              <Link
+                to={`/comercio/${idComercio}`}
+                className="link-pagina-produto"
+              >
+                Pagina do comercio
+              </Link>
             ) : (
               <Link className="activator descricao">Ver descrição</Link>
             )}

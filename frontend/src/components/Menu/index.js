@@ -30,11 +30,11 @@ const PhotoUserLogged = ({ url }) => {
   );
 };
 
-const MenuVendedor = () => (
+const MenuVendedor = ({ idComercio }) => (
   <div className="nav-content menu-vendedor">
     <ul className="tabs  tabs-transparent ul-menu-vendedor">
       <li className="tab">
-        <Link to="/produto/vendedor">Meus Produtos</Link>
+        <Link to={`/produto/vendedor/${idComercio}`}>Meus Produtos</Link>
       </li>
       <li className="tab">
         <Link>Meus Pedidos</Link>
@@ -100,7 +100,7 @@ const Menu = ({ user = {} }) => {
             </li>
           </ul>
         </div>
-        {user.idComercio && <MenuVendedor />}
+        {user.idComercio && <MenuVendedor idComercio={user.idComercio} />}
         <SideBar />
       </nav>
       <ModalLogin handleSubmit={handleSubmit} initialValues={initialValues} />

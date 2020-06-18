@@ -9,17 +9,17 @@ import Button from "../../components/Button";
 
 export default function ProdutosVendedor() {
   const [produtos, setProdutos] = useState([]);
-  const { idCategoria } = useParams();
+  const { idComercio } = useParams();
 
   useEffect(() => {
     (async function () {
       let filtro = "";
-      if (idCategoria) filtro = `?idCategoria=${idCategoria}`;
+      if (idComercio) filtro = `?idComercio=${idComercio}`;
       console.log(filtro);
       const { data } = await api.get(`/produtos${filtro}`);
       setProdutos(data);
     })();
-  }, [idCategoria]);
+  }, [idComercio]);
 
   return (
     <>

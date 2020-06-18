@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import Cadastro from "./pages/Cadastro";
 import NotFound from "./pages/NotFound";
 import ProdutosVendedor from "./pages/ProdutosVendedor";
+import ProdutosComercio from "./pages/ProdutosComercio";
 
 import Menu from "./components/Menu";
 
@@ -21,8 +22,16 @@ export default function Routes() {
 
         <Route exact path="/cadastro" component={Cadastro} />
 
-        <Route exact path="/produto/vendedor" component={ProdutosVendedor} />
-        <Route exact path="/:idCategoria" component={ProdutosVendedor} />
+        <Route
+          exact
+          path="/produto/vendedor/:idComercio"
+          component={ProdutosVendedor}
+        />
+        <Route
+          exact
+          path="/comercio/:idComercio"
+          component={ProdutosComercio}
+        />
 
         <Route exact path="*" component={NotFound} />
       </Switch>
