@@ -16,6 +16,10 @@ const validations = yup.object().shape({
     .required("A senha não deve ser vazia"),
 });
 
+let qtd = 10;
+
+
+
 const ModalEstoque = ({ handleSubmit, initialValues }) => {
   useEffect(() => {
     (async function () {
@@ -23,6 +27,7 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
       M.FormSelect.init(elems, {});
     })();
   }, []);
+
 
   return(
 
@@ -38,22 +43,34 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
           <h1>Estoque</h1>
         </div>
 
-        <div className="formLogin">
-          <label>Quantidade em estoque</label>
-        </div>
-        <div className="formLogin">
+      <div className="formEstoque">
+        <label>Quantidade em estoque</label>
+      </div>
+      <div className="estoqueQtd">    
+      <div className="btnQtd">
+        <Button text="-" 
+        onClick={() => (qtd -= 1)}
+        />
+      </div>
+      <div className="textQtd">          
           <Field 
           name="quantidade" 
-
+          value={qtd}
           placeholder="Digite a quantidade em estoque"
           type="text" />
-        </div>
-        <div className="formLoginError">
-          <ErrorMessage className="Foem-Error" component="span" name="quantidade" />
-        </div>
+      </div>
+      <div className="btnQtd">
+        <Button text="+"
+        onClick={() => (qtd += 1)}
+         />
+      </div>
+      </div>
+      <div className="formError">
+        <ErrorMessage className="Foem-Error" component="span" name="quantidade" />
+      </div>
 
-        <div className="formLogin">
-          <label>Status</label>
+        <div className="formEstoque">
+          <label>Status do Produto</label>
         </div>
         <div className="formLogin">
         <Field as="select" id="categoria" name="categoria" >
@@ -63,12 +80,12 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
                 <option value="Encomenda">Encomenda</option>
         </Field>
         </div>
-        <div className="formLoginError">
+        <div className="formError">
           <ErrorMessage className="Form-Error" component="span" name="categoria" />
         </div>
 
-        <div className="containerBtnLogin">
-          <div className="btnLogin">
+        <div className="containerBtnEstoque">
+          <div className="btnEstoque">
             <Button
               position="bottom"
               tooltip="Confirmar valor"
