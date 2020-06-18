@@ -88,7 +88,7 @@ const Card = ({
           <div className="card-reveal infos-card">
             <span className="card-title activator span-card-title">
               {titulo}
-              <MdClose className="activator  icon-menos-infos" />
+              <MdClose className="activator card-title icon-menos-infos" />
             </span>
             <p className="p-descricao">{descricao}</p>
           </div>
