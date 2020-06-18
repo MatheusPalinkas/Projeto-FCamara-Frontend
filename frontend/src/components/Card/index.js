@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import ModalEstoque from "../../components/ModalEstoque";
 
+const handleSubmit = (values) => alert(JSON.stringify(values));
+const initialValues = {};
+
 const ButtonEditarProduto = () => (
   <div
     className="tooltipped div-editar-produto"
@@ -80,7 +83,7 @@ const Card = ({
           </div>
         )}
       </div>
-      <ModalEstoque />
+      <ModalEstoque handleSubmit={handleSubmit} initialValues={initialValues} />
     </>
   );
 };
