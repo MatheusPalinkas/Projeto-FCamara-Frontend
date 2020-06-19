@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import { MdShoppingCart, MdClose, MdEdit } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
-
 import "./styles.css";
+import ModalEstoque from "../../components/ModalEstoque";
+
+const handleSubmit = (values) => alert(JSON.stringify(values));
+const initialValues = {};
 
 const ButtonEditarProduto = () => (
   <div
@@ -11,9 +14,12 @@ const ButtonEditarProduto = () => (
     data-position="top"
     data-tooltip="Editar produto"
   >
-    <MdEdit className="editar-produto" />
+    <a className="waves-effect waves-light  modal-trigger" href="#modal2">
+      <MdEdit className="editar-produto " />
+    </a>
   </div>
 );
+
 const ButtonAddCarrinho = () => (
   <div
     className="tooltipped div-add-carrinho"
@@ -94,6 +100,7 @@ const Card = ({
           </div>
         )}
       </div>
+      <ModalEstoque handleSubmit={handleSubmit} initialValues={initialValues} />
     </>
   );
 };

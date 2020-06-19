@@ -14,8 +14,9 @@ export default function ProdutosVendedor() {
   useEffect(() => {
     (async function () {
       let filtro = "";
+
       if (idComercio) filtro = `?idComercio=${idComercio}`;
-      console.log(filtro);
+
       const { data } = await api.get(`/produtos${filtro}`);
       setProdutos(data);
     })();

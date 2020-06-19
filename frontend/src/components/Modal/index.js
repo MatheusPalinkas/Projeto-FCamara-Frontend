@@ -4,7 +4,9 @@ import { MdClose } from "react-icons/md";
 
 import "./styles.css";
 
-export default function Modal({ children, tipo }) {
+
+export default function Modal({ children, tipo, id }) {
+
   useEffect(() => {
     const elems = document.querySelectorAll(".modal");
     M.Modal.init(elems);
@@ -18,7 +20,7 @@ export default function Modal({ children, tipo }) {
   }, []);
 
   return (
-    <div id="modal1" className={`modal ${tipo}`}>
+    <div id={id} className={`modal ${tipo}`}>
       <div
         className="modal-close head tooltipped"
         data-position="bottom"
@@ -34,3 +36,5 @@ export default function Modal({ children, tipo }) {
     </div>
   );
 }
+
+
