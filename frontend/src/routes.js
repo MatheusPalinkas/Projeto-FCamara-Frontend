@@ -7,6 +7,7 @@ import Cadastro from "./pages/Cadastro";
 import NotFound from "./pages/NotFound";
 import ProdutosVendedor from "./pages/ProdutosVendedor";
 import ProdutosComercio from "./pages/ProdutosComercio";
+import NovoProduto from "./pages/NovoProduto";
 
 import Menu from "./components/Menu";
 
@@ -32,6 +33,7 @@ export default function Routes() {
           path="/comercio/:idComercio"
           component={ProdutosComercio}
         />
+        <Route exact path="/novo/produto/:idComercio" component={NovoProduto} />
 
         <Route exact path="*" component={NotFound} />
       </Switch>

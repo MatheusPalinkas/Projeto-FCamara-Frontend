@@ -26,8 +26,10 @@ export default function ProdutosVendedor() {
       <div className="containerBtn">
         <div className="btnVendedor">
           <Button
-            text={"Cadastra novo produto"}
-            tooltip={"Cadastre um novo produto"}
+            tipo="Link"
+            to={`/novo/produto/${idComercio}`}
+            text="Cadastra novo produto"
+            tooltip="Cadastre um novo produto"
           />
         </div>
         <div className="btnVendedor">
