@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import ProdutosVendedor from "./pages/ProdutosVendedor";
 import ProdutosComercio from "./pages/ProdutosComercio";
 import NovoProduto from "./pages/NovoProduto";
+import PedidosVendedor from "./pages/PedidosVendedor";
 
 import Menu from "./components/Menu";
 
@@ -34,6 +35,13 @@ export default function Routes() {
           component={ProdutosComercio}
         />
         <Route exact path="/novo/produto/:idComercio" component={NovoProduto} />
+
+        <Route
+          exact
+          path="/pedidos/vendedor/:idComercio"
+          component={PedidosVendedor}
+        />
+        <Route exact path="/comercio/:idComercio" component={PedidosVendedor} />
 
         <Route exact path="*" component={NotFound} />
       </Switch>

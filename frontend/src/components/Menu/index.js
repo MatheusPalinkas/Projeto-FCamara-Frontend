@@ -37,7 +37,7 @@ const MenuVendedor = ({ idComercio }) => (
         <Link to={`/produto/vendedor/${idComercio}`}>Meus Produtos</Link>
       </li>
       <li className="tab">
-        <Link>Meus Pedidos</Link>
+        <Link to={`/pedidos/vendedor/${idComercio}`}>Meus Pedidos</Link>
       </li>
       <li className="tab">
         <Link>Meu comercio</Link>
@@ -95,7 +95,6 @@ const Menu = ({ user = {} }) => {
                   tooltip="Entrar na minha conta"
                   className="btn-entrar-conta"
                   dataTarget="modal1"
-                  
                 />
               )}
             </li>
