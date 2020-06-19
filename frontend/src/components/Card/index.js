@@ -14,11 +14,12 @@ const ButtonEditarProduto = () => (
     data-position="top"
     data-tooltip="Editar produto"
   >
-    <a class="waves-effect waves-light  modal-trigger" href="#modal2">
+    <a className="waves-effect waves-light  modal-trigger" href="#modal2">
       <MdEdit className="editar-produto " />
     </a>
   </div>
 );
+
 const ButtonAddCarrinho = () => (
   <div
     className="tooltipped div-add-carrinho"

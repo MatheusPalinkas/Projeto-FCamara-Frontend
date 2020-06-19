@@ -1,3 +1,9 @@
+.containerEstoque {
+  width: auto;
+  max-width: 400px;
+
+}
+
 .titulo {
   width: 300px;
 }
@@ -23,9 +29,9 @@
 .formEstoque > label {
   font-family: Lato;
   font-size: 1em;
-  float: left;
+  float: left !important;
   width: 300px;
-  text-align: center;
+  text-align: left;
 }
 
 .formLogin {

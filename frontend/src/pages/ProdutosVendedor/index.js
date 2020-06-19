@@ -8,6 +8,7 @@ import { MdReply } from "react-icons/md";
 import Button from "../../components/Button";
 
 export default function ProdutosVendedor() {
+
   const [produtos, setProdutos] = useState([]);
   const { idCategoria } = useParams();
 
@@ -15,14 +16,11 @@ export default function ProdutosVendedor() {
     (async function () {
       let filtro = "";
       if (idCategoria) filtro = `?idCategoria=${idCategoria}`;
-      console.log(filtro);
+      
       const { data } = await api.get(`/produtos${filtro}`);
       setProdutos(data);
     })();
   }, [idCategoria]);
-
-  //const handle = (values) => alert(JSON.stringify(values));
-  //const initial = {};
 
   return (
     <>
