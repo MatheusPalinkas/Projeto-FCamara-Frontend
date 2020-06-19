@@ -1,10 +1,56 @@
 .container-cadastro-produto {
     width: auto !important;
     max-width: 1200px;
-    margin: 80px auto;
+    margin: 80px auto 40px auto;
     display: flex;
     flex-direction: row;
     justify-content: flex-end !important;
     flex-wrap: wrap;
     padding-top: 10px;
+}
+.form-dados-novo-produto{
+    display: flex;
+    margin: 0 160px;
+}
+
+.container-form{
+    max-width: 400px;
+    width: 100%;
+}
+.container-form-dados-produtos{
+    max-width: 600px;
+    width: 100%;
+}
+.previa-foto{
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    max-height: 350px;
+    height: 100%;
+    background-color: #DDD;
+    border-radius: 10px;
+}
+.btn-upload-foto{
+    background-color: #148acc !important;
+}
+.input-file-upload-foto{
+    max-width: 300px;
+}
+.container-form-dados-produtos > .input-field{
+    margin-bottom: 32px;
+}
+
+.lbl-possui-estoque{
+    top: -30px !important;
+}
+.radio-possui-estoque{
+    justify-content: end;
+}
+.radio-possui-estoque > p{
+    margin-top: 8px;
+    margin-right: 16px;
+}
+.div-botao-cadastrar{
+    display: flex;
+    justify-content: flex-end;
 }
