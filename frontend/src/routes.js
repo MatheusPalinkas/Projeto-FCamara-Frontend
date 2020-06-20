@@ -9,6 +9,7 @@ import ProdutosVendedor from "./pages/ProdutosVendedor";
 import ProdutosComercio from "./pages/ProdutosComercio";
 import NovoProduto from "./pages/NovoProduto";
 import PedidosVendedor from "./pages/PedidosVendedor";
+import MinhaConta from "./pages/MinhaConta";
 
 import Menu from "./components/Menu";
 
@@ -43,6 +44,7 @@ export default function Routes() {
         />
         <Route exact path="/comercio/:idComercio" component={PedidosVendedor} />
 
+        <Route exact path="/editar/conta" component={MinhaConta} />
         <Route exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
