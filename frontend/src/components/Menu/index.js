@@ -5,9 +5,14 @@ import { FiLogIn } from "react-icons/fi";
 import Button from "../Button";
 import M from "materialize-css/dist/js/materialize.min.js";
 
+import ModalLogin from "../../components/ModalLogin";
+
 import SideBar from "../SideBar";
 
 import "./styles.css";
+
+const handleSubmit = (values) => alert(JSON.stringify(values));
+const initialValues = {};
 
 const PhotoUserLogged = ({ url }) => {
   return (
@@ -25,14 +30,14 @@ const PhotoUserLogged = ({ url }) => {
   );
 };
 
-const MenuVendedor = () => (
+const MenuVendedor = ({ idComercio }) => (
   <div className="nav-content menu-vendedor">
     <ul className="tabs  tabs-transparent ul-menu-vendedor">
       <li className="tab">
-        <Link>Meus Produtos</Link>
+        <Link to={`/produto/vendedor/${idComercio}`}>Meus Produtos</Link>
       </li>
       <li className="tab">
-        <Link>Meus Pedidos</Link>
+        <Link to={`/pedidos/vendedor/${idComercio}`}>Meus Pedidos</Link>
       </li>
       <li className="tab">
         <Link>Meu comercio</Link>
@@ -85,16 +90,20 @@ const Menu = ({ user = {} }) => {
               ) : (
                 <Button
                   Icon={FiLogIn}
+                  tipo="Button"
                   position="bottom"
                   tooltip="Entrar na minha conta"
+                  className="btn-entrar-conta"
+                  dataTarget="modal1"
                 />
               )}
             </li>
           </ul>
         </div>
-        {user.idComercio && <MenuVendedor />}
+        {user.idComercio && <MenuVendedor idComercio={user.idComercio} />}
         <SideBar />
       </nav>
+      <ModalLogin handleSubmit={handleSubmit} initialValues={initialValues} />
     </>
   );
 };

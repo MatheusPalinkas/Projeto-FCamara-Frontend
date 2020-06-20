@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/Api";
 import "./styles.css";
-
 import Card from "../../components/Card";
 
 function Main() {
@@ -13,7 +12,7 @@ function Main() {
     (async function () {
       let filtro = "";
       if (idCategoria) filtro = `?idCategoria=${idCategoria}`;
-      console.log(filtro);
+
       const { data } = await api.get(`/comercios${filtro}`);
       setComercios(data);
     })();
@@ -38,7 +37,7 @@ function Main() {
         ))}
       </div>
     </>
-  );        
+  );
 }
 
 export default Main;

@@ -39,7 +39,7 @@ const SideBar = () => {
         </li>
         {categorias.map((categoria) => (
           <li key={categoria.id} className="item-categoria">
-            <Link to={`/${categoria.id}`} className="waves-effect">
+            <Link to={`/home/${categoria.id}`} className="waves-effect">
               {categoria.nome}
             </Link>
           </li>

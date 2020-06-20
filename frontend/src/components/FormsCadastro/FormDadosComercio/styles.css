@@ -1,0 +1,28 @@
+.hr-funcionamento > .input-field{
+    max-width: 45%;
+}
+.label-hora{
+    top: -10px !important;
+}
+.hr-funcionamento >.lbl-ate{
+    margin-top: auto;
+    margin-bottom: 32px;
+}
+.div-radios-form{
+    max-width: 200px;
+    margin-right: auto;
+    margin-top: 16px;
+}
+.inputs-possui-servico > label.label-possui-servico-entregas,
+.inputs-formas-pagamento > label.label-formas-pagamento{
+    position: relative;
+}
+.div-formas-pagamento{
+    justify-content: space-between;
+    margin-right: 0;
+    max-width: none;
+    margin-top: 16px;
+}
+.buttons-comercio{
+    margin-top: 32px;
+}

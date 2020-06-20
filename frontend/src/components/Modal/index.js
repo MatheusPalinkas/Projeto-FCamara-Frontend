@@ -4,30 +4,37 @@ import { MdClose } from "react-icons/md";
 
 import "./styles.css";
 
-export default function Modal({ children }){
 
-    useEffect(() => {
-        const elems = document.querySelectorAll('.modal');
-        M.Modal.init(elems);
+export default function Modal({ children, tipo, id }) {
 
-        (async function () {
-            const elem = document.querySelectorAll(".tooltipped");
-            M.Tooltip.init(elem, {
-              position: "left",
-            });
-          })();
-    }, []);
+  useEffect(() => {
+    const elems = document.querySelectorAll(".modal");
+    M.Modal.init(elems);
+    
+    (async function () {
+      const elem = document.querySelectorAll(".tooltipped");
+      M.Tooltip.init(elem, {
+        position: "left",
+      });
+    })();
+  }, []);
 
-    return ( 
-        <div id="modal1" className="modal">      
-            <div className="modal-close head tooltipped" data-position="bottom" data-tooltip="Fechar" > 
-               <MdClose className="close "  />
-            </div> 
-            <div className="modal-content children" >
-                <div className="children" align="center">{children}</div>
-            </div>
+  return (
+    <div id={id} className={`modal ${tipo}`}>
+      <div
+        className="modal-close head tooltipped"
+        data-position="bottom"
+        data-tooltip="Fechar"
+      >
+        <MdClose className="close " />
+      </div>
+      <div className="modal-content children">
+        <div className="children" align="center">
+          {children}
         </div>
-    );
-};
+      </div>
+    </div>
+  );
+}
 
 

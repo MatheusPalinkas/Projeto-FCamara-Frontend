@@ -18,8 +18,8 @@
 .btn-menu-categorias:hover, .btn-meu-carrinho:hover{
   color: #F5EDE9;
 }
-.btn-entrar{
-  margin-top: 10px;
+.btn-entrar-conta{
+  margin-right: 20px;
 }
 .icon-entrar{
   margin-right: 8px;
@@ -52,10 +52,11 @@
   background-color: #636B7D;
 }
 .ul-menu-vendedor .tab{
-  padding: 0 calc(100vw / 3 / 2 - 80px); 
   border-right: 1px solid #BFA79B;
   font-family: LatoBold;
   font-size: 1.77em;
+  width: 100%;
+  max-width: calc(100vw / 3 - 5px);
 }
 .ul-menu-vendedor .tab:last-child{
   border-right: 0px;
