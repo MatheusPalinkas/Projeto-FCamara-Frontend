@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import MaskInput from "react-text-mask";
 import { MdSave } from "react-icons/md";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
@@ -71,6 +72,9 @@ const DateNumberMask = [
 ];
 
 function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
   return (
     <Formik
       initialValues={initialValues}

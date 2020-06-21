@@ -9,7 +9,7 @@ import ProdutosVendedor from "./pages/ProdutosVendedor";
 import ProdutosComercio from "./pages/ProdutosComercio";
 import NovoProduto from "./pages/NovoProduto";
 import PedidosVendedor from "./pages/PedidosVendedor";
-import DadosPedido from "./pages/DadosPedido";
+import DetalhesPedido from "./pages/DetalhesPedido";
 import MinhaConta from "./pages/MinhaConta";
 
 import Menu from "./components/Menu";
@@ -48,10 +48,12 @@ export default function Routes() {
           path="/pedidos/vendedor/:idComercio"
           component={PedidosVendedor}
         />
-        <Route exact path="/comercio/:idComercio" component={PedidosVendedor} />
 
-        <Route exact path="/dados/pedido/:idComercio" component={DadosPedido} />
-        <Route exact path="/comercio/:idComercio" component={DadosPedido} />
+        <Route
+          exact
+          path="/dados/pedido/:idComercio"
+          component={DetalhesPedido}
+        />
 
         <Route exact path="/editar/conta" component={MinhaConta} />
         <Route exact path="*" component={NotFound} />

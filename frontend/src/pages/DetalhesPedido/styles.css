@@ -1,0 +1,111 @@
+.containerBtnPedido, 
+.containerBtnDecisao, 
+.containerDadosPedido {
+  width: 100% !important;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding: 0 0 40px 0;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+}
+.containerBtnPedido{
+  padding-bottom: 32px;
+}
+.containerBtnDecisao{
+  margin-top: 24px;
+}
+.btns-decisao{
+  margin-left: auto;
+}
+.btns-decisao > *{ 
+  margin-left: 24px;
+}
+.containerDadosPedido {
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 960px;
+}
+.containerDadosPedido > div > h2 {
+  font-family: NunitoSansSemiBold;
+  font-size: 2.33em;
+  color: #148acc;
+}
+.containerDadosPedido > div {
+  border-bottom: 2px solid #148acc;
+}
+.dadosComprador,
+.dadosProdutos,
+.dadosComercio {
+  padding: 0;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.dadosComprador label,
+.dadosProdutos label,
+.dadosComercio label {
+  font-size: 1.33em;
+  padding: 0;
+  padding-right: 10px;
+}
+.dadosComprador p,
+.dadosProdutos p,
+.dadosComercio p {
+   font-size: 1em;
+}
+.descricaoDado {
+  font-family: LatoBold;
+  color: #1D273B;
+}
+
+
+@media only screen and (max-width: 1250px) {
+  .containerBtnPedido, 
+  .containerBtnDecisao, 
+  .containerDadosPedido {
+    max-width: 800px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .containerBtnPedido, 
+  .containerBtnDecisao, 
+  .containerDadosPedido {
+    max-width: 500px;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .containerBtnPedido, 
+  .containerBtnDecisao, 
+  .containerDadosPedido {
+    padding: 0 24px;
+  }
+  .containerBtnPedido,
+  .btns-decisao{
+    flex-direction: column-reverse;
+  }
+  .btns-decisao{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0;
+    width: 100%;
+  }
+  .containerBtnPedido > *,
+  .btns-decisao > *{
+    margin: 0;
+    margin-top: 24px;
+  }
+  .containerDadosPedido > div > h2 {
+    font-size: 2em;
+  }
+  .dadosComprador label,
+  .dadosProdutos label,
+  .dadosComercio label {
+    font-size: 1em;
+  }
+}

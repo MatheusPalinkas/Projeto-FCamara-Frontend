@@ -1,11 +1,16 @@
 import React from "react";
+import { MdReply } from "react-icons/md";
+import { useHistory } from "react-router-dom";
 
 import FormEditarDadosPessoas from "../../components/FormsEditarPerfil/FormEditarDadosPessoas";
 import FormEditarDadosComercio from "../../components/FormsEditarPerfil/FormEditarDadosComercio";
+import Button from "../../components/Button";
 
 import "./styles.css";
 
 function MinhaConta() {
+  const { goBack } = useHistory();
+
   const dadosPessoais = {
     nome: "Matheus",
     dataNascimento: "31082001",
@@ -19,6 +24,17 @@ function MinhaConta() {
   return (
     <>
       <div className="container-editar-minha-conta">
+        <div className="container-btn-meu-perfil-voltar">
+          <Button
+            text="VOLTAR"
+            typeButton="secundaria"
+            Icon={MdReply}
+            onClick={(e) => {
+              e.preventDefault();
+              goBack();
+            }}
+          />
+        </div>
         <div className="dados-pessoais">
           <h2>Meus dados</h2>
           <FormEditarDadosPessoas

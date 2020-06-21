@@ -37,6 +37,7 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
 
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
+      M.updateTextFields();
     })();
   }, []);
 
@@ -76,14 +77,6 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                   component="span"
                 />
               </div>
-              <Button
-                Icon={MdEdit}
-                className="btn-editar-endereco"
-                tooltip="Editar o endereço do meu comercio"
-                text="Editar endereço do comercio"
-              />
-            </div>
-            <div className="inputs-editaveis">
               <div className="input-field">
                 <label htmlFor="cnpj">CNPJ</label>
                 <Field name="cnpj" type="text" id="cnpj" />
@@ -93,6 +86,14 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                   component="span"
                 />
               </div>
+              <Button
+                Icon={MdEdit}
+                className="btn-editar-endereco"
+                tooltip="Editar o endereço do meu comercio"
+                text="Editar endereço do comercio"
+              />
+            </div>
+            <div className="inputs-editaveis">
               <div className="input-field">
                 <label className="label-hora">Horario de funcionamento</label>
                 <div className="div-buttons-form hr-funcionamento">

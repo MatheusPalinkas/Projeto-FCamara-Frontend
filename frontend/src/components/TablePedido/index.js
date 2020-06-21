@@ -68,7 +68,7 @@ const TablePedido = ({ idComercio }) => {
           {produtos.map((produto) => (
             <ItemTable
               key={produto.id}
-              idVendedor={produto.idComercio}
+              idComercio={produto.idComercio}
               titulo={produto.nome}
               url={produto.url}
               descricao={produto.descricao}

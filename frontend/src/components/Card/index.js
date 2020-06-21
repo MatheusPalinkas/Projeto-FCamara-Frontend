@@ -88,9 +88,7 @@ const Card = ({
                 Pagina do comercio
               </Link>
             ) : (
-              <Link to={""} className="activator descricao">
-                Ver descrição
-              </Link>
+              <span className="link activator descricao">Ver descrição</span>
             )}
           </p>
         </div>

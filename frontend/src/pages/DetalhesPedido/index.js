@@ -1,42 +1,43 @@
 import React from "react";
-
-import "./styles.css";
-import { MdReply } from "react-icons/md";
-import { MdNotInterested } from "react-icons/md";
-import { MdCheck } from "react-icons/md";
-import { FiGift } from "react-icons/fi";
+import { useParams, useHistory } from "react-router-dom";
+import { FiPackage } from "react-icons/fi";
+import { MdReply, MdNotInterested, MdCheck } from "react-icons/md";
 
 import Button from "../../components/Button";
 
+import "./styles.css";
+
 const StatusPedido = ({ idComercio }) => (
   <div className="containerBtnDecisao">
-    <div className="btnDecisao">
+    <div className="btns-decisao">
       <Button text="Aceitar" tooltip="Veja o status do pedido" Icon={MdCheck} />
-    </div>
-    <div className="btnDecisao">
-      <Button
-        text={"Recusar"}
-        typeButton={"secundaria"}
-        Icon={MdNotInterested}
-      />
+      <Button text="Recusar" typeButton="secundaria" Icon={MdNotInterested} />
     </div>
   </div>
 );
 
-export default function DadosPedido({ idComercio }) {
+export default function DetalhesPedido() {
+  const { idComercio } = useParams();
+  const { goBack } = useHistory();
+
   return (
     <>
       <div className="containerBtnPedido">
-        <div className="btnVendedorPedido">
-          <Button
-            text="Status do pedido"
-            tooltip="Veja o status do pedido"
-            Icon={FiGift}
-          />
-        </div>
-        <div className="btnVendedorPedido">
-          <Button text={"VOLTAR"} typeButton={"secundaria"} Icon={MdReply} />
-        </div>
+        <Button
+          text="Situação do pedido"
+          tooltip="Veja o situação do pedido"
+          Icon={FiPackage}
+        />
+
+        <Button
+          text="VOLTAR"
+          typeButton="secundaria"
+          Icon={MdReply}
+          onClick={(e) => {
+            e.preventDefault();
+            goBack();
+          }}
+        />
       </div>
 
       <StatusPedido idComercio={idComercio} />
@@ -46,75 +47,75 @@ export default function DadosPedido({ idComercio }) {
           <h2>Dados do comprador</h2>
           <div className="dadosComprador">
             <label className="descricaoDado">Nome:</label>
-            <label>Jose</label>
+            <p>Jose</p>
           </div>
           <div className="dadosComprador">
             <label className="descricaoDado">Numero:</label>
-            <label>99999-9999</label>
+            <p>99999-9999</p>
           </div>
           <div className="dadosComprador">
             <label className="descricaoDado">CPF:</label>
-            <label>999.999.999-99</label>
+            <p>999.999.999-99</p>
           </div>
           <div className="dadosComprador">
             <label className="descricaoDado">Pagamento:</label>
-            <label>cartão</label>
+            <p>cartão</p>
           </div>
           <div className="dadosComprador">
             <label className="descricaoDado">email:</label>
-            <label>Jose@teste.com</label>
+            <p>Jose@teste.com</p>
           </div>
         </div>
 
         <div className="dados-comercio">
           <h2>Endereço</h2>
-          <div className="dadosComprador">
+          <div className="dadosComercio">
             <label className="descricaoDado">CEP:</label>
-            <label>99999-999</label>
+            <p>99999-999</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosComercio">
             <label className="descricaoDado">Cidade:</label>
-            <label>Santos</label>
+            <p>Santos</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosComercio">
             <label className="descricaoDado">Logradouro:</label>
-            <label>Rua sei la</label>
+            <p>Rua sei la</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosComercio">
             <label className="descricaoDado">Complemento:</label>
-            <label></label>
+            <p></p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosComercio">
             <label className="descricaoDado">UF:</label>
-            <label>SP</label>
+            <p>SP</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosComercio">
             <label className="descricaoDado">Bairo:</label>
-            <label>logo ali</label>
+            <p>logo ali</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosComercio">
             <label className="descricaoDado">N°:</label>
-            <label>999</label>
+            <p>999</p>
           </div>
         </div>
 
         <div className="dados-comercio">
           <h2>Dados do(s) produto(s)</h2>
-          <div className="dadosComprador">
+          <div className="dadosProdutos">
             <label className="descricaoDado">Nome:</label>
-            <label>Celta amarelo</label>
+            <p>Celta amarelo</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosProdutos">
             <label className="descricaoDado">Preço:</label>
-            <label>R$ 5,00</label>
+            <p>R$ 5,00</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosProdutos">
             <label className="descricaoDado">Quantidade:</label>
-            <label>1</label>
+            <p>1</p>
           </div>
-          <div className="dadosComprador">
+          <div className="dadosProdutos">
             <label className="descricaoDado">Caracteristicas:</label>
-            <label>blablablabla</label>
+            <p>blablablabla</p>
           </div>
         </div>
       </div>

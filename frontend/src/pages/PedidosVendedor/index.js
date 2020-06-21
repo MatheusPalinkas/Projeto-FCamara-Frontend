@@ -15,8 +15,8 @@ export default function ProdutosVendedor() {
     <>
       <div className="containerBtnTable">
         <Button
-          text={"VOLTAR"}
-          typeButton={"secundaria"}
+          text="VOLTAR"
+          typeButton="secundaria"
           Icon={MdReply}
           onClick={(e) => {
             e.preventDefault();

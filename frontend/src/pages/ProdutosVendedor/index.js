@@ -36,8 +36,8 @@ export default function ProdutosVendedor() {
         </div>
         <div className="btnVendedor">
           <Button
-            text={"VOLTAR"}
-            typeButton={"secundaria"}
+            text="VOLTAR"
+            typeButton="secundaria"
             Icon={MdReply}
             onClick={(e) => {
               e.preventDefault();

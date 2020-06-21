@@ -15,7 +15,11 @@
 .container-editar-minha-conta > div{
     border-bottom: 2px solid #148ACC;
 }
-
+div.container-btn-meu-perfil-voltar{
+    border-bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+}
 
 @media only screen and (max-width: 1250px){
     .container-editar-minha-conta{
