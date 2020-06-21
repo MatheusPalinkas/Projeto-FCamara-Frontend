@@ -14,3 +14,23 @@
     display: flex;
     justify-content: space-between;
 }
+.form-dados-cadastro{
+    max-width: 400px;
+
+    margin: 40px auto;
+}
+
+@media only screen and (max-width: 400px){
+    .form-dados-cadastro{
+        max-width: 400px;
+        margin: 136px auto 40px auto;
+    }
+    .div-form-cadastro-espaco-top{
+        margin-top: 140px !important;
+    }
+}
+@media only screen and (max-width: 850px){
+    .form-dados-cadastro{   
+        margin: 140px auto 40px auto;
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
 import MaskInput from "react-text-mask";
-import { MdReply, MdKeyboardArrowRight } from "react-icons/md";
+import { MdReply, MdSave } from "react-icons/md";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import Button from "../../Button";
@@ -43,6 +43,7 @@ const FormDadosComercio = ({
 
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
+      M.updateTextFields();
     })();
   }, []);
 
@@ -53,7 +54,7 @@ const FormDadosComercio = ({
       validationSchema={validates}
     >
       <Form>
-        <div className="form-dados-pessoais">
+        <div className="form-dados-cadastro form-dados-pessoais">
           <div className="input-field">
             <label htmlFor="nome">Nome do comercio</label>
             <Field type="text" id="nome" name="nome" />
@@ -210,9 +211,9 @@ const FormDadosComercio = ({
             />
             <Button
               submit="submit"
-              text="Finalizar"
+              text="Criar conta"
               tooltip="Finalizar cadastro"
-              Icon={MdKeyboardArrowRight}
+              Icon={MdSave}
             />
           </div>
         </div>
