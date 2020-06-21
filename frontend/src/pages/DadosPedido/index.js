@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import api from "../../services/Api";
+import React from "react";
+
 import "./styles.css";
 import { MdReply } from "react-icons/md";
 import { MdNotInterested } from "react-icons/md";
