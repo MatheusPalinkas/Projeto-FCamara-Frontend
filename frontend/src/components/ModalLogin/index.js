@@ -1,7 +1,6 @@
 import React from "react";
 import * as yup from "yup";
-import PropTypes from "prop-types";
-import { ErrorMessage, Formik, Form as FormikForm, Field } from "formik";
+import { ErrorMessage, Formik, Form, Field } from "formik";
 import "./styles.css";
 import { FiLogIn } from "react-icons/fi";
 import { MdPersonAdd } from "react-icons/md";
@@ -18,42 +17,37 @@ const validations = yup.object().shape({
     .min(8, "A senha deve ter mais de 8 caracteris")
     .required("A senha não deve ser vazia"),
 });
+const handleSubmit = (values) => console.log(JSON.stringify(values));
+const initialValues = {};
 
-const ModalLogin = ({ handleSubmit, initialValues }) => (
+const ModalLogin = () => (
   <Modal tipo={"login"} id={"modal1"}>
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={validations}
     >
-      <FormikForm>
+      <Form className="form-modal-login">
         <div className="titulo">
           <h1>ENTRAR</h1>
         </div>
-        <div className="formLogin">
+        <div className="input-field">
           <label>Email</label>
-        </div>
-        <div className="formLogin">
           <Field name="email" placeholder="Digite seu email" type="text" />
+          <ErrorMessage className="helper-text" component="span" name="email" />
         </div>
-        <div className="formLoginError">
-          <ErrorMessage className="Foem-Error" component="span" name="email" />
-        </div>
-        <div className="formLogin">
+        <div className="input-field">
           <label>Senha</label>
-        </div>
-        <div className="formLogin">
           <Field name="senha" placeholder="Digite sua senha" type="password" />
-        </div>
-        <div className="formLoginError">
-          <ErrorMessage className="Form-Error" component="span" name="senha" />
+          <ErrorMessage className="helper-text" component="span" name="senha" />
         </div>
 
         <div className="containerBtnLogin">
           <div className="modal-close btnLogin">
             <Button
-              text={"CRIAR CONTA"}
-              tooltip={"Criar uma nova conta"}
+              text="CRIAR CONTA"
+              tooltip="Criar uma nova conta"
+              position="bottom"
               Icon={MdPersonAdd}
               tipo="Link"
               to="/cadastro"
@@ -65,20 +59,15 @@ const ModalLogin = ({ handleSubmit, initialValues }) => (
               Icon={FiLogIn}
               position="bottom"
               tooltip="Entrar na minha conta"
-              type={"submit"}
-              typeButton={"secundaria"}
+              type="submit"
+              typeButton="secundaria"
               submit="submit"
             />
           </div>
         </div>
-      </FormikForm>
+      </Form>
     </Formik>
   </Modal>
 );
-
-ModalLogin.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  initialValues: PropTypes.object.isRequired,
-};
 
 export default ModalLogin;

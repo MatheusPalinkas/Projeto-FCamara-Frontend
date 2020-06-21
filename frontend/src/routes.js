@@ -17,7 +17,16 @@ import Menu from "./components/Menu";
 export default function Routes() {
   return (
     <BrowserRouter>
-      <Menu user={{ idComercio: 1, id: 2 }} />
+      <Menu
+        user={
+          {
+            /*id: 2,
+          url:
+            "https://static1.purepeople.com.br/articles/7/28/80/37/@/3267022-larissa-manoela-chamou-atencao-dos-segui-624x600-2.jpg",
+        */
+          }
+        }
+      />
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/home/:idCategoria" component={Main} />

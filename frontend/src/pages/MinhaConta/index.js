@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import FormEditarDadosPessoas from "../../components/FormsEditarPerfil/FormEditarDadosPessoas";
 import FormEditarDadosComercio from "../../components/FormsEditarPerfil/FormEditarDadosComercio";

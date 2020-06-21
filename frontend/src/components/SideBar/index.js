@@ -30,7 +30,7 @@ const SideBar = () => {
           <h2>Categorias</h2>
         </li>
         <li className="btn-voltar-categorias">
-          <Link className="sidenav-close">
+          <Link to={""} className="sidenav-close">
             <span className="txt-voltar-categorias">
               Voltar
               <MdKeyboardArrowRight />

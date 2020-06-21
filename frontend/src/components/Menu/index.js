@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
 import { FiLogIn } from "react-icons/fi";
-import Button from "../Button";
 import M from "materialize-css/dist/js/materialize.min.js";
+import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
 
 import ModalLogin from "../../components/ModalLogin";
-
 import SideBar from "../SideBar";
+import Button from "../Button";
 
 import "./styles.css";
-
-const handleSubmit = (values) => alert(JSON.stringify(values));
-const initialValues = {};
 
 const PhotoUserLogged = ({ url }) => {
   return (
@@ -59,7 +55,7 @@ const Menu = ({ user = {} }) => {
   return (
     <>
       <nav className="nav-extended nav-menu">
-        <div className="nav-wrapper">
+        <div className="nav-wrapper div-nav-wrapper">
           <ul id="nav-mobile" className="left ">
             <li>
               <div
@@ -77,7 +73,7 @@ const Menu = ({ user = {} }) => {
           <ul className="right ">
             <li>
               <div
-                className="hide-on-med-and-down  tooltipped btn-meu-carrinho"
+                className="tooltipped btn-meu-carrinho"
                 data-position="bottom"
                 data-tooltip="Meu carrinho"
               >
@@ -103,7 +99,7 @@ const Menu = ({ user = {} }) => {
         {user.idComercio && <MenuVendedor idComercio={user.idComercio} />}
         <SideBar />
       </nav>
-      <ModalLogin handleSubmit={handleSubmit} initialValues={initialValues} />
+      <ModalLogin />
     </>
   );
 };

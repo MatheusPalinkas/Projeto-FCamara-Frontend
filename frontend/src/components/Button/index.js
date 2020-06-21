@@ -38,7 +38,7 @@ export default function Button({
     }
   }
 
-  classButton += !!dataTarget ? "modal-trigger" : "";
+  classButton += !!dataTarget ? " modal-trigger" : "";
 
   if (tipo === "Button") {
     return (

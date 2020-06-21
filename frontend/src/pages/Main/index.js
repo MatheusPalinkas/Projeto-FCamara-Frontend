@@ -24,7 +24,7 @@ function Main() {
         <h1 className="titulo-main">
           Encontre um comercio proximo de você e ajude os comerciantes locais
         </h1>
-        <cite className="referencia-foto">Photo on Unsplash</cite>
+        <cite className="referencia-foto">Photos on Unsplash</cite>
       </div>
       <div className="container-comercios">
         {comercios.map((comercio) => (

@@ -58,6 +58,16 @@ svg{
     border-right-color: #F46825 !important;
     border-bottom-color: #F46825 !important;
 }
+.input-field > label{
+    font-family: Lato;
+    font-size: 1.33em;
+}
+.input-field > span.helper-text{
+    color: rgb(224, 17, 17);
+    font-family: Lato;
+    font-size: 1em;
+    text-align: left;
+}
 .dropdown-content li>a, .dropdown-content li>span {
     color: #148ACC !important;
 }
