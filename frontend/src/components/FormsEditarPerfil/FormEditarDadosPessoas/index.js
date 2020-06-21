@@ -1,9 +1,12 @@
 import React from "react";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage, Form } from "formik";
 import MaskInput from "react-text-mask";
+import { MdSave } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
+
+import Button from "../../Button";
 
 import "../styles.css";
 
@@ -74,91 +77,97 @@ function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
       onSubmit={handleSubmit}
       validationSchema={validates}
     >
-      {({ values, handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <div className="div-form-editar">
-            <div>
-              <div className="input-field">
-                <label htmlFor="nome">Nome completo</label>
-                <Field type="text" id="nome" name="nome" disabled />
-                <ErrorMessage
-                  className="helper-text"
-                  name="nome"
-                  component="span"
-                />
-              </div>
-              <div className="input-field">
-                <label htmlFor="dataNascimento">Data de nascimento</label>
-                <Field name="dataNascimento">
-                  {({ field }) => (
-                    <MaskInput
-                      {...field}
-                      disabled
-                      type="text"
-                      id="dataNascimento"
-                      mask={DateNumberMask}
-                    />
-                  )}
-                </Field>
-                <ErrorMessage
-                  className="helper-text"
-                  name="dataNascimento"
-                  component="span"
-                />
-              </div>
-              <div className="input-field">
-                <label htmlFor="cpf">CPF</label>
-                <Field name="cpf">
-                  {({ field }) => (
-                    <MaskInput
-                      disabled
-                      {...field}
-                      type="text"
-                      id="cpf"
-                      mask={cpfNumberMask}
-                    />
-                  )}
-                </Field>
-                <ErrorMessage
-                  className="helper-text"
-                  name="cpf"
-                  component="span"
-                />
-              </div>
+      <Form className="form-editar-dados">
+        <div className="div-form-editar">
+          <div>
+            <div className="input-field">
+              <label htmlFor="nome">Nome completo</label>
+              <Field type="text" id="nome" name="nome" disabled />
+              <ErrorMessage
+                className="helper-text"
+                name="nome"
+                component="span"
+              />
             </div>
-            <div className="inputs-editaveis">
-              <div className="input-field">
-                <label htmlFor="telefone">Telefone</label>
-                <Field name="telefone">
-                  {({ field }) => (
-                    <MaskInput
-                      {...field}
-                      type="text"
-                      id="telefone"
-                      mask={phoneNumberMask}
-                    />
-                  )}
-                </Field>
-                <ErrorMessage
-                  className="helper-text"
-                  name="telefone"
-                  component="span"
-                />
-              </div>
-              <div className="input-field">
-                <label htmlFor="senha">Senha</label>
-                <Field name="senha" type="text" id="senha" />
-                <ErrorMessage
-                  type="password"
-                  className="helper-text"
-                  name="senha"
-                  component="span"
-                />
-              </div>
+            <div className="input-field">
+              <label htmlFor="dataNascimento">Data de nascimento</label>
+              <Field name="dataNascimento">
+                {({ field }) => (
+                  <MaskInput
+                    {...field}
+                    disabled
+                    type="text"
+                    id="dataNascimento"
+                    mask={DateNumberMask}
+                  />
+                )}
+              </Field>
+              <ErrorMessage
+                className="helper-text"
+                name="dataNascimento"
+                component="span"
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="cpf">CPF</label>
+              <Field name="cpf">
+                {({ field }) => (
+                  <MaskInput
+                    disabled
+                    {...field}
+                    type="text"
+                    id="cpf"
+                    mask={cpfNumberMask}
+                  />
+                )}
+              </Field>
+              <ErrorMessage
+                className="helper-text"
+                name="cpf"
+                component="span"
+              />
             </div>
           </div>
-        </form>
-      )}
+          <div className="inputs-editaveis">
+            <div className="input-field">
+              <label htmlFor="telefone">Telefone</label>
+              <Field name="telefone">
+                {({ field }) => (
+                  <MaskInput
+                    {...field}
+                    type="text"
+                    id="telefone"
+                    mask={phoneNumberMask}
+                  />
+                )}
+              </Field>
+              <ErrorMessage
+                className="helper-text"
+                name="telefone"
+                component="span"
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="senha">Senha</label>
+              <Field name="senha" type="password" id="senha" />
+              <ErrorMessage
+                type="password"
+                className="helper-text"
+                name="senha"
+                component="span"
+              />
+            </div>
+          </div>
+        </div>
+        <Button
+          submit="submit"
+          tooltip="Salvar meus dados"
+          text="Salvar"
+          position="bottom"
+          className="btn-salvar-dados-perfil"
+          Icon={MdSave}
+        />
+      </Form>
     </Formik>
   );
 }

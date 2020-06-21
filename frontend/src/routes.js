@@ -13,8 +13,6 @@ import MinhaConta from "./pages/MinhaConta";
 
 import Menu from "./components/Menu";
 
-/**        <Route exact path="/:idCategoria" component={Main} /> */
-
 export default function Routes() {
   return (
     <BrowserRouter>

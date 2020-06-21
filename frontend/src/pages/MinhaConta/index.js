@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { MdSave } from "react-icons/md";
 
 import FormEditarDadosPessoas from "../../components/FormsEditarPerfil/FormEditarDadosPessoas";
 import FormEditarDadosComercio from "../../components/FormsEditarPerfil/FormEditarDadosComercio";
-import Button from "../../components/Button";
 
 import "./styles.css";
 
 function MinhaConta() {
-  const [dadosPessoais, setDadosPessoais] = useState({
+  const dadosPessoais = {
     nome: "Matheus",
     dataNascimento: "31082001",
     cpf: "55555555555",
-  });
-  const [dadosComercio, setDadosComercio] = useState({
+  };
+  const dadosComercio = {
     nome: "Padaria do zé",
     categoria: 1,
-  });
+  };
 
   return (
     <>
@@ -24,8 +22,11 @@ function MinhaConta() {
         <div className="dados-pessoais">
           <h2>Meus dados</h2>
           <FormEditarDadosPessoas
-            handleSubmit={(values) => {
-              console.log(values);
+            handleSubmit={(values, actions) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                actions.setSubmitting(false);
+              }, 1000);
             }}
             initialValues={dadosPessoais}
           />
@@ -34,18 +35,12 @@ function MinhaConta() {
           <h2>Dados do meu comercio</h2>
           <FormEditarDadosComercio
             handleSubmit={(values) => {
+              alert("dsd");
               console.log(values);
             }}
             initialValues={dadosComercio}
           />
         </div>
-        <Button
-          submit="submit"
-          tooltip="Salvar dados da minha conta"
-          text="Salvar dados"
-          className="btn-salvar-dados-perfil"
-          Icon={MdSave}
-        />
       </div>
     </>
   );

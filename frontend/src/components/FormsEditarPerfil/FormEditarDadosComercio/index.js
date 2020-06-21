@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdSave } from "react-icons/md";
 import MaskInput from "react-text-mask";
 import M from "materialize-css/dist/js/materialize.min.js";
 
@@ -47,12 +47,12 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
       validationSchema={validates}
     >
       {({ values, handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-editar-dados">
           <div className="div-form-editar form-editar-dados-comercio">
             <div>
               <div className="input-field">
                 <label htmlFor="nome">Nome do comercio</label>
-                <Field type="text" id="nome" name="nome" disabled />
+                <Field type="text" id="nomeComercio" name="nome" disabled />
                 <ErrorMessage
                   className="helper-text"
                   name="nome"
@@ -207,6 +207,14 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
               </div>
             </div>
           </div>
+          <Button
+            submit="submit"
+            tooltip="Salvar dados do comercio"
+            text="Salvar"
+            position="bottom"
+            className="btn-salvar-dados-perfil"
+            Icon={MdSave}
+          />
         </form>
       )}
     </Formik>

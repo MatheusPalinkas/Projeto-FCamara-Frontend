@@ -38,10 +38,12 @@ export default function Button({
     }
   }
 
+  classButton += !!dataTarget ? "modal-trigger" : "";
+
   if (tipo === "Button") {
     return (
       <button
-        className={`tooltipped waves-light waves-effect btn modal-trigger ${classButton} ${className}`}
+        className={`tooltipped waves-light waves-effect btn  ${classButton} ${className}`}
         data-position={`${position}`}
         type={submit}
         data-tooltip={`${tooltip}`}
@@ -58,7 +60,7 @@ export default function Button({
   } else {
     return (
       <Link
-        className={`tooltipped waves-light waves-effect btn modal-trigger ${classButton} ${className} `}
+        className={`tooltipped waves-light waves-effect btn ${classButton} ${className} `}
         data-position={`${position}`}
         data-tooltip={`${tooltip}`}
         onClick={onClick}
