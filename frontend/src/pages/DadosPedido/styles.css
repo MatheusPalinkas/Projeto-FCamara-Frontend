@@ -4,12 +4,80 @@
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start !important;
+  justify-content: space-between !important;
   flex-wrap: wrap;
   padding-top: 10px;
-  padding: 0 0 100px 0;
+  padding: 0 0 50px 0;
 }
 
 .btnVendedorPedido {
   margin: 50px 0 0 0;
+}
+
+.containerBtnDecisaoVisible {
+  width: auto !important;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end !important;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding: 0 0 0 0;
+}
+
+.btnDecisaoVisible {
+  margin: 0 50px 0 0;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.containerDadosPedido {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.containerDadosPedido > div > h2 {
+  font-family: NunitoSansSemiBold;
+  font-size: 2.33em;
+  color: #148acc;
+}
+.containerDadosPedido > div {
+  border-bottom: 2px solid #148acc;
+}
+
+@media only screen and (max-width: 1250px) {
+  .containerDadosPedido {
+    max-width: 800px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .containerDadosPedido {
+    max-width: 500px;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .containerDadosPedido {
+    padding: 0 24px;
+  }
+}
+
+.dadosComprador {
+  padding: 0 0 20px 0;
+}
+
+.dadosComprador label {
+  font-size: 1.33em;
+  padding: 0 3px 0 10px;
+}
+
+.descricaoDado {
+  font-weight: bold;
+  color: black;
 }

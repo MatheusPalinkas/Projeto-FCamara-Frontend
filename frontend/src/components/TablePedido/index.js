@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { MdShoppingCart, MdClose, MdEdit } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
 import "./styles.css";
@@ -39,7 +38,7 @@ const TablePedido = ({
         </td>
         <td>Status</td>
         <td>
-          <Link to={`/dados/pedido/${idComercio}`}>Ver descricao</Link>
+          <Link to={`/dados/pedido/${idComercio}`}>DETALHES</Link>
         </td>
       </tr>
     </>
