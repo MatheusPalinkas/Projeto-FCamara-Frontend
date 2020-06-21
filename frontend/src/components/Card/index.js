@@ -76,7 +76,9 @@ const Card = ({
           )}
           <p className="p-descricao-link">
             {idVendedor && (
-              <Link className="excluir-produto">Excluir produto</Link>
+              <Link to={""} className="excluir-produto">
+                Excluir produto
+              </Link>
             )}
             {idComercio ? (
               <Link
@@ -86,7 +88,9 @@ const Card = ({
                 Pagina do comercio
               </Link>
             ) : (
-              <Link className="activator descricao">Ver descrição</Link>
+              <Link to={""} className="activator descricao">
+                Ver descrição
+              </Link>
             )}
           </p>
         </div>

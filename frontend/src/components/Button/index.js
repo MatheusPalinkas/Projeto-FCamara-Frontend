@@ -48,6 +48,7 @@ export default function Button({
         type={submit}
         data-tooltip={`${tooltip}`}
         data-target={dataTarget}
+        onClick={onClick}
       >
         <span className="text-align-btn">
           <div className="icon">

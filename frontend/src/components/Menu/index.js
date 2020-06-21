@@ -74,7 +74,7 @@ const Menu = ({ user = {} }) => {
             <li>
               <div
                 className="tooltipped btn-meu-carrinho"
-                data-position="bottom"
+                data-position="left"
                 data-tooltip="Meu carrinho"
               >
                 <MdShoppingBasket />
