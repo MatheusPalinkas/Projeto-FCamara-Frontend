@@ -1,0 +1,36 @@
+.container-editar-minha-conta{
+    max-width: 1200px;
+    width: 100%;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.container-editar-minha-conta > div > h2{
+    font-family: NunitoSansSemiBold;
+    font-size: 2.33em;
+    color: #148ACC ;
+}
+.container-editar-minha-conta > div{
+    border-bottom: 2px solid #148ACC;
+}
+
+
+@media only screen and (max-width: 1250px){
+    .container-editar-minha-conta{
+        max-width: 800px;
+    } 
+}
+@media only screen and (max-width: 850px){
+    .container-editar-minha-conta{
+        max-width: 500px;
+    }
+}
+@media only screen and (max-width: 540px){
+    .container-editar-minha-conta{ 
+        margin-top: 40px;
+        padding: 0 24px;
+    }
+    
+}

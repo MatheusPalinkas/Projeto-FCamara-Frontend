@@ -10,10 +10,9 @@ import ProdutosComercio from "./pages/ProdutosComercio";
 import NovoProduto from "./pages/NovoProduto";
 import PedidosVendedor from "./pages/PedidosVendedor";
 import DadosPedido from "./pages/DadosPedido";
+import MinhaConta from "./pages/MinhaConta";
 
 import Menu from "./components/Menu";
-
-/**        <Route exact path="/:idCategoria" component={Main} /> */
 
 export default function Routes() {
   return (
@@ -47,6 +46,7 @@ export default function Routes() {
         <Route exact path="/dados/pedido/:idComercio" component={DadosPedido} />
         <Route exact path="/comercio/:idComercio" component={DadosPedido} />
 
+        <Route exact path="/editar/conta" component={MinhaConta} />
         <Route exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
