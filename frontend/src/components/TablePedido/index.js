@@ -39,16 +39,7 @@ const TablePedido = ({
         </td>
         <td>Status</td>
         <td>
-          {idComercio ? (
-            <Link
-              to={`/comercio/${idComercio}`}
-              className="link-pagina-produto"
-            >
-              Pagina do comercio
-            </Link>
-          ) : (
-            <Link className="activator descricao">Ver descrição</Link>
-          )}
+          <Link to={`/dados/pedido/${idComercio}`}>Ver descricao</Link>
         </td>
       </tr>
     </>
