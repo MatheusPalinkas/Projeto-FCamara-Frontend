@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "../../services/Api";
 import "./styles.css";
 import { MdReply } from "react-icons/md";
 import { MdNotInterested } from "react-icons/md";
-import { AiOutlineCheck } from "react-icons/ai";
+import { MdCheck } from "react-icons/md";
 import { FiGift } from "react-icons/fi";
 
 import Button from "../../components/Button";
 
-export default function DadosPedido() {
-  let status = "";
-  let containerBtnDecisao;
-  let btnDecisao;
+const StatusPedido = ({ idComercio }) => (
+  <div className="containerBtnDecisao">
+    <div className="btnDecisao">
+      <Button text="Aceitar" tooltip="Veja o status do pedido" Icon={MdCheck} />
+    </div>
+    <div className="btnDecisao">
+      <Button
+        text={"Recusar"}
+        typeButton={"secundaria"}
+        Icon={MdNotInterested}
+      />
+    </div>
+  </div>
+);
 
-  if (status === "") {
-    containerBtnDecisao = "containerBtnDecisaoVisible";
-    btnDecisao = "btnDecisaoVisible";
-  } else {
-    containerBtnDecisao = "invisible";
-    btnDecisao = "invisible";
-  }
-
+export default function DadosPedido({ idComercio }) {
   return (
     <>
       <div className="containerBtnPedido">
@@ -35,22 +40,7 @@ export default function DadosPedido() {
         </div>
       </div>
 
-      <div className={containerBtnDecisao}>
-        <div className={btnDecisao}>
-          <Button
-            text="Aceitar"
-            tooltip="Veja o status do pedido"
-            Icon={AiOutlineCheck}
-          />
-        </div>
-        <div className={btnDecisao}>
-          <Button
-            text={"Recusar"}
-            typeButton={"secundaria"}
-            Icon={MdNotInterested}
-          />
-        </div>
-      </div>
+      <StatusPedido idComercio={idComercio} />
 
       <div className="containerDadosPedido">
         <div className="containerdadosComprador">
