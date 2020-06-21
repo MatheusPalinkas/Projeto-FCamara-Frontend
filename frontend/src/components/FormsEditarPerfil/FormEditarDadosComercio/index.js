@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
+import { MdEdit } from "react-icons/md";
 import MaskInput from "react-text-mask";
 import M from "materialize-css/dist/js/materialize.min.js";
 
@@ -47,11 +48,11 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
     >
       {({ values, handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <div className="form-editar-dados-pessoais">
+          <div className="div-form-editar form-editar-dados-comercio">
             <div>
               <div className="input-field">
                 <label htmlFor="nome">Nome do comercio</label>
-                <Field type="text" id="nome" name="nome" />
+                <Field type="text" id="nome" name="nome" disabled />
                 <ErrorMessage
                   className="helper-text"
                   name="nome"
@@ -59,17 +60,8 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                 />
               </div>
               <div className="input-field">
-                <label htmlFor="cnpj">CNPJ</label>
-                <Field name="cnpj" type="text" id="cnpj" />
-                <ErrorMessage
-                  className="helper-text"
-                  name="cnpj"
-                  component="span"
-                />
-              </div>
-              <div className="input-field">
                 <div className="input-field ">
-                  <Field as="select" id="categoria" name="categoria">
+                  <Field as="select" id="categoria" name="categoria" disabled>
                     <option value={false}>Selecione uma categoria</option>
                     {categorias.map((categoria) => (
                       <option value={categoria.id} key={categoria.id}>
@@ -84,8 +76,23 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                   component="span"
                 />
               </div>
+              <Button
+                Icon={MdEdit}
+                className="btn-editar-endereco"
+                tooltip="Editar o endereço do meu comercio"
+                text="Editar endereço do comercio"
+              />
             </div>
             <div className="inputs-editaveis">
+              <div className="input-field">
+                <label htmlFor="cnpj">CNPJ</label>
+                <Field name="cnpj" type="text" id="cnpj" />
+                <ErrorMessage
+                  className="helper-text"
+                  name="cnpj"
+                  component="span"
+                />
+              </div>
               <div className="input-field">
                 <label className="label-hora">Horario de funcionamento</label>
                 <div className="div-buttons-form hr-funcionamento">
@@ -200,8 +207,6 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
               </div>
             </div>
           </div>
-
-          <Button text="Editar endereco do comercio" />
         </form>
       )}
     </Formik>

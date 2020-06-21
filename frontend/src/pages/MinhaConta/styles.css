@@ -2,6 +2,9 @@
     max-width: 1200px;
     width: 100%;
     margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     /*background: red;*/
 }
 
@@ -12,4 +15,25 @@
 }
 .container-editar-minha-conta > div{
     border-bottom: 2px solid #148ACC;
+}
+.btn-salvar-dados-perfil{
+    margin: 40px 0 40px auto;
+    max-width: 300px;
+}
+
+@media only screen and (max-width: 1250px){
+    .container-editar-minha-conta{
+        max-width: 800px;
+    } 
+}
+@media only screen and (max-width: 850px){
+    .container-editar-minha-conta{
+        max-width: 500px;
+    }
+}
+@media only screen and (max-width: 540px){
+    .container-editar-minha-conta{ 
+        padding: 0 24px;
+    }
+    
 }

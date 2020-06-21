@@ -1,13 +1,22 @@
 import React, { useState } from "react";
+import { MdSave } from "react-icons/md";
 
 import FormEditarDadosPessoas from "../../components/FormsEditarPerfil/FormEditarDadosPessoas";
 import FormEditarDadosComercio from "../../components/FormsEditarPerfil/FormEditarDadosComercio";
+import Button from "../../components/Button";
 
 import "./styles.css";
 
 function MinhaConta() {
-  const [dadosPessoais, setDadosPessoais] = useState({});
-  const [dadosComercio, setDadosComercio] = useState({});
+  const [dadosPessoais, setDadosPessoais] = useState({
+    nome: "Matheus",
+    dataNascimento: "31082001",
+    cpf: "55555555555",
+  });
+  const [dadosComercio, setDadosComercio] = useState({
+    nome: "Padaria do zé",
+    categoria: 1,
+  });
 
   return (
     <>
@@ -30,9 +39,13 @@ function MinhaConta() {
             initialValues={dadosComercio}
           />
         </div>
-        <div className="dados-endereco">
-          <h2>Meus endereços</h2>
-        </div>
+        <Button
+          submit="submit"
+          tooltip="Salvar dados da minha conta"
+          text="Salvar dados"
+          className="btn-salvar-dados-perfil"
+          Icon={MdSave}
+        />
       </div>
     </>
   );

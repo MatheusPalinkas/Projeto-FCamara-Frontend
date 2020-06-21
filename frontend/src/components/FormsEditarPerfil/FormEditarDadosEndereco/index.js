@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 import * as yup from "yup";
 
 import "../styles.css";
-import "./styles.css";
 
 const validates = yup.object().shape({
   nome: yup.string().required("O nome não deve ser vazio"),

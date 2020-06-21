@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import * as yup from "yup";
 
 import "../styles.css";
-import "./styles.css";
 
 const validates = yup.object().shape({
   nome: yup.string().required("O nome não deve ser vazio"),
@@ -16,11 +15,11 @@ const validates = yup.object().shape({
     .string()
     .required("A data de nascimento não deve ser vazio"),
 
-  telefone: yup.string("O Telefone deve ser um texto").optional(),
+  telefone: yup.string("O Telefone não deve ser um texto").optional(),
   senha: yup
     .string()
     .min(8, "A senha deve ter no minimo 8 caracteres")
-    .required("A senha deve ser vazio"),
+    .required("A senha não deve ser vazio"),
 });
 const phoneNumberMask = [
   "(",
@@ -77,11 +76,11 @@ function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
     >
       {({ values, handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <div className="form-editar-dados-pessoais">
+          <div className="div-form-editar">
             <div>
               <div className="input-field">
                 <label htmlFor="nome">Nome completo</label>
-                <Field type="text" id="nome" name="nome" />
+                <Field type="text" id="nome" name="nome" disabled />
                 <ErrorMessage
                   className="helper-text"
                   name="nome"
@@ -94,6 +93,7 @@ function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
                   {({ field }) => (
                     <MaskInput
                       {...field}
+                      disabled
                       type="text"
                       id="dataNascimento"
                       mask={DateNumberMask}
@@ -111,6 +111,7 @@ function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
                 <Field name="cpf">
                   {({ field }) => (
                     <MaskInput
+                      disabled
                       {...field}
                       type="text"
                       id="cpf"
