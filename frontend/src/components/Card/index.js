@@ -76,9 +76,7 @@ const Card = ({
           )}
           <p className="p-descricao-link">
             {idVendedor && (
-              <Link to={""} className="excluir-produto">
-                Excluir produto
-              </Link>
+              <span className="link excluir-produto">Excluir produto</span>
             )}
             {idComercio ? (
               <Link

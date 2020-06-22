@@ -18,16 +18,12 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <Menu
-        user={
-          {
-            /*
+        user={{
           idComercio: 2,
           id: 2,
           url:
             "https://static1.purepeople.com.br/articles/7/28/80/37/@/3267022-larissa-manoela-chamou-atencao-dos-segui-624x600-2.jpg",
-            */
-          }
-        }
+        }}
       />
       <Switch>
         <Route exact path="/" component={Main} />

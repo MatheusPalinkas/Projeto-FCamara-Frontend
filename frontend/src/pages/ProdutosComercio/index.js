@@ -54,7 +54,7 @@ export default function ProdutosComercio() {
               }}
             />
           </div>
-          <div className="input-field">
+          <div className="input-field div-select-filtro">
             <select
               value={categoriaSelecionada}
               onChange={(e) => setcategoriaSelecionada(e.target.value)}

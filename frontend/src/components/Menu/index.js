@@ -12,11 +12,7 @@ import "./styles.css";
 
 const PhotoUserLogged = ({ url }) => {
   return (
-    <div
-      className="tooltipped container-foto"
-      data-position="bottom"
-      data-tooltip="Editar meu perfil"
-    >
+    <div className="container-foto">
       {url ? (
         <img src={`${url}`} alt="Foto de perfil" className="foto-perfil" />
       ) : (

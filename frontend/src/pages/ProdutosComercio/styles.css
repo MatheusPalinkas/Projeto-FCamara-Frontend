@@ -17,18 +17,19 @@
     max-width: 1200px;
     margin: 0 auto;
 }
-input.input-filtro{
+.form-filtros > .input-field > .input-filtro,
+.div-select-filtro{
     min-width: 350px;
     max-width: 400px;
 }
-
-@media only screen and (max-width: 780px){
+@media only screen and (max-width: 880px){
     .form-filtros{
         flex-direction: column-reverse;
     }
     .form-filtros > .input-field, 
-    input.input-filtro{
+    .form-filtros > .input-field > .input-filtro{
         max-width: 450px;
+        min-width: auto;
         width: 100%;
     }
     .form-filtros > .btn{
