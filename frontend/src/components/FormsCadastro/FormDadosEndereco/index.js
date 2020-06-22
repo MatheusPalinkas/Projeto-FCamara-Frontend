@@ -116,11 +116,7 @@ const FormDadosEndereco = ({
               Icon={MdReply}
             />
             {vendedor === true ? (
-              <Button
-                submit="submit"
-                text="Proximo"
-                Icon={MdKeyboardArrowRight}
-              />
+              <Button submit="submit" text="Proximo" Icon={MdSave} />
             ) : (
               <Button
                 submit="submit"
