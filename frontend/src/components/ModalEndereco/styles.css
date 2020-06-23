@@ -1,0 +1,51 @@
+.containerLabelEndereco {
+  padding: 0;
+  padding-bottom: 3px;
+  display: flex;
+  align-items: baseline;
+  width: auto;
+  max-width: 400px;
+  align-items: center;
+}
+
+.containerLabelEndereco label {
+  font-size: 1.33em;
+  padding: 0;
+  padding-right: 25px;
+  font-family: LatoBold;
+  color: #1d273b;
+}
+
+.titulo {
+  max-width: 300px;
+  width: 100%;
+}
+.titulo h1 {
+  font-size: 2.5em;
+}
+.containerBtnEndereco {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  width: auto;
+  padding: 24px 0 0 0;
+}
+.form-modal-Endereco > .input-field {
+  margin-top: 24px;
+}
+.btnEndereco {
+  float: center;
+}
+
+@media only screen and (max-width: 440px) {
+  .containerBtnEndereco {
+    flex-direction: column;
+  }
+  .containerBtnEndereco > div > .btn {
+    width: 100%;
+    padding-top: 16px;
+  }
+  .btnEndereco {
+    margin-top: 16px;
+  }
+}
