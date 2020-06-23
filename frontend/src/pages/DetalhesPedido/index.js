@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { FiPackage } from "react-icons/fi";
 import { MdReply, MdNotInterested, MdCheck } from "react-icons/md";
 
+import ModalSituacaoPedido from "../../components/ModalSituacaoPedido";
 import Button from "../../components/Button";
 
 import "./styles.css";
@@ -23,11 +24,16 @@ export default function DetalhesPedido() {
   return (
     <>
       <div className="containerBtnPedido">
-        <Button
-          text="Situação do pedido"
-          tooltip="Veja o situação do pedido"
-          Icon={FiPackage}
-        />
+        <a
+          className="waves-effect waves-light  modal-trigger"
+          href="#modal-situacao-pedido"
+        >
+          <Button
+            text="Situação do pedido"
+            tooltip="Veja o situação do pedido"
+            Icon={FiPackage}
+          />
+        </a>
 
         <Button
           text="VOLTAR"
@@ -119,6 +125,8 @@ export default function DetalhesPedido() {
           </div>
         </div>
       </div>
+
+      <ModalSituacaoPedido />
     </>
   );
 }
