@@ -7,7 +7,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import api from "../../../services/Api";
 
 import Button from "../../Button";
-import FormEndereco from "../../ModalEndereco";
+import ModalEndereco from "../../ModalEndereco";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
@@ -16,7 +16,15 @@ import "../styles.css";
 import "./styles.css";
 
 const handleSubmitEnvia = (values) => alert(JSON.stringify(values));
-const initialValuesEnvia = {};
+const initialValuesEnvia = {
+  cep: "115340704",
+  cidade: "Cubatão",
+  uf: "SP",
+  rua: "Rua Manoel Florêncio da Silva",
+  numero: "423",
+  bairro: "Parque São Luis",
+  complemento: "sobrado",
+};
 
 const validates = yup.object().shape({
   nome: yup.string().required("O nome não deve ser vazio"),
@@ -226,7 +234,7 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
         )}
       </Formik>
 
-      <FormEndereco
+      <ModalEndereco
         handleSubmit={handleSubmitEnvia}
         initialValues={initialValuesEnvia}
       />

@@ -26,7 +26,7 @@ const validates = yup.object().shape({
   complemento: yup.string().optional(),
 });
 
-const ModalEstoque = ({ handleSubmit, initialValues, vendedor }) => {
+const ModalEndereco = ({ handleSubmit, initialValues, vendedor }) => {
   useEffect(() => {
     (async function () {
       const elems = document.querySelectorAll("select");
@@ -139,10 +139,10 @@ const ModalEstoque = ({ handleSubmit, initialValues, vendedor }) => {
   );
 };
 
-ModalEstoque.propTypes = {
+ModalEndereco.propTypes = {
   initialValues: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   vendedor: PropTypes.bool.isRequired,
 };
 
-export default ModalEstoque;
+export default ModalEndereco;
