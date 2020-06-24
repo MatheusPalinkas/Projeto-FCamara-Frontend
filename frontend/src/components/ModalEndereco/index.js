@@ -26,7 +26,7 @@ const validates = yup.object().shape({
   complemento: yup.string().optional(),
 });
 
-const ModalEndereco = ({ handleSubmit, initialValues, vendedor }) => {
+const ModalEndereco = ({ handleSubmit, initialValues }) => {
   useEffect(() => {
     (async function () {
       const elems = document.querySelectorAll("select");
@@ -120,17 +120,14 @@ const ModalEndereco = ({ handleSubmit, initialValues, vendedor }) => {
                 Icon={MdReply}
                 typeButton="secundaria"
               />
-              {vendedor === true ? (
-                <Button submit="submit" text="Proximo" Icon={MdSave} />
-              ) : (
-                <Button
-                  submit="submit"
-                  type="submit"
-                  text="Salvar"
-                  tooltip="Salvar endereço"
-                  Icon={MdSave}
-                />
-              )}
+
+              <Button
+                submit="submit"
+                type="submit"
+                text="Salvar"
+                tooltip="Salvar endereço"
+                Icon={MdSave}
+              />
             </div>
           </div>
         </Form>
@@ -142,7 +139,6 @@ const ModalEndereco = ({ handleSubmit, initialValues, vendedor }) => {
 ModalEndereco.propTypes = {
   initialValues: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  vendedor: PropTypes.bool.isRequired,
 };
 
 export default ModalEndereco;
