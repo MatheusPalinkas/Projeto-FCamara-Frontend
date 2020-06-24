@@ -2,10 +2,10 @@ import React from "react";
 
 import "./styles.css";
 
-function Breadcrumb({ children }) {
+function Breadcrumb({ children, className = "" }) {
   return (
     <>
-      <nav>
+      <nav className={className}>
         <div className="nav-wrapper">
           <div className="col s12 background-breadcrumb">{children}</div>
         </div>
