@@ -1,9 +1,16 @@
 .modal {
   font-family: NunitoSans;
+  width: auto;
 }
 
 .login {
+  width: auto;
   max-width: 380px;
+}
+
+.endereco {
+  width: auto;
+  max-width: 700px;
 }
 
 .head {
