@@ -19,6 +19,7 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
     (async function () {
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
+      M.updateTextFields();
     })();
   }, []);
 
