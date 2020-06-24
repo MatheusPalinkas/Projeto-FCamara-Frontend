@@ -1,98 +1,136 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { MdSave, MdReply } from "react-icons/md";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
+import * as yup from "yup";
 
 import Modal from "../Modal";
 import Button from "../Button";
 
 import "./styles.css";
 
-const ModalEstoque = ({ handleSubmit, initialValues }) => {
+const validates = yup.object().shape({
+  cep: yup
+    .string()
+    .length(9, "O CEP deve ter 8 caracteres")
+    .required("O CEP é obrigadotio"),
+  cidade: yup.string().required("A cidade não deve ser vazia"),
+  uf: yup
+    .string()
+    .length(2, "A UF deve ter dois caracters")
+    .required("A UF não deve ser vazio"),
+  rua: yup.string().required("A rua não deve ser vazio"),
+  numero: yup.number().required("O numero não deve ser vazio"),
+  bairro: yup.string().required("O bairro não deve ser vazio"),
+  complemento: yup.string().optional(),
+});
+
+const ModalEstoque = ({ handleSubmit, initialValues, vendedor }) => {
   useEffect(() => {
     (async function () {
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
+      M.updateTextFields();
     })();
   }, []);
 
   return (
     <Modal tipo={"endereco"} id="modal4">
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={validates}
+      >
         <Form>
           <div className="titulo">
             <h1>Endereço</h1>
           </div>
 
-          <div>
-            <div className="containerLabelEndereco">
-              <label>Cep:</label>
-              <Field name="Cep" placeholder="Digite seu Cep" type="text" />
-            </div>
-            <div className="containerLabelEndereco">
-              <label>Cidade:</label>
-              <Field
-                name="Cidade"
-                placeholder="Digite sua Cidade"
-                type="text"
+          <div className="form-dados-cadastro form-dados-pessoais">
+            <div className="input-field">
+              <label htmlFor="cep">CEP</label>
+              <Field type="text" id="cep" name="cep" />
+              <ErrorMessage
+                className="helper-text"
+                name="cep"
+                component="span"
               />
             </div>
-            <div className="containerLabelEndereco">
-              <label>Logradouro:</label>
-              <Field
-                name="Logradouro"
-                placeholder="Digite seu Logradouro"
-                type="text"
-              />
+            <div className="inputs-mesma-linha">
+              <div className="input-field">
+                <label htmlFor="cidade">Cidade</label>
+                <Field name="cidade" type="text" id="cidade" />
+                <ErrorMessage
+                  className="helper-text"
+                  name="cidade"
+                  component="span"
+                />
+              </div>
+              <div className="input-field input-uf">
+                <label htmlFor="uf">UF</label>
+                <Field name="uf" type="text" id="uf" />
+                <ErrorMessage
+                  className="helper-text"
+                  name="uf"
+                  component="span"
+                />
+              </div>
             </div>
-            <div className="containerLabelEndereco">
-              <label>Complemento:</label>
-              <Field
-                name="Complemento"
-                placeholder="Digite seu Complemento"
-                type="text"
-              />
+            <div className="inputs-mesma-linha">
+              <div className="input-field">
+                <label htmlFor="rua">Rua</label>
+                <Field name="rua" type="text" id="rua" />
+                <ErrorMessage
+                  className="helper-text"
+                  name="rua"
+                  component="span"
+                />
+              </div>
+              <div className="input-field input-numero">
+                <label htmlFor="numero">Numero</label>
+                <Field name="numero" type="text" id="numero" />
+                <ErrorMessage
+                  className="helper-text"
+                  name="numero"
+                  component="span"
+                />
+              </div>
             </div>
-            <div className="containerLabelEndereco">
-              <label>Uf:</label>
-              <Field name="Uf" placeholder="Digite seu Uf" type="text" />
-            </div>
-            <div className="containerLabelEndereco">
-              <label>Bairro:</label>
-              <Field
-                name="Bairro"
-                placeholder="Digite seu Bairro"
-                type="text"
-              />
-            </div>
-            <div className="containerLabelEndereco">
-              <label>N°:</label>
-              <Field
-                name="Numero"
-                placeholder="Digite seu Numero"
-                type="text"
-              />
-            </div>
-          </div>
 
-          <div className="containerBtnEndereco">
-            <div className="modal-close btnEndereco">
-              <Button
-                text="Voltar"
-                position="bottom"
-                typeButton="secundaria"
-                Icon={MdReply}
+            <div className="input-field">
+              <label htmlFor="bairro">Bairro</label>
+              <Field name="bairro" type="text" id="bairro" />
+              <ErrorMessage
+                className="helper-text"
+                name="bairro"
+                component="span"
               />
             </div>
-            <div className="btnEndereco">
+
+            <div className="input-field">
+              <label htmlFor="Complemento">Complemento</label>
+              <Field name="complemento" type="text" id="complemento" />
+            </div>
+
+            <div className="div-buttons-form">
               <Button
-                text="Salvar"
-                position="bottom"
-                type="submit"
-                submit="submit"
-                Icon={MdSave}
+                className="modal-close"
+                text="Voltar"
+                Icon={MdReply}
+                typeButton="secundaria"
               />
+              {vendedor === true ? (
+                <Button submit="submit" text="Proximo" Icon={MdSave} />
+              ) : (
+                <Button
+                  submit="submit"
+                  type="submit"
+                  text="Salvar"
+                  tooltip="Salvar endereço"
+                  Icon={MdSave}
+                />
+              )}
             </div>
           </div>
         </Form>
@@ -102,8 +140,9 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
 };
 
 ModalEstoque.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  vendedor: PropTypes.bool.isRequired,
 };
 
 export default ModalEstoque;
