@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { MdReply } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 
@@ -8,17 +9,14 @@ import Button from "../../components/Button";
 
 import "./styles.css";
 
-function MinhaConta() {
+function MinhaConta({ user }) {
   const { goBack } = useHistory();
 
   const dadosPessoais = {
-    nome: "Matheus",
-    dataNascimento: "31082001",
-    cpf: "55555555555",
+    ...user,
   };
   const dadosComercio = {
-    nome: "Padaria do zé",
-    categoria: 1,
+    ...user.comercio,
   };
 
   return (
@@ -51,7 +49,6 @@ function MinhaConta() {
           <h2>Dados do meu comercio</h2>
           <FormEditarDadosComercio
             handleSubmit={(values) => {
-              alert("dsd");
               console.log(values);
             }}
             initialValues={dadosComercio}
@@ -61,5 +58,6 @@ function MinhaConta() {
     </>
   );
 }
+const mapStateToProps = (state) => ({ user: state.user });
 
-export default MinhaConta;
+export default connect(mapStateToProps)(MinhaConta);

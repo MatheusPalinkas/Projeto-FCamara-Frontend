@@ -4,13 +4,11 @@ import { MdClose } from "react-icons/md";
 
 import "./styles.css";
 
-
 export default function Modal({ children, tipo, id }) {
-
   useEffect(() => {
     const elems = document.querySelectorAll(".modal");
     M.Modal.init(elems);
-    
+
     (async function () {
       const elem = document.querySelectorAll(".tooltipped");
       M.Tooltip.init(elem, {
@@ -36,5 +34,3 @@ export default function Modal({ children, tipo, id }) {
     </div>
   );
 }
-
-
