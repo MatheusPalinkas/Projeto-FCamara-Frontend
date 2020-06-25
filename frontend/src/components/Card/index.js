@@ -6,7 +6,7 @@ import "./styles.css";
 import ModalEstoque from "../../components/ModalEstoque";
 
 const handleSubmit = (values) => alert(JSON.stringify(values));
-const initialValues = {};
+const initialValues = { quantidade: "105", status: "Indisponivel" };
 
 const ButtonEditarProduto = () => (
   <div
