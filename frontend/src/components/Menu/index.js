@@ -93,7 +93,9 @@ const Menu = ({ user = {} }) => {
             </li>
           </ul>
         </div>
-        {user.idComercio && <MenuVendedor idComercio={user.idComercio} />}
+        {user.comercio && (
+          <MenuVendedor idComercio={user.comercio.idComercio} />
+        )}
         <SideBar />
       </nav>
       <ModalLogin />
