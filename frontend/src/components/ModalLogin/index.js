@@ -1,11 +1,15 @@
 import React from "react";
 import * as yup from "yup";
-import { ErrorMessage, Formik, Form, Field } from "formik";
-import "./styles.css";
+import { connect } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
 import { MdPersonAdd } from "react-icons/md";
+import { ErrorMessage, Formik, Form, Field } from "formik";
+import { HANDLE_LOGIN } from "../../store/actions/user";
+
 import Modal from "../Modal";
 import Button from "../Button";
+
+import "./styles.css";
 
 const validations = yup.object().shape({
   email: yup
@@ -17,14 +21,20 @@ const validations = yup.object().shape({
     .min(8, "A senha deve ter mais de 8 caracteris")
     .required("A senha não deve ser vazia"),
 });
-const handleSubmit = (values) => console.log(JSON.stringify(values));
 const initialValues = {};
 
-const ModalLogin = () => (
-  <Modal tipo={"login"} id={"modal1"}>
+const userFake = {
+  idComercio: 2,
+  id: 2,
+  url:
+    "https://static1.purepeople.com.br/articles/7/28/80/37/@/3267022-larissa-manoela-chamou-atencao-dos-segui-624x600-2.jpg",
+};
+
+const ModalLogin = ({ handleLogin }) => (
+  <Modal tipo="login" id="modal1">
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={(values) => handleLogin(userFake)}
       validationSchema={validations}
     >
       <Form className="form-modal-login">
@@ -53,8 +63,7 @@ const ModalLogin = () => (
               to="/cadastro"
             />
           </div>
-
-          <div className="btnLogin">
+          <div className="modal-close btnLogin">
             <Button
               Icon={FiLogIn}
               position="bottom"
@@ -69,5 +78,10 @@ const ModalLogin = () => (
     </Formik>
   </Modal>
 );
+const mapStateToProps = (state) => ({});
 
-export default ModalLogin;
+const mapDispatchToProps = (dispatch) => ({
+  handleLogin: (user) => dispatch(HANDLE_LOGIN(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalLogin);

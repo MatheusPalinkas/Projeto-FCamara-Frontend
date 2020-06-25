@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
@@ -100,4 +101,6 @@ const Menu = ({ user = {} }) => {
   );
 };
 
-export default Menu;
+const mapStateToProps = (state) => ({ user: state.user });
+
+export default connect(mapStateToProps)(Menu);
