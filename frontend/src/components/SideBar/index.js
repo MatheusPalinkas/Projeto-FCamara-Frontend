@@ -9,7 +9,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import "materialize-css/dist/css/materialize.min.css";
 
 const SideBar = () => {
-  const [categorias, setCategorias] = useState([]);
+  const [categoria, setCategoria] = useState([]);
 
   useEffect(() => {
     (async function () {
@@ -19,7 +19,7 @@ const SideBar = () => {
         inDuration: 250,
       });
       const { data } = await api.get("/categorias");
-      setCategorias(data);
+      setCategoria(data);
     })();
   }, []);
 
@@ -37,7 +37,7 @@ const SideBar = () => {
             </span>
           </Link>
         </li>
-        {categorias.map((categoria) => (
+        {categoria.map((categoria) => (
           <li key={categoria.id} className="item-categoria">
             <Link to={`/home/${categoria.id}`} className="waves-effect">
               {categoria.nome}
