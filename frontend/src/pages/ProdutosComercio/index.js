@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { MdReply } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import api from "../../services/Api";
@@ -15,6 +15,7 @@ export default function ProdutosComercio() {
   const [categorias, setCategorias] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const { idComercio } = useParams();
+  const { goBack } = useHistory();
 
   useEffect(() => {
     (async function () {
@@ -53,7 +54,7 @@ export default function ProdutosComercio() {
               }}
             />
           </div>
-          <div className="input-field">
+          <div className="input-field div-select-filtro">
             <select
               value={categoriaSelecionada}
               onChange={(e) => setcategoriaSelecionada(e.target.value)}
@@ -67,8 +68,16 @@ export default function ProdutosComercio() {
               ))}
             </select>
           </div>
+          <Button
+            text="VOLTAR"
+            typeButton="secundaria"
+            Icon={MdReply}
+            onClick={(e) => {
+              e.preventDefault();
+              goBack();
+            }}
+          />
         </form>
-        <Button text={"VOLTAR"} typeButton="secundaria" Icon={MdReply} />
       </div>
 
       <div className="container-comercios">

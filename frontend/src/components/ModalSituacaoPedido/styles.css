@@ -1,0 +1,52 @@
+#modal-situacao-pedido{
+  max-width: 450px;
+}
+
+.form-pedido-enviado,
+.form-pedido-entrega{
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+}
+.titulo-pedido-enviado,
+.titulo-pedido-entrega{
+  font-size: 2.369em;
+  font-family: NunitoSansSemiBold;
+  padding: 32px 0;
+  color: #1D273B !important;
+}
+.lbl-pedido-enviado,
+.lbl-pedido-entrega{
+  font-size: 1.33em;
+  color: #1D273B !important;
+}
+.div-form-pedido-enviado,
+.div-form-pedido-entrega{ 
+  margin: 0 auto 16px auto;
+}
+.div-form-pedido-enviado label span,
+.div-form-pedido-entrega label span{
+  margin-top: 16px;
+  font-size: 1.33em !important;
+  font-family: Lato;
+  color: #1D273B !important;
+}
+.div-form-nota-usuario{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+  justify-content: space-between;
+}
+
+.btns-situacao-pedido{
+  display: flex;
+  margin-top: 40px;
+  flex: 1;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.btn-fechar-modal-situacao-pedido{
+  margin-right: 16px;
+  min-width: 130px;
+}

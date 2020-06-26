@@ -126,6 +126,7 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
   useEffect(() => {
     const elems = document.querySelectorAll(".datepicker");
     M.Datepicker.init(elems, optionsDate);
+    M.updateTextFields();
   }, []);
 
   return (
@@ -136,7 +137,7 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
     >
       {({ values, handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <div className="form-dados-pessoais">
+          <div className="form-dados-cadastro form-dados-pessoais">
             <div className="input-field">
               <label htmlFor="nome">Nome completo</label>
               <Field type="text" id="nome" name="nome" />

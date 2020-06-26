@@ -1,12 +1,4 @@
-.input-field > label{
-    font-family: Lato;
-    font-size: 1.33em;
-}
-.input-field > span.helper-text{
-    color: rgb(224, 17, 17);
-    font-family: Lato;
-    font-size: 1em;
-}
+
 .div-radio{
     display: flex;
     flex-direction: row;
@@ -21,4 +13,24 @@
 .div-buttons-form, .div-radios-form{
     display: flex;
     justify-content: space-between;
+}
+.form-dados-cadastro{
+    max-width: 400px;
+
+    margin: 40px auto;
+}
+
+@media only screen and (max-width: 400px){
+    .form-dados-cadastro{
+        max-width: 400px;
+        margin: 136px auto 40px auto;
+    }
+    .div-form-cadastro-espaco-top{
+        margin-top: 140px !important;
+    }
+}
+@media only screen and (max-width: 850px){
+    .form-dados-cadastro{   
+        margin: 140px auto 40px auto;
+    }
 }

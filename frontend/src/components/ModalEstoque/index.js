@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Formik, Form as FormikForm, Field } from "formik";
-import "./styles.css";
+import { MdSave } from "react-icons/md";
+import { Formik, Form, Field } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
+
 import Modal from "../Modal";
 import Button from "../Button";
 
+import "./styles.css";
 /**
  * const [quantidade, setQuantidade] = useState(10);
  * onChange={(e) => setQuantidade(e.target.value)}
@@ -17,53 +19,47 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
     (async function () {
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
+      M.updateTextFields();
     })();
   }, []);
 
   return (
-    <Modal tipo={"login"} id={"modal2"}>
+    <Modal tipo="login" id="modal2">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <FormikForm>
+        <Form>
           <div className="titulo">
             <h1>ESTOQUE</h1>
           </div>
 
-          <div className="formLogin">
-            <label>Quantidade</label>
-          </div>
-          <div className="formLogin">
-            <Field
-              name="quantidade"
-              placeholder="Digite a quantidade do produto"
-              type="text"
-            />
+          <div className="input-field">
+            <label htmlFor="quantidade">Quantidade</label>
+            <Field name="quantidade" type="text" />
           </div>
 
-          <div className="formLogin">
-            <label>Status</label>
-          </div>
-          <div className="formLogin">
+          <div className="input-field">
             <Field as="select" name="status">
               <option>Status</option>
               <option value="Disponivel">Disponivel</option>
               <option value="Indisponivel">Indisponivel</option>
               <option value="Encomenda">Encomenda</option>
             </Field>
+            <label htmlFor="status">Status</label>
           </div>
 
           <div className="containerBtnLogin">
-            <div className="btnLogin">
+            <div className="btnSalvarEstoque">
               <Button
                 position="bottom"
                 tooltip="Salvar alteraçoes"
-                type={"submit"}
-                typeButton={"secundaria"}
+                type="submit"
+                typeButton="secundaria"
                 submit="submit"
-                text={"SALVAR"}
+                text="SALVAR"
+                Icon={MdSave}
               />
             </div>
           </div>
-        </FormikForm>
+        </Form>
       </Formik>
     </Modal>
   );

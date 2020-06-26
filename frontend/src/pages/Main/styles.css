@@ -1,6 +1,5 @@
 .container-main{
     position: relative;
-
 }
 .container-main::before{
     content: '';

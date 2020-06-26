@@ -14,6 +14,7 @@
   font-size: 2em;
   margin-right: 24px;
   transition: all .2s;
+  cursor: pointer;
 }
 .btn-menu-categorias:hover, .btn-meu-carrinho:hover{
   color: #F5EDE9;
@@ -60,4 +61,24 @@
 }
 .ul-menu-vendedor .tab:last-child{
   border-right: 0px;
+}
+
+@media only screen and (max-width: 600px){
+  .container-foto  > svg,.container-foto  > img.foto-perfil{
+    width: 40px;
+    height: 40px;
+  }
+  nav .div-nav-wrapper{
+    position: unset;
+  }
+  .btn-meu-carrinho{
+    position: fixed;
+    background: #F47C31;
+    z-index: 10;
+    bottom: 8px;
+    right: 8px;
+    width: 60px;
+    height: 60px;
+    margin: 0;
+  }
 }

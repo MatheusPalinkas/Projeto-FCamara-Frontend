@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { MdReply } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -30,6 +30,7 @@ function NovoProduto() {
   const [dadosProdutos, setDadosProdutos] = useState({});
   const [categorias, setCategorias] = useState([]);
   const { idComercio } = useParams();
+  const { goBack } = useHistory();
 
   useEffect(() => {
     (async function () {
@@ -37,7 +38,8 @@ function NovoProduto() {
 
       setCategorias(dataCategorias.data);
 
-      M.AutoInit();
+      const elems = document.querySelectorAll("select");
+      M.FormSelect.init(elems, {});
     })();
   }, [idComercio]);
 
@@ -46,11 +48,13 @@ function NovoProduto() {
       <div className="container-cadastro-produto">
         <Button
           text="VOLTAR"
-          tipo="Link"
-          to={`/produto/vendedor/${idComercio}`}
           typeButton="secundaria"
           Icon={MdReply}
-          tooltip="Voltar para pagina de produtos"
+          tooltip="Voltar para a pagina anterior"
+          onClick={(e) => {
+            e.preventDefault();
+            goBack();
+          }}
         />
       </div>
       <Formik

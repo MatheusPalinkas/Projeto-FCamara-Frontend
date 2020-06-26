@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import api from "../../services/Api";
 import "./styles.css";
 import Card from "../../components/Card";
@@ -10,6 +10,7 @@ import Button from "../../components/Button";
 export default function ProdutosVendedor() {
   const [produtos, setProdutos] = useState([]);
   const { idComercio } = useParams();
+  const { goBack } = useHistory();
 
   useEffect(() => {
     (async function () {
@@ -34,11 +35,19 @@ export default function ProdutosVendedor() {
           />
         </div>
         <div className="btnVendedor">
-          <Button text={"VOLTAR"} typeButton={"secundaria"} Icon={MdReply} />
+          <Button
+            text="VOLTAR"
+            typeButton="secundaria"
+            Icon={MdReply}
+            onClick={(e) => {
+              e.preventDefault();
+              goBack();
+            }}
+          />
         </div>
       </div>
 
-      <div className="container-comercios produtos">
+      <div className="container-comercios div-container-produtos">
         {produtos.map((produto) => (
           <Card
             key={produto.id}

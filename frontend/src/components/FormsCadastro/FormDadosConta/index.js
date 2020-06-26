@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import M from "materialize-css/dist/js/materialize.min.js";
 import { MdReply, MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
@@ -28,6 +29,9 @@ const validates = yup.object().shape({
 });
 
 const FormDadosConta = ({ initialValues, handleSubmit, handleBackStage }) => {
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
   return (
     <Formik
       initialValues={initialValues}
@@ -35,7 +39,10 @@ const FormDadosConta = ({ initialValues, handleSubmit, handleBackStage }) => {
       validationSchema={validates}
     >
       <Form>
-        <div className="form-dados-pessoais">
+        <div
+          className="form-dados-cadastro 
+                      form-dados-conta"
+        >
           <div className="input-field">
             <label htmlFor="email">Email</label>
             <Field type="email" id="email" name="email" />

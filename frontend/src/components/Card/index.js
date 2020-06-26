@@ -6,7 +6,7 @@ import "./styles.css";
 import ModalEstoque from "../../components/ModalEstoque";
 
 const handleSubmit = (values) => alert(JSON.stringify(values));
-const initialValues = {};
+const initialValues = { quantidade: "105", status: "Indisponivel" };
 
 const ButtonEditarProduto = () => (
   <div
@@ -76,7 +76,7 @@ const Card = ({
           )}
           <p className="p-descricao-link">
             {idVendedor && (
-              <Link className="excluir-produto">Excluir produto</Link>
+              <span className="link excluir-produto">Excluir produto</span>
             )}
             {idComercio ? (
               <Link
@@ -86,7 +86,7 @@ const Card = ({
                 Pagina do comercio
               </Link>
             ) : (
-              <Link className="activator descricao">Ver descrição</Link>
+              <span className="link activator descricao">Ver descrição</span>
             )}
           </p>
         </div>

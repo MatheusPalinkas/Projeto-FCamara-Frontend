@@ -1,0 +1,33 @@
+.form-editar-dados{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.div-form-editar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 32px 0 16px 0;
+}
+.div-form-editar > div{
+    max-width: 500px;
+    width: 100%;
+}
+.btn-salvar-dados-perfil{
+    margin: 0px 0 40px auto;
+    max-width: 300px;
+}
+@media only screen and (max-width: 1100px){
+    .div-form-editar > div{
+        max-width: 390px;
+    }   
+}
+@media only screen and (max-width: 850px){
+    .div-form-editar{
+        flex-direction: column;
+    }
+    .div-form-editar > div{
+        max-width: 100%;
+        margin: 0 auto;
+    }   
+}

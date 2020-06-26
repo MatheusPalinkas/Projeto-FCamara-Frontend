@@ -13,8 +13,24 @@
   margin: 50px 0 0 0;
 }
 
-.produtos {
+.div-container-produtos {
   width: auto !important;
   margin: 0 auto;
-  padding: 100px 0 0 0;
+  padding: 0;
+  padding-top: 100px;
+}
+
+@media only screen and (max-width: 1200px){
+  .containerBtn, .div-container-produtos {
+    margin: 0 24px;
+  }
+}
+@media only screen and (max-width: 400px){
+  .containerBtn {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+  .btnVendedor{
+    margin-top: 24px;
+  }
 }

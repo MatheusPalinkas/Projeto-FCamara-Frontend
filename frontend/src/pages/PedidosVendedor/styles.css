@@ -1,26 +1,18 @@
-.containerBtnTable {
+.containerBtnTable, .containerTable {
   width: auto !important;
-  max-width: 960px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 50px auto;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end !important;
   flex-wrap: wrap;
   padding-top: 10px;
-  padding: 0 0 100px 0;
+  justify-content: flex-end;
 }
 
-.btnVendedorTable {
-  margin: 50px 0 0 0;
-}
-
-.containerTable {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.containerTable th {
-  font-family: NunitoSans;
-  font-weight: bold;
-  font-size: 1.33em;
+@media only screen and (max-width: 1200px){
+  .containerTable {
+    margin: 0 24px;
+  }
+  .containerBtnTable{
+    margin: 50px 24px;
+  }
 }

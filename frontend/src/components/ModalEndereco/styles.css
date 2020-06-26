@@ -1,0 +1,26 @@
+.titulo {
+  max-width: 300px;
+  width: 100%;
+}
+.titulo h1 {
+  font-size: 2.5em;
+}
+
+.radio-tipoUser {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.inputs-mesma-linha {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.inputs-mesma-linha > div.input-field {
+  width: 100%;
+}
+.input-uf,
+.input-numero {
+  margin-left: 16px;
+  max-width: 100px;
+}

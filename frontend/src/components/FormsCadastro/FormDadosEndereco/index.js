@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { MdReply, MdSave } from "react-icons/md";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { MdReply, MdKeyboardArrowRight } from "react-icons/md";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
@@ -32,6 +33,9 @@ const FormDadosEndereco = ({
   handleBackStage,
   vendedor,
 }) => {
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
   return (
     <Formik
       initialValues={initialValues}
@@ -39,7 +43,7 @@ const FormDadosEndereco = ({
       validationSchema={validates}
     >
       <Form>
-        <div className="form-dados-pessoais">
+        <div className="form-dados-cadastro form-dados-pessoais">
           <div className="input-field">
             <label htmlFor="cep">CEP</label>
             <Field type="text" id="cep" name="cep" />
@@ -112,17 +116,13 @@ const FormDadosEndereco = ({
               Icon={MdReply}
             />
             {vendedor === true ? (
-              <Button
-                submit="submit"
-                text="Proximo"
-                Icon={MdKeyboardArrowRight}
-              />
+              <Button submit="submit" text="Proximo" Icon={MdSave} />
             ) : (
               <Button
                 submit="submit"
                 text="Finalizar"
                 tooltip="Finalizar cadastro"
-                Icon={MdKeyboardArrowRight}
+                Icon={MdSave}
               />
             )}
           </div>

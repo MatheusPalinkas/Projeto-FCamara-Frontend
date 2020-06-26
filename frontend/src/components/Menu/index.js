@@ -1,26 +1,19 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
+import { connect } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
-import Button from "../Button";
 import M from "materialize-css/dist/js/materialize.min.js";
+import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
 
 import ModalLogin from "../../components/ModalLogin";
-
 import SideBar from "../SideBar";
+import Button from "../Button";
 
 import "./styles.css";
 
-const handleSubmit = (values) => alert(JSON.stringify(values));
-const initialValues = {};
-
 const PhotoUserLogged = ({ url }) => {
   return (
-    <div
-      className="tooltipped container-foto"
-      data-position="bottom"
-      data-tooltip="Editar meu perfil"
-    >
+    <div className="container-foto">
       {url ? (
         <img src={`${url}`} alt="Foto de perfil" className="foto-perfil" />
       ) : (
@@ -40,7 +33,7 @@ const MenuVendedor = ({ idComercio }) => (
         <Link to={`/pedidos/vendedor/${idComercio}`}>Meus Pedidos</Link>
       </li>
       <li className="tab">
-        <Link>Meu comercio</Link>
+        <Link to={"/editar/conta"}>Minha conta</Link>
       </li>
     </ul>
   </div>
@@ -59,7 +52,7 @@ const Menu = ({ user = {} }) => {
   return (
     <>
       <nav className="nav-extended nav-menu">
-        <div className="nav-wrapper">
+        <div className="nav-wrapper div-nav-wrapper">
           <ul id="nav-mobile" className="left ">
             <li>
               <div
@@ -77,8 +70,8 @@ const Menu = ({ user = {} }) => {
           <ul className="right ">
             <li>
               <div
-                className="hide-on-med-and-down  tooltipped btn-meu-carrinho"
-                data-position="bottom"
+                className="tooltipped btn-meu-carrinho"
+                data-position="left"
                 data-tooltip="Meu carrinho"
               >
                 <MdShoppingBasket />
@@ -100,12 +93,16 @@ const Menu = ({ user = {} }) => {
             </li>
           </ul>
         </div>
-        {user.idComercio && <MenuVendedor idComercio={user.idComercio} />}
+        {user.comercio && (
+          <MenuVendedor idComercio={user.comercio.idComercio} />
+        )}
         <SideBar />
       </nav>
-      <ModalLogin handleSubmit={handleSubmit} initialValues={initialValues} />
+      <ModalLogin />
     </>
   );
 };
 
-export default Menu;
+const mapStateToProps = (state) => ({ user: state.user });
+
+export default connect(mapStateToProps)(Menu);

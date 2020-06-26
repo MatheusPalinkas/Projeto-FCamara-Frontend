@@ -3,29 +3,13 @@
   max-width: 400px;
 
 }
-
 .titulo {
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
 }
-
 .titulo h1 {
   font-size: 2.5em;
 }
-
-.textQtd {
-  width: 185px;
-}
-
-.estoqueQtd {
-  width: 330px !important;
-  margin: 0 auto;
-  padding: 15px;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: space-between !important;
-  align-items: center;
-}
-
 .formEstoque > label {
   font-family: Lato;
   font-size: 1em;
@@ -35,22 +19,19 @@
 }
 
 .formLogin {
-  width: 300px;
-  text-align: left;
+  max-width: 300px;
+  width: 100%;
 }
-
-.formError {
-  width: 300px;
-  color: red;
-}
-
 .containerBtnEstoque {
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   padding: 30px 0 0 0;
 }
-
+.btnSalvarEstoque{
+  margin-left: auto;
+}
 .btnEstoque {
   float: center;
 }
