@@ -11,6 +11,7 @@ import NovoProduto from "./pages/NovoProduto";
 import Pedidos from "./pages/Pedidos";
 import DetalhesPedido from "./pages/DetalhesPedido";
 import MinhaConta from "./pages/MinhaConta";
+import CarrinhoCompras from "./pages/CarrinhoCompras";
 
 import Menu from "./components/Menu";
 
@@ -45,6 +46,7 @@ export default function Routes() {
         />
 
         <Route exact path="/editar/conta" component={MinhaConta} />
+        <Route exact path="/carrinho" component={CarrinhoCompras} />
         <Route exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>

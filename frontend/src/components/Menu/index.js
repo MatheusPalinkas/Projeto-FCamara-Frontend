@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
@@ -54,13 +55,14 @@ const Menu = ({ user = {} }) => {
 
           <ul className="right ">
             <li>
-              <div
+              <Link
                 className="tooltipped btn-meu-carrinho"
                 data-position="left"
                 data-tooltip="Meu carrinho"
+                to="/carrinho"
               >
                 <MdShoppingBasket />
-              </div>
+              </Link>
             </li>
             <li>
               {user.id ? (

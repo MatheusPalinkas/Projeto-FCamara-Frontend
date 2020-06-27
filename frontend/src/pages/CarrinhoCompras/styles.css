@@ -1,0 +1,10 @@
+.div-carrinho-compras{
+    margin-top: 40px;
+}
+.div-btn-finalizar-compra{
+    display: flex;
+    justify-content: flex-end;
+}
+.btn-voltar-carrinho{
+    margin-right: 24px;
+}

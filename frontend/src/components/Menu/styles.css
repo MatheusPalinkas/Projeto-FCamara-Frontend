@@ -11,10 +11,15 @@
   text-align: center;
 }
 .btn-meu-carrinho{
-  font-size: 2em;
+  font-size: 3.5em;
   margin-right: 24px;
   transition: all .2s;
   cursor: pointer;
+  display: flex;
+  padding: 10px;
+}
+.btn-meu-carrinho:hover{
+  background-color: #F47C31;
 }
 .btn-menu-categorias:hover, .btn-meu-carrinho:hover{
   color: #F5EDE9;
