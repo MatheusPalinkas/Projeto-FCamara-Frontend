@@ -7,7 +7,7 @@ import Button from "../../components/Button";
 
 import "./styles.css";
 
-export default function ProdutosVendedor() {
+export default function Pedidos() {
   const { idComercio } = useParams();
   const { goBack } = useHistory();
 
@@ -25,7 +25,7 @@ export default function ProdutosVendedor() {
         />
       </div>
       <div className="containerTable">
-        <TablePedido idComercio={idComercio} />
+        <TablePedido idComercio={idComercio} tipoUsuario={"comercio"} />
       </div>
     </>
   );

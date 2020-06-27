@@ -30,7 +30,7 @@ const MenuVendedor = ({ idComercio }) => (
         <Link to={`/produto/vendedor/${idComercio}`}>Meus Produtos</Link>
       </li>
       <li className="tab">
-        <Link to={`/pedidos/vendedor/${idComercio}`}>Meus Pedidos</Link>
+        <Link to={`/pedidos/${idComercio}`}>Meus Pedidos</Link>
       </li>
       <li className="tab">
         <Link to={"/editar/conta"}>Minha conta</Link>

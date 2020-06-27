@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 import ProdutosVendedor from "./pages/ProdutosVendedor";
 import ProdutosComercio from "./pages/ProdutosComercio";
 import NovoProduto from "./pages/NovoProduto";
-import PedidosVendedor from "./pages/PedidosVendedor";
+import Pedidos from "./pages/Pedidos";
 import DetalhesPedido from "./pages/DetalhesPedido";
 import MinhaConta from "./pages/MinhaConta";
 
@@ -44,11 +44,7 @@ export default function Routes() {
             component={NovoProduto}
           />
 
-          <Route
-            exact
-            path="/pedidos/vendedor/:idComercio"
-            component={PedidosVendedor}
-          />
+          <Route exact path="/pedidos/:idComercio" component={Pedidos} />
 
           <Route
             exact
