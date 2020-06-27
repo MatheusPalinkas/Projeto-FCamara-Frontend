@@ -8,7 +8,7 @@ const MenuCliente = ({ id }) => (
         <Link to={`/comercios/favoritos/${id}`}>Meus Favoritos</Link>
       </li>
       <li className="tab">
-        <Link to={`/pedidos/vendedor/${id}`}>Meus Pedidos</Link>
+        <Link to={`/pedidos/cliente/${id}`}>Meus Pedidos</Link>
       </li>
       <li className="tab">
         <Link to={"/editar/conta"}>Minha conta</Link>

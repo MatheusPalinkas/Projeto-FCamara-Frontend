@@ -29,7 +29,7 @@ const mocEnderecos = [
 ];
 
 function TableEnderecos({ id }) {
-  const [enderecos, setEnderecos] = useState(mocEnderecos);
+  const [enderecos] = useState(mocEnderecos);
 
   return (
     <>
