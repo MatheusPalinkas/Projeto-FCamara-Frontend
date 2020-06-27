@@ -8,7 +8,8 @@ import Button from "../../components/Button";
 import "./styles.css";
 
 export default function Pedidos() {
-  const { idComercio } = useParams();
+  const { id } = useParams();
+  const { tipoUsuario } = useParams();
   const { goBack } = useHistory();
 
   return (
@@ -25,7 +26,7 @@ export default function Pedidos() {
         />
       </div>
       <div className="containerTable">
-        <TablePedido idComercio={idComercio} tipoUsuario={"comercio"} />
+        <TablePedido idComercio={id} tipoUsuario={tipoUsuario} />
       </div>
     </>
   );

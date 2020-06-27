@@ -44,7 +44,7 @@ export default function Routes() {
             component={NovoProduto}
           />
 
-          <Route exact path="/pedidos/:idComercio" component={Pedidos} />
+          <Route exact path="/pedidos/:tipoUsuario/:id" component={Pedidos} />
 
           <Route
             exact

@@ -1,70 +1,9 @@
 import React, { useEffect, useState } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { Link } from "react-router-dom";
 import api from "../../services/Api";
-
 import "./styles.css";
-
-const ItemTableComercio = (
-  nome,
-  descricao,
-  status,
-  preco = 200,
-  idVendedor = null,
-  idComercio = null,
-  data
-) => {
-  return (
-    <tr className="linha-pedido">
-      <td>
-        <span className="card-title span-card-title">Nome do comprador</span>
-      </td>
-      <td>
-        <span className="preco-pedido">
-          {preco.toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL",
-          })}
-        </span>
-      </td>
-      <td>Status</td>
-      <td>Data</td>
-      <td>
-        <Link to={`/dados/pedido/${idComercio}`}>DETALHES</Link>
-      </td>
-    </tr>
-  );
-};
-
-const ItemTableCliente = (
-  nome,
-  descricao,
-  status,
-  preco = 300,
-  idCliente = null,
-  data
-) => {
-  return (
-    <tr className="linha-pedido">
-      <td>
-        <span className="card-title span-card-title">Nome Do comercio</span>
-      </td>
-      <td>
-        <span className="preco-pedido">
-          {preco.toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL",
-          })}
-        </span>
-      </td>
-      <td>Status</td>
-      <td>Data</td>
-      <td>
-        <Link to={"#"}>DETALHES</Link>
-      </td>
-    </tr>
-  );
-};
+import ItemTableComercio from "./ItemTableComercio";
+import ItemTableCliente from "./ItemTableCliente";
 
 const TablePedido = ({ idComercio, tipoUsuario, idCliente }) => {
   const [produtos, setProdutos] = useState([]);
