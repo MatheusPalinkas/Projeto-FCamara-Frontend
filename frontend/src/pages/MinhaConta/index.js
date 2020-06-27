@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { MdReply } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 
+import TableEnderecos from "../../components/FormsEditarPerfil/TableEnderecos";
 import FormEditarDadosPessoas from "../../components/FormsEditarPerfil/FormEditarDadosPessoas";
 import FormEditarDadosComercio from "../../components/FormsEditarPerfil/FormEditarDadosComercio";
+
 import Button from "../../components/Button";
 
 import "./styles.css";
@@ -45,15 +47,24 @@ function MinhaConta({ user }) {
             initialValues={dadosPessoais}
           />
         </div>
-        <div className="dados-comercio">
-          <h2>Dados do meu comercio</h2>
-          <FormEditarDadosComercio
-            handleSubmit={(values) => {
-              console.log(values);
-            }}
-            initialValues={dadosComercio}
-          />
-        </div>
+        {user.comercio && (
+          <div className="dados-comercio">
+            <h2>Dados do meu comercio</h2>
+            <FormEditarDadosComercio
+              handleSubmit={(values) => {
+                console.log(values);
+              }}
+              initialValues={dadosComercio}
+            />
+          </div>
+        )}
+
+        {!user.comercio && (
+          <div className="dados-comercio">
+            <h2>Meus endereções salvos</h2>
+            <TableEnderecos id={user.id} />
+          </div>
+        )}
       </div>
     </>
   );
