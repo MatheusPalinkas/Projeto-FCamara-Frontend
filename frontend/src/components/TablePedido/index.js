@@ -1,40 +1,11 @@
 import React, { useEffect, useState } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { Link } from "react-router-dom";
 import api from "../../services/Api";
-
 import "./styles.css";
+import ItemTableComercio from "./ItemTableComercio";
+import ItemTableCliente from "./ItemTableCliente";
 
-const ItemTable = (
-  nome,
-  descricao,
-  status,
-  preco = 0,
-  idVendedor = null,
-  idComercio = null
-) => {
-  return (
-    <tr className="linha-pedido">
-      <td>
-        <span className="card-title span-card-title">Nome</span>
-      </td>
-      <td>
-        <span className="preco-pedido">
-          {preco.toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL",
-          })}
-        </span>
-      </td>
-      <td>Status</td>
-      <td>
-        <Link to={`/dados/pedido/${idComercio}`}>DETALHES</Link>
-      </td>
-    </tr>
-  );
-};
-
-const TablePedido = ({ idComercio }) => {
+const TablePedido = ({ idComercio, tipoUsuario, idCliente }) => {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
@@ -58,23 +29,36 @@ const TablePedido = ({ idComercio }) => {
       <table className="responsive-table">
         <thead className="cabecalho-table">
           <tr>
-            <th>Nome do comprador</th>
+            <th>
+              Nome do {tipoUsuario === "comercio" ? "comprador" : "comercio"}
+            </th>
             <th>Preço</th>
             <th>Status</th>
+            <th>Data</th>
             <th>Descrição</th>
           </tr>
         </thead>
         <tbody>
-          {produtos.map((produto) => (
-            <ItemTable
-              key={produto.id}
-              idComercio={produto.idComercio}
-              titulo={produto.nome}
-              url={produto.url}
-              descricao={produto.descricao}
-              preco={produto.preco}
-            />
-          ))}
+          {tipoUsuario === "comercio"
+            ? produtos.map((produto) => (
+                <ItemTableComercio
+                  key={produto.id}
+                  idComercio={produto.idComercio}
+                  titulo={produto.nome}
+                  url={produto.url}
+                  descricao={produto.descricao}
+                  preco={produto.preco}
+                />
+              ))
+            : produtos.map((produto) => (
+                <ItemTableCliente
+                  key={produto.id}
+                  titulo={produto.nome}
+                  url={produto.url}
+                  descricao={produto.descricao}
+                  preco={produto.preco}
+                />
+              ))}
         </tbody>
       </table>
     </>
