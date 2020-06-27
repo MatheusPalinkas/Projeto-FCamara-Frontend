@@ -11,6 +11,7 @@ import NovoProduto from "./pages/NovoProduto";
 import Pedidos from "./pages/Pedidos";
 import DetalhesPedido from "./pages/DetalhesPedido";
 import MinhaConta from "./pages/MinhaConta";
+import PedidoCliente from "./pages/PedidoCliente";
 
 import Menu from "./components/Menu";
 
@@ -37,6 +38,12 @@ export default function Routes() {
         <Route exact path="/novo/produto/:idComercio" component={NovoProduto} />
 
         <Route exact path="/pedidos/:tipoUsuario/:id" component={Pedidos} />
+
+        <Route
+          exact
+          path="/dados/cliente/:idComercio"
+          component={PedidoCliente}
+        />
 
         <Route
           exact

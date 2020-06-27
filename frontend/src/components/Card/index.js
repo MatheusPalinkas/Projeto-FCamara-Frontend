@@ -37,6 +37,7 @@ const Card = ({
   produto = {},
   idVendedor = null,
   idComercio = null,
+  idCliente = null,
 }) => {
   useEffect(() => {
     (async function () {
@@ -60,10 +61,20 @@ const Card = ({
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {!idComercio && (
+            {idCliente != null ? (
               <>
-                {!idVendedor ? <ButtonAddCarrinho /> : <ButtonEditarProduto />}
+                <label>Quantidade</label>{" "}
               </>
+            ) : (
+              !idComercio && (
+                <>
+                  {!idVendedor ? (
+                    <ButtonAddCarrinho />
+                  ) : (
+                    <ButtonEditarProduto />
+                  )}
+                </>
+              )
             )}
           </span>
           {produto.preco && (

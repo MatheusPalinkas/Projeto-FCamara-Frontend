@@ -26,7 +26,7 @@ const ItemTableCliente = (
       <td>Status</td>
       <td>Data</td>
       <td>
-        <Link to={"#"}>DETALHES</Link>
+        <Link to={"/dados/cliente/1"}>DETALHES</Link>
       </td>
     </tr>
   );

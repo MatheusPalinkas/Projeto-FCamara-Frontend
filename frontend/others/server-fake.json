@@ -34,6 +34,28 @@
       "url": "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80"
     },
     {
+      "id": 3,
+      "idComercio": 1,
+      "idCategoria": 3,
+      "nome": "Iphone X-man",
+      "preco": 180900,
+      "descricao": "Apple",
+      "quantidade": 60,
+      "status": "Disponivel",
+      "url": "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80"
+    },
+    {
+      "id": 3,
+      "idComercio": 1,
+      "idCategoria": 3,
+      "nome": "Iphone X-man",
+      "preco": 180900,
+      "descricao": "Apple",
+      "quantidade": 60,
+      "status": "Disponivel",
+      "url": "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80"
+    },
+    {
       "id": 4,
       "idComercio": 2,
       "idCategoria": 3,
