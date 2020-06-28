@@ -37,11 +37,30 @@ export default function dataUser(state = INICIAL_STATE, action) {
     }
   }
   if (action.type === "ADD_ITEM_CART") {
-    return {
-      ...state,
-      items: [...state.items, action.item],
-      total: state.total + 1,
-    };
+    const { item } = action;
+    const { id } = item;
+    const { items } = state;
+    const itemExists = items.find((item) => item.id === id);
+
+    if (itemExists) {
+      const itemIndex = items.findIndex((item) => item.id === itemExists.id);
+      items[itemIndex].quantidade = Number(items[itemIndex].quantidade + 1);
+      const total = items
+        .map((item) => item.quantidade)
+        .reduce((acumulador, atual) => acumulador + atual);
+
+      return {
+        ...state,
+        items: items,
+        total: total,
+      };
+    } else {
+      return {
+        ...state,
+        items: [...state.items, item],
+        total: state.total + 1,
+      };
+    }
   }
   return state;
 }

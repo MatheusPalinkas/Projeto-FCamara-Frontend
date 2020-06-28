@@ -23,6 +23,7 @@ const ButtonAddCarrinho = ({ item, handleAdd }) => {
       onClick={(e) => {
         e.preventDefault();
         handleAdd({ ...item, nome: item.titulo, quantidade: 1 });
+        M.toast({ html: "Adicionado ao carrinho " });
       }}
     >
       <MdShoppingCart className="add-carrinho" />
