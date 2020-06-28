@@ -4,7 +4,20 @@
 .div-btn-finalizar-compra{
     display: flex;
     justify-content: flex-end;
+    max-width: 100%;
+    margin: 0 auto;
 }
 .btn-voltar-carrinho{
     margin-right: 24px;
+}
+.items-carrinho{
+    margin-bottom: 32px;
+}
+
+
+@media only screen and (max-width: 1200px){
+    .div-card-panel-carrinho{
+        max-width: 90%;
+        margin: 0 auto !important;
+    }
 }
