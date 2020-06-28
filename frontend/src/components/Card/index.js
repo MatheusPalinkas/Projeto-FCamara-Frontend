@@ -36,7 +36,7 @@ const QuantidadeProduto = () => (
     data-position="top"
     data-tooltip="Quantidade comprada"
   >
-    <p className="qtd-produto">1</p>
+    <p className="qtd-produto">9</p>
   </div>
 );
 

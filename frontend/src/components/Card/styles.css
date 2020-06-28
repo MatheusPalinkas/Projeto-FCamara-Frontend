@@ -38,11 +38,12 @@ span.span-card-title {
 }
 
 .qtd-produto {
-  background: #1d273b;
+  background: #f47c31;
   color: #fff !important;
   padding: 8px;
   border-radius: 50%;
-  font-size: 0.77em;
+  font-size: 0.88em;
+  font-family: NunitoSans-Light;
   cursor: pointer;
   text-align: center;
 }

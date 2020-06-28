@@ -85,7 +85,6 @@ export default function PedidoCliente() {
             <label className="descricaoDado">CPF/CNPJ:</label>
             <p>999.999.999-99</p>
           </div>
-
           <div className="dadosComprador">
             <label className="descricaoDado">Numero:</label>
             <p>99999-9999</p>
