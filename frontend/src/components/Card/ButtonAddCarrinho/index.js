@@ -22,7 +22,7 @@ const ButtonAddCarrinho = ({ item, handleAdd }) => {
       data-tooltip="adicionar ao carrinho"
       onClick={(e) => {
         e.preventDefault();
-        handleAdd(item.id, { ...item, nome: item.titulo, quantidade: 1 });
+        handleAdd({ ...item, nome: item.titulo, quantidade: 1 });
       }}
     >
       <MdShoppingCart className="add-carrinho" />
@@ -33,7 +33,7 @@ const ButtonAddCarrinho = ({ item, handleAdd }) => {
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  handleAdd: (id, item) => dispatch(ADD_ITEM_CART(id, item)),
+  handleAdd: (item) => dispatch(ADD_ITEM_CART(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ButtonAddCarrinho);

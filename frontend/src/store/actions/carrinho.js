@@ -5,7 +5,7 @@ export function REMOVE_ITEM_CART(id) {
   };
 }
 
-export function ADD_ITEM_CART(id, item) {
+export function ADD_ITEM_CART(item) {
   return {
     type: "ADD_ITEM_CART",
     item,
