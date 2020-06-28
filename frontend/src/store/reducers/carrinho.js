@@ -24,6 +24,41 @@ const INICIAL_STATE = {
 };
 
 export default function dataUser(state = INICIAL_STATE, action) {
-  //if (action.type === "ADD_ITEM_CARRINHO") return { ...state, ...action.user };
+  if (action.type === "REMOVE_ITEM_CART") {
+    return {
+      ...state,
+      items: state.items.filter((item) => item.id !== action.id),
+      total:
+        parseInt(state.total) -
+        parseInt(state.items.find((item) => item.id === action.id).quantidade),
+    };
+  }
+
+  if (action.type === "UPDATE_QUANTIDADE_ITEM_CART") {
+    const { id, quantidade } = action;
+    const { items } = state;
+    const itemExists = items.find((item) => item.id === id);
+
+    if (itemExists) {
+      const itemIndex = items.findIndex((item) => item.id === itemExists.id);
+
+      if (itemIndex >= 0 && quantidade >= 0) {
+        items[itemIndex].quantidade = Number(quantidade);
+        const total = items
+          .map((item) => item.quantidade)
+          .reduce((acumulador, atual) => acumulador + atual);
+
+        state.total = total;
+        state.items = items;
+      }
+    }
+  }
+  if (action.type === "ADD_ITEM_CART") {
+    return {
+      ...state,
+      items: [...state.items, action.item],
+      quantidade: state.quantidade + 1,
+    };
+  }
   return state;
 }

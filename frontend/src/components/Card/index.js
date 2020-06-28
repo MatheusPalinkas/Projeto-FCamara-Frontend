@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { MdShoppingCart, MdClose, MdEdit } from "react-icons/md";
+import { MdClose, MdEdit } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
 import "./styles.css";
 import ModalEstoque from "../../components/ModalEstoque";
+import ButtonAddCarrinho from "./ButtonAddCarrinho";
 
 const handleSubmit = (values) => alert(JSON.stringify(values));
 const initialValues = { quantidade: "105", status: "Indisponivel" };
@@ -20,17 +21,8 @@ const ButtonEditarProduto = () => (
   </div>
 );
 
-const ButtonAddCarrinho = () => (
-  <div
-    className="tooltipped div-add-carrinho"
-    data-position="top"
-    data-tooltip="adicionar ao carrinho"
-  >
-    <MdShoppingCart className="add-carrinho" />
-  </div>
-);
-
 const Card = ({
+  id,
   url,
   titulo,
   descricao,
@@ -62,7 +54,20 @@ const Card = ({
             {titulo}
             {!idComercio && (
               <>
-                {!idVendedor ? <ButtonAddCarrinho /> : <ButtonEditarProduto />}
+                {!idVendedor ? (
+                  <ButtonAddCarrinho
+                    item={{
+                      id,
+                      url,
+                      titulo,
+                      descricao,
+                      preco: produto.preco,
+                      idComercio,
+                    }}
+                  />
+                ) : (
+                  <ButtonEditarProduto />
+                )}
               </>
             )}
           </span>

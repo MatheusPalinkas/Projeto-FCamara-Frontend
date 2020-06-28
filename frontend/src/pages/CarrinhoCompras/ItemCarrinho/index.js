@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { MdAdd, MdRemove, MdDelete } from "react-icons/md";
+import {
+  REMOVE_ITEM_CART,
+  UPDATE_QUANTIDADE_ITEM_CART,
+} from "../../../store/actions/carrinho";
 
 import "./styles.css";
 
-function ItemCarrinho({ produto }) {
+function ItemCarrinho({ produto, handleRemove, handleUpdateAmount }) {
   const [quantidade, setQuantidade] = useState(parseInt(produto.quantidade));
   const total = parseFloat(produto.preco) * parseInt(produto.quantidade);
+
+  useEffect(() => {
+    handleUpdateAmount(produto.id, quantidade);
+  }, [quantidade]);
 
   return (
     <li className="collection-item avatar li-produto-carrinho">
@@ -57,9 +66,22 @@ function ItemCarrinho({ produto }) {
         color="#e74c3c"
         size={24}
         className="secondary-conten btn-deletar-item-produto"
+        onClick={(e) => {
+          e.preventDefault();
+          console.log("[id]", produto.id);
+          handleRemove(produto.id);
+        }}
       />
     </li>
   );
 }
 
-export default ItemCarrinho;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleRemove: (id) => dispatch(REMOVE_ITEM_CART(id)),
+  handleUpdateAmount: (id, quantidade) =>
+    dispatch(UPDATE_QUANTIDADE_ITEM_CART(id, quantidade)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCarrinho);
