@@ -84,6 +84,7 @@ export default function ProdutosComercio() {
         {produtos.map((produto) => (
           <Card
             key={produto.id}
+            id={produto.id}
             titulo={produto.nome}
             url={produto.url}
             descricao={produto.descricao}

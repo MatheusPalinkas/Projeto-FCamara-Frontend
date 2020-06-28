@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
+import { MdMenu, MdPermIdentity } from "react-icons/md";
 
 import ModalLogin from "../../components/ModalLogin";
 import MenuVendedor from "./MenuVendedor";
 import MenuCliente from "./MenuCliente";
+import BtnCarrinho from "./BtnCarrinho";
 import SideBar from "../SideBar";
 import Button from "../Button";
 
@@ -24,7 +25,7 @@ const PhotoUserLogged = ({ url }) => {
   );
 };
 
-const Menu = ({ user = {} }) => {
+const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
   useEffect(() => {
     (async function () {
       const elem = document.querySelectorAll(".tooltipped");
@@ -54,13 +55,7 @@ const Menu = ({ user = {} }) => {
 
           <ul className="right ">
             <li>
-              <div
-                className="tooltipped btn-meu-carrinho"
-                data-position="left"
-                data-tooltip="Meu carrinho"
-              >
-                <MdShoppingBasket />
-              </div>
+              <BtnCarrinho />
             </li>
             <li>
               {user.id ? (
@@ -90,6 +85,8 @@ const Menu = ({ user = {} }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ user: state.user });
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
 
 export default connect(mapStateToProps)(Menu);

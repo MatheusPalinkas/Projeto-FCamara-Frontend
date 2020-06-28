@@ -2,16 +2,17 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //import pages
-import Main from "./pages/Main";
-import Cadastro from "./pages/Cadastro";
-import NotFound from "./pages/NotFound";
 import ProdutosVendedor from "./pages/ProdutosVendedor";
 import ProdutosComercio from "./pages/ProdutosComercio";
-import NovoProduto from "./pages/NovoProduto";
-import Pedidos from "./pages/Pedidos";
 import DetalhesPedido from "./pages/DetalhesPedido";
-import MinhaConta from "./pages/MinhaConta";
+import CarrinhoCompras from "./pages/CarrinhoCompras";
 import PedidoCliente from "./pages/PedidoCliente";
+import NovoProduto from "./pages/NovoProduto";
+import MinhaConta from "./pages/MinhaConta";
+import Cadastro from "./pages/Cadastro";
+import NotFound from "./pages/NotFound";
+import Pedidos from "./pages/Pedidos";
+import Main from "./pages/Main";
 
 import Menu from "./components/Menu";
 
@@ -52,6 +53,7 @@ export default function Routes() {
         />
 
         <Route exact path="/editar/conta" component={MinhaConta} />
+        <Route exact path="/carrinho" component={CarrinhoCompras} />
         <Route exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>

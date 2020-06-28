@@ -129,7 +129,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 .input-field label, .input-field input[type=text]:focus + label, .input-field > label  {
     color: #1D273B !important;
     font-family: Lato;

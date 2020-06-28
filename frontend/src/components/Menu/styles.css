@@ -11,10 +11,17 @@
   text-align: center;
 }
 .btn-meu-carrinho{
-  font-size: 2em;
+  font-size: 3.5em;
   margin-right: 24px;
   transition: all .2s;
   cursor: pointer;
+  display: flex;
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+.btn-meu-carrinho:hover{
+  background-color: #F47C31;
 }
 .btn-menu-categorias:hover, .btn-meu-carrinho:hover{
   color: #F5EDE9;
@@ -61,6 +68,22 @@
 }
 .ul-menu-vendedor .tab:last-child{
   border-right: 0px;
+}
+
+span.span-quantidade-carrinho{
+  position: absolute;
+  background: #1D273B;
+  font-size: 0.25em;
+  border-radius: 50%;
+  max-height: 25px;
+  max-width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
 }
 
 @media only screen and (max-width: 600px){
