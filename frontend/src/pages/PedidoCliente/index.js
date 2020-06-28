@@ -68,7 +68,7 @@ export default function PedidoCliente() {
                 url={produto.url}
                 descricao={produto.descricao}
                 produto={{ preco: produto.preco }}
-                quantidade={5}
+                quantidade={2}
               />
             ))}
           </div>

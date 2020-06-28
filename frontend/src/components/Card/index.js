@@ -71,7 +71,7 @@ const Card = ({
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {quantidade != null ? (
+            {!!quantidade ? (
               <>
                 <QuantidadeProduto quantidade={quantidade} />
               </>
