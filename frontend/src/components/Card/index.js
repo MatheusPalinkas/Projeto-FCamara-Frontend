@@ -30,13 +30,13 @@ const ButtonAddCarrinho = () => (
   </div>
 );
 
-const QuantidadeProduto = () => (
+const QuantidadeProduto = ({ quantidade }) => (
   <div
     className="tooltipped div-add-carrinho"
     data-position="top"
     data-tooltip="Quantidade comprada"
   >
-    <p className="qtd-produto">9</p>
+    <p className="qtd-produto">{quantidade}</p>
   </div>
 );
 
@@ -47,7 +47,7 @@ const Card = ({
   produto = {},
   idVendedor = null,
   idComercio = null,
-  idCliente = null,
+  quantidade,
 }) => {
   useEffect(() => {
     (async function () {
@@ -71,9 +71,9 @@ const Card = ({
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {idCliente != null ? (
+            {quantidade != null ? (
               <>
-                <QuantidadeProduto />
+                <QuantidadeProduto quantidade={quantidade} />
               </>
             ) : (
               !idComercio && (
