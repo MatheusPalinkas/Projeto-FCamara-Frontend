@@ -35,9 +35,10 @@
   font-size: 1.777em;
   padding: 0;
   padding-right: 10px;
+  font-weight: bolder;
 }
 .statusPedido p {
-  font-size: 1.33em;
+  font-size: 1.777em;
   color: red;
 }
 .descricaoDado {
@@ -58,6 +59,7 @@
   justify-content: space-between !important;
   flex-wrap: wrap;
   padding-top: 10px;
+
   padding: 0 0 40px 0;
   max-width: 1200px;
   margin: 40px auto 0 auto;
@@ -75,4 +77,5 @@
 }
 .containerDadosPedidoCliente > div {
   border-bottom: 2px solid #148acc;
+  padding-bottom: 15px;
 }

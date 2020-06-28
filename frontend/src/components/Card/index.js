@@ -30,6 +30,16 @@ const ButtonAddCarrinho = () => (
   </div>
 );
 
+const QuantidadeProduto = () => (
+  <div
+    className="tooltipped div-add-carrinho"
+    data-position="top"
+    data-tooltip="Quantidade comprada"
+  >
+    <p className="qtd-produto">1</p>
+  </div>
+);
+
 const Card = ({
   url,
   titulo,
@@ -63,7 +73,7 @@ const Card = ({
             {titulo}
             {idCliente != null ? (
               <>
-                <label>Quantidade</label>{" "}
+                <QuantidadeProduto />
               </>
             ) : (
               !idComercio && (

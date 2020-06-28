@@ -59,6 +59,23 @@ export default function PedidoCliente() {
 
       <div className="containerDadosPedidoCliente">
         <div className="containerdadosComprador">
+          <h2>Produtos Comprados</h2>
+          <div className="container-comercios">
+            {produtos.map((produto) => (
+              <Card
+                key={produto.id}
+                titulo={produto.nome}
+                url={produto.url}
+                descricao={produto.descricao}
+                produto={{ preco: produto.preco }}
+                idCliente="teste"
+              />
+            ))}
+          </div>
+          <StatusPedido idComercio={idComercio} />
+        </div>
+
+        <div className="containerdadosComprador">
           <h2>Dados do Comercio</h2>
           <div className="dadosComprador">
             <label className="descricaoDado">Nome do comercio:</label>
@@ -68,10 +85,7 @@ export default function PedidoCliente() {
             <label className="descricaoDado">CPF/CNPJ:</label>
             <p>999.999.999-99</p>
           </div>
-          <div className="dadosComprador">
-            <label className="descricaoDado">Endereco:</label>
-            <p>Rua Mano perera, N° 999, Gonzaga, Santos-SP </p>
-          </div>
+
           <div className="dadosComprador">
             <label className="descricaoDado">Numero:</label>
             <p>99999-9999</p>
@@ -86,24 +100,38 @@ export default function PedidoCliente() {
           </div>
         </div>
 
-        <div className="containerdadosComprador">
-          <h2>Produtos Comprados</h2>
-          <div className="container-comercios">
-            {produtos.map((produto) => (
-              <Card
-                key={produto.id}
-                titulo={produto.nome}
-                url={produto.url}
-                descricao={produto.descricao}
-                produto={{ preco: produto.preco }}
-                idCliente="teste"
-              />
-            ))}
+        <div className="dados-comercio">
+          <h2>Endereço do Comercio</h2>
+          <div className="dadosComercio">
+            <label className="descricaoDado">CEP:</label>
+            <p>99999-999</p>
+          </div>
+          <div className="dadosComercio">
+            <label className="descricaoDado">Cidade:</label>
+            <p>Santos</p>
+          </div>
+          <div className="dadosComercio">
+            <label className="descricaoDado">Logradouro:</label>
+            <p>Rua sei la</p>
+          </div>
+          <div className="dadosComercio">
+            <label className="descricaoDado">Complemento:</label>
+            <p></p>
+          </div>
+          <div className="dadosComercio">
+            <label className="descricaoDado">UF:</label>
+            <p>SP</p>
+          </div>
+          <div className="dadosComercio">
+            <label className="descricaoDado">Bairo:</label>
+            <p>logo ali</p>
+          </div>
+          <div className="dadosComercio">
+            <label className="descricaoDado">N°:</label>
+            <p>999</p>
           </div>
         </div>
       </div>
-
-      <StatusPedido idComercio={idComercio} />
     </>
   );
 }
