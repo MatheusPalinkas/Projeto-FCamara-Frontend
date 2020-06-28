@@ -8,9 +8,7 @@ export default function dataUser(state = INICIAL_STATE, action) {
     return {
       ...state,
       items: state.items.filter((item) => item.id !== action.id),
-      total:
-        parseInt(state.total) -
-        parseInt(state.items.find((item) => item.id === action.id).quantidade),
+      total: parseInt(state.total) - 1,
     };
   }
 
@@ -24,9 +22,7 @@ export default function dataUser(state = INICIAL_STATE, action) {
 
       if (itemIndex >= 0 && quantidade >= 0) {
         items[itemIndex].quantidade = Number(quantidade);
-        const total = items
-          .map((item) => item.quantidade)
-          .reduce((acumulador, atual) => acumulador + atual);
+        const total = items.length;
 
         return {
           ...state,
@@ -36,6 +32,7 @@ export default function dataUser(state = INICIAL_STATE, action) {
       }
     }
   }
+
   if (action.type === "ADD_ITEM_CART") {
     const { item } = action;
     const { id } = item;
@@ -45,14 +42,10 @@ export default function dataUser(state = INICIAL_STATE, action) {
     if (itemExists) {
       const itemIndex = items.findIndex((item) => item.id === itemExists.id);
       items[itemIndex].quantidade = Number(items[itemIndex].quantidade + 1);
-      const total = items
-        .map((item) => item.quantidade)
-        .reduce((acumulador, atual) => acumulador + atual);
 
       return {
         ...state,
         items: items,
-        total: total,
       };
     } else {
       return {

@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    border-left: 0;
+    border-right: 0;
 }
 .li-produto-carrinho > span{
     margin-left: auto;

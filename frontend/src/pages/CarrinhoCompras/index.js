@@ -15,8 +15,16 @@ function CarrinhoCompras({ produtos }) {
     <div className="div-container div-carrinho-compras">
       <div className="card-panel div-card-panel-carrinho">
         <ul className="collection with-header items-carrinho">
-          <li class="collection-header">
-            <h4>Meus items</h4>
+          <li className="collection-header">
+            <div>
+              <h4>Meus items</h4>
+              <div className="li-cabecalho-headers">
+                <span className="carrinho-nome-produto">Nome</span>
+                <span>Quantidade</span>
+                <span>Preço</span>
+                <span className="carrinho-subtotal-produto">Subtotal</span>
+              </div>
+            </div>
           </li>
           {produtos.map((produto) => (
             <ItemCarrinho produto={produto} key={produto.id} />

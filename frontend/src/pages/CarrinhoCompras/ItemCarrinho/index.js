@@ -68,7 +68,6 @@ function ItemCarrinho({ produto, handleRemove, handleUpdateAmount }) {
         className="secondary-conten btn-deletar-item-produto"
         onClick={(e) => {
           e.preventDefault();
-          console.log("[id]", produto.id);
           handleRemove(produto.id);
         }}
       />
