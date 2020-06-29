@@ -1,0 +1,10 @@
+#modal-finalizar-compra{
+  max-width: 600px;  
+}
+.titulo-finalizar-compra{
+    font-size: 2.369em;
+    font-family: NunitoSansSemiBold;
+    padding: 16px 0;
+    color: #1D273B !important;
+    margin-bottom: 0;
+}
