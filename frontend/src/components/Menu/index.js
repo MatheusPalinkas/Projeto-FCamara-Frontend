@@ -68,6 +68,7 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
                   tooltip="Entrar na minha conta"
                   className="btn-entrar-conta"
                   dataTarget="modal1"
+                  id="btn-login-entrar"
                 />
               )}
             </li>
