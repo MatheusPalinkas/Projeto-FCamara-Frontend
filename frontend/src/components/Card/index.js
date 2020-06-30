@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
+
 import { MdClose, MdEdit } from "react-icons/md";
+
+import { IoIosHeartDislike } from "react-icons/io";
+
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
 
@@ -33,6 +37,16 @@ const QuantidadeProduto = ({ quantidade }) => (
   </div>
 );
 
+const Curtido = () => (
+  <div
+    className="tooltipped div-add-carrinho"
+    data-position="top"
+    data-tooltip="Descurtir comercio"
+  >
+    <IoIosHeartDislike className="produtoCurtido" />
+  </div>
+);
+
 const Card = ({
   id,
   url,
@@ -42,6 +56,7 @@ const Card = ({
   idVendedor = null,
   idComercio = null,
   quantidade,
+  curtido,
 }) => {
   useEffect(() => {
     (async function () {
@@ -65,7 +80,9 @@ const Card = ({
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {!!quantidade ? (
+            {curtido == true ? (
+              <Curtido />
+            ) : !!quantidade ? (
               <>
                 <QuantidadeProduto quantidade={quantidade} />
               </>

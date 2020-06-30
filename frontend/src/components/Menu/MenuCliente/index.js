@@ -5,7 +5,7 @@ const MenuCliente = ({ id }) => (
   <div className="nav-content menu-vendedor">
     <ul className="tabs  tabs-transparent ul-menu-vendedor">
       <li className="tab">
-        <Link to={`/comercios/favoritos/${id}`}>Meus Favoritos</Link>
+        <Link to={`/favoritos/${id}`}>Meus Favoritos</Link>
       </li>
       <li className="tab">
         <Link to={`/pedidos/cliente/${id}`}>Meus Pedidos</Link>

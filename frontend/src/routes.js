@@ -13,6 +13,7 @@ import Cadastro from "./pages/Cadastro";
 import NotFound from "./pages/NotFound";
 import Pedidos from "./pages/Pedidos";
 import Main from "./pages/Main";
+import Favorito from "./pages/Favoritos";
 
 import Menu from "./components/Menu";
 
@@ -54,6 +55,8 @@ export default function Routes() {
 
         <Route exact path="/editar/conta" component={MinhaConta} />
         <Route exact path="/carrinho" component={CarrinhoCompras} />
+        <Route exact path="/favoritos/:idComercio" component={Favorito} />
+
         <Route exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MdAdd } from "react-icons/md";
 
 import Button from "../../Button";
+import ModalEndereco from "../../ModalEndereco";
 
 import "../styles.css";
 import "./styles.css";
@@ -27,6 +28,17 @@ const mocEnderecos = [
     idEndereco: 12,
   },
 ];
+
+const handleSubmitEnvia = (values) => alert(JSON.stringify(values));
+const initialValuesEnvia = {
+  cep: "115340704",
+  cidade: "Cubatão",
+  uf: "SP",
+  rua: "Rua Manoel Florêncio da Silva",
+  numero: "423",
+  bairro: "Parque São Luis",
+  complemento: "sobrado",
+};
 
 function TableEnderecos({ id }) {
   const [enderecos] = useState(mocEnderecos);
@@ -55,7 +67,9 @@ function TableEnderecos({ id }) {
                 <span className="col-endereco"> {endereco.numero}</span>
               </td>
               <td className="col-editar-endereco">
-                <Link to={`/dados/pedido/${endereco.idEndereco}`}>Editar</Link>
+                <span className="link  modal-trigger" data-target="modal4">
+                  Editar
+                </span>
               </td>
             </tr>
           ))}
@@ -69,8 +83,16 @@ function TableEnderecos({ id }) {
           position="bottom"
           className="btn-salvar-dados-perfil"
           Icon={MdAdd}
+          className="modal-trigger"
+          tipo="Button"
+          dataTarget="modal4"
         />
       </div>
+
+      <ModalEndereco
+        handleSubmit={handleSubmitEnvia}
+        initialValues={initialValuesEnvia}
+      />
     </>
   );
 }
