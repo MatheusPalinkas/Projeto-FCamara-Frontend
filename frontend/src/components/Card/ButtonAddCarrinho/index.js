@@ -22,7 +22,7 @@ const ButtonAddCarrinho = ({ item, handleAdd }) => {
       data-tooltip="adicionar ao carrinho"
       onClick={(e) => {
         e.preventDefault();
-        handleAdd({ ...item, nome: item.titulo, quantidade: 1 });
+        handleAdd({ ...item, quantidade: 1 });
         M.toast({ html: "Adicionado ao carrinho" });
       }}
     >

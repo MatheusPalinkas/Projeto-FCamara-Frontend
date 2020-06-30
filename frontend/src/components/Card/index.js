@@ -73,7 +73,16 @@ const Card = ({
               !idComercio && (
                 <>
                   {!idVendedor ? (
-                    <ButtonAddCarrinho />
+                    <ButtonAddCarrinho
+                      item={{
+                        id,
+                        url,
+                        nome: titulo,
+                        descricao,
+                        preco: produto.preco,
+                        quantidade,
+                      }}
+                    />
                   ) : (
                     <ButtonEditarProduto />
                   )}

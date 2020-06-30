@@ -15,7 +15,6 @@ function ItemCarrinho({ produto, handleRemove, handleUpdateAmount }) {
   useEffect(() => {
     handleUpdateAmount(produto.id, quantidade);
   }, [quantidade, handleUpdateAmount, produto]);
-
   return (
     <li className="collection-item avatar li-produto-carrinho">
       <img

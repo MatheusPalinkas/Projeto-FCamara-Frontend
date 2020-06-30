@@ -24,8 +24,8 @@ const validations = yup.object().shape({
 const initialValues = {};
 
 const userFake = {
-  /*comercio: {
-    //idComercio: 2,
+  comercio: {
+    idComercio: 2,
     nome: "Padaria da Ana",
     categoria: 1,
     cnpj: "1111111",
@@ -33,7 +33,7 @@ const userFake = {
     pagamentoCartao: false,
     pagamentoDinheiro: false,
     pagamentoBoleto: true,
-  },*/
+  },
   id: 2,
   nome: "Ana",
   dataNascimento: "13/08/1982",
