@@ -8,3 +8,18 @@
     color: #1D273B !important;
     margin-bottom: 0;
 }
+.modal  h2.titulo-finalizar-compra-pedido-enviado{
+  margin: 64px 24px 16px 24px;
+}
+.btn-pedido-enviado{
+  margin-top: 72px;
+  margin-left: auto;
+}
+.observacao-pedido-enviado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.observacao-pedido-enviado > svg{
+  margin-right: 8px;
+}

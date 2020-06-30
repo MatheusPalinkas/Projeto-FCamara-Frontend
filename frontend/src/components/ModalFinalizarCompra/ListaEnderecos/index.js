@@ -6,12 +6,14 @@ import "./styles.css";
 
 const addresFakes = [
   {
+    id: 1,
     nome: "Casa",
     rua: "Antonio guilherme",
     numero: "1010",
     cidade: "São Vicente",
   },
   {
+    id: 2,
     nome: "Trabalho",
     rua: "Praça dos Expedicionários",
     numero: "19",
@@ -30,7 +32,10 @@ const ListaEnderecos = ({ handleNewAddress, handleContinue }) => {
     <>
       <ul className="collection lista-enderecos-finalizar-pedido">
         {enderecos.map((endereco) => (
-          <li className="collection-item item-lista-enderecos-finalizar-pedido">
+          <li
+            key={endereco.id}
+            className="collection-item item-lista-enderecos-finalizar-pedido"
+          >
             <span className="endereco-apelido">{endereco.nome}</span>
             <div className="endereco-descritivo">
               <span className="rua">{endereco.rua}</span>

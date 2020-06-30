@@ -1,0 +1,46 @@
+.div-mostrar-valores-pedido{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 16px 50px 32px 48px;
+}
+.span-tempo-entrega-pedido::after{
+    content: ' dias';
+}
+.inputs-formas-pagamento-finalizar-pedido{
+    margin-top: 0 !important;
+}
+.inputs-formas-pagamento-finalizar-pedido > label.label-formas-pagamento-finalizar-pedido{
+    position: relative;
+}
+.input-field > label.label-formas-pagamento-finalizar-pedido,
+.div-mostrar-valores-pedido > label{
+    color: #1D273B !important;
+    text-align: left;
+    font-size: 1.33em !important;
+    font-family: NunitoSansSemiBold;
+    display: flex;
+    margin-right: 8px;
+}
+.div-mostrar-valores-pedido > span{
+    color: #1D273B !important;
+    text-align: left;
+    font-size: 1em !important;
+    font-family: Lato;
+    margin-top: 3px;
+}
+.input-field > label.label-formas-pagamento-finalizar-pedido{
+    margin: 0px 50px 32px 48px;
+}
+.div-formas-pagamento-finalizar-pedido{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 80px 16px 48px;
+}
+
+.div-buttons-forma-pagamento-finzalizar-pedido{
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 48px 0 48px;
+}

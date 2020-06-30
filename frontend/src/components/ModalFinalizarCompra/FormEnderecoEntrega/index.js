@@ -39,7 +39,7 @@ const FormEnderecoEntrega = ({ initialValues, onSubmit, handleBack }) => {
       onSubmit={onSubmit}
     >
       <Form>
-        <div className="form-dados-cadastro form-dados-pessoais">
+        <div className="form-endereco-finalizar-pedido">
           <div className="input-field">
             <label htmlFor="cep">CEP</label>
             <Field type="text" id="cep" name="cep" />
