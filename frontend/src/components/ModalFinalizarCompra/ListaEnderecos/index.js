@@ -21,7 +21,12 @@ const addresFakes = [
   },
 ];
 
-const ListaEnderecos = ({ handleNewAddress, handleContinue }) => {
+const ListaEnderecos = ({
+  handleNewAddress,
+  handleContinue,
+  handleToggleAddress,
+  idToggle,
+}) => {
   const [enderecos, setEnderecos] = useState([]);
 
   useEffect(() => {
@@ -34,7 +39,13 @@ const ListaEnderecos = ({ handleNewAddress, handleContinue }) => {
         {enderecos.map((endereco) => (
           <li
             key={endereco.id}
-            className="collection-item item-lista-enderecos-finalizar-pedido"
+            className={`collection-item item-lista-enderecos-finalizar-pedido ${
+              idToggle === endereco.id ? " ativo" : ""
+            }`}
+            onClick={(e) => {
+              e.preventDefault();
+              handleToggleAddress(endereco.id);
+            }}
           >
             <span className="endereco-apelido">{endereco.nome}</span>
             <div className="endereco-descritivo">

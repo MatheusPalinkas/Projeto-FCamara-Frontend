@@ -29,3 +29,7 @@ div.endereco-descritivo > span.rua::after{
 div.endereco-descritivo > span.cidade::before{
     content: ' - ';
 }
+.item-lista-enderecos-finalizar-pedido.ativo{
+    background: #148acc !important;
+    color: #FFF;
+}

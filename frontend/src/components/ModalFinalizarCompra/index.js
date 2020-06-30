@@ -12,6 +12,7 @@ import "./styles.css";
 
 function ModalFinalizarCompra() {
   const [etapa, setEtapa] = useState(0);
+  const [idEndereco, setIdEndereco] = useState(0);
   const [cadastrarNovoEndereco, setCadastrarNovoEndereco] = useState(true);
 
   return (
@@ -25,6 +26,8 @@ function ModalFinalizarCompra() {
               handleContinue={() => {
                 setEtapa(etapa + 1);
               }}
+              idToggle={idEndereco}
+              handleToggleAddress={(id) => setIdEndereco(id)}
             />
           ) : (
             <FormEnderecoEntrega
