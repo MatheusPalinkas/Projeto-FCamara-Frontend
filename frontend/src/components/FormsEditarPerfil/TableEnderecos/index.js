@@ -67,9 +67,9 @@ function TableEnderecos({ id }) {
                 <span className="col-endereco"> {endereco.numero}</span>
               </td>
               <td className="col-editar-endereco">
-                <Link className="modal-trigger" data-target="modal4">
+                <span className="link  modal-trigger" data-target="modal4">
                   Editar
-                </Link>
+                </span>
               </td>
             </tr>
           ))}
@@ -83,9 +83,9 @@ function TableEnderecos({ id }) {
           position="bottom"
           className="btn-salvar-dados-perfil"
           Icon={MdAdd}
-          className={"modal-trigger"}
-          tipo={"Button"}
-          dataTarget={"modal4"}
+          className="modal-trigger"
+          tipo="Button"
+          dataTarget="modal4"
         />
       </div>
 

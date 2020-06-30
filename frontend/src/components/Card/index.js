@@ -47,7 +47,7 @@ const Curtido = () => (
     data-position="top"
     data-tooltip="Descurtir comercio"
   >
-    <IoIosHeartDislike className="produtoCurido" />
+    <IoIosHeartDislike className="produtoCurtido" />
   </div>
 );
 
@@ -83,7 +83,7 @@ const Card = ({
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {curtido === true ? (
+            {curtido == true ? (
               <Curtido />
             ) : !!quantidade ? (
               <>
