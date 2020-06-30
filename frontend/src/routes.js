@@ -12,6 +12,7 @@ import Pedidos from "./pages/Pedidos";
 import DetalhesPedido from "./pages/DetalhesPedido";
 import MinhaConta from "./pages/MinhaConta";
 import PedidoCliente from "./pages/PedidoCliente";
+import Favorito from "./pages/Favoritos";
 
 import Menu from "./components/Menu";
 
@@ -52,6 +53,8 @@ export default function Routes() {
         />
 
         <Route exact path="/editar/conta" component={MinhaConta} />
+
+        <Route exact path="/favoritos/:idComercio" component={Favorito} />
         <Route exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>

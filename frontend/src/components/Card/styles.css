@@ -37,6 +37,14 @@ span.span-card-title {
   cursor: pointer;
 }
 
+.produtoCurido {
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 2em;
+  cursor: pointer;
+  margin: -10px auto;
+}
+
 .qtd-produto {
   background: #f47c31;
   color: #fff !important;
