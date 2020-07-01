@@ -113,10 +113,11 @@ const FormDadosEndereco = ({
               tipo="Link"
               onClick={handleBackStage}
               text="Voltar"
+              typeButton="secundaria"
               Icon={MdReply}
             />
             {vendedor === true ? (
-              <Button submit="submit" text="Proximo" Icon={MdSave} />
+              <Button submit="submit" text="Próximo" />
             ) : (
               <Button
                 submit="submit"

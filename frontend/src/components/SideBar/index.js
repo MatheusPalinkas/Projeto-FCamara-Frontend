@@ -30,16 +30,19 @@ const SideBar = () => {
           <h2>Categorias</h2>
         </li>
         <li className="btn-voltar-categorias">
-          <Link to={""} className="sidenav-close">
+          <span className="sidenav-close link">
             <span className="txt-voltar-categorias">
               Voltar
               <MdKeyboardArrowRight />
             </span>
-          </Link>
+          </span>
         </li>
         {categoria.map((categoria) => (
           <li key={categoria.id} className="item-categoria">
-            <Link to={`/home/${categoria.id}`} className="waves-effect">
+            <Link
+              to={`/home/${categoria.id}`}
+              className="sidenav-close waves-effect"
+            >
               {categoria.nome}
             </Link>
           </li>

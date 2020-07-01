@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { MdAdd } from "react-icons/md";
 
 import Button from "../../Button";
@@ -81,9 +80,8 @@ function TableEnderecos({ id }) {
           tooltip="Adicionar novo endereço"
           text="Novo endereço"
           position="bottom"
-          className="btn-salvar-dados-perfil"
+          className="modal-trigger btn-salvar-dados-perfil"
           Icon={MdAdd}
-          className="modal-trigger"
           tipo="Button"
           dataTarget="modal4"
         />

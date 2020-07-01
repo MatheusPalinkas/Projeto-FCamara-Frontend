@@ -80,7 +80,7 @@ const Card = ({
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {curtido == true ? (
+            {curtido ? (
               <Curtido />
             ) : !!quantidade ? (
               <>

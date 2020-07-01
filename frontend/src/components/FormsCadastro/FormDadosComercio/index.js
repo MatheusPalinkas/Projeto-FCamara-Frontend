@@ -207,11 +207,12 @@ const FormDadosComercio = ({
               tipo="Link"
               onClick={handleBackStage}
               text="Voltar"
+              typeButton="secundaria"
               Icon={MdReply}
             />
             <Button
               submit="submit"
-              text="Criar conta"
+              text="Finalizar"
               tooltip="Finalizar cadastro"
               Icon={MdSave}
             />

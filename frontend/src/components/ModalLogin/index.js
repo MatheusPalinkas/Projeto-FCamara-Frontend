@@ -1,7 +1,6 @@
 import React from "react";
 import * as yup from "yup";
 import { connect } from "react-redux";
-import { FiLogIn } from "react-icons/fi";
 import { MdPersonAdd } from "react-icons/md";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import { HANDLE_LOGIN } from "../../store/actions/user";
@@ -24,7 +23,7 @@ const validations = yup.object().shape({
 const initialValues = {};
 
 const userFake = {
-  /*comercio: {
+  comercio: {
     idComercio: 2,
     nome: "Padaria da Ana",
     categoria: 1,
@@ -33,7 +32,7 @@ const userFake = {
     pagamentoCartao: false,
     pagamentoDinheiro: false,
     pagamentoBoleto: true,
-  },*/
+  },
   id: 2,
   nome: "Ana",
   dataNascimento: "13/08/1982",

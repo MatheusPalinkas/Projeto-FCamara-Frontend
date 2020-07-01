@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { MdReply, MdAdd } from "react-icons/md";
+import { MdReply } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 
 import TableEnderecos from "../../components/FormsEditarPerfil/TableEnderecos";

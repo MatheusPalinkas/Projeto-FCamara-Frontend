@@ -62,6 +62,9 @@ svg{
     font-family: Lato;
     font-size: 1.33em;
 }
+.input-field input{
+    font-family: Lato;
+}
 .input-field > span.helper-text{
     color: rgb(224, 17, 17);
     font-family: Lato;

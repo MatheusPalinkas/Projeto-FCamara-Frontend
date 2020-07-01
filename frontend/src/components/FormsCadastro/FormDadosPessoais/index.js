@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import MaskInput from "react-text-mask";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { MdKeyboardArrowRight } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
@@ -240,9 +239,9 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
             <div className="form-submit">
               <Button
                 submit="submit"
-                text="Proximo"
+                text="Próximo"
+                position="bottom"
                 tooltip="Continuar no cadastro"
-                Icon={MdKeyboardArrowRight}
               />
             </div>
           </div>

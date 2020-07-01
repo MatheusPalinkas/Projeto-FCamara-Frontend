@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { MdPermIdentity } from "react-icons/md";
+import { MdPermIdentity, MdMenu } from "react-icons/md";
 
 import ModalLogin from "../../components/ModalLogin";
 import MenuVendedor from "./MenuVendedor";
 import MenuCliente from "./MenuCliente";
 import BtnCarrinho from "./BtnCarrinho";
+import SideBar from "../SideBar";
 import Button from "../Button";
 
 import "./styles.css";
@@ -39,6 +40,16 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
       <nav className="nav-extended nav-menu">
         <div className="nav-wrapper div-nav-wrapper">
           <ul id="nav-mobile" className="left ">
+            <li>
+              <div
+                className="sidenav-trigger tooltipped btn-menu-categorias "
+                data-target="slide-out"
+                data-position="bottom"
+                data-tooltip="Menu de categorias"
+              >
+                <MdMenu />
+              </div>
+            </li>
             <li>
               <div
                 className="tooltipped btn-logo-pagina-inicial "
@@ -75,6 +86,7 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
         ) : (
           user.id && <MenuCliente id={user.id} />
         )}
+        <SideBar />
       </nav>
       <ModalLogin />
     </>
