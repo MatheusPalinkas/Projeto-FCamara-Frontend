@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../services/Api";
 import "./styles.css";
 import Card from "../../components/Card";
+import PesquisaHome from "../../components/PesquisaHome";
 
 function Main() {
   const [comercios, setComercios] = useState([]);
@@ -26,6 +27,7 @@ function Main() {
         </h1>
         <cite className="referencia-foto">Photos on Unsplash</cite>
       </div>
+      <PesquisaHome />
       <div className="container-comercios">
         {comercios.map((comercio) => (
           <Card

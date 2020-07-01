@@ -1,0 +1,28 @@
+.containerPesquisar {
+  width: auto;
+  max-width: 750px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+.formPesquisar {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  font-size: 1.33em;
+}
+
+.formPesquisar > label {
+  font-family: NunitoSansSemiBold;
+}
+
+.formPesquisar > .input-field {
+  width: 100%;
+  min-width: 350px;
+  max-width: 500px;
+}
+
+input[type="text"]:not(.browser-default) {
+  font-size: 1em !important;
+  margin-top: 10px;
+}
