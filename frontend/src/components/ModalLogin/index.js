@@ -24,7 +24,7 @@ const validations = yup.object().shape({
 const initialValues = {};
 
 const userFake = {
-  comercio: {
+  /*comercio: {
     idComercio: 2,
     nome: "Padaria da Ana",
     categoria: 1,
@@ -33,7 +33,7 @@ const userFake = {
     pagamentoCartao: false,
     pagamentoDinheiro: false,
     pagamentoBoleto: true,
-  },
+  },*/
   id: 2,
   nome: "Ana",
   dataNascimento: "13/08/1982",
@@ -74,15 +74,14 @@ const ModalLogin = ({ handleLogin }) => (
               Icon={MdPersonAdd}
               tipo="Link"
               to="/cadastro"
+              typeButton="secundaria"
             />
           </div>
           <div className="modal-close btnLogin">
             <Button
-              Icon={FiLogIn}
               position="bottom"
               tooltip="Entrar na minha conta"
               type="submit"
-              typeButton="secundaria"
               submit="submit"
             />
           </div>

@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { FiLogIn } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { MdMenu, MdPermIdentity } from "react-icons/md";
+import { MdPermIdentity } from "react-icons/md";
 
 import ModalLogin from "../../components/ModalLogin";
 import MenuVendedor from "./MenuVendedor";
 import MenuCliente from "./MenuCliente";
 import BtnCarrinho from "./BtnCarrinho";
-import SideBar from "../SideBar";
 import Button from "../Button";
 
 import "./styles.css";
@@ -42,16 +41,14 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
           <ul id="nav-mobile" className="left ">
             <li>
               <div
-                className="sidenav-trigger tooltipped btn-menu-categorias "
-                data-target="slide-out"
+                className="tooltipped btn-logo-pagina-inicial "
                 data-position="bottom"
-                data-tooltip="Menu de categorias"
+                data-tooltip="Pagina inicial"
               >
-                <MdMenu />
+                <Link to="/">Logo</Link>
               </div>
             </li>
           </ul>
-          <div className="brand-logo">Logo</div>
 
           <ul className="right ">
             <li>
@@ -62,7 +59,6 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
                 <PhotoUserLogged url={user.url} />
               ) : (
                 <Button
-                  Icon={FiLogIn}
                   tipo="Button"
                   position="bottom"
                   tooltip="Entrar na minha conta"
@@ -79,7 +75,6 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
         ) : (
           user.id && <MenuCliente id={user.id} />
         )}
-        <SideBar />
       </nav>
       <ModalLogin />
     </>

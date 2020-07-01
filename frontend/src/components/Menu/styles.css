@@ -1,7 +1,7 @@
 .nav-menu{
   background-color: #F47C31;
 }
-.btn-menu-categorias, .btn-meu-carrinho{
+.btn-meu-carrinho{
   width: 50px;
   height: 50px;
   font-size: 3em;
@@ -23,11 +23,25 @@
 .btn-meu-carrinho:hover{
   background-color: #F47C31;
 }
-.btn-menu-categorias:hover, .btn-meu-carrinho:hover{
+.btn-meu-carrinho:hover{
   color: #F5EDE9;
 }
 .btn-entrar-conta{
   margin-right: 20px;
+  margin-top: 16px;
+}
+.btn-logo-pagina-inicial{
+  margin-left: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-logo-pagina-inicial > a{
+  font-size: 2.69em;
+}
+.btn-logo-pagina-inicial > a:hover{
+  background: none !important;
 }
 .icon-entrar{
   margin-right: 8px;
@@ -93,6 +107,9 @@ span.span-quantidade-carrinho{
   }
   nav .div-nav-wrapper{
     position: unset;
+  }
+  .btn-entrar-conta{
+    margin-top: 8px;
   }
   .btn-meu-carrinho{
     position: fixed;
