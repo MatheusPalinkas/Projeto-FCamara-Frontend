@@ -7,7 +7,6 @@ import "./styles.css";
 
 export default function PesquisaHome() {
   const [filtro, setFiltro] = useState("");
-
   const [categoria, setCategoria] = useState([]);
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export default function PesquisaHome() {
       <div className="containerPesquisar">
         <form className="formPesquisar">
           <div className="input-field">
-            <label htmlFor="filtro">Pesquisar pelo nome de um produto</label>
+            <label htmlFor="filtro">Pesquisar pelo nome de um comercio</label>
             <input
               type="text"
               nome="filtro"
@@ -37,15 +36,12 @@ export default function PesquisaHome() {
             />
           </div>
         </form>
-        <ul class="collapsible">
-          <li>
-            <div class="collapsible-header">Categorias</div>
-            {categoria.map((categoria) => (
-              <div class="collapsible-body">
-                <span key={categoria.id}>{categoria.nome}</span>
-              </div>
-            ))}
-          </li>
+        <ul className="carrosel-categorias">
+          {categoria.map((categoria) => (
+            <li key={categoria.id} class="li-link-categoria">
+              <Link to={`/home/${categoria.id}`}>{categoria.nome}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </>
