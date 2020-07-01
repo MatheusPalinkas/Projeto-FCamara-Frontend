@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import { useParams, useHistory } from "react-router-dom";
 import * as yup from "yup";
-import { MdReply } from "react-icons/md";
+import { MdReply, MdAddAPhoto } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import api from "../../services/Api";
 
@@ -31,6 +31,11 @@ function NovoProduto() {
   const [categorias, setCategorias] = useState([]);
   const { idComercio } = useParams();
   const { goBack } = useHistory();
+  const [thumbnail, setThumbnail] = useState(null);
+
+  const preview = useMemo(() => {
+    return thumbnail ? URL.createObjectURL(thumbnail) : null;
+  }, [thumbnail]);
 
   useEffect(() => {
     (async function () {
@@ -75,11 +80,21 @@ function NovoProduto() {
         {({ values, handleSubmit }) => (
           <form className="form-dados-novo-produto" onSubmit={handleSubmit}>
             <div className="container-form">
-              <img src="" alt="Previa de foto" className="previa-foto" />
-              <div className="file-field input-field input-file-upload-foto">
+              <div className="file-field input-file-upload-foto">
+                <label
+                  id="thumbnail"
+                  style={{ backgroundImage: `url(${preview})` }}
+                  className={thumbnail ? "previa-foto" : ""}
+                >
+                  <MdAddAPhoto color="#1D273B " size={32} />
+                </label>
                 <div className="btn btn-upload-foto">
-                  <span>Foto</span>
-                  <input type="file" />
+                  <span>Nova Foto</span>
+                  <input
+                    type="file"
+                    className="file-"
+                    onChange={(event) => setThumbnail(event.target.files[0])}
+                  />
                 </div>
                 <div className="file-path-wrapper">
                   <input className="file-path validate" type="text" />
