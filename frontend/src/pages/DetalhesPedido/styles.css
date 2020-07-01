@@ -20,6 +20,7 @@
 }
 .btns-decisao{
   margin-left: auto;
+  display: flex;
 }
 .btns-decisao > *{ 
   margin-left: 24px;
@@ -62,7 +63,9 @@
   font-family: LatoBold;
   color: #1D273B;
 }
-
+.detalhes-pedido-dados-produto{
+  margin-bottom: 32px;
+}
 
 @media only screen and (max-width: 1250px) {
   .containerBtnPedido, 
@@ -98,6 +101,7 @@
   .containerBtnPedido > *,
   .btns-decisao > *{
     margin: 0;
+    margin-left: auto;
     margin-top: 24px;
   }
   .containerDadosPedido > div > h2 {

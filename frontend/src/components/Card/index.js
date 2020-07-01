@@ -29,7 +29,7 @@ const ButtonEditarProduto = () => (
 
 const QuantidadeProduto = ({ quantidade }) => (
   <div
-    className="tooltipped div-add-carrinho"
+    className="tooltipped div-quantidade-carrinho"
     data-position="top"
     data-tooltip="Quantidade comprada"
   >

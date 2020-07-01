@@ -19,7 +19,9 @@ span.span-card-title {
   font-family: NunitoSansSemiBold;
   margin-bottom: 0px !important;
 }
-.div-add-carrinho, .div-editar-produto{
+.div-add-carrinho, 
+.div-editar-produto,
+.div-quantidade-carrinho{
     border: 0;
     background: none;
     max-width: 50px;
@@ -30,11 +32,16 @@ span.span-card-title {
 .div-add-carrinho:hover, 
 .div-editar-produto:hover,
 .div-add-carrinho:focus, 
-.div-editar-produto:focus{
+.div-editar-produto:focus,
+.div-quantidade-carrinho:hover,
+.div-quantidade-carrinho:focus{
     background: none;
 } 
 
-.add-carrinho, .icon-menos-infos, .editar-produto{
+.add-carrinho, 
+.icon-menos-infos, 
+.editar-produto, 
+.div-quantidade-carrinho{
     background: #1D273B;
     color: #FFF !important;
     padding: 8px;
@@ -42,7 +49,10 @@ span.span-card-title {
     font-size: 1.77em;
     cursor: pointer;
 }
-
+.div-quantidade-carrinho > p {
+  font-size: .8em;
+  text-align: center;
+}
 .produtoCurtido {
   padding: 8px;
   border-radius: 50%;
@@ -51,16 +61,6 @@ span.span-card-title {
   margin: -10px auto;
 }
 
-.qtd-produto {
-  background: #f47c31;
-  color: #fff !important;
-  padding: 8px;
-  border-radius: 50%;
-  font-size: 0.88em;
-  font-family: NunitoSans-Light;
-  cursor: pointer;
-  text-align: center;
-}
 
 .icon-menos-infos {
   background: none;

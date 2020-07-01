@@ -105,7 +105,7 @@ export default function DetalhesPedido() {
           </div>
         </div>
 
-        <div className="dados-comercio">
+        <div className="dados-comercio detalhes-pedido-dados-produto">
           <h2>Dados do(s) produto(s)</h2>
           <div className="dadosProdutos">
             <label className="descricaoDado">Nome:</label>

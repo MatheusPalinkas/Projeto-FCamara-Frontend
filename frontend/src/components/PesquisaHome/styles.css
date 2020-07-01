@@ -55,4 +55,7 @@ input[type="text"]:not(.browser-default) {
   .carrosel-categorias{
     overflow-x: auto;
   }
+  .containerPesquisar {
+    padding: 40px 0 24px 0;
+  }
 }

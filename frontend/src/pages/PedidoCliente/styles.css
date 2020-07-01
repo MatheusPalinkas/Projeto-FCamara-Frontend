@@ -17,7 +17,13 @@
   padding-top: 10px;
   justify-content: flex-end;
 }
+.containerdadosComprador{
+  margin: 0 24px;
+}
+.containerdadosComprador > .container-comercios{
+  padding: 0;
 
+}
 @media only screen and (max-width: 1200px) {
   .containerBtnPedidoCliente {
     margin: 50px 24px;
