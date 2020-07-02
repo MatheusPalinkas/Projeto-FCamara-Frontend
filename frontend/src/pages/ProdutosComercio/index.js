@@ -18,6 +18,8 @@ const ProdutosComercio = ({ user }) => {
   const { idComercio } = useParams();
   const { goBack } = useHistory();
 
+  const cnpj = 11514985543589;
+
   useEffect(() => {
     (async function () {
       let urlFiltro = "";
@@ -79,8 +81,14 @@ const ProdutosComercio = ({ user }) => {
             }}
           />
         </form>
+
         {Object.keys(user).length !== 0 && user.comercio === undefined && (
           <div className="div-add-favoritos-comercio">
+            {cnpj === null ? (
+              <label>Este vendedor não possui CNPJ</label>
+            ) : (
+              <label></label>
+            )}
             <Button
               Icon={MdFavorite}
               text="Adicionar aos favoritos"

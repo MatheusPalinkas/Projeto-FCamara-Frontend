@@ -14,7 +14,7 @@ import "./styles.css";
 const validates = yup.object().shape({
   cep: yup
     .string()
-    .length(9, "O CEP deve ter 8 caracteres")
+    .length(8, "O CEP deve ter 8 caracteres")
     .required("O CEP é obrigadotio"),
   cidade: yup.string().required("A cidade não deve ser vazia"),
   uf: yup
