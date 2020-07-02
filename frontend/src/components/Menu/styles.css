@@ -1,7 +1,7 @@
-.nav-menu{
-  background-color: #F47C31;
+.nav-menu {
+  background-color: #f47c31;
 }
-.btn-meu-carrinho{
+.btn-meu-carrinho {
   width: 50px;
   height: 50px;
   font-size: 3em;
@@ -10,98 +10,99 @@
   border-radius: 50%;
   text-align: center;
 }
-.btn-menu-categorias, 
-.btn-meu-carrinho{
+.btn-menu-categorias,
+.btn-meu-carrinho {
   font-size: 3.5em;
   margin-right: 24px;
-  transition: all .2s;
+  transition: all 0.2s;
   cursor: pointer;
   display: flex;
   padding: 10px;
   position: relative;
   z-index: 2;
 }
-.btn-menu-categorias{
-  margin: 0 !important;  
+.btn-menu-categorias {
+  margin: 0 !important;
 }
-.btn-menu-categorias > svg{
+.btn-menu-categorias > svg {
   margin-bottom: 8px;
 }
-.btn-menu-categorias:hover, .btn-meu-carrinho:hover{
-  color: #F5EDE9;
+.btn-menu-categorias:hover,
+.btn-meu-carrinho:hover {
+  color: #f5ede9;
 }
-.btn-meu-carrinho:hover{
-  background-color: #F47C31;
+.btn-meu-carrinho:hover {
+  background-color: #f47c31;
 }
-.btn-meu-carrinho:hover{
-  color: #F5EDE9;
+.btn-meu-carrinho:hover {
+  color: #f5ede9;
 }
-.btn-entrar-conta{
+.btn-entrar-conta {
   margin-right: 20px;
   margin-top: 16px;
 }
-.btn-logo-pagina-inicial{
+.btn-logo-pagina-inicial {
   margin-left: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
-.btn-logo-pagina-inicial > a{
+.btn-logo-pagina-inicial > a {
   font-size: 2.69em;
 }
-.btn-logo-pagina-inicial > a:hover{
+.btn-logo-pagina-inicial > a:hover {
   background: none !important;
 }
-.icon-entrar{
+.icon-entrar {
   margin-right: 8px;
   margin-top: 2px;
 }
-.container-foto{
+.container-foto {
   height: 55px;
   width: 55px;
   margin: 8px;
 }
-.container-foto .foto-perfil{
+.container-foto .foto-perfil {
   display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
-.foto-perfil{
+.foto-perfil {
   width: auto;
   height: auto;
   object-fit: cover;
 }
-.container-foto  > svg{
+.container-foto > svg {
   font-size: 3em;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: 3px solid currentColor;
 }
-.menu-vendedor{
-  background-color: #636B7D;
+.menu-vendedor {
+  background-color: #636b7d;
 }
 ul.ul-menu-vendedor {
   display: flex;
-  max-width: 1200px ;
-  margin:  0 auto;
+
+  margin: 0 auto;
 }
-.ul-menu-vendedor .tab{
-  border-right: 1px solid #BFA79B;
+.ul-menu-vendedor .tab {
+  border-right: 1px solid #bfa79b;
   font-family: LatoBold;
   font-size: 1.77em;
   width: 100%;
   flex: 1;
 }
-.ul-menu-vendedor .tab:last-child{
+.ul-menu-vendedor .tab:last-child {
   border-right: 0px;
 }
 
-span.span-quantidade-carrinho{
+span.span-quantidade-carrinho {
   position: absolute;
-  background: #1D273B;
+  background: #1d273b;
   font-size: 0.25em;
   border-radius: 50%;
   max-height: 25px;
@@ -114,23 +115,24 @@ span.span-quantidade-carrinho{
   right: 0;
   z-index: 1;
 }
-.btn-menu-categorias{
+.btn-menu-categorias {
   display: none;
 }
-@media only screen and (max-width: 600px){
-  .container-foto  > svg,.container-foto  > img.foto-perfil{
+@media only screen and (max-width: 600px) {
+  .container-foto > svg,
+  .container-foto > img.foto-perfil {
     width: 40px;
     height: 40px;
   }
-  nav .div-nav-wrapper{
+  nav .div-nav-wrapper {
     position: unset;
   }
-  .btn-entrar-conta{
+  .btn-entrar-conta {
     margin-top: 8px;
   }
-  .btn-meu-carrinho{
+  .btn-meu-carrinho {
     position: fixed;
-    background: #F47C31;
+    background: #f47c31;
     z-index: 10;
     bottom: 8px;
     right: 8px;
@@ -138,13 +140,13 @@ span.span-quantidade-carrinho{
     height: 60px;
     margin: 0;
   }
-  .btn-menu-categorias{
+  .btn-menu-categorias {
     display: block;
   }
 }
 
-@media only screen and (max-width: 400px){
-  div.nav-content.menu-vendedor ul li > a{
-    font-size: 12px;   
+@media only screen and (max-width: 400px) {
+  div.nav-content.menu-vendedor ul li > a {
+    font-size: 12px;
   }
 }
