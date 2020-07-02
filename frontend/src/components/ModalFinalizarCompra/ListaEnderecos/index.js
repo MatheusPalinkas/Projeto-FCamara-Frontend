@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MdAdd, MdNavigateNext } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 
 import Button from "../../Button";
 import "./styles.css";
