@@ -23,6 +23,7 @@ const validations = yup.object().shape({
 const initialValues = {};
 
 const userFake = {
+  /** 
   comercio: {
     idEndereco: 1,
     idComercio: 2,
@@ -34,6 +35,7 @@ const userFake = {
     pagamentoDinheiro: false,
     pagamentoBoleto: true,
   },
+  */
   id: 2,
   nome: "Ana",
   dataNascimento: "13/08/1982",
