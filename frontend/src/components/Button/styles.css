@@ -4,9 +4,7 @@ button.button {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-
 
 button.button > .text-align-btn,
 a.button > .text-align-btn {

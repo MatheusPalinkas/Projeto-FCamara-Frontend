@@ -122,6 +122,7 @@ const ModalEndereco = ({ handleSubmit, initialValues }) => {
               />
 
               <Button
+                className="btnSalvarEndereco"
                 submit="submit"
                 type="submit"
                 text="Salvar"
