@@ -35,8 +35,11 @@
 }
 .div-formas-pagamento-finalizar-pedido{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 0px 80px 16px 48px;
+}
+.div-formas-pagamento-finalizar-pedido > p{
+    margin-right: 24px;
 }
 
 .div-buttons-forma-pagamento-finzalizar-pedido{

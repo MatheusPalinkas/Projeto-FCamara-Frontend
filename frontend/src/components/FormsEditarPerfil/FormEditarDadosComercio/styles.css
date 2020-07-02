@@ -2,5 +2,11 @@
     margin-bottom: 16px;
 }
 .btn-editar-endereco{
-    margin: 16px 0;
+    margin: 40px 0;
+}
+.div-formas-pagamento-editar-perfil{
+    justify-content: flex-start !important;
+}
+.div-formas-pagamento-editar-perfil > p{
+    margin-right: 24px;
 }

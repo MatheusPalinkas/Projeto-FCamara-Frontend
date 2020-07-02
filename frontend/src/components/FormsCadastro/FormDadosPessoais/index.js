@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import MaskInput from "react-text-mask";
+import { MdAddAPhoto } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import PropTypes from "prop-types";
@@ -122,6 +123,12 @@ const DateNumberMask = [
 ];
 
 const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
+  const [thumbnail, setThumbnail] = useState(null);
+
+  const preview = useMemo(() => {
+    return thumbnail ? URL.createObjectURL(thumbnail) : null;
+  }, [thumbnail]);
+
   useEffect(() => {
     const elems = document.querySelectorAll(".datepicker");
     M.Datepicker.init(elems, optionsDate);
@@ -200,6 +207,33 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
                 component="span"
               />
             </div>
+            <div className="container-form">
+              <div className="file-field input-file-upload-foto-cadastro">
+                <label
+                  id="thumbnail"
+                  htmlFor="input-image-cadastro"
+                  style={{ backgroundImage: `url(${preview})` }}
+                  className={`preview-imgaem-cadastrar ${
+                    thumbnail ? "previa-foto" : ""
+                  }`}
+                >
+                  <MdAddAPhoto color="#1D273B " size={32} />
+                </label>
+                <div className="div-cadastro-upload-foto">
+                  <span>Nova Foto</span>
+                  <input
+                    type="file"
+                    name="input-image-cadastro"
+                    id="input-image-cadastro"
+                    onChange={(event) => setThumbnail(event.target.files[0])}
+                  />
+                </div>
+                <div className="file-path-wrapper div-cadastro-upload-foto">
+                  <input className="file-path validate" type="text" />
+                </div>
+              </div>
+            </div>
+
             <div className="input-field div-tipo-user">
               <div className="div-radio">
                 <p>

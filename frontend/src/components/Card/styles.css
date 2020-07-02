@@ -49,6 +49,9 @@ span.span-card-title {
   font-size: 1.77em;
   cursor: pointer;
 }
+.div-quantidade-carrinho {
+  font-size: 1em;
+}
 .div-quantidade-carrinho > p {
   font-size: 0.8em;
   text-align: center;

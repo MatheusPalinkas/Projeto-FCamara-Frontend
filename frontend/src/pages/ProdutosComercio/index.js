@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { MdReply } from "react-icons/md";
+import { MdReply, MdFavorite } from "react-icons/md";
+import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
 import api from "../../services/Api";
 
@@ -9,7 +10,7 @@ import Button from "../../components/Button";
 
 import "./styles.css";
 
-export default function ProdutosComercio() {
+const ProdutosComercio = ({ user }) => {
   const [filtro, setFiltro] = useState("");
   const [categoriaSelecionada, setcategoriaSelecionada] = useState(0);
   const [categorias, setCategorias] = useState([]);
@@ -78,6 +79,15 @@ export default function ProdutosComercio() {
             }}
           />
         </form>
+        {Object.keys(user).length !== 0 && user.comercio === undefined && (
+          <div className="div-add-favoritos-comercio">
+            <Button
+              Icon={MdFavorite}
+              text="Adicionar aos favoritos"
+              className="btn-add-favoritos"
+            />
+          </div>
+        )}
       </div>
 
       <div className="container-comercios">
@@ -94,4 +104,10 @@ export default function ProdutosComercio() {
       </div>
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => ({ user: state.user });
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProdutosComercio);
