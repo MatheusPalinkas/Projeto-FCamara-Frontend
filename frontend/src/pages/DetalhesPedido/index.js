@@ -49,7 +49,7 @@ export default function DetalhesPedido() {
       <StatusPedido idComercio={idComercio} />
 
       <div className="containerDadosPedido">
-        <div className="containerdadosComprador">
+        <div className="dados-comercio">
           <h2>Dados do comprador</h2>
           <div className="dadosComprador">
             <label className="descricaoDado">Nome:</label>

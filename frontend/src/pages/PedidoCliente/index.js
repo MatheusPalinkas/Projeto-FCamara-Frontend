@@ -41,9 +41,13 @@ export default function PedidoCliente() {
   return (
     <>
       <div className="containerBtnPedidoCliente">
-        <div className="statusPedido">
-          <label className="descricaoDado">Status do pedido:</label>
-          <p>Pendente</p>
+        <div className="containerStatus">
+          <div className="statusPedido">
+            <label className="descricaoDado">Status do pedido:</label>
+            <p>Pendente</p>
+          </div>
+
+          <StatusPedido idComercio={idComercio} />
         </div>
 
         <Button
@@ -72,7 +76,10 @@ export default function PedidoCliente() {
               />
             ))}
           </div>
-          <StatusPedido idComercio={idComercio} />
+          <div className="dadosCompradorTotal">
+            <label className="descricaoDado">Valor total:</label>
+            <p>R$ 100.00</p>
+          </div>
         </div>
 
         <div className="containerdadosComprador">
@@ -99,7 +106,7 @@ export default function PedidoCliente() {
           </div>
         </div>
 
-        <div className="dados-comercio">
+        <div className="containerdadosComprador">
           <h2>Endereço do Comercio</h2>
           <div className="dadosComercio">
             <label className="descricaoDado">CEP:</label>
