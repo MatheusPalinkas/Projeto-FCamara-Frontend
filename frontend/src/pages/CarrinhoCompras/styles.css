@@ -55,4 +55,10 @@
     .li-cabecalho-headers{
         margin-left: 0px !important ;
     }
+    .with-header.items-carrinho{       
+        overflow: auto;
+    }
+    .with-header.items-carrinho > li{
+        min-width: 700px;
+    }
 }

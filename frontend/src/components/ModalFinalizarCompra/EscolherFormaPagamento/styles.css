@@ -47,3 +47,26 @@
     justify-content: space-between;
     margin: 32px 48px 0 48px;
 }
+
+@media only screen and (max-width: 400px){
+    .btns-voltar-seguir-finalizar-compra{
+        margin: 0;
+        margin-top: 24px;
+    }
+    .form-escolher-forma-pagamento > div, 
+    .inputs-formas-pagamento-finalizar-pedido > div,
+    .input-field > label.label-formas-pagamento-finalizar-pedido{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .input-field > label.label-formas-pagamento-finalizar-pedido{
+        margin-bottom: 16px;
+    }
+    .input-field > label.label-formas-pagamento-finalizar-pedido,
+    .div-mostrar-valores-pedido > label{
+        font-size: 1em !important;
+    }
+    .div-mostrar-valores-pedido > span {
+        margin-top: 0;
+    }
+}

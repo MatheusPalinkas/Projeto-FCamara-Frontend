@@ -101,7 +101,7 @@ const FormEnderecoEntrega = ({ initialValues, onSubmit, handleBack }) => {
             <Field name="complemento" type="text" id="complemento" />
           </div>
 
-          <div className="div-buttons-form">
+          <div className="div-buttons-form btns-voltar-seguir-finalizar-compra">
             <Button
               text="Voltar"
               Icon={MdReply}
@@ -115,6 +115,7 @@ const FormEnderecoEntrega = ({ initialValues, onSubmit, handleBack }) => {
               text="Salvar"
               tooltip="Salvar endereço"
               Icon={MdSave}
+              className="btnSalvarEnderecoFinalizarCompra"
             />
           </div>
         </div>

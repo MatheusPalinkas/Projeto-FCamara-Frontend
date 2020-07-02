@@ -56,7 +56,7 @@ const ListaEnderecos = ({
           </li>
         ))}
       </ul>
-      <div className="btns-escolher-enderecos">
+      <div className="btns-escolher-enderecos btns-voltar-seguir-finalizar-compra">
         <Button
           text="Novo endereço"
           Icon={MdAdd}
@@ -65,8 +65,8 @@ const ListaEnderecos = ({
         />
         <Button
           text="Continuar"
-          Icon={MdNavigateNext}
           onClick={handleContinue}
+          className="btn-continuar-finalizar-compra"
         />
       </div>
     </>
