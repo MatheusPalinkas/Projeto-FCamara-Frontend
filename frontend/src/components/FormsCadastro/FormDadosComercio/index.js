@@ -185,9 +185,12 @@ const FormDadosComercio = ({
                 <p>
                   Damos prioridade aos usuários que possuem CNPJ, recomendamos
                   que o tire em{" "}
-                  <Link to="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConvenJuntaBH/InscCNPJOrientacoes.htm">
+                  <a
+                    href="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConvenJuntaBH/InscCNPJOrientacoes.htm"
+                    target="blamk"
+                  >
                     CNPJ
-                  </Link>{" "}
+                  </a>{" "}
                 </p>
               )}
               <ErrorMessage

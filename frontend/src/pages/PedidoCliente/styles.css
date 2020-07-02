@@ -11,18 +11,18 @@
 .containerBtnPedidoClienteCancelar {
   width: auto !important;
   max-width: 1200px;
-  margin: 50px auto;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  padding-top: 10px;
   justify-content: flex-end;
+  padding: 8px;
+  padding-left: 45px;
 }
-.containerdadosComprador{
+.containerdadosComprador {
   margin: 0 24px;
 }
-.containerdadosComprador > .container-comercios{
+.containerdadosComprador > .container-comercios {
   padding: 0;
-
 }
 @media only screen and (max-width: 1200px) {
   .containerBtnPedidoCliente {
@@ -32,7 +32,7 @@
 
 .statusPedido {
   padding: 0;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   display: flex;
   align-items: baseline;
 }
@@ -65,7 +65,6 @@
   justify-content: space-between !important;
   flex-wrap: wrap;
   padding-top: 10px;
-
   padding: 0 0 40px 0;
   max-width: 1200px;
   margin: 40px auto 0 auto;
@@ -84,4 +83,27 @@
 .containerDadosPedidoCliente > div {
   border-bottom: 2px solid #148acc;
   padding-bottom: 15px;
+}
+
+.containerStatus {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.dadosCompradorTotal {
+  padding: 0;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.dadosCompradorTotal label {
+  font-size: 1.77em;
+  padding: 0;
+  padding-right: 10px;
+}
+.dadosCompradorTotal p {
+  font-size: 1.33em;
 }
