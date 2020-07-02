@@ -38,7 +38,7 @@ export default function PesquisaHome() {
         </form>
         <ul className="carrosel-categorias">
           {categoria.map((categoria) => (
-            <li key={categoria.id} class="li-link-categoria">
+            <li key={categoria.id} className="li-link-categoria">
               <Link to={`/home/${categoria.id}`}>{categoria.nome}</Link>
             </li>
           ))}

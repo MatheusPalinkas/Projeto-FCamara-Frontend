@@ -23,3 +23,28 @@
 .observacao-pedido-enviado > svg{
   margin-right: 8px;
 }
+
+@media only screen and (max-width: 440px){
+  .titulo-finalizar-compra{
+    font-size: 1.77em;
+  }
+  .btns-voltar-seguir-finalizar-compra{
+    display: flex;
+    flex-direction: column;
+  }
+  .btn-continuar-finalizar-compra{
+    margin-top: 16px;
+  }
+  .titulo-finalizar-compra-pedido-enviado{
+    font-size: 2.69em;
+  }
+  .observacao-pedido-enviado{
+    margin: 24px auto;
+  }
+  .observacao-pedido-enviado > svg{
+    display: none;
+  }
+  .btn-pedido-enviado{
+    margin-top: 40px;
+  }
+}

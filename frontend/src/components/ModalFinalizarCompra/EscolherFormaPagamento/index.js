@@ -20,7 +20,7 @@ function EscolherFormaPagamento({ initialValues, onSubmit, handleBack }) {
       validationSchema={validates}
       onSubmit={onSubmit}
     >
-      <Form>
+      <Form className="form-escolher-forma-pagamento">
         <div className="div-mostrar-valores-pedido">
           <label>Frete</label>
           <span>
@@ -72,7 +72,10 @@ function EscolherFormaPagamento({ initialValues, onSubmit, handleBack }) {
             </p>
           </div>
         </div>
-        <div className="div-buttons-forma-pagamento-finzalizar-pedido">
+        <div
+          className="div-buttons-forma-pagamento-finzalizar-pedido
+        btns-voltar-seguir-finalizar-compra"
+        >
           <Button
             text="Voltar"
             Icon={MdReply}
@@ -85,6 +88,7 @@ function EscolherFormaPagamento({ initialValues, onSubmit, handleBack }) {
             type="submit"
             text="Salvar"
             tooltip="Salvar endereço"
+            className="btn-continuar-finalizar-compra"
             Icon={MdSave}
           />
         </div>

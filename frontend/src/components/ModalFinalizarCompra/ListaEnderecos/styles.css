@@ -33,3 +33,29 @@ div.endereco-descritivo > span.cidade::before{
     background: #148acc !important;
     color: #FFF;
 }
+
+@media only screen and (max-width: 700px){
+    ul > li.item-lista-enderecos-finalizar-pedido{
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 8px 0;
+    }
+    div.endereco-descritivo {
+       display: flex;
+       flex-direction: row;
+       margin-top: 8px;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    div.endereco-descritivo {
+        margin-top: 4px;
+     }
+    li > span.endereco-apelido{
+        font-size: 1em;
+    }
+    .item-lista-enderecos-finalizar-pedido  > .endereco-descritivo{
+        font-family: Lato;
+        font-size: 0.8em;
+    }
+}
