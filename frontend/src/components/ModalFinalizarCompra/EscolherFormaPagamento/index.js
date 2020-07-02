@@ -70,17 +70,6 @@ function EscolherFormaPagamento({ initialValues, onSubmit, handleBack }) {
                 <span>Dinheiro</span>
               </label>
             </p>
-            <p>
-              <label htmlFor="pagamentoBoleto">
-                <Field
-                  name="formaPagamento"
-                  type="radio"
-                  value="boleto"
-                  id="pagamentoBoleto"
-                />
-                <span>Boleto</span>
-              </label>
-            </p>
           </div>
         </div>
         <div className="div-buttons-forma-pagamento-finzalizar-pedido">

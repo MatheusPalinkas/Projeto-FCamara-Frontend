@@ -32,10 +32,8 @@ span.span-card-title {
 .div-add-carrinho:hover, 
 .div-editar-produto:hover,
 .div-add-carrinho:focus, 
-.div-editar-produto:focus,
-.div-quantidade-carrinho:hover,
-.div-quantidade-carrinho:focus{
-    background: none;
+.div-editar-produto:focus{
+    background: fixed;
 } 
 
 .add-carrinho, 
@@ -48,6 +46,9 @@ span.span-card-title {
     border-radius: 50%;
     font-size: 1.77em;
     cursor: pointer;
+}
+.div-quantidade-carrinho{
+  font-size: 1em;
 }
 .div-quantidade-carrinho > p {
   font-size: .8em;

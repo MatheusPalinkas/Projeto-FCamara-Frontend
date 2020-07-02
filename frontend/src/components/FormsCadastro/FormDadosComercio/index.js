@@ -104,38 +104,6 @@ const FormDadosComercio = ({
               </div>
             </div>
           </div>
-          <div className="input-field inputs-possui-servico">
-            <label
-              htmlFor="possuiEntregas"
-              className="label-possui-servico-entregas"
-            >
-              Possui serviço de entregas
-            </label>
-            <div className="div-radios-form">
-              <p>
-                <label htmlFor="Sim">
-                  <Field
-                    name="possuiEntregas"
-                    type="radio"
-                    value="true"
-                    id="Sim"
-                  />
-                  <span>Sim </span>
-                </label>
-              </p>
-              <p>
-                <label htmlFor="Nao">
-                  <Field
-                    name="possuiEntregas"
-                    type="radio"
-                    value="false"
-                    id="Nao"
-                  />
-                  <span>Não</span>
-                </label>
-              </p>
-            </div>
-          </div>
           <div className="input-field">
             <div className="input-field ">
               <Field as="select" id="categoria" name="categoria">
@@ -187,17 +155,6 @@ const FormDadosComercio = ({
                     id="pagamentoDinheiro"
                   />
                   <span>Dinheiro</span>
-                </label>
-              </p>
-              <p>
-                <label htmlFor="pagamentoBoleto">
-                  <Field
-                    name="pagamentoBoleto"
-                    type="checkbox"
-                    value="pagamentoBoleto"
-                    id="pagamentoBoleto"
-                  />
-                  <span>Boleto</span>
                 </label>
               </p>
             </div>

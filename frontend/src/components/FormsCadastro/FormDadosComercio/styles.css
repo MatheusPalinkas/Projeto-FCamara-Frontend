@@ -18,10 +18,13 @@
     position: relative;
 }
 .div-formas-pagamento{
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-right: 0;
     max-width: none;
     margin-top: 16px;
+}
+.div-formas-pagamento > p{
+    margin-right: 24px;
 }
 .buttons-comercio{
     margin-top: 32px;
