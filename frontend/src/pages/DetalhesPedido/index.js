@@ -107,22 +107,41 @@ export default function DetalhesPedido() {
 
         <div className="dados-comercio detalhes-pedido-dados-produto">
           <h2>Dados do(s) produto(s)</h2>
-          <div className="dadosProdutos">
-            <label className="descricaoDado">Nome:</label>
-            <p>Celta amarelo</p>
-          </div>
-          <div className="dadosProdutos">
-            <label className="descricaoDado">Preço:</label>
-            <p>R$ 5,00</p>
-          </div>
-          <div className="dadosProdutos">
-            <label className="descricaoDado">Quantidade:</label>
-            <p>1</p>
-          </div>
-          <div className="dadosProdutos">
-            <label className="descricaoDado">Caracteristicas:</label>
-            <p>blablablabla</p>
-          </div>
+          <table>
+            <thead className="tableProdutosHead">
+              <tr>
+                <th>Nome:</th>
+                <th>Preço:</th>
+                <th>Quantidade:</th>
+                <th>Caracteristicas:</th>
+                <th>Valor total:</th>
+              </tr>
+            </thead>
+
+            <tbody className="tableProdutosBody">
+              <tr>
+                <td>Celta amarelo</td>
+                <td>R$ 5,00</td>
+                <td>1</td>
+                <td>blablabla</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Celta amarelo</td>
+                <td>R$ 5,00</td>
+                <td>1</td>
+                <td>blablabla</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>R$ 10,00</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
