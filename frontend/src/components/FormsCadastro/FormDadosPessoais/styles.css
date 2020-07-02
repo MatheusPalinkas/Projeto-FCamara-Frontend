@@ -16,3 +16,17 @@
     font-family: Lato;
     padding-top: 16px;
 }
+.input-file-upload-foto-cadastro{
+    width: 100%;
+}
+.input-file-upload-foto-cadastro > label.preview-imgaem-cadastrar{
+    height: 100%;
+    max-height: 200px;
+    min-height: 150px !important;
+    min-width: 100%;
+}
+.div-cadastro-upload-foto,
+.div-cadastro-upload-foto > *{
+    display: none;
+    width: 0;
+}

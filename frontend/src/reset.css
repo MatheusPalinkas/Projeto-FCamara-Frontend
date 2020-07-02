@@ -158,7 +158,29 @@ input[type=search]::-webkit-search-results-decoration {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-
+label#thumbnail {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 2px dashed #1D273B ;
+    background-size: cover;
+    cursor: pointer;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    min-height: 300px;
+} 
+label#thumbnail > svg{
+    height: fit-content !important;
+}
+label#thumbnail.previa-foto{
+    border: 0px;
+    background-position: center center;
+}
+label#thumbnail.previa-foto svg{
+    display: none;
+}
 input[type=search] {
     -webkit-appearance: none;
     -moz-appearance: none;

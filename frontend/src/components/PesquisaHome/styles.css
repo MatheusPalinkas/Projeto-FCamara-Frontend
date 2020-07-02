@@ -32,6 +32,11 @@
 .li-link-categoria:hover{
   text-decoration: underline;
 }
+.li-link-categoria > a {
+  color: #1D273B;
+  font-family: LatoBold;
+  font-size: 1em;
+}
 .formPesquisar > label {
   font-family: NunitoSansSemiBold;
 }
@@ -48,14 +53,16 @@ input[type="text"]:not(.browser-default) {
   margin-top: 10px;
 }
 
+@media only screen and (max-width: 600px){
+  .carrosel-categorias{
+    display: none;
+  }
+}
 @media only screen and (max-width: 760px){
   .formPesquisar, .carrosel-categorias{
     max-width: 90%;
   }
-  .carrosel-categorias{
-    overflow-x: auto;
-  }
   .containerPesquisar {
-    padding: 40px 0 24px 0;
+    padding: 40px 0 40px 0;
   }
 }

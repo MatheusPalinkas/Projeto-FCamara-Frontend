@@ -158,7 +158,7 @@ function NovoProduto() {
                         value="demanda"
                         id="demanda"
                       />
-                      <span>Demanda</span>
+                      <span>Por encomenda</span>
                     </label>
                   </p>
                 </div>
