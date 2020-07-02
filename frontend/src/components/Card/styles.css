@@ -116,3 +116,10 @@ span.span-card-title {
   font-family: Lato;
   margin-bottom: 16px;
 }
+
+.labelDisponivel {
+  font-family: Lato;
+  font-size: 1em;
+  color: #1d273b;
+  padding-top: 16px;
+}

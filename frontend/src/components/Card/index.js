@@ -116,7 +116,10 @@ const Card = ({
                 Pagina do comercio
               </Link>
             ) : (
-              <span className="link activator descricao">Ver descrição</span>
+              <>
+                <span className="link activator descricao">Ver descrição</span>
+                <label className="labelDisponivel">Disponivel</label>
+              </>
             )}
           </p>
         </div>
