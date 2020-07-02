@@ -60,6 +60,6 @@
     margin: 0;
   }
   .btns-situacao-pedido > .btn-fechar-modal-situacao-pedido{
-    margin-bottom: 16px;
+    margin-bottom: 16px !important;
   }
 }

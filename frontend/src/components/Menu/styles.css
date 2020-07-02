@@ -83,12 +83,17 @@
 .menu-vendedor{
   background-color: #636B7D;
 }
+ul.ul-menu-vendedor {
+  display: flex;
+  max-width: 1200px ;
+  margin:  0 auto;
+}
 .ul-menu-vendedor .tab{
   border-right: 1px solid #BFA79B;
   font-family: LatoBold;
   font-size: 1.77em;
   width: 100%;
-  max-width: calc(100vw / 3 - 5px);
+  flex: 1;
 }
 .ul-menu-vendedor .tab:last-child{
   border-right: 0px;

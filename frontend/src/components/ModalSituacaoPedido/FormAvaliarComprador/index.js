@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdReply, MdCheck } from "react-icons/md";
 import { Field, Form, Formik } from "formik";
 
 import Button from "../../Button";
 
 const FormAvaliarComprador = ({ initialValues, onSubmit }) => {
-  const [houveProblema, setHouveProblema] = useState(true);
-
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="form-pedido-entrega">
