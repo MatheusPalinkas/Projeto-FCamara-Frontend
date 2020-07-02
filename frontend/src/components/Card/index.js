@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 
 import { MdClose, MdEdit } from "react-icons/md";
 
-import { IoIosHeartDislike } from "react-icons/io";
-
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
 
 import ModalEstoque from "../../components/ModalEstoque";
 import ButtonAddCarrinho from "./ButtonAddCarrinho";
+import BtnFavoritar from "./BtnFavoritar";
 
 import "./styles.css";
 
@@ -34,16 +33,6 @@ const QuantidadeProduto = ({ quantidade }) => (
     data-tooltip="Quantidade comprada"
   >
     <p className="qtd-produto">{quantidade}</p>
-  </div>
-);
-
-const Curtido = () => (
-  <div
-    className="tooltipped div-add-carrinho"
-    data-position="top"
-    data-tooltip="Descurtir comercio"
-  >
-    <IoIosHeartDislike className="produtoCurtido" />
   </div>
 );
 
@@ -81,7 +70,7 @@ const Card = ({
           <span className="card-title span-card-title">
             {titulo}
             {curtido ? (
-              <Curtido />
+              <BtnFavoritar />
             ) : !!quantidade ? (
               <>
                 <QuantidadeProduto quantidade={quantidade} />

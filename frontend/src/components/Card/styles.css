@@ -19,38 +19,38 @@ span.span-card-title {
   font-family: NunitoSansSemiBold;
   margin-bottom: 0px !important;
 }
-.div-add-carrinho, 
+.div-add-carrinho,
 .div-editar-produto,
-.div-quantidade-carrinho{
-    border: 0;
-    background: none;
-    max-width: 50px;
-    max-height: 50px;
-    width: 100%;
-    height: 100%;
+.div-quantidade-carrinho {
+  border: 0;
+  background: none;
+  max-width: 50px;
+  max-height: 50px;
+  width: 100%;
+  height: 100%;
 }
-.div-add-carrinho:hover, 
+.div-add-carrinho:hover,
 .div-editar-produto:hover,
-.div-add-carrinho:focus, 
+.div-add-carrinho:focus,
 .div-editar-produto:focus,
 .div-quantidade-carrinho:hover,
-.div-quantidade-carrinho:focus{
-    background: none;
-} 
+.div-quantidade-carrinho:focus {
+  background: none;
+}
 
-.add-carrinho, 
-.icon-menos-infos, 
-.editar-produto, 
-.div-quantidade-carrinho{
-    background: #1D273B;
-    color: #FFF !important;
-    padding: 8px;
-    border-radius: 50%;
-    font-size: 1.77em;
-    cursor: pointer;
+.add-carrinho,
+.icon-menos-infos,
+.editar-produto,
+.div-quantidade-carrinho {
+  background: #1d273b;
+  color: #fff !important;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 1.77em;
+  cursor: pointer;
 }
 .div-quantidade-carrinho > p {
-  font-size: .8em;
+  font-size: 0.8em;
   text-align: center;
 }
 .produtoCurtido {
@@ -61,6 +61,13 @@ span.span-card-title {
   margin: -10px auto;
 }
 
+.produtoCurtido:focus-visible {
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 2em;
+  cursor: pointer;
+  margin: -10px auto;
+}
 
 .icon-menos-infos {
   background: none;
