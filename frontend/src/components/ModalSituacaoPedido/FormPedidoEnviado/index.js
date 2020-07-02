@@ -26,7 +26,6 @@ const FormPedidoEnviado = ({ initialValues, onSubmit }) => (
         <Button
           text="Sair"
           typeButton="secundaria"
-          submit="submit"
           className="modal-close btn-fechar-modal-situacao-pedido"
           Icon={MdReply}
           tooltip="Fechar"

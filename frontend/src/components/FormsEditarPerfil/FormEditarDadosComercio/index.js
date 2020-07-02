@@ -92,7 +92,7 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
               <Button
                 Icon={MdEdit}
                 className="btn-editar-endereco"
-                tooltip="Editar o endereço do meu comercio"
+                tooltip="Editar endereço"
                 text="Editar endereço do comercio"
                 dataTarget="modal4"
               />
