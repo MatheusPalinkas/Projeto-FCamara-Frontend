@@ -41,7 +41,7 @@ const Cadastro = () => {
             )}
           </Breadcrumb>
 
-          {etapa === 3 && (
+          {etapa === 0 && (
             <FormDadosPessoais
               handleSubmit={(values) => {
                 setDadosPessoais(values);
@@ -75,7 +75,7 @@ const Cadastro = () => {
             />
           )}
 
-          {etapa === 0 && (
+          {etapa === 3 && (
             <FormDadosComercio
               handleSubmit={(values) => {
                 setEndereco(values);

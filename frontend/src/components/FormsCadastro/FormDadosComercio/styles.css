@@ -36,11 +36,32 @@
   align-items: center;
 }
 
-.input-field > .formCnpj > .labelCnpj {
+.labelCnpj {
   font-family: NunitoSans;
   margin-right: 20px !important;
+  font-size: 1em;
+
+  color: #1d273b;
 }
 
 .input-field > .formCnpj > p {
   margin-right: 10px !important;
+}
+
+.divPssuiCnpj {
+  padding-bottom: 16px;
+}
+.divPssuiCnpj .div-radio {
+  padding: 8px 0;
+}
+.divPssuiCnpj .div-radio:first-of-type(p) {
+  border-right: 2px solid #f47c31;
+}
+.divPssuiCnpj > p {
+  font-size: 1em;
+
+  color: #1d273b;
+  text-align: center;
+  font-family: Lato;
+  padding-top: 16px;
 }

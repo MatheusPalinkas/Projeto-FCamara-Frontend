@@ -145,8 +145,8 @@ const FormDadosComercio = ({
                 component="span"
               />
             </div>
-            <label>Possui CNPJ?</label>
-            <div className="input-field div-tipo-user">
+            <label className="labelCnpj">Possui CNPJ?</label>
+            <div className="input-field divPssuiCnpj">
               <div className="div-radio">
                 <p>
                   <label htmlFor="sim">
@@ -183,7 +183,7 @@ const FormDadosComercio = ({
                 </div>
               ) : (
                 <p>
-                  Damos prioridade aos usuarios que possuem CNPJ, recomendamos
+                  Damos prioridade aos usuários que possuem CNPJ, recomendamos
                   que o tire em{" "}
                   <Link to="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConvenJuntaBH/InscCNPJOrientacoes.htm">
                     CNPJ
