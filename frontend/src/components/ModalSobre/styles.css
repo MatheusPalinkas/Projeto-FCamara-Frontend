@@ -1,0 +1,54 @@
+.containerSobreComercio {
+  width: 100% !important;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding: 0 0 40px 0;
+  max-width: 700px !important;
+  margin: 40px auto 0 auto;
+  text-align: left;
+}
+
+.containerSobreComercio {
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 960px;
+}
+.containerSobreComercio > div > h2 {
+  font-family: NunitoSansSemiBold;
+  font-size: 2.33em;
+  color: #148acc;
+}
+.containerSobreComercio > div {
+  border-bottom: 2px solid #148acc;
+}
+
+.dadosComprador,
+.dadosComercio {
+  padding: 0;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.dadosComprador label,
+.dadosComercio label {
+  font-size: 1.33em;
+  padding: 0;
+  padding-right: 10px;
+}
+.dadosComprador p,
+.dadosComercio p {
+  font-size: 1em;
+}
+
+.dados-comercio > .h2Endereco {
+  padding-top: 30px;
+}
+
+.btnVoltarSobre {
+  margin-top: 30px;
+  align-self: flex-end;
+}
