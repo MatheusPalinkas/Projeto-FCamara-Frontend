@@ -107,7 +107,7 @@ export default function DetalhesPedido() {
 
         <div className="dados-comercio detalhes-pedido-dados-produto">
           <h2>Dados do(s) produto(s)</h2>
-          <table>
+          <table className="responsive-table">
             <thead className="tableProdutosHead">
               <tr>
                 <th>Nome:</th>

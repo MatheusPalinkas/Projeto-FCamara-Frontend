@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { MdReply, MdFavorite } from "react-icons/md";
+import { MdReply, MdFavorite, MdLibraryBooks } from "react-icons/md";
 import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
 import api from "../../services/Api";
 
 import Card from "../../components/Card";
 import Button from "../../components/Button";
+
+import ModalSobre from "../../components/ModalSobre";
 
 import "./styles.css";
 
@@ -111,66 +113,20 @@ const ProdutosComercio = ({ user }) => {
         ))}
       </div>
 
-      <div className="containerSobreComercio">
-        <div className="dados-comercio">
-          <h2>Sobre o comercio</h2>
-          <div className="dadosComprador">
-            <label className="descricaoDado">Nome:</label>
-            <p>Jose</p>
-          </div>
-
-          <div className="dadosComprador">
-            <label className="descricaoDado">CPF/CNPJ:</label>
-            <p>999.999.999-99</p>
-          </div>
-          <div className="dadosComprador">
-            <label className="descricaoDado">
-              Formas de pagamentos aceitos:
-            </label>
-            <p>cartão e dinheiro</p>
-          </div>
-          <div className="dadosComprador">
-            <label className="descricaoDado">Numero:</label>
-            <p>99999-9999</p>
-          </div>
-          <div className="dadosComprador">
-            <label className="descricaoDado">email:</label>
-            <p>Jose@teste.com</p>
-          </div>
-        </div>
-
-        <div className="dados-comercio">
-          <h2>Endereço</h2>
-          <div className="dadosComercio">
-            <label className="descricaoDado">CEP:</label>
-            <p>99999-999</p>
-          </div>
-          <div className="dadosComercio">
-            <label className="descricaoDado">Cidade:</label>
-            <p>Santos</p>
-          </div>
-          <div className="dadosComercio">
-            <label className="descricaoDado">Logradouro:</label>
-            <p>Rua sei la</p>
-          </div>
-          <div className="dadosComercio">
-            <label className="descricaoDado">Complemento:</label>
-            <p></p>
-          </div>
-          <div className="dadosComercio">
-            <label className="descricaoDado">UF:</label>
-            <p>SP</p>
-          </div>
-          <div className="dadosComercio">
-            <label className="descricaoDado">Bairo:</label>
-            <p>logo ali</p>
-          </div>
-          <div className="dadosComercio">
-            <label className="descricaoDado">N°:</label>
-            <p>999</p>
-          </div>
-        </div>
+      <div className="containerBtnSobre">
+        <Button
+          submit="submit"
+          tooltip="Sobre o comercio"
+          Icon={MdLibraryBooks}
+          text="Sobre"
+          position="right"
+          className="modal-trigger "
+          tipo="Button"
+          dataTarget="modal5"
+        />
       </div>
+
+      <ModalSobre />
     </>
   );
 };

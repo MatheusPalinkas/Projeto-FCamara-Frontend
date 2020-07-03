@@ -13,6 +13,11 @@
   max-width: 700px;
 }
 
+.sobre {
+  width: auto;
+  max-width: 900px;
+}
+
 .head {
   float: right;
   margin: 15px;

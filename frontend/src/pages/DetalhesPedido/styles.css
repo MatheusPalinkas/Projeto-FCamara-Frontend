@@ -124,3 +124,23 @@
   font-family: Lato;
   font-size: 1.33;
 }
+
+@media only screen and (max-width: 400px) {
+  .containerDadosPedido {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .containerDadosPedido > div > h2 {
+    font-family: NunitoSansSemiBold;
+    font-size: 2.33em;
+    color: #148acc;
+  }
+  .containerDadosPedido > div {
+    border-bottom: 2px solid #148acc;
+    max-width: 300px;
+  }
+
+  .tableProdutosHead > tr > th {
+    font-size: 0.7em;
+  }
+}

@@ -50,6 +50,7 @@
 .descricaoDado {
   font-family: LatoBold;
   color: #1d273b;
+  margin-left: 25px;
 }
 
 .container-comercios {
@@ -86,9 +87,12 @@
 }
 
 .containerStatus {
+  width: auto;
+  max-width: 600px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
 .dadosCompradorTotal {
@@ -106,4 +110,36 @@
 }
 .dadosCompradorTotal p {
   font-size: 1.33em;
+}
+
+.btnVoltarpedido {
+  margin-right: 25px;
+}
+
+@media only screen and (max-width: 400px) {
+  .containerStatus {
+    width: auto;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-bottom: 30px;
+  }
+  .statusPedido {
+    padding: 0;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: baseline;
+  }
+  .statusPedido label {
+    font-size: 1.33em;
+    padding: 0;
+    padding-right: 5px;
+    font-weight: bolder;
+  }
+  .statusPedido p {
+    font-size: 1.33em;
+    color: red;
+  }
 }
