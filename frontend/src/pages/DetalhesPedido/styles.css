@@ -140,4 +140,8 @@
     border-bottom: 2px solid #148acc;
     max-width: 300px;
   }
+
+  .tableProdutosHead > tr > th {
+    font-size: 0.7em;
+  }
 }
