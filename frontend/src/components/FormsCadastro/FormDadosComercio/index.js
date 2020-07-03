@@ -107,23 +107,27 @@ const FormDadosComercio = ({
                     component="span"
                   />
                 </div>
-                <div className="input-field lbl-ate">Até</div>
-                <div className="input-field">
-                  <Field name="horaFechamento">
-                    {({ field }) => (
-                      <MaskInput
-                        {...field}
-                        type="text"
-                        id="horaFechamento"
-                        mask={hoursNumberMask}
-                      />
-                    )}
-                  </Field>
-                  <ErrorMessage
-                    className="helper-text"
-                    name="horaFechamento"
-                    component="span"
-                  />
+
+                <div className="input-field lbl-ate">
+                  <label className="label-hora">Até</label>
+
+                  <div className="input-field">
+                    <Field name="horaFechamento">
+                      {({ field }) => (
+                        <MaskInput
+                          {...field}
+                          type="text"
+                          id="horaFechamento"
+                          mask={hoursNumberMask}
+                        />
+                      )}
+                    </Field>
+                    <ErrorMessage
+                      className="helper-text"
+                      name="horaFechamento"
+                      component="span"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

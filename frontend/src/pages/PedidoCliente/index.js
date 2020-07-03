@@ -51,6 +51,7 @@ export default function PedidoCliente() {
         </div>
 
         <Button
+          className="btnVoltarpedido"
           text="VOLTAR"
           typeButton="secundaria"
           Icon={MdReply}

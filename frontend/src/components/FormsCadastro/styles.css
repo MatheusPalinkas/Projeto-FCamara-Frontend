@@ -1,39 +1,42 @@
+.div-radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.form-submit {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+.div-buttons-form,
+.div-radios-form {
+  display: flex;
+  justify-content: space-between;
+}
+.div-buttons-form {
+  margin-top: 48px;
+}
+.form-dados-cadastro {
+  max-width: 400px;
 
-.div-radio{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  margin: 40px auto;
 }
-.form-submit{
-    margin-top: 24px;
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-}
-.div-buttons-form, .div-radios-form{
-    display: flex;
-    justify-content: space-between;
-}
-.div-buttons-form{
-    margin-top: 48px;
-}
-.form-dados-cadastro{
+
+@media only screen and (max-width: 400px) {
+  .form-dados-cadastro {
     max-width: 400px;
-
-    margin: 40px auto;
+    margin: 136px auto 40px auto;
+  }
+  .div-form-cadastro-espaco-top {
+    margin-top: 140px !important;
+  }
+  .div-buttons-form > Button {
+    margin-top: 16px;
+  }
 }
-
-@media only screen and (max-width: 400px){
-    .form-dados-cadastro{
-        max-width: 400px;
-        margin: 136px auto 40px auto;
-    }
-    .div-form-cadastro-espaco-top{
-        margin-top: 140px !important;
-    }
-}
-@media only screen and (max-width: 850px){
-    .form-dados-cadastro{   
-        margin: 64px auto 40px auto;
-    }
+@media only screen and (max-width: 850px) {
+  .form-dados-cadastro {
+    margin: 64px auto 40px auto;
+  }
 }
