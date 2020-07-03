@@ -1,11 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import api from "../../services/Api";
-import "./styles.css";
-import Card from "../../components/Card";
+
 import PesquisaHome from "../../components/PesquisaHome";
+import Card from "../../components/Card";
+
+import "./styles.css";
+
+const Pagination = ({ page, totalPages, setPage }) => {
+  let linkPages = [];
+
+  for (let i = 0; i < totalPages; i++) {
+    linkPages.push(
+      <li className={`${page === i ? "active" : "waves-effect"}`} key={i}>
+        <span className="link" onClick={() => setPage(i)}>
+          {i + 1}
+        </span>
+      </li>
+    );
+  }
+  return (
+    <ul className="pagination">
+      <li
+        className={` ${page === 0 ? "disabled" : "waves-effect"}`}
+        onClick={() => {
+          if (page === 0) return;
+          setPage(page - 1);
+        }}
+      >
+        <span>
+          <MdChevronLeft size={32} />
+        </span>
+      </li>
+
+      {linkPages}
+      <li
+        className={` ${page + 1 === totalPages ? "disabled" : "waves-effect"}`}
+        onClick={() => {
+          alert(page);
+          if (page + 1 === totalPages) return;
+          setPage(page + 1);
+        }}
+      >
+        <span>
+          <MdChevronRight size={32} />
+        </span>
+      </li>
+    </ul>
+  );
+};
 
 function Main() {
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(0);
   const [comercios, setComercios] = useState([]);
   const [nomeFiltro, setNomeFiltro] = useState("");
   const { idCategoria } = useParams();
@@ -13,13 +61,17 @@ function Main() {
   useEffect(() => {
     (async function () {
       let filtro = "";
-      if (idCategoria) filtro = `?idCategoria=${idCategoria}`;
-      if (nomeFiltro) filtro = `?nome=${nomeFiltro}`;
+      if (idCategoria) filtro = `&idCategoria=${idCategoria}&`;
+      if (nomeFiltro) filtro = `&nome=${nomeFiltro}&`;
 
-      const { data } = await api.get(`/comercio${filtro}`);
+      const { data } = await api.get(
+        `/comercio?number=${page}&size=10${filtro}`
+      );
+      setTotalPages(data.totalPages);
+      setPage(data.pageable.pageNumber);
       setComercios(data.content);
     })();
-  }, [idCategoria, nomeFiltro]);
+  }, [idCategoria, nomeFiltro, totalPages, page]);
 
   return (
     <>
@@ -34,14 +86,19 @@ function Main() {
         handleChangeFilter={(e) => setNomeFiltro(e.target.value)}
       />
       <div className="container-comercios">
-        {comercios.map((comercio) => (
-          <Card
-            key={comercio.id}
-            titulo={comercio.nome}
-            url={comercio.url}
-            idComercio={comercio.id}
-          />
-        ))}
+        {comercios.map((comercio) => {
+          return (
+            <Card
+              key={comercio.id}
+              titulo={comercio.nome}
+              url={comercio.urlFoto}
+              idComercio={comercio.id}
+            />
+          );
+        })}
+      </div>
+      <div className="div-paginacao">
+        <Pagination setPage={setPage} page={page} totalPages={totalPages} />
       </div>
     </>
   );

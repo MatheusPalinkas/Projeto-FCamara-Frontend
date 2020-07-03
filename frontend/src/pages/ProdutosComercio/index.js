@@ -29,13 +29,15 @@ const ProdutosComercio = ({ user }) => {
         : "";
 
       const [dataProdutos, dataCategorias] = await Promise.all([
-        api.get(`/produtos?idComercio=${idComercio}${urlFiltro}`),
-        api.get("/categorias"),
+        api.get(`/produto/comercio/${idComercio}`),
+        api.get("/categoria"),
       ]);
 
       setCategorias(dataCategorias.data);
-      setProdutos(dataProdutos.data);
+      setProdutos(dataProdutos.data.content);
 
+      console.log("[categorias]", categorias);
+      console.log("[produtos]", dataProdutos);
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
     })();
