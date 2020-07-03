@@ -1,0 +1,22 @@
+.form-endereco-finalizar-pedido {
+    max-width: 400px;
+    margin: 40px auto;
+}
+.inputs-mesma-linha{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.inputs-mesma-linha > div.input-field{
+width: 100%;
+}
+.input-uf, .input-numero{
+    margin-left: 16px;
+    max-width: 100px;
+}
+
+@media only screen and (max-width: 400px){
+    .btnSalvarEnderecoFinalizarCompra{
+        margin-top: 16px;
+    }
+}

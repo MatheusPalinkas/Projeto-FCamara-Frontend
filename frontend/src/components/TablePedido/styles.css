@@ -1,8 +1,9 @@
-.cabecalho-table{
-  font-family: NunitoSansSemiBold;
-  font-size: 1.33em;
+.cabecalho-table {
+  font-family: NunitoSansBold;
+  font-size: 1.11em;
+  font-weight: bold;
 }
-.linha-pedido{
+.linha-pedido {
   font-size: 1em;
   font-family: Lato;
   line-height: 1.77em;

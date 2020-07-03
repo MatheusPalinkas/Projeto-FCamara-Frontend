@@ -30,7 +30,7 @@ export default function ProdutosVendedor() {
           <Button
             tipo="Link"
             to={`/novo/produto/${idComercio}`}
-            text="Cadastra novo produto"
+            text="Novo produto"
             tooltip="Cadastre um novo produto"
           />
         </div>

@@ -1,5 +1,5 @@
-.containerBtnPedido, 
-.containerBtnDecisao, 
+.containerBtnPedido,
+.containerBtnDecisao,
 .containerDadosPedido {
   width: 100% !important;
   margin: 0 auto;
@@ -12,16 +12,17 @@
   max-width: 1200px;
   margin: 40px auto 0 auto;
 }
-.containerBtnPedido{
+.containerBtnPedido {
   padding-bottom: 32px;
 }
-.containerBtnDecisao{
+.containerBtnDecisao {
   margin-top: 24px;
 }
-.btns-decisao{
+.btns-decisao {
   margin-left: auto;
+  display: flex;
 }
-.btns-decisao > *{ 
+.btns-decisao > * {
   margin-left: 24px;
 }
 .containerDadosPedido {
@@ -56,39 +57,41 @@
 .dadosComprador p,
 .dadosProdutos p,
 .dadosComercio p {
-   font-size: 1em;
+  font-size: 1em;
 }
 .descricaoDado {
   font-family: LatoBold;
-  color: #1D273B;
+  color: #1d273b;
+}
+.detalhes-pedido-dados-produto {
+  margin-bottom: 32px;
 }
 
-
 @media only screen and (max-width: 1250px) {
-  .containerBtnPedido, 
-  .containerBtnDecisao, 
+  .containerBtnPedido,
+  .containerBtnDecisao,
   .containerDadosPedido {
     max-width: 800px;
   }
 }
 @media only screen and (max-width: 850px) {
-  .containerBtnPedido, 
-  .containerBtnDecisao, 
+  .containerBtnPedido,
+  .containerBtnDecisao,
   .containerDadosPedido {
     max-width: 500px;
   }
 }
 @media only screen and (max-width: 540px) {
-  .containerBtnPedido, 
-  .containerBtnDecisao, 
+  .containerBtnPedido,
+  .containerBtnDecisao,
   .containerDadosPedido {
     padding: 0 24px;
   }
   .containerBtnPedido,
-  .btns-decisao{
+  .btns-decisao {
     flex-direction: column-reverse;
   }
-  .btns-decisao{
+  .btns-decisao {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -96,8 +99,9 @@
     width: 100%;
   }
   .containerBtnPedido > *,
-  .btns-decisao > *{
+  .btns-decisao > * {
     margin: 0;
+    margin-left: auto;
     margin-top: 24px;
   }
   .containerDadosPedido > div > h2 {
@@ -107,5 +111,36 @@
   .dadosProdutos label,
   .dadosComercio label {
     font-size: 1em;
+  }
+}
+
+.tableProdutosHead {
+  font-family: NunitoSans;
+  font-weight: bold;
+  font-size: 1.77em;
+}
+
+.tableProdutosBody {
+  font-family: Lato;
+  font-size: 1.33;
+}
+
+@media only screen and (max-width: 400px) {
+  .containerDadosPedido {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .containerDadosPedido > div > h2 {
+    font-family: NunitoSansSemiBold;
+    font-size: 2.33em;
+    color: #148acc;
+  }
+  .containerDadosPedido > div {
+    border-bottom: 2px solid #148acc;
+    max-width: 300px;
+  }
+
+  .tableProdutosHead > tr > th {
+    font-size: 0.7em;
   }
 }

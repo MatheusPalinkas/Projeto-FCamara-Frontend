@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { MdReply, MdKeyboardArrowRight } from "react-icons/md";
+import { MdReply } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import * as yup from "yup";
@@ -72,15 +72,16 @@ const FormDadosConta = ({ initialValues, handleSubmit, handleBackStage }) => {
               onClick={handleBackStage}
               text="Voltar"
               tipo="Link"
+              typeButton="secundaria"
               tooltip="Voltar para etapa anterior"
               Icon={MdReply}
             />
             <Button
               onClick={() => {}}
               submit="submit"
-              text="Proximo"
+              text="Próximo"
+              position="bottom"
               tooltip="Continuar cadastro"
-              Icon={MdKeyboardArrowRight}
             />
           </div>
         </div>

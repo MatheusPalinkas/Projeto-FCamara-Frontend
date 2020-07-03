@@ -24,7 +24,7 @@ const Cadastro = () => {
     <div className="row container-cadastro">
       <div className="s12 div-form">
         <div className="card-panel">
-          <Breadcrumb className="rastro-pao">
+          <Breadcrumb className="rastro-pao-cadastro">
             <Link className={`breadcrumb ${etapa === 0 && "ativo"}`}>
               Dados pessoais
             </Link>

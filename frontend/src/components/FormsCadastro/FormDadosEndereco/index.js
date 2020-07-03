@@ -14,7 +14,7 @@ import "./styles.css";
 const validates = yup.object().shape({
   cep: yup
     .string()
-    .length(9, "O CEP deve ter 8 caracteres")
+    .min(8, "O CEP deve ter 8 caracteres")
     .required("O CEP é obrigadotio"),
   cidade: yup.string().required("A cidade não deve ser vazia"),
   uf: yup
@@ -113,10 +113,11 @@ const FormDadosEndereco = ({
               tipo="Link"
               onClick={handleBackStage}
               text="Voltar"
+              typeButton="secundaria"
               Icon={MdReply}
             />
             {vendedor === true ? (
-              <Button submit="submit" text="Proximo" Icon={MdSave} />
+              <Button submit="submit" text="Próximo" />
             ) : (
               <Button
                 submit="submit"

@@ -1,0 +1,15 @@
+.containerBtnVoltar {
+  width: auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 30px auto;
+}
+
+@media only screen and (max-width: 1200px){
+  .containerBtnVoltar {
+    margin: 30px 0;
+    padding: 0 24px;
+  }  
+}

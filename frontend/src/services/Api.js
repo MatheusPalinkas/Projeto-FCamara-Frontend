@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const baseURL = `https://projeto-fcamara.herokuapp.com`;
+
 const api = axios.create({
-  baseURL: "http://projeto-fcamara.herokuapp.com",
+  baseURL: baseURL,
 });
 
 export default api;

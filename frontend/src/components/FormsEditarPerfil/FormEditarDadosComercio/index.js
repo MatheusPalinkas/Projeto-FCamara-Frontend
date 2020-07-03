@@ -89,6 +89,15 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                   component="span"
                 />
               </div>
+              <Button
+                Icon={MdEdit}
+                className="btn-editar-endereco"
+                tooltip="Editar o endereço do meu comercio"
+                text="Editar endereço"
+                dataTarget="modal4"
+              />
+            </div>
+            <div className="inputs-editaveis">
               <div className="input-field">
                 <label htmlFor="cnpj">CNPJ</label>
                 <Field name="cnpj" type="text" id="cnpj" />
@@ -98,15 +107,6 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                   component="span"
                 />
               </div>
-              <Button
-                Icon={MdEdit}
-                className="btn-editar-endereco"
-                tooltip="Editar o endereço do meu comercio"
-                text="Editar endereço do comercio"
-                dataTarget="modal4"
-              />
-            </div>
-            <div className="inputs-editaveis">
               <div className="input-field">
                 <label className="label-hora">Horario de funcionamento</label>
                 <div className="div-buttons-form hr-funcionamento">
@@ -147,43 +147,12 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                   </div>
                 </div>
               </div>
-              <div className="input-field inputs-possui-servico">
-                <label
-                  htmlFor="possuiEntregas"
-                  className="label-possui-servico-entregas"
-                >
-                  Possui serviço de entregas
-                </label>
-                <div className="div-radios-form">
-                  <p>
-                    <label htmlFor="Sim">
-                      <Field
-                        name="possuiEntregas"
-                        type="radio"
-                        value="true"
-                        id="Sim"
-                      />
-                      <span>Sim </span>
-                    </label>
-                  </p>
-                  <p>
-                    <label htmlFor="Nao">
-                      <Field
-                        name="possuiEntregas"
-                        type="radio"
-                        value="false"
-                        id="Nao"
-                      />
-                      <span>Não</span>
-                    </label>
-                  </p>
-                </div>
-              </div>
+
               <div className="input-field inputs-formas-pagamento">
                 <label className="label-formas-pagamento">
                   Quais formas de pagamento vc aceita
                 </label>
-                <div className="div-radios-form div-formas-pagamento">
+                <div className="div-radios-form div-formas-pagamento div-formas-pagamento-editar-perfil">
                   <p>
                     <label htmlFor="pagamentoCartao">
                       <Field
@@ -204,17 +173,6 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
                         id="pagamentoDinheiro"
                       />
                       <span>Dinheiro</span>
-                    </label>
-                  </p>
-                  <p>
-                    <label htmlFor="pagamentoBoleto">
-                      <Field
-                        name="pagamentoBoleto"
-                        type="checkbox"
-                        value="pagamentoBoleto"
-                        id="pagamentoBoleto"
-                      />
-                      <span>Boleto</span>
                     </label>
                   </p>
                 </div>

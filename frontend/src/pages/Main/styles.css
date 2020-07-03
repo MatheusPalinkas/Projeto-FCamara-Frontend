@@ -54,7 +54,7 @@
     max-width: 900px;
     margin: 0 auto;
     color: #FFF;
-    padding: 80px 0;
+    padding: 64px 16px 40px 16px;
 }
 .referencia-foto{
     color: #d9c4ba;
@@ -88,7 +88,7 @@
     }
     .titulo-main{ 
         font-size: 2.369em;
-      
+        padding: 64px 16px 8px 16px;
     }
-    
+
 }

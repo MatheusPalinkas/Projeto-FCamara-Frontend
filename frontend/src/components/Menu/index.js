@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { FiLogIn } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { MdMenu, MdShoppingBasket, MdPermIdentity } from "react-icons/md";
+import { MdPermIdentity, MdMenu } from "react-icons/md";
 
 import ModalLogin from "../../components/ModalLogin";
+import MenuVendedor from "./MenuVendedor";
+import MenuCliente from "./MenuCliente";
+import BtnCarrinho from "./BtnCarrinho";
 import SideBar from "../SideBar";
 import Button from "../Button";
 
@@ -23,23 +25,7 @@ const PhotoUserLogged = ({ url }) => {
   );
 };
 
-const MenuVendedor = ({ idComercio }) => (
-  <div className="nav-content menu-vendedor">
-    <ul className="tabs  tabs-transparent ul-menu-vendedor">
-      <li className="tab">
-        <Link to={`/produto/vendedor/${idComercio}`}>Meus Produtos</Link>
-      </li>
-      <li className="tab">
-        <Link to={`/pedidos/vendedor/${idComercio}`}>Meus Pedidos</Link>
-      </li>
-      <li className="tab">
-        <Link to={"/editar/conta"}>Minha conta</Link>
-      </li>
-    </ul>
-  </div>
-);
-
-const Menu = ({ user = {} }) => {
+const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
   useEffect(() => {
     (async function () {
       const elem = document.querySelectorAll(".tooltipped");
@@ -64,37 +50,41 @@ const Menu = ({ user = {} }) => {
                 <MdMenu />
               </div>
             </li>
+            <li>
+              <div
+                className="tooltipped btn-logo-pagina-inicial "
+                data-position="bottom"
+                data-tooltip="Pagina inicial"
+              >
+                <Link to="/">Logo</Link>
+              </div>
+            </li>
           </ul>
-          <div className="brand-logo">Logo</div>
 
           <ul className="right ">
             <li>
-              <div
-                className="tooltipped btn-meu-carrinho"
-                data-position="left"
-                data-tooltip="Meu carrinho"
-              >
-                <MdShoppingBasket />
-              </div>
+              <BtnCarrinho />
             </li>
             <li>
               {user.id ? (
                 <PhotoUserLogged url={user.url} />
               ) : (
                 <Button
-                  Icon={FiLogIn}
                   tipo="Button"
                   position="bottom"
                   tooltip="Entrar na minha conta"
                   className="btn-entrar-conta"
                   dataTarget="modal1"
+                  id="btn-login-entrar"
                 />
               )}
             </li>
           </ul>
         </div>
-        {user.comercio && (
+        {!!user.comercio ? (
           <MenuVendedor idComercio={user.comercio.idComercio} />
+        ) : (
+          user.id && <MenuCliente id={user.id} />
         )}
         <SideBar />
       </nav>
@@ -103,6 +93,8 @@ const Menu = ({ user = {} }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ user: state.user });
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
 
 export default connect(mapStateToProps)(Menu);

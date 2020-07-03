@@ -16,6 +16,7 @@ export default function Button({
   dataTarget = "",
   to = "",
   submit = "",
+  id,
 }) {
   useEffect(() => {
     (async function () {
@@ -49,6 +50,7 @@ export default function Button({
         data-tooltip={`${tooltip}`}
         data-target={dataTarget}
         onClick={onClick}
+        id={id}
       >
         <span className="text-align-btn">
           <div className="icon">
@@ -66,6 +68,7 @@ export default function Button({
         data-tooltip={`${tooltip}`}
         onClick={onClick}
         to={to}
+        id={id}
       >
         <span className="text-align-btn">
           <div className="icon">

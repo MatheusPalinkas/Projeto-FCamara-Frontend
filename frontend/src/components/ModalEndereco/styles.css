@@ -24,3 +24,13 @@
   margin-left: 16px;
   max-width: 100px;
 }
+
+@media only screen and (max-width: 400px) {
+  .div-buttons-form {
+    flex-direction: column;
+  }
+
+  .div-buttons-form > .btnSalvarEndereco {
+    margin-top: 16px !important;
+  }
+}

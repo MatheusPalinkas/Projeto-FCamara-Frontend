@@ -1,0 +1,61 @@
+.btns-escolher-enderecos{
+    display: flex;
+    justify-content: space-between;
+}
+ul.lista-enderecos-finalizar-pedido{
+    margin: 32px 0;
+}
+ul > li.item-lista-enderecos-finalizar-pedido{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+li > span.endereco-apelido{
+    text-align: left;
+    font-family: NunitoSansSemiBold;
+    font-size: 1.33em;
+}
+.item-lista-enderecos-finalizar-pedido  > .endereco-descritivo{
+    font-family: Lato;
+    font-size: 1em;
+}
+div.endereco-descritivo > span{
+    margin-right: 8px;
+} 
+
+div.endereco-descritivo > span.rua::after{
+    content: ',';
+}
+div.endereco-descritivo > span.cidade::before{
+    content: ' - ';
+}
+.item-lista-enderecos-finalizar-pedido.ativo{
+    background: #148acc !important;
+    color: #FFF;
+}
+
+@media only screen and (max-width: 700px){
+    ul > li.item-lista-enderecos-finalizar-pedido{
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 8px 0;
+    }
+    div.endereco-descritivo {
+       display: flex;
+       flex-direction: row;
+       margin-top: 8px;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    div.endereco-descritivo {
+        margin-top: 4px;
+     }
+    li > span.endereco-apelido{
+        font-size: 1em;
+    }
+    .item-lista-enderecos-finalizar-pedido  > .endereco-descritivo{
+        font-family: Lato;
+        font-size: 0.8em;
+    }
+}

@@ -1,0 +1,145 @@
+.containerBtnPedidoCliente {
+  width: auto !important;
+  max-width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.containerBtnPedidoClienteCancelar {
+  width: auto !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 8px;
+  padding-left: 45px;
+}
+.containerdadosComprador {
+  margin: 0 24px;
+}
+.containerdadosComprador > .container-comercios {
+  padding: 0;
+}
+@media only screen and (max-width: 1200px) {
+  .containerBtnPedidoCliente {
+    margin: 50px 24px;
+  }
+}
+
+.statusPedido {
+  padding: 0;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: baseline;
+}
+
+.statusPedido label {
+  font-size: 1.777em;
+  padding: 0;
+  padding-right: 10px;
+  font-weight: bolder;
+}
+.statusPedido p {
+  font-size: 1.777em;
+  color: red;
+}
+.descricaoDado {
+  font-family: LatoBold;
+  color: #1d273b;
+  margin-left: 25px;
+}
+
+.container-comercios {
+  padding-top: 0;
+  margin-top: 32px;
+}
+
+.containerDadosPedidoCliente {
+  width: 100% !important;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding: 0 0 40px 0;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+}
+
+.containerDadosPedidoCliente {
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 1200px;
+}
+.containerDadosPedidoCliente > div > h2 {
+  font-family: NunitoSansSemiBold;
+  font-size: 2.33em;
+  color: #148acc;
+}
+.containerDadosPedidoCliente > div {
+  border-bottom: 2px solid #148acc;
+  padding-bottom: 15px;
+}
+
+.containerStatus {
+  width: auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.dadosCompradorTotal {
+  padding: 0;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.dadosCompradorTotal label {
+  font-size: 1.77em;
+  padding: 0;
+  padding-right: 10px;
+}
+.dadosCompradorTotal p {
+  font-size: 1.33em;
+}
+
+.btnVoltarpedido {
+  margin-right: 25px;
+}
+
+@media only screen and (max-width: 400px) {
+  .containerStatus {
+    width: auto;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-bottom: 30px;
+  }
+  .statusPedido {
+    padding: 0;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: baseline;
+  }
+  .statusPedido label {
+    font-size: 1.33em;
+    padding: 0;
+    padding-right: 5px;
+    font-weight: bolder;
+  }
+  .statusPedido p {
+    font-size: 1.33em;
+    color: red;
+  }
+}

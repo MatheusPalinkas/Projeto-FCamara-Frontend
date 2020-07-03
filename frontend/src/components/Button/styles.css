@@ -1,16 +1,19 @@
-.button {
+a.button,
+button.button {
   border-radius: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: LatoBold;
-  font-size: 1.33em;
 }
-.text-align-btn {
+
+button.button > .text-align-btn,
+a.button > .text-align-btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  font-family: LatoBold;
+  font-size: 1.33em;
 }
 .icon {
   margin-right: 2px;

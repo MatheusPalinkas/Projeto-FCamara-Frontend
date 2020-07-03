@@ -1,0 +1,23 @@
+.table-enderecos{
+    margin: 40px 0 60px 0;
+}
+.cabecalho-table-enderecos{
+    font-family: NunitoSansSemiBold;
+    font-size: 1.33em;
+}
+.col-editar-endereco{
+    max-width: 35px !important;
+}
+.col-endereco{
+    max-width: 50px !important;
+}
+.div-add-novo-endereco{
+    display: flex;
+    justify-content: flex-end;
+}
+@media only screen and (max-width: 1000px){
+    .col-editar-endereco,
+    .col-endereco{
+        max-width: none;
+    }   
+}

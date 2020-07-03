@@ -1,28 +1,73 @@
-.hr-funcionamento > .input-field{
-    max-width: 45%;
+.hr-funcionamento > .input-field {
+  max-width: 45%;
 }
-.label-hora{
-    top: -10px !important;
+.label-hora {
+  top: -10px !important;
 }
-.hr-funcionamento >.lbl-ate{
-    margin-top: auto;
-    margin-bottom: 32px;
+.hr-funcionamento > .lbl-ate {
+  margin-top: auto;
+  margin-bottom: 32px;
 }
-.div-radios-form{
-    max-width: 200px;
-    margin-right: auto;
-    margin-top: 16px;
+.div-radios-form {
+  max-width: 200px;
+  margin-right: auto;
+  margin-top: 16px;
 }
 .inputs-possui-servico > label.label-possui-servico-entregas,
-.inputs-formas-pagamento > label.label-formas-pagamento{
-    position: relative;
+.inputs-formas-pagamento > label.label-formas-pagamento {
+  position: relative;
 }
-.div-formas-pagamento{
-    justify-content: space-between;
-    margin-right: 0;
-    max-width: none;
-    margin-top: 16px;
+.div-formas-pagamento {
+  justify-content: flex-start;
+  margin-right: 0;
+  max-width: none;
+  margin-top: 16px;
 }
-.buttons-comercio{
-    margin-top: 32px;
+.div-formas-pagamento > p {
+  margin-right: 24px;
+}
+.buttons-comercio {
+  margin-top: 32px;
+}
+
+.input-field > .formCnpj {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.labelCnpj {
+  font-family: NunitoSans;
+  margin-right: 20px !important;
+  font-size: 1em;
+
+  color: #1d273b;
+}
+
+.input-field > .formCnpj > p {
+  margin-right: 10px !important;
+}
+
+.divPssuiCnpj {
+  padding-bottom: 16px;
+}
+.divPssuiCnpj .div-radio {
+  padding: 8px 0;
+}
+.divPssuiCnpj .div-radio:first-of-type(p) {
+  border-right: 2px solid #f47c31;
+}
+.divPssuiCnpj > p {
+  font-size: 1em;
+
+  color: #1d273b;
+  text-align: center;
+  font-family: Lato;
+  padding-top: 16px;
+}
+
+@media only screen and (max-width: 400px) {
+  .hr-funcionamento > .input-field {
+    max-width: 100%;
+  }
 }

@@ -52,7 +52,6 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
                 position="bottom"
                 tooltip="Salvar alteraçoes"
                 type="submit"
-                typeButton="secundaria"
                 submit="submit"
                 text="SALVAR"
                 Icon={MdSave}

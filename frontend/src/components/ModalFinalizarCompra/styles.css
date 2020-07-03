@@ -1,0 +1,50 @@
+#modal-finalizar-compra{
+  max-width: 600px;  
+}
+.titulo-finalizar-compra{
+    font-size: 2.369em;
+    font-family: NunitoSansSemiBold;
+    padding: 16px 0;
+    color: #1D273B !important;
+    margin-bottom: 0;
+}
+.modal  h2.titulo-finalizar-compra-pedido-enviado{
+  margin: 64px 24px 16px 24px;
+}
+.btn-pedido-enviado{
+  margin-top: 72px;
+  margin-left: auto;
+}
+.observacao-pedido-enviado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.observacao-pedido-enviado > svg{
+  margin-right: 8px;
+}
+
+@media only screen and (max-width: 440px){
+  .titulo-finalizar-compra{
+    font-size: 1.77em;
+  }
+  .btns-voltar-seguir-finalizar-compra{
+    display: flex;
+    flex-direction: column;
+  }
+  .btn-continuar-finalizar-compra{
+    margin-top: 16px;
+  }
+  .titulo-finalizar-compra-pedido-enviado{
+    font-size: 2.69em;
+  }
+  .observacao-pedido-enviado{
+    margin: 24px auto;
+  }
+  .observacao-pedido-enviado > svg{
+    display: none;
+  }
+  .btn-pedido-enviado{
+    margin-top: 40px;
+  }
+}

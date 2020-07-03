@@ -25,10 +25,13 @@
     margin: 0 24px;
   }
 }
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 500px){
   .containerBtn {
     flex-direction: column-reverse;
     align-items: flex-end;
+  }
+  .containerBtn > div.btnVendedor{
+    margin-left: auto;
   }
   .btnVendedor{
     margin-top: 24px;

@@ -18,13 +18,14 @@ const validates = yup.object().shape({
   nome: yup.string().required("O nome do comercio é obrigadotio"),
   horaAbertura: yup.string().required("Campo obrigatório"),
   horaFechamento: yup.string().required("Campo obrigatório"),
+  diasParaEntrega: yup.string().required("Campo obrigatório"),
+  frete: yup.string().required("Campo obrigatório"),
   foto: yup.object().optional(),
   possuiEntregas: yup.string().optional(),
   categoria: yup.number().required("A sua categoria de comercio é obrigatoria"),
   cnpj: yup.string().optional(),
   pagamentoCartao: yup.boolean().optional(),
   pagamentoDinheiro: yup.boolean().optional(),
-  pagamentoBoleto: yup.boolean().optional(),
 });
 
 const hoursNumberMask = [/[1-9]/, /\d/, ":", /\d/, /\d/];
@@ -53,171 +54,202 @@ const FormDadosComercio = ({
       onSubmit={handleSubmit}
       validationSchema={validates}
     >
-      <Form>
-        <div className="form-dados-cadastro form-dados-pessoais">
-          <div className="input-field">
-            <label htmlFor="nome">Nome do comercio</label>
-            <Field type="text" id="nome" name="nome" />
-            <ErrorMessage
-              className="helper-text"
-              name="nome"
-              component="span"
-            />
-          </div>
-          <div className="input-field">
-            <label className="label-hora">Horario de funcionamento</label>
-            <div className="div-buttons-form hr-funcionamento">
-              <div className="input-field">
-                <Field name="horaAbertura">
-                  {({ field }) => (
-                    <MaskInput
-                      {...field}
-                      type="text"
-                      id="horaAbertura"
-                      mask={hoursNumberMask}
+      {({ values, handleSubmit }) => (
+        <Form>
+          <div className="form-dados-cadastro form-dados-pessoais">
+            <div className="input-field">
+              <label htmlFor="nome">Nome do comercio</label>
+              <Field type="text" id="nome" name="nome" />
+              <ErrorMessage
+                className="helper-text"
+                name="nome"
+                component="span"
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="frete">Valor cobrado de frete</label>
+              <Field type="text" id="frete" name="frete" />
+              <ErrorMessage
+                className="helper-text"
+                name="frete"
+                component="span"
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="diasParaEntrega">
+                Quantos dias leva para fazer a entrega ?
+              </label>
+              <Field type="text" id="diasParaEntrega" name="diasParaEntrega" />
+              <ErrorMessage
+                className="helper-text"
+                name="diasParaEntrega"
+                component="span"
+              />
+            </div>
+
+            <div className="input-field">
+              <label className="label-hora">Horario de funcionamento</label>
+              <div className="div-buttons-form hr-funcionamento">
+                <div className="input-field">
+                  <Field name="horaAbertura">
+                    {({ field }) => (
+                      <MaskInput
+                        {...field}
+                        type="text"
+                        id="horaAbertura"
+                        mask={hoursNumberMask}
+                      />
+                    )}
+                  </Field>
+                  <ErrorMessage
+                    className="helper-text"
+                    name="horaAbertura"
+                    component="span"
+                  />
+                </div>
+
+                <div className="input-field lbl-ate">
+                  <label className="label-hora">Até</label>
+
+                  <div className="input-field">
+                    <Field name="horaFechamento">
+                      {({ field }) => (
+                        <MaskInput
+                          {...field}
+                          type="text"
+                          id="horaFechamento"
+                          mask={hoursNumberMask}
+                        />
+                      )}
+                    </Field>
+                    <ErrorMessage
+                      className="helper-text"
+                      name="horaFechamento"
+                      component="span"
                     />
-                  )}
-                </Field>
-                <ErrorMessage
-                  className="helper-text"
-                  name="horaAbertura"
-                  component="span"
-                />
+                  </div>
+                </div>
               </div>
-              <div className="input-field lbl-ate">Até</div>
-              <div className="input-field">
-                <Field name="horaFechamento">
-                  {({ field }) => (
-                    <MaskInput
-                      {...field}
-                      type="text"
-                      id="horaFechamento"
-                      mask={hoursNumberMask}
+            </div>
+            <div className="input-field">
+              <div className="input-field ">
+                <Field as="select" id="categoria" name="categoria">
+                  <option value={false}>Selecione uma categoria</option>
+                  {categorias.map((categoria) => (
+                    <option value={categoria.id} key={categoria.id}>
+                      {categoria.nome}
+                    </option>
+                  ))}
+                </Field>
+              </div>
+              <ErrorMessage
+                className="helper-text"
+                name="categoria"
+                component="span"
+              />
+            </div>
+            <label className="labelCnpj">Possui CNPJ?</label>
+            <div className="input-field divPssuiCnpj">
+              <div className="div-radio">
+                <p>
+                  <label htmlFor="sim">
+                    <Field
+                      name="possuiCnpj"
+                      type="radio"
+                      value="sim"
+                      id="sim"
                     />
-                  )}
-                </Field>
-                <ErrorMessage
-                  className="helper-text"
-                  name="horaFechamento"
-                  component="span"
-                />
+                    <span>Sim</span>
+                  </label>
+                </p>
+                <p>
+                  <label htmlFor="nao">
+                    <Field
+                      name="possuiCnpj"
+                      type="radio"
+                      value="nao"
+                      id="nao"
+                    />
+                    <span>Não</span>
+                  </label>
+                </p>
+              </div>
+              {values.possuiCnpj === "sim" ? (
+                <div className="input-field">
+                  <label htmlFor="cnpj">CNPJ</label>
+                  <Field type="text" id="cnpj" name="cnpj" />
+                  <ErrorMessage
+                    className="helper-text"
+                    name="cnpj"
+                    component="span"
+                  />
+                </div>
+              ) : (
+                <p>
+                  Damos prioridade aos usuários que possuem CNPJ, recomendamos
+                  que o tire em{" "}
+                  <a
+                    href="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConvenJuntaBH/InscCNPJOrientacoes.htm"
+                    target="blamk"
+                  >
+                    CNPJ
+                  </a>{" "}
+                </p>
+              )}
+              <ErrorMessage
+                className="helper-text"
+                name="possuiCnpj"
+                component="span"
+              />
+            </div>
+
+            <div className="input-field inputs-formas-pagamento">
+              <label className="label-formas-pagamento">
+                Quais formas de pagamento vc aceita
+              </label>
+              <div className="div-radios-form div-formas-pagamento">
+                <p>
+                  <label htmlFor="pagamentoCartao">
+                    <Field
+                      name="pagamentoCartao"
+                      type="checkbox"
+                      value="pagamentoCartao"
+                      id="pagamentoCartao"
+                    />
+                    <span>Cartão</span>
+                  </label>
+                </p>
+                <p>
+                  <label htmlFor="pagamentoDinheiro">
+                    <Field
+                      name="pagamentoDinheiro"
+                      type="checkbox"
+                      value="pagamentoDinheiro"
+                      id="pagamentoDinheiro"
+                    />
+                    <span>Dinheiro</span>
+                  </label>
+                </p>
               </div>
             </div>
-          </div>
-          <div className="input-field inputs-possui-servico">
-            <label
-              htmlFor="possuiEntregas"
-              className="label-possui-servico-entregas"
-            >
-              Possui serviço de entregas
-            </label>
-            <div className="div-radios-form">
-              <p>
-                <label htmlFor="Sim">
-                  <Field
-                    name="possuiEntregas"
-                    type="radio"
-                    value="true"
-                    id="Sim"
-                  />
-                  <span>Sim </span>
-                </label>
-              </p>
-              <p>
-                <label htmlFor="Nao">
-                  <Field
-                    name="possuiEntregas"
-                    type="radio"
-                    value="false"
-                    id="Nao"
-                  />
-                  <span>Não</span>
-                </label>
-              </p>
+            <div className="div-buttons-form buttons-comercio">
+              <Button
+                tipo="Link"
+                onClick={handleBackStage}
+                text="Voltar"
+                typeButton="secundaria"
+                Icon={MdReply}
+              />
+              <Button
+                submit="submit"
+                text="Finalizar"
+                tooltip="Finalizar cadastro"
+                Icon={MdSave}
+              />
             </div>
           </div>
-          <div className="input-field">
-            <div className="input-field ">
-              <Field as="select" id="categoria" name="categoria">
-                <option value={false}>Selecione uma categoria</option>
-                {categorias.map((categoria) => (
-                  <option value={categoria.id} key={categoria.id}>
-                    {categoria.nome}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <ErrorMessage
-              className="helper-text"
-              name="categoria"
-              component="span"
-            />
-          </div>
-          <div className="input-field">
-            <label htmlFor="cnpj">CNPJ</label>
-            <Field type="text" id="cnpj" name="cnpj" />
-            <ErrorMessage
-              className="helper-text"
-              name="cnpj"
-              component="span"
-            />
-          </div>
-          <div className="input-field inputs-formas-pagamento">
-            <label className="label-formas-pagamento">
-              Quais formas de pagamento vc aceita
-            </label>
-            <div className="div-radios-form div-formas-pagamento">
-              <p>
-                <label htmlFor="pagamentoCartao">
-                  <Field
-                    name="pagamentoCartao"
-                    type="checkbox"
-                    value="pagamentoCartao"
-                    id="pagamentoCartao"
-                  />
-                  <span>Cartão</span>
-                </label>
-              </p>
-              <p>
-                <label htmlFor="pagamentoDinheiro">
-                  <Field
-                    name="pagamentoDinheiro"
-                    type="checkbox"
-                    value="pagamentoDinheiro"
-                    id="pagamentoDinheiro"
-                  />
-                  <span>Dinheiro</span>
-                </label>
-              </p>
-              <p>
-                <label htmlFor="pagamentoBoleto">
-                  <Field
-                    name="pagamentoBoleto"
-                    type="checkbox"
-                    value="pagamentoBoleto"
-                    id="pagamentoBoleto"
-                  />
-                  <span>Boleto</span>
-                </label>
-              </p>
-            </div>
-          </div>
-          <div className="div-buttons-form buttons-comercio">
-            <Button
-              tipo="Link"
-              onClick={handleBackStage}
-              text="Voltar"
-              Icon={MdReply}
-            />
-            <Button
-              submit="submit"
-              text="Criar conta"
-              tooltip="Finalizar cadastro"
-              Icon={MdSave}
-            />
-          </div>
-        </div>
-      </Form>
+        </Form>
+      )}
     </Formik>
   );
 };

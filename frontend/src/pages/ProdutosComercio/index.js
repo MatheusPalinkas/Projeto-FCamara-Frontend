@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { MdReply } from "react-icons/md";
+import { MdReply, MdFavorite, MdLibraryBooks } from "react-icons/md";
+import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
 import api from "../../services/Api";
 
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 
+import ModalSobre from "../../components/ModalSobre";
+
 import "./styles.css";
 
-export default function ProdutosComercio() {
+const ProdutosComercio = ({ user }) => {
   const [filtro, setFiltro] = useState("");
   const [categoriaSelecionada, setcategoriaSelecionada] = useState(0);
   const [categorias, setCategorias] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const { idComercio } = useParams();
   const { goBack } = useHistory();
+
+  const cnpj = null;
 
   useEffect(() => {
     (async function () {
@@ -25,13 +30,15 @@ export default function ProdutosComercio() {
         ? `&idCategoria=${categoriaSelecionada}`
         : "";
 
+      console.log(urlFiltro);
+
       const [dataProdutos, dataCategorias] = await Promise.all([
-        api.get(`/produtos?idComercio=${idComercio}${urlFiltro}`),
-        api.get("/categorias"),
+        api.get(`/produto/comercio/${idComercio}`),
+        api.get("/categoria"),
       ]);
 
       setCategorias(dataCategorias.data);
-      setProdutos(dataProdutos.data);
+      setProdutos(dataProdutos.data.content);
 
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
@@ -78,12 +85,28 @@ export default function ProdutosComercio() {
             }}
           />
         </form>
+
+        {Object.keys(user).length !== 0 && user.comercio === undefined && (
+          <div className="div-add-favoritos-comercio">
+            {cnpj === null ? (
+              <label>Este vendedor não possui CNPJ</label>
+            ) : (
+              <label></label>
+            )}
+            <Button
+              Icon={MdFavorite}
+              text="Adicionar aos favoritos"
+              className="btn-add-favoritos"
+            />
+          </div>
+        )}
       </div>
 
       <div className="container-comercios">
         {produtos.map((produto) => (
           <Card
             key={produto.id}
+            id={produto.id}
             titulo={produto.nome}
             url={produto.url}
             descricao={produto.descricao}
@@ -91,6 +114,27 @@ export default function ProdutosComercio() {
           />
         ))}
       </div>
+
+      <div className="containerBtnSobre">
+        <Button
+          submit="submit"
+          tooltip="Sobre o comercio"
+          Icon={MdLibraryBooks}
+          text="Sobre"
+          position="right"
+          className="modal-trigger "
+          tipo="Button"
+          dataTarget="modal5"
+        />
+      </div>
+
+      <ModalSobre />
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => ({ user: state.user });
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProdutosComercio);

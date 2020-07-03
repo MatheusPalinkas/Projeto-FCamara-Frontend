@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
-import { MdShoppingCart, MdClose, MdEdit } from "react-icons/md";
+
+import { MdClose, MdEdit } from "react-icons/md";
+
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
-import "./styles.css";
+
 import ModalEstoque from "../../components/ModalEstoque";
+import ButtonAddCarrinho from "./ButtonAddCarrinho";
+import BtnFavoritar from "./BtnFavoritar";
+
+import "./styles.css";
 
 const handleSubmit = (values) => alert(JSON.stringify(values));
 const initialValues = { quantidade: "105", status: "Indisponivel" };
@@ -20,23 +26,26 @@ const ButtonEditarProduto = () => (
   </div>
 );
 
-const ButtonAddCarrinho = () => (
+const QuantidadeProduto = ({ quantidade }) => (
   <div
-    className="tooltipped div-add-carrinho"
+    className="tooltipped div-quantidade-carrinho"
     data-position="top"
-    data-tooltip="adicionar ao carrinho"
+    data-tooltip="Quantidade comprada"
   >
-    <MdShoppingCart className="add-carrinho" />
+    <p className="qtd-produto">{quantidade}</p>
   </div>
 );
 
 const Card = ({
+  id,
   url,
   titulo,
   descricao,
   produto = {},
   idVendedor = null,
   idComercio = null,
+  quantidade,
+  curtido,
 }) => {
   useEffect(() => {
     (async function () {
@@ -52,18 +61,39 @@ const Card = ({
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light div-card-imagem">
           <img
-            className="activator"
+            className={`activator ${!url && "sem-imagem"}`}
             src={url}
-            alt="Foto ilustrativa do produto"
+            alt="Sem foto ilustrativa"
           />
         </div>
         <div className="card-content">
           <span className="card-title span-card-title">
             {titulo}
-            {!idComercio && (
+            {curtido ? (
+              <BtnFavoritar />
+            ) : !!quantidade ? (
               <>
-                {!idVendedor ? <ButtonAddCarrinho /> : <ButtonEditarProduto />}
+                <QuantidadeProduto quantidade={quantidade} />
               </>
+            ) : (
+              !idComercio && (
+                <>
+                  {!idVendedor ? (
+                    <ButtonAddCarrinho
+                      item={{
+                        id,
+                        url,
+                        nome: titulo,
+                        descricao,
+                        preco: produto.preco,
+                        quantidade,
+                      }}
+                    />
+                  ) : (
+                    <ButtonEditarProduto />
+                  )}
+                </>
+              )
             )}
           </span>
           {produto.preco && (
@@ -86,7 +116,10 @@ const Card = ({
                 Pagina do comercio
               </Link>
             ) : (
-              <span className="link activator descricao">Ver descrição</span>
+              <>
+                <span className="link activator descricao">Ver descrição</span>
+                <label className="labelDisponivel">Disponivel</label>
+              </>
             )}
           </p>
         </div>
