@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { MdPersonAdd } from "react-icons/md";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import { HANDLE_LOGIN } from "../../store/actions/user";
+import Api from "../../services/Api";
 
 import Modal from "../Modal";
 import Button from "../Button";
@@ -20,77 +21,89 @@ const validations = yup.object().shape({
     .min(8, "A senha deve ter mais de 8 caracteris")
     .required("A senha não deve ser vazia"),
 });
-const initialValues = {};
 
-const userFake = {
-  comercio: {
-    idEndereco: 1,
-    idComercio: 2,
-    nome: "Padaria da Ana",
-    categoria: 1,
-    cnpj: "1111111",
-    possuiEntregas: false,
-    pagamentoCartao: false,
-    pagamentoDinheiro: false,
-    pagamentoBoleto: true,
-  },
+const ModalLogin = ({ handleLogin }) => {
+  const handleSubmit = async (values) => {
+    const { email, senha } = values;
+    const resToken = await Api.post("/login", { email, senha });
+    const { token, tipo } = resToken.data;
 
-  id: 2,
-  nome: "Ana",
-  dataNascimento: "13/08/1982",
-  cpf: "33333333333",
-  telefone: "13999552233",
-  url:
-    "https://static1.purepeople.com.br/articles/7/28/80/37/@/3267022-larissa-manoela-chamou-atencao-dos-segui-624x600-2.jpg",
+    const { data } = await Api.get("/usuario", {
+      headers: {
+        authorization: `${tipo} ${token}`,
+      },
+    });
+
+    handleLogin({
+      ...data,
+      comercio: {
+        idEndereco: data.codigoComercio,
+      },
+      tipo: data.tipoUsuario,
+      url: data.urlFoto,
+    });
+  };
+
+  return (
+    <Modal tipo="login" id="modal1">
+      <Formik
+        initialValues={{}}
+        onSubmit={handleSubmit}
+        validationSchema={validations}
+      >
+        <Form className="form-modal-login">
+          <div className="titulo">
+            <h1>ENTRAR</h1>
+          </div>
+          <div className="input-field">
+            <label>Email</label>
+            <Field name="email" placeholder="Digite seu email" type="text" />
+            <ErrorMessage
+              className="helper-text"
+              component="span"
+              name="email"
+            />
+          </div>
+          <div className="input-field">
+            <label>Senha</label>
+            <Field
+              name="senha"
+              placeholder="Digite sua senha"
+              type="password"
+            />
+            <ErrorMessage
+              className="helper-text"
+              component="span"
+              name="senha"
+            />
+          </div>
+
+          <div className="containerBtnLogin">
+            <div className="modal-close btnLogin">
+              <Button
+                text="CRIAR CONTA"
+                tooltip="Criar uma nova conta"
+                position="bottom"
+                Icon={MdPersonAdd}
+                tipo="Link"
+                to="/cadastro"
+                typeButton="secundaria"
+              />
+            </div>
+            <div className="modal-close btnLogin">
+              <Button
+                position="bottom"
+                tooltip="Entrar na minha conta"
+                type="submit"
+                submit="submit"
+              />
+            </div>
+          </div>
+        </Form>
+      </Formik>
+    </Modal>
+  );
 };
-
-const ModalLogin = ({ handleLogin }) => (
-  <Modal tipo="login" id="modal1">
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values) => handleLogin(userFake)}
-      validationSchema={validations}
-    >
-      <Form className="form-modal-login">
-        <div className="titulo">
-          <h1>ENTRAR</h1>
-        </div>
-        <div className="input-field">
-          <label>Email</label>
-          <Field name="email" placeholder="Digite seu email" type="text" />
-          <ErrorMessage className="helper-text" component="span" name="email" />
-        </div>
-        <div className="input-field">
-          <label>Senha</label>
-          <Field name="senha" placeholder="Digite sua senha" type="password" />
-          <ErrorMessage className="helper-text" component="span" name="senha" />
-        </div>
-
-        <div className="containerBtnLogin">
-          <div className="modal-close btnLogin">
-            <Button
-              text="CRIAR CONTA"
-              tooltip="Criar uma nova conta"
-              position="bottom"
-              Icon={MdPersonAdd}
-              tipo="Link"
-              to="/cadastro"
-              typeButton="secundaria"
-            />
-          </div>
-          <div className="modal-close btnLogin">
-            <Button
-              position="bottom"
-              tooltip="Entrar na minha conta"
-              type="submit"
-              submit="submit"
-            />
-          </div>
-        </div>
-      </Form>
-    </Formik>
-  </Modal>
-);
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({

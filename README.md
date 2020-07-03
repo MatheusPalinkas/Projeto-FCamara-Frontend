@@ -3,8 +3,7 @@ Repositorio para o frontend do projeto da SQUAD 10 para o programa de formação
 
 Integrantes: [Matheus Palinkas](https://www.linkedin.com/in/matheus-palinkas/), 
              [Adriana Penha](https://www.linkedin.com/in/adriana-penha-598b12124/), 
-             [Gusthavo Rodrigues](https://www.linkedin.com/in/gusthavo-rodrigues-487847197/), 
-             [Alexandre Ferreira]()
+             [Gusthavo Rodrigues](https://www.linkedin.com/in/gusthavo-rodrigues-487847197/)
 
 # case 
 ![](docs/case.png)
@@ -28,9 +27,11 @@ git clone https://github.com/MatheusPalinkas/Projeto-FCamara-Frontend.git
 cd frontend
 yarn install
 ```
-### 3. Iniciar Json Server
-```
-yarn start:server
+### 3. Alterar base url da api
+Dentro da pasta frontend/src/services/Api.js. Alterar o valor da varivel baseURL.
+```js
+//Por default aponta para a API do projeto no heroku
+const baseURL = `https://projeto-fcamara.herokuapp.com/`;
 ```
 ### 4. Iniciar aplicação
 ```

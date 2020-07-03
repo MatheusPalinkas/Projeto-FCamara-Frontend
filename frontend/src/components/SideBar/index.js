@@ -18,7 +18,7 @@ const SideBar = () => {
         edge: "left",
         inDuration: 250,
       });
-      const { data } = await api.get("/categorias");
+      const { data } = await api.get("/categoria");
       setCategoria(data);
     })();
   }, []);

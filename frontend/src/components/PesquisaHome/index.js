@@ -5,8 +5,7 @@ import api from "../../services/Api";
 
 import "./styles.css";
 
-export default function PesquisaHome() {
-  const [filtro, setFiltro] = useState("");
+export default function PesquisaHome({ txtFiltro, handleChangeFilter }) {
   const [categoria, setCategoria] = useState([]);
 
   useEffect(() => {
@@ -14,7 +13,7 @@ export default function PesquisaHome() {
       const elems = document.querySelectorAll(".collapsible");
       M.Collapsible.init(elems, {});
 
-      const { data } = await api.get("/categorias");
+      const { data } = await api.get("/categoria");
       setCategoria(data);
     })();
   }, []);
@@ -29,10 +28,8 @@ export default function PesquisaHome() {
               type="text"
               nome="filtro"
               className="input-filtro"
-              value={filtro}
-              onChange={(e) => {
-                setFiltro(e.target.value);
-              }}
+              value={txtFiltro}
+              onChange={handleChangeFilter}
             />
           </div>
         </form>

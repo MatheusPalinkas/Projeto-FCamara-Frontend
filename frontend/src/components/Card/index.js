@@ -61,9 +61,9 @@ const Card = ({
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light div-card-imagem">
           <img
-            className="activator"
+            className={`activator ${!url && "sem-imagem"}`}
             src={url}
-            alt="Foto ilustrativa do produto"
+            alt="Sem foto ilustrativa"
           />
         </div>
         <div className="card-content">

@@ -30,13 +30,15 @@ const ProdutosComercio = ({ user }) => {
         ? `&idCategoria=${categoriaSelecionada}`
         : "";
 
+      console.log(urlFiltro);
+
       const [dataProdutos, dataCategorias] = await Promise.all([
-        api.get(`/produtos?idComercio=${idComercio}${urlFiltro}`),
-        api.get("/categorias"),
+        api.get(`/produto/comercio/${idComercio}`),
+        api.get("/categoria"),
       ]);
 
       setCategorias(dataCategorias.data);
-      setProdutos(dataProdutos.data);
+      setProdutos(dataProdutos.data.content);
 
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
