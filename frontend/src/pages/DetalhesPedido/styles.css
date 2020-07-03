@@ -129,7 +129,6 @@
   .containerDadosPedido {
     flex-direction: column;
     justify-content: flex-end;
-    max-width: 960px;
   }
   .containerDadosPedido > div > h2 {
     font-family: NunitoSansSemiBold;

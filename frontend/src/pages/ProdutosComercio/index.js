@@ -116,7 +116,7 @@ const ProdutosComercio = ({ user }) => {
       <div className="containerBtnSobre">
         <Button
           submit="submit"
-          tooltip="Veja informações sobre o comercio"
+          tooltip="Sobre o comercio"
           Icon={MdLibraryBooks}
           text="Sobre"
           position="right"
