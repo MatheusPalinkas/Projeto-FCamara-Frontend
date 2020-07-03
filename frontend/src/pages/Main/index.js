@@ -7,17 +7,19 @@ import PesquisaHome from "../../components/PesquisaHome";
 
 function Main() {
   const [comercios, setComercios] = useState([]);
+  const [nomeFiltro, setNomeFiltro] = useState("");
   const { idCategoria } = useParams();
 
   useEffect(() => {
     (async function () {
       let filtro = "";
       if (idCategoria) filtro = `?idCategoria=${idCategoria}`;
+      if (nomeFiltro) filtro = `?nome=${nomeFiltro}`;
 
-      const { data } = await api.get(`/comercios${filtro}`);
-      setComercios(data);
+      const { data } = await api.get(`/comercio${filtro}`);
+      setComercios(data.content);
     })();
-  }, [idCategoria]);
+  }, [idCategoria, nomeFiltro]);
 
   return (
     <>
@@ -27,7 +29,10 @@ function Main() {
         </h1>
         <cite className="referencia-foto">Photos on Unsplash</cite>
       </div>
-      <PesquisaHome />
+      <PesquisaHome
+        txtFiltro={nomeFiltro}
+        handleChangeFilter={(e) => setNomeFiltro(e.target.value)}
+      />
       <div className="container-comercios">
         {comercios.map((comercio) => (
           <Card
