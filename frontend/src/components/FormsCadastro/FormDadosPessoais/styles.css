@@ -17,6 +17,7 @@
     padding-top: 16px;
 }
 .input-file-upload-foto-cadastro{
+    margin: 0 auto;
     width: 100%;
 }
 .input-file-upload-foto-cadastro > label.preview-imgaem-cadastrar{

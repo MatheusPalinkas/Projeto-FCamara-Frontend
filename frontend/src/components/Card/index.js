@@ -56,13 +56,21 @@ const Card = ({
     })();
   }, []);
 
+  const isImgValid = (url) => {
+    const img = new Image();
+    img.src = url;
+    if (img.height > 0) return url;
+
+    return null;
+  };
+
   return (
     <>
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light div-card-imagem">
           <img
-            className={`activator ${!url && "sem-imagem"}`}
-            src={url}
+            className={`activator ${isImgValid(url) === null && "sem-imagem"}`}
+            src={isImgValid(url)}
             alt="Sem foto ilustrativa"
           />
         </div>
