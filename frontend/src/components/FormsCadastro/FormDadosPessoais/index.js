@@ -74,6 +74,7 @@ const validates = yup.object().shape({
     .required("O CPF é obrigatorio"),
   telefone: yup.string("O Telefone deve ser um texto").optional(),
   tipoUser: yup.string().required("O tipo de usuario é obrigatorio"),
+  inputImageCadastro: yup.object().optional(),
 });
 
 const phoneNumberMask = [
@@ -207,11 +208,11 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
                 component="span"
               />
             </div>
-            <div className="container-form">
+            <div className="input-field">
               <div className="file-field input-file-upload-foto-cadastro">
                 <label
                   id="thumbnail"
-                  htmlFor="input-image-cadastro"
+                  htmlFor="inputImageCadastro"
                   style={{ backgroundImage: `url(${preview})` }}
                   className={`preview-imgaem-cadastrar ${
                     thumbnail ? "previa-foto" : ""
@@ -223,8 +224,8 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
                   <span>Nova Foto</span>
                   <input
                     type="file"
-                    name="input-image-cadastro"
-                    id="input-image-cadastro"
+                    name="inputImageCadastro"
+                    id="inputImageCadastro"
                     onChange={(event) => setThumbnail(event.target.files[0])}
                   />
                 </div>

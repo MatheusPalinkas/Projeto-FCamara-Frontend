@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../services/Api";
 
 import Breadcrumb from "../../components/Breadcrumb";
 import FormDadosPessoais from "../../components/FormsCadastro/FormDadosPessoais";
@@ -20,24 +21,49 @@ const Cadastro = () => {
     setEtapa(etapa - 1);
   };
 
+  const postCliente = async () => {
+    delete dadosPessoais.repetirSenha;
+    delete dadosPessoais.tipoUser;
+
+    const date = dadosPessoais.dataNascimento;
+    const formCliente = {
+      ...dadosPessoais,
+      telefone: !!dadosPessoais.telefone
+        ? dadosPessoais.telefone
+            .replace("(", "")
+            .replace(")", "")
+            .replace("-", "")
+            .trim()
+        : "",
+      dataNascimento: `${date.split("/")[2]}-${date.split("/")[1]}-${
+        date.split("/")[0]
+      }`,
+      cpf: dadosPessoais.cpf.replace(/\./g, "").replace("-", ""),
+      codigoComercio: "",
+      urlFoto: "",
+    };
+
+    const { data } = await api.post("/cliente", { ...formCliente });
+    console.log(JSON.stringify(data));
+  };
   return (
     <div className="row container-cadastro">
       <div className="s12 div-form">
         <div className="card-panel">
           <Breadcrumb className="rastro-pao-cadastro">
-            <Link className={`breadcrumb ${etapa === 0 && "ativo"}`}>
+            <span className={`link breadcrumb ${etapa === 0 && "ativo"}`}>
               Dados pessoais
-            </Link>
-            <Link className={`breadcrumb ${etapa === 1 && "ativo"}`}>
+            </span>
+            <span className={`link breadcrumb ${etapa === 1 && "ativo"}`}>
               Criar uma senha
-            </Link>
-            <Link className={`breadcrumb ${etapa === 2 && "ativo"}`}>
+            </span>
+            <span className={`link breadcrumb ${etapa === 2 && "ativo"}`}>
               Adicionar endereço
-            </Link>
+            </span>
             {dadosPessoais.tipoUser === "Vendedor" && (
-              <Link className={`breadcrumb ${etapa === 3 && "ativo"}`}>
+              <span className={`link breadcrumb ${etapa === 3 && "ativo"}`}>
                 Comercio
-              </Link>
+              </span>
             )}
           </Breadcrumb>
 
@@ -64,10 +90,15 @@ const Cadastro = () => {
 
           {etapa === 2 && (
             <FormDadosEndereco
-              handleSubmit={(values) => {
+              handleSubmit={async (values) => {
                 setEndereco(values);
 
-                if (dadosPessoais.tipoUser === "Vendedor") setEtapa(etapa + 1);
+                if (dadosPessoais.tipoUser === "Vendedor") {
+                  setEtapa(etapa + 1);
+                  return;
+                }
+                await postCliente();
+                console.log(endereco);
               }}
               handleBackStage={handleBackStage}
               initialValues={endereco}
