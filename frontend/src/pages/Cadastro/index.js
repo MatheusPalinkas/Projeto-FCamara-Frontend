@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { HANDLE_LOGIN } from "../../store/actions/user";
 import api from "../../services/Api";
 
 import Breadcrumb from "../../components/Breadcrumb";
@@ -10,10 +12,13 @@ import FormDadosComercio from "../../components/FormsCadastro/FormDadosComercio"
 
 import "./styles.css";
 
-const Cadastro = () => {
+const Cadastro = ({ handleLogin }) => {
   const [etapa, setEtapa] = useState(0);
   const [dadosPessoais, setDadosPessoais] = useState({ tipoUser: "Cliente" });
   const [endereco, setEndereco] = useState({});
+  const [foto, setFoto] = useState(null);
+
+  const { push } = useHistory();
 
   const handleBackStage = (e) => {
     e.preventDefault();
@@ -21,7 +26,7 @@ const Cadastro = () => {
     setEtapa(etapa - 1);
   };
 
-  const postCliente = async () => {
+  const clearFormCliente = () => {
     delete dadosPessoais.repetirSenha;
     delete dadosPessoais.tipoUser;
 
@@ -33,6 +38,7 @@ const Cadastro = () => {
             .replace("(", "")
             .replace(")", "")
             .replace("-", "")
+            .replace(" ", "")
             .trim()
         : "",
       dataNascimento: `${date.split("/")[2]}-${date.split("/")[1]}-${
@@ -42,10 +48,61 @@ const Cadastro = () => {
       codigoComercio: "",
       urlFoto: "",
     };
-
-    const { data } = await api.post("/cliente", { ...formCliente });
-    console.log(JSON.stringify(data));
+    return formCliente;
   };
+
+  const postFoto = async () => {
+    if (!!foto) {
+      const data = new FormData();
+
+      data.append("file", foto);
+
+      return await api.post(`/imagem/${dadosPessoais.tipoUser}`, data);
+    }
+    return null;
+  };
+
+  const postCliente = async () => {
+    try {
+      const url = null; //await postFoto();
+      const formCliente = clearFormCliente();
+      const { data } = await api.post("/cliente", { ...formCliente });
+
+      delete data.tipoUsuario;
+      delete data.favoritos;
+      delete data.endereco;
+
+      delete data.urlFoto;
+
+      handleLogin({
+        ...data,
+        url,
+      });
+
+      return data.id;
+    } catch (error) {
+      alert(`Erro: ${error}`);
+    }
+  };
+
+  const postEndereco = async (id, endereco, tipo) => {
+    try {
+      const formEndereco = {
+        ...endereco,
+        cep: endereco.cep.replace("-", ""),
+        logradouro: endereco.rua,
+        complemento: endereco.complemento || " ",
+      };
+
+      delete formEndereco.rua;
+
+      const { data } = await api.post(`/endereco/${tipo}`, { ...formEndereco });
+      return data;
+    } catch (error) {
+      alert(`Erro: ${error}`);
+    }
+  };
+
   return (
     <div className="row container-cadastro">
       <div className="s12 div-form">
@@ -74,6 +131,7 @@ const Cadastro = () => {
                 setEtapa(etapa + 1);
               }}
               initialValues={dadosPessoais}
+              saveFile={(foto) => setFoto(foto)}
             />
           )}
 
@@ -97,8 +155,10 @@ const Cadastro = () => {
                   setEtapa(etapa + 1);
                   return;
                 }
-                await postCliente();
-                console.log(endereco);
+
+                const idCliente = await postCliente();
+                await postEndereco(idCliente, values, "cliente");
+                push("/");
               }}
               handleBackStage={handleBackStage}
               initialValues={endereco}
@@ -122,4 +182,9 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleLogin: (user) => dispatch(HANDLE_LOGIN(user)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Cadastro);

@@ -123,7 +123,7 @@ const DateNumberMask = [
   /[0-9]/,
 ];
 
-const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
+const FormDadosPessoais = ({ initialValues, handleSubmit, saveFile }) => {
   const [thumbnail, setThumbnail] = useState(null);
 
   const preview = useMemo(() => {
@@ -139,7 +139,12 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={async (values) => {
+        if (!!thumbnail) {
+          saveFile(thumbnail);
+        }
+        handleSubmit(values);
+      }}
       validationSchema={validates}
     >
       {({ values, handleSubmit }) => (
@@ -234,27 +239,26 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
                 </div>
               </div>
             </div>
-
             <div className="input-field div-tipo-user">
               <div className="div-radio">
                 <p>
-                  <label htmlFor="Cliente">
+                  <label htmlFor="cliente">
                     <Field
                       name="tipoUser"
                       type="radio"
-                      value="Cliente"
-                      id="Cliente"
+                      value="cliente"
+                      id="cliente"
                     />
                     <span>Cliente</span>
                   </label>
                 </p>
                 <p>
-                  <label htmlFor="Vendedor">
+                  <label htmlFor="vendedor">
                     <Field
                       name="tipoUser"
                       type="radio"
-                      value="Vendedor"
-                      id="Vendedor"
+                      value="vendedor"
+                      id="vendedor"
                     />
                     <span>Vendedor</span>
                   </label>
