@@ -34,14 +34,22 @@ const ModalLogin = ({ handleLogin }) => {
       },
     });
 
-    handleLogin({
+    const user = {
       ...data,
-      comercio: {
-        idEndereco: data.codigoComercio,
-      },
       tipo: data.tipoUsuario,
       url: data.urlFoto,
-    });
+    };
+
+    delete user.urlFoto;
+    delete user.tipoUsuario;
+
+    if (user.tipo === "VENDEDOR") {
+      user.comercio = {
+        idEndereco: data.codigoComercio,
+      };
+    }
+
+    handleLogin(user);
   };
 
   return (
