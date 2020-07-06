@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MaskInput from "react-text-mask";
 import { MdReply, MdSave } from "react-icons/md";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import Button from "../../Button";
@@ -20,12 +20,8 @@ const validates = yup.object().shape({
   horaFechamento: yup.string().required("Campo obrigatório"),
   diasParaEntrega: yup.string().required("Campo obrigatório"),
   frete: yup.string().required("Campo obrigatório"),
-  foto: yup.object().optional(),
-  possuiEntregas: yup.string().optional(),
-  categoria: yup.number().required("A sua categoria de comercio é obrigatoria"),
+  categoria: yup.string().required("A sua categoria de comercio é obrigatoria"),
   cnpj: yup.string().optional(),
-  pagamentoCartao: yup.boolean().optional(),
-  pagamentoDinheiro: yup.boolean().optional(),
 });
 
 const hoursNumberMask = [/[1-9]/, /\d/, ":", /\d/, /\d/];
@@ -39,7 +35,7 @@ const FormDadosComercio = ({
 
   useEffect(() => {
     (async function () {
-      const { data } = await api.get("/categorias");
+      const { data } = await api.get("/categoria");
       setCategorias(data);
 
       const elems = document.querySelectorAll("select");
@@ -55,7 +51,7 @@ const FormDadosComercio = ({
       validationSchema={validates}
     >
       {({ values, handleSubmit }) => (
-        <Form>
+        <form onSubmit={handleSubmit}>
           <div className="form-dados-cadastro form-dados-pessoais">
             <div className="input-field">
               <label htmlFor="nome">Nome do comercio</label>
@@ -86,7 +82,6 @@ const FormDadosComercio = ({
                 component="span"
               />
             </div>
-
             <div className="input-field">
               <label className="label-hora">Horario de funcionamento</label>
               <div className="div-buttons-form hr-funcionamento">
@@ -107,7 +102,6 @@ const FormDadosComercio = ({
                     component="span"
                   />
                 </div>
-
                 <div className="input-field lbl-ate">
                   <label className="label-hora">Até</label>
 
@@ -148,8 +142,8 @@ const FormDadosComercio = ({
                 component="span"
               />
             </div>
-            <label className="labelCnpj">Possui CNPJ?</label>
             <div className="input-field divPssuiCnpj">
+              <label className="labelCnpj">Possui CNPJ?</label>
               <div className="div-radio">
                 <p>
                   <label htmlFor="sim">
@@ -162,7 +156,7 @@ const FormDadosComercio = ({
                     <span>Sim</span>
                   </label>
                 </p>
-                <p>
+                <p className="p-nao-tenho-cnpj">
                   <label htmlFor="nao">
                     <Field
                       name="possuiCnpj"
@@ -185,15 +179,15 @@ const FormDadosComercio = ({
                   />
                 </div>
               ) : (
-                <p>
-                  Damos prioridade aos usuários que possuem CNPJ, recomendamos
-                  que o tire em{" "}
+                <p className="p-nao-tem-cnpj">
+                  O CNPJ não é obrigatório para o cadastro, porém damos
+                  prioridade aos vendedores que possuem CNPJ.
                   <a
                     href="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConvenJuntaBH/InscCNPJOrientacoes.htm"
-                    target="blamk"
+                    target="blank"
                   >
-                    CNPJ
-                  </a>{" "}
+                    Clique aqui e confira como tirar seu CNPJ
+                  </a>
                 </p>
               )}
               <ErrorMessage
@@ -202,7 +196,6 @@ const FormDadosComercio = ({
                 component="span"
               />
             </div>
-
             <div className="input-field inputs-formas-pagamento">
               <label className="label-formas-pagamento">
                 Quais formas de pagamento vc aceita
@@ -248,7 +241,7 @@ const FormDadosComercio = ({
               />
             </div>
           </div>
-        </Form>
+        </form>
       )}
     </Formik>
   );

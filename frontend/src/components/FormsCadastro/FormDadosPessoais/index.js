@@ -264,7 +264,7 @@ const FormDadosPessoais = ({ initialValues, handleSubmit, saveFile }) => {
                   </label>
                 </p>
               </div>
-              {values.tipoUser === "Cliente" ? (
+              {values.tipoUser === "cliente" ? (
                 <p>Estou a procura de produtos para comprar</p>
               ) : (
                 <p>Estou a procurando divulgar e vender meus produtos</p>

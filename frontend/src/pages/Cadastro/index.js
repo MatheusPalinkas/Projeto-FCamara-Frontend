@@ -14,7 +14,7 @@ import "./styles.css";
 
 const Cadastro = ({ handleLogin }) => {
   const [etapa, setEtapa] = useState(0);
-  const [dadosPessoais, setDadosPessoais] = useState({ tipoUser: "Cliente" });
+  const [dadosPessoais, setDadosPessoais] = useState({ tipoUser: "cliente" });
   const [endereco, setEndereco] = useState({});
   const [foto, setFoto] = useState(null);
 
@@ -26,7 +26,7 @@ const Cadastro = ({ handleLogin }) => {
     setEtapa(etapa - 1);
   };
 
-  const clearFormCliente = () => {
+  const clearFormPost = () => {
     delete dadosPessoais.repetirSenha;
     delete dadosPessoais.tipoUser;
 
@@ -65,7 +65,7 @@ const Cadastro = ({ handleLogin }) => {
   const postCliente = async () => {
     try {
       const url = null; //await postFoto();
-      const formCliente = clearFormCliente();
+      const formCliente = clearFormPost();
       const { data } = await api.post("/cliente", { ...formCliente });
 
       delete data.tipoUsuario;
@@ -103,6 +103,59 @@ const Cadastro = ({ handleLogin }) => {
     }
   };
 
+  const postComercio = async (idEndereco, comercio) => {
+    try {
+      const formComercio = {
+        nome: comercio.nome,
+        codigoEndereco: idEndereco,
+        possuiServicoEntrega: false,
+        urlFoto: "",
+        cnpj: comercio.cnpj || "",
+        horarioAbertura: comercio.horaAbertura,
+        horarioFechamento: comercio.horaFechamento,
+        codigoCategoria: comercio.categoria,
+        valorEntrega: comercio.frete,
+        tempoEntrega: comercio.diasParaEntrega,
+        localAtendimento: false,
+        pagamentoDinheiro:
+          comercio.pagamentoDinheiro.indexOf("pagamentoDinheiro") !== -1 ||
+          false,
+        pagamentoCartao:
+          comercio.pagamentoCartao.indexOf("pagamentoCartao") !== -1 || false,
+      };
+
+      const { data } = await api.post(`/comercio`, { ...formComercio });
+      return data;
+    } catch (error) {
+      alert(`Erro: ${error}`);
+    }
+  };
+
+  const postVendedor = async (comercio) => {
+    try {
+      const url = null; //await postFoto();
+      const formVendedor = clearFormPost();
+      const { data } = await api.post("/vendedor", {
+        ...formVendedor,
+        codigoComercio: comercio.id,
+      });
+
+      delete data.tipoUsuario;
+      delete data.urlFoto;
+      delete data.codigoComercio;
+
+      handleLogin({
+        ...data,
+        url,
+        comercio: comercio,
+      });
+
+      return data.id;
+    } catch (error) {
+      alert(`Erro: ${error}`);
+    }
+  };
+
   return (
     <div className="row container-cadastro">
       <div className="s12 div-form">
@@ -117,7 +170,7 @@ const Cadastro = ({ handleLogin }) => {
             <span className={`link breadcrumb ${etapa === 2 && "ativo"}`}>
               Adicionar endereço
             </span>
-            {dadosPessoais.tipoUser === "Vendedor" && (
+            {dadosPessoais.tipoUser === "vendedor" && (
               <span className={`link breadcrumb ${etapa === 3 && "ativo"}`}>
                 Comercio
               </span>
@@ -151,7 +204,7 @@ const Cadastro = ({ handleLogin }) => {
               handleSubmit={async (values) => {
                 setEndereco(values);
 
-                if (dadosPessoais.tipoUser === "Vendedor") {
+                if (dadosPessoais.tipoUser === "vendedor") {
                   setEtapa(etapa + 1);
                   return;
                 }
@@ -162,18 +215,23 @@ const Cadastro = ({ handleLogin }) => {
               }}
               handleBackStage={handleBackStage}
               initialValues={endereco}
-              vendedor={dadosPessoais.tipoUser === "Vendedor"}
+              vendedor={dadosPessoais.tipoUser === "vendedor"}
             />
           )}
 
           {etapa === 3 && (
             <FormDadosComercio
-              handleSubmit={(values) => {
-                setEndereco(values);
-                setEtapa(etapa + 1);
+              handleSubmit={async (values) => {
+                const idEndereco = await postEndereco(
+                  null,
+                  endereco,
+                  "vendedor"
+                );
+                const comercio = await postComercio(idEndereco, values);
+                await postVendedor(comercio);
               }}
               handleBackStage={handleBackStage}
-              initialValues={endereco}
+              initialValues={{ possuiCnpj: "nao" }}
             />
           )}
         </div>
