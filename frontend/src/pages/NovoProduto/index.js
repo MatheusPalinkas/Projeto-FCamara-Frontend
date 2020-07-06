@@ -39,7 +39,7 @@ function NovoProduto() {
 
   useEffect(() => {
     (async function () {
-      const dataCategorias = await api.get("/categorias");
+      const dataCategorias = await api.get("/categoria");
 
       setCategorias(dataCategorias.data);
 
@@ -47,6 +47,19 @@ function NovoProduto() {
       M.FormSelect.init(elems, {});
     })();
   }, [idComercio]);
+
+  const handleSubmit = async (values) => {
+    const { nome, preco, descricao, quantidade, categoria } = values;
+    const criarProduto = await api.post("/produto", {
+      nome,
+      preco,
+      descricao,
+      quantidade,
+      categoria,
+    });
+
+    console.log(criarProduto);
+  };
 
   return (
     <>
@@ -64,17 +77,15 @@ function NovoProduto() {
       </div>
       <Formik
         initialValues={dadosProdutos}
-        onSubmit={(values) => {
-          const valuesProdutos = {
-            nome: values.nome,
-            descricao: values.descricao,
-            preco: values.preco,
-            possuiEstoque: values.possuiEstoque,
-            quantidade: values.quantidade,
-            categoria: values.categoria,
-          };
-          setDadosProdutos(valuesProdutos);
-        }}
+        onSubmit={
+          (handleSubmit,
+          (values) => {
+            const valuesProdutos = {
+              ...values,
+            };
+            setDadosProdutos(valuesProdutos);
+          })
+        }
         validationSchema={validates}
       >
         {({ values, handleSubmit }) => (

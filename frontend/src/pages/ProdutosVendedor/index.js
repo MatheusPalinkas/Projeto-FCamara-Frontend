@@ -14,12 +14,11 @@ export default function ProdutosVendedor() {
 
   useEffect(() => {
     (async function () {
-      let filtro = "";
+      const [dataProdutos] = await Promise.all([
+        api.get(`/produto/comercio/${idComercio}`),
+      ]);
 
-      if (idComercio) filtro = `?idComercio=${idComercio}`;
-
-      const { data } = await api.get(`/produtos${filtro}`);
-      setProdutos(data);
+      setProdutos(dataProdutos.data.content);
     })();
   }, [idComercio]);
 
@@ -51,7 +50,7 @@ export default function ProdutosVendedor() {
         {produtos.map((produto) => (
           <Card
             key={produto.id}
-            idVendedor={produto.idComercio}
+            id={produto.id}
             titulo={produto.nome}
             url={produto.url}
             descricao={produto.descricao}

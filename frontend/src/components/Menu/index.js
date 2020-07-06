@@ -56,7 +56,7 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
                 data-position="bottom"
                 data-tooltip="Pagina inicial"
               >
-                <Link to="/">Logo</Link>
+                <Link to="/">Mercado Fácil</Link>
               </div>
             </li>
           </ul>
