@@ -14,11 +14,9 @@ export default function ProdutosVendedor() {
 
   useEffect(() => {
     (async function () {
-      const [dataProdutos] = await Promise.all([
-        api.get(`/produto/comercio/${idComercio}`),
-      ]);
+      const { data } = await api.get(`/produto/comercio/${idComercio}`);
 
-      setProdutos(dataProdutos.data.content);
+      setProdutos(data.content);
     })();
   }, [idComercio]);
 

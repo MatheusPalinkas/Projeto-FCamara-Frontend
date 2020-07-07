@@ -39,9 +39,9 @@ function NovoProduto() {
 
   useEffect(() => {
     (async function () {
-      const dataCategorias = await api.get("/categoria");
+      const { data } = await api.get("/categoria");
 
-      setCategorias(dataCategorias.data);
+      setCategorias(data);
 
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
