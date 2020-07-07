@@ -48,17 +48,20 @@ function NovoProduto() {
     })();
   }, [idComercio]);
 
-  const handleSubmit = async (values) => {
-    const { nome, preco, descricao, quantidade, categoria } = values;
-    const criarProduto = await api.post("/produto", {
-      nome,
-      preco,
-      descricao,
-      quantidade,
-      categoria,
-    });
+  const clearProduto = (values) => {
+    const valuesProdutos = {
+      ...values,
+      codigoCategoria: values.categoria,
+      codigoComercio: idComercio,
+    };
+    delete valuesProdutos.possuiEstoque;
+    delete valuesProdutos.categoria;
+    return valuesProdutos;
+  };
 
-    console.log(criarProduto);
+  const postProduto = async (produto) => {
+    const formProduto = clearProduto(produto);
+    const { data } = await api.post("/produto", { ...formProduto });
   };
 
   return (
@@ -77,15 +80,7 @@ function NovoProduto() {
       </div>
       <Formik
         initialValues={dadosProdutos}
-        onSubmit={
-          (handleSubmit,
-          (values) => {
-            const valuesProdutos = {
-              ...values,
-            };
-            setDadosProdutos(valuesProdutos);
-          })
-        }
+        onSubmit={async (values) => await postProduto(values)}
         validationSchema={validates}
       >
         {({ values, handleSubmit }) => (
@@ -213,6 +208,7 @@ function NovoProduto() {
                   submit="submit"
                   text="Cadastrar"
                   tooltip="Cadatrar novo produto"
+                  to={`/produto/vendedor/${idComercio}`}
                 />
               </div>
             </div>
