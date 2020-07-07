@@ -54,19 +54,26 @@ const Cadastro = ({ handleLogin }) => {
   const postFoto = async () => {
     if (!!foto) {
       const data = new FormData();
+      data.append("binario", foto);
 
-      data.append("file", foto);
-
-      return await api.post(`/imagem/${dadosPessoais.tipoUser}`, data);
+      const res = await api.post(`/imagem`, data, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
+      return `${res.config.baseURL}/imagem/${res.data.id}`;
     }
     return null;
   };
 
   const postCliente = async () => {
     try {
-      const url = null; //await postFoto();
+      const url = (await postFoto()) || null;
       const formCliente = clearFormPost();
-      const { data } = await api.post("/cliente", { ...formCliente });
+      const { data } = await api.post("/cliente", {
+        ...formCliente,
+        urlFoto: url,
+      });
 
       delete data.tipoUsuario;
       delete data.favoritos;
@@ -92,12 +99,14 @@ const Cadastro = ({ handleLogin }) => {
         cep: endereco.cep.replace("-", ""),
         logradouro: endereco.rua,
         complemento: endereco.complemento || " ",
+        codigoDetentor: id,
+        nome: "Principal",
       };
 
       delete formEndereco.rua;
 
       const { data } = await api.post(`/endereco/${tipo}`, { ...formEndereco });
-      return data;
+      return data.id;
     } catch (error) {
       alert(`Erro: ${error}`);
     }
@@ -125,7 +134,7 @@ const Cadastro = ({ handleLogin }) => {
       };
 
       const { data } = await api.post(`/comercio`, { ...formComercio });
-      return data;
+      return data.id;
     } catch (error) {
       alert(`Erro: ${error}`);
     }
@@ -133,7 +142,7 @@ const Cadastro = ({ handleLogin }) => {
 
   const postVendedor = async (comercio) => {
     try {
-      const url = null; //await postFoto();
+      const url = await postFoto();
       const formVendedor = clearFormPost();
       const { data } = await api.post("/vendedor", {
         ...formVendedor,
@@ -210,6 +219,7 @@ const Cadastro = ({ handleLogin }) => {
                 }
 
                 const idCliente = await postCliente();
+                console.log(`idCliente`, idCliente);
                 await postEndereco(idCliente, values, "cliente");
                 push("/");
               }}
