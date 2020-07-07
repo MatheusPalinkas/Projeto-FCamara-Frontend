@@ -32,6 +32,7 @@ function NovoProduto() {
   const { idComercio } = useParams();
   const { goBack } = useHistory();
   const [thumbnail, setThumbnail] = useState(null);
+  const { push } = useHistory();
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
@@ -62,6 +63,7 @@ function NovoProduto() {
   const postProduto = async (produto) => {
     const formProduto = clearProduto(produto);
     const { data } = await api.post("/produto", { ...formProduto });
+    push(`/produto/vendedor/${idComercio}`);
   };
 
   return (
