@@ -49,7 +49,15 @@ const ModalLogin = ({ handleLogin }) => {
       };
     }
 
-    handleLogin(user);
+    delete user.tipo;
+
+    const date = data.dataNascimento;
+    handleLogin({
+      ...user,
+      dataNascimento: `${date.split("-")[2]}/${date.split("-")[1]}/${
+        date.split("-")[0]
+      }`,
+    });
   };
 
   return (

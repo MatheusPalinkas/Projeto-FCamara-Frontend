@@ -22,9 +22,10 @@ const validates = yup.object().shape({
   frete: yup.string().required("Campo obrigatório"),
   categoria: yup.string().required("A sua categoria de comercio é obrigatoria"),
   cnpj: yup.string().optional(),
+  pagamentos: yup.array().optional(),
 });
 
-const hoursNumberMask = [/[1-9]/, /\d/, ":", /\d/, /\d/];
+const hoursNumberMask = [/[0-9]/, /\d/, ":", /\d/, /\d/];
 
 const FormDadosComercio = ({
   initialValues,
@@ -60,6 +61,7 @@ const FormDadosComercio = ({
                 className="helper-text"
                 name="nome"
                 component="span"
+                hoursNumberMask
               />
             </div>
             <div className="input-field">
@@ -73,9 +75,18 @@ const FormDadosComercio = ({
             </div>
             <div className="input-field">
               <label htmlFor="diasParaEntrega">
-                Quantos dias leva para fazer a entrega ?
+                Quantos horas leva para fazer a entrega ?
               </label>
-              <Field type="text" id="diasParaEntrega" name="diasParaEntrega" />
+              <Field name="diasParaEntrega">
+                {({ field }) => (
+                  <MaskInput
+                    {...field}
+                    type="text"
+                    id="diasParaEntrega"
+                    mask={hoursNumberMask}
+                  />
+                )}
+              </Field>
               <ErrorMessage
                 className="helper-text"
                 name="diasParaEntrega"
@@ -202,23 +213,23 @@ const FormDadosComercio = ({
               </label>
               <div className="div-radios-form div-formas-pagamento">
                 <p>
-                  <label htmlFor="pagamentoCartao">
+                  <label htmlFor="cartao">
                     <Field
-                      name="pagamentoCartao"
+                      name="pagamentos"
                       type="checkbox"
-                      value="pagamentoCartao"
-                      id="pagamentoCartao"
+                      value="cartao"
+                      id="cartao"
                     />
                     <span>Cartão</span>
                   </label>
                 </p>
                 <p>
-                  <label htmlFor="pagamentoDinheiro">
+                  <label htmlFor="dinheiro">
                     <Field
-                      name="pagamentoDinheiro"
+                      name="pagamentos"
                       type="checkbox"
-                      value="pagamentoDinheiro"
-                      id="pagamentoDinheiro"
+                      value="dinheiro"
+                      id="dinheiro"
                     />
                     <span>Dinheiro</span>
                   </label>

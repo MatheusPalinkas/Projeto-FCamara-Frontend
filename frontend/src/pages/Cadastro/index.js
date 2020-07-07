@@ -52,18 +52,23 @@ const Cadastro = ({ handleLogin }) => {
   };
 
   const postFoto = async () => {
-    if (!!foto) {
-      const data = new FormData();
-      data.append("binario", foto);
+    try {
+      if (!!foto) {
+        const data = new FormData();
+        data.append("binario", foto);
 
-      const res = await api.post(`/imagem`, data, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      });
-      return `${res.config.baseURL}/imagem/${res.data.id}`;
+        const res = await api.post(`/imagem`, data, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        return `${res.config.baseURL}/imagem/${res.data.id}`;
+      }
+      return "";
+    } catch (error) {
+      alert(`Erro no upload da foto: ${error}`);
+      return "";
     }
-    return null;
   };
 
   const postCliente = async () => {
@@ -81,9 +86,13 @@ const Cadastro = ({ handleLogin }) => {
 
       delete data.urlFoto;
 
+      const date = data.dataNascimento;
       handleLogin({
         ...data,
         url,
+        dataNascimento: `${date.split("-")[2]}/${date.split("-")[1]}/${
+          date.split("-")[0]
+        }`,
       });
 
       return data.id;
@@ -123,18 +132,15 @@ const Cadastro = ({ handleLogin }) => {
         horarioAbertura: comercio.horaAbertura,
         horarioFechamento: comercio.horaFechamento,
         codigoCategoria: comercio.categoria,
-        valorEntrega: comercio.frete,
+        valorEntrega: Number(comercio.frete),
         tempoEntrega: comercio.diasParaEntrega,
         localAtendimento: false,
         pagamentoDinheiro:
-          comercio.pagamentoDinheiro.indexOf("pagamentoDinheiro") !== -1 ||
-          false,
-        pagamentoCartao:
-          comercio.pagamentoCartao.indexOf("pagamentoCartao") !== -1 || false,
+          comercio.pagamentos.indexOf("dinheiro") !== -1 || false,
+        pagamentoCartao: comercio.pagamentos.indexOf("cartao") !== -1 || false,
       };
-
       const { data } = await api.post(`/comercio`, { ...formComercio });
-      return data.id;
+      return data;
     } catch (error) {
       alert(`Erro: ${error}`);
     }
@@ -153,9 +159,13 @@ const Cadastro = ({ handleLogin }) => {
       delete data.urlFoto;
       delete data.codigoComercio;
 
+      const date = data.dataNascimento;
       handleLogin({
         ...data,
         url,
+        dataNascimento: `${date.split("-")[2]}/${date.split("-")[1]}/${
+          date.split("-")[0]
+        }`,
         comercio: comercio,
       });
 
@@ -219,7 +229,6 @@ const Cadastro = ({ handleLogin }) => {
                 }
 
                 const idCliente = await postCliente();
-                console.log(`idCliente`, idCliente);
                 await postEndereco(idCliente, values, "cliente");
                 push("/");
               }}
@@ -232,13 +241,10 @@ const Cadastro = ({ handleLogin }) => {
           {etapa === 3 && (
             <FormDadosComercio
               handleSubmit={async (values) => {
-                const idEndereco = await postEndereco(
-                  null,
-                  endereco,
-                  "vendedor"
-                );
+                const idEndereco = await postEndereco("", endereco, "COMERCIO");
                 const comercio = await postComercio(idEndereco, values);
                 await postVendedor(comercio);
+                push("/");
               }}
               handleBackStage={handleBackStage}
               initialValues={{ possuiCnpj: "nao" }}
