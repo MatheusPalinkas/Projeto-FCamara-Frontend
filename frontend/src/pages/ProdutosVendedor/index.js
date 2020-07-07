@@ -18,7 +18,7 @@ export default function ProdutosVendedor() {
 
       setProdutos(data.content);
     })();
-  }, [idComercio]);
+  }, [idComercio, produtos]);
 
   return (
     <>
@@ -53,6 +53,10 @@ export default function ProdutosVendedor() {
             url={produto.url}
             descricao={produto.descricao}
             produto={{ preco: produto.preco }}
+            idVendedor={idComercio}
+            handleUpdate={() =>
+              setProdutos(produtos.filter((item) => item.id !== produto.id))
+            }
           />
         ))}
       </div>

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import api from "../../services/Api";
 
 import { MdClose, MdEdit } from "react-icons/md";
 
@@ -46,6 +47,7 @@ const Card = ({
   idComercio = null,
   quantidade,
   curtido,
+  handleUpdate,
 }) => {
   useEffect(() => {
     (async function () {
@@ -55,6 +57,11 @@ const Card = ({
       });
     })();
   }, []);
+
+  const deleteProduto = async () => {
+    const data = await api.delete(`/produto/${id}`, { id });
+    handleUpdate();
+  };
 
   return (
     <>
@@ -106,7 +113,9 @@ const Card = ({
           )}
           <p className="p-descricao-link">
             {idVendedor && (
-              <span className="link excluir-produto">Excluir produto</span>
+              <span className="link excluir-produto" onClick={deleteProduto}>
+                Excluir produto
+              </span>
             )}
             {idComercio ? (
               <Link

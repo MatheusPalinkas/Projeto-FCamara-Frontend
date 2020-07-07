@@ -8,6 +8,7 @@ import Modal from "../Modal";
 import Button from "../Button";
 
 import "./styles.css";
+import api from "../../services/Api";
 /**
  * const [quantidade, setQuantidade] = useState(10);
  * onChange={(e) => setQuantidade(e.target.value)}
@@ -23,9 +24,19 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
     })();
   }, []);
 
+  const atualizaEstoque = async (values) => {
+    const { quantidade } = values;
+    const data = await api.put("/produto/estoque", {
+      quantidade,
+    });
+  };
+
   return (
     <Modal tipo="login" id="modal2">
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={async (values) => await atualizaEstoque(values)}
+      >
         <Form>
           <div className="titulo">
             <h1>ESTOQUE</h1>
