@@ -50,6 +50,20 @@ function NovoProduto() {
   }, [idComercio]);
 
   const clearProduto = (values) => {
+    const converter = () => {
+      const converterDemanda = values.possuiEstoque;
+      if (converterDemanda === "true") {
+        const produtoEstoque = true;
+        const produtoDemanda = false;
+        return produtoEstoque + produtoDemanda;
+      } else {
+        const produtoEstoque = false;
+        const produtoDemanda = true;
+        const quantidade = 0;
+        return produtoEstoque + produtoDemanda + quantidade;
+      }
+    };
+
     const valuesProdutos = {
       ...values,
       codigoCategoria: values.categoria,

@@ -30,9 +30,9 @@ const ModalEstoque = ({
   }, []);
 
   const alteararEStoque = async (values) => {
-    const converter = () => {
-      const vai = values.status;
-      if (vai === "Disponivel") {
+    const converterStatus = () => {
+      const statusConverter = values.status;
+      if (statusConverter === "Disponivel") {
         const produtoEmEstoque = true;
         return produtoEmEstoque;
       } else {
@@ -42,7 +42,7 @@ const ModalEstoque = ({
     };
 
     const { quantidade } = values;
-    const produtoEmEstoque = converter();
+    const produtoEmEstoque = converterStatus();
 
     const data = await api.put("/produto/estoque", {
       id,
@@ -58,17 +58,6 @@ const ModalEstoque = ({
           <div className="titulo">
             <h1>PRODUTO</h1>
           </div>
-
-          <label>{initialValues.id}</label>
-
-          {produtoDemanda ? (
-            <></>
-          ) : (
-            <div className="input-field">
-              <label htmlFor="quantidade">Quantidade do produto</label>
-              <Field name="quantidade" type="text" />
-            </div>
-          )}
 
           <div className="input-field">
             <div className="div-radio">
@@ -96,6 +85,17 @@ const ModalEstoque = ({
               </p>
             </div>
           </div>
+
+          {produtoDemanda ? (
+            <></>
+          ) : (
+            <div className="input-field quantidadeModal">
+              <label className="labelQuantidadeModal" htmlFor="quantidade">
+                Quantidade do produto
+              </label>
+              <Field name="quantidade" type="text" />
+            </div>
+          )}
 
           <div className="containerBtnLogin">
             <div className="btnSalvarEstoque">
