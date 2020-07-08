@@ -77,6 +77,15 @@ const Card = ({
             src={url}
             alt="Sem foto ilustrativa"
           />
+          {idComercio === null && (
+            <>
+              {produtoEstoque ? (
+                <label className="labelDisponivel">Disponivel</label>
+              ) : (
+                <label className="labelIndisponivel">Indisponivel</label>
+              )}
+            </>
+          )}
         </div>
         <div className="card-content">
           <span className="card-title span-card-title">
@@ -116,11 +125,6 @@ const Card = ({
                   currency: "BRL",
                 })}
               </span>
-              {produtoEstoque == true ? (
-                <label className="labelDisponivel">Disponivel</label>
-              ) : (
-                <label className="labelDisponivel">Indisponivel</label>
-              )}
             </>
           )}
 
@@ -139,14 +143,9 @@ const Card = ({
               </Link>
             ) : (
               <>
-                <span className="link activator descricao">Ver descrição</span>
-                {produtoDemanda == true ? (
-                  <label className="labelDisponivel">
-                    Este produto é vendido por encomenda
-                  </label>
-                ) : (
-                  <></>
-                )}
+                <span className="link activator descricao">
+                  {!produtoDemanda ? "Ver descrição" : "Mais informações"}
+                </span>
               </>
             )}
           </p>
@@ -158,6 +157,11 @@ const Card = ({
               <MdClose className="activator card-title icon-menos-infos" />
             </span>
             <p className="p-descricao">{descricao}</p>
+            {produtoDemanda ? (
+              <label className="label-demanda">Produto por encomenda</label>
+            ) : (
+              <></>
+            )}
           </div>
         )}
       </div>
