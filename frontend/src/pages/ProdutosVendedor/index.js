@@ -50,6 +50,7 @@ export default function ProdutosVendedor() {
             key={produto.id}
             id={produto.id}
             titulo={produto.nome}
+            quantidadeEstoque={produto.quantidade}
             url={produto.url}
             descricao={produto.descricao}
             produto={{ preco: produto.preco }}

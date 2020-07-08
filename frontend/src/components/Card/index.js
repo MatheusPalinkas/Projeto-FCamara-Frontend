@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import api from "../../services/Api";
 
 import { MdClose, MdEdit } from "react-icons/md";
@@ -11,9 +11,6 @@ import ButtonAddCarrinho from "./ButtonAddCarrinho";
 import BtnFavoritar from "./BtnFavoritar";
 
 import "./styles.css";
-
-const handleSubmit = (values) => alert(JSON.stringify(values));
-const initialValues = { quantidade: "105", status: "Indisponivel" };
 
 const ButtonEditarProduto = () => (
   <div
@@ -46,9 +43,25 @@ const Card = ({
   idVendedor = null,
   idComercio = null,
   quantidade,
+  quantidadeEstoque,
   curtido,
   handleUpdate,
 }) => {
+  const initialValues = {
+    quantidade: quantidadeEstoque,
+    status: "Disponivel",
+  };
+
+  const handleSubmit = async (values) => {
+    const { quantidade } = values;
+    const produtoEmEstoque = true;
+    const data = await api.put("/produto/estoque", {
+      id,
+      produtoEmEstoque,
+      quantidade,
+    });
+  };
+
   useEffect(() => {
     (async function () {
       const elem = document.querySelectorAll(".tooltipped");
