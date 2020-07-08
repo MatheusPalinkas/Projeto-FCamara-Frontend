@@ -11,8 +11,9 @@ import ItemCarrinho from "./ItemCarrinho";
 
 import "./styles.css";
 
-function CarrinhoCompras({ produtos, user }) {
+function CarrinhoCompras({ produtos, user, total }) {
   const [itemSelected, setItemSelected] = useState(0);
+  const [observacoes, setObservacoes] = useState("");
   const { goBack } = useHistory();
 
   const handleFinish = (e) => {
@@ -21,6 +22,11 @@ function CarrinhoCompras({ produtos, user }) {
     if (!user.id) {
       const btnEntrarLogin = document.querySelector("#btn-login-entrar");
       btnEntrarLogin.click();
+      return;
+    }
+
+    if (total <= 0) {
+      alert("Sem itens no carrinho");
       return;
     }
 
@@ -49,7 +55,10 @@ function CarrinhoCompras({ produtos, user }) {
               <ItemCarrinho
                 produto={produto}
                 key={produto.id}
-                handleComment={() => setItemSelected(produto.id)}
+                handleComment={(observacoes) => {
+                  setItemSelected(produto.id);
+                  setObservacoes(produto.observacao);
+                }}
               />
             ))}
           </ul>
@@ -77,12 +86,13 @@ function CarrinhoCompras({ produtos, user }) {
         </div>
       </div>
       <ModalFinalizarCompra />
-      <ModalObservacao itemSelected={itemSelected} />
+      <ModalObservacao itemSelected={itemSelected} observacoes={observacoes} />
     </>
   );
 }
 const mapStateToProps = (state) => ({
   produtos: state.carrinho.items,
+  total: state.carrinho.total,
   user: state.user,
 });
 

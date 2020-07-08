@@ -13,7 +13,11 @@ const validations = yup.object().shape({
   observacao: yup.string().optional(),
 });
 
-const ModalObservacao = ({ itemSelected, items, handleUpdateObservacao }) => {
+const ModalObservacao = ({
+  itemSelected,
+  handleUpdateObservacao,
+  observacoes,
+}) => {
   const handleSubmit = async (values) => {
     const { observacao } = values;
     handleUpdateObservacao(itemSelected, observacao);
@@ -23,7 +27,7 @@ const ModalObservacao = ({ itemSelected, items, handleUpdateObservacao }) => {
     <Modal tipo="login" id="modal-observacoes">
       <Formik
         initialValues={{
-          observacao: items.filter((item) => item.id === itemSelected) || "",
+          observacao: observacoes,
         }}
         onSubmit={handleSubmit}
         validationSchema={validations}
@@ -59,9 +63,7 @@ const ModalObservacao = ({ itemSelected, items, handleUpdateObservacao }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  items: state.carrinho.items,
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   handleUpdateObservacao: (id, observacao) =>

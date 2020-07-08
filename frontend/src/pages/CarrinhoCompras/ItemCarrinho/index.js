@@ -17,11 +17,12 @@ function ItemCarrinho({
   handleComment,
 }) {
   const [quantidade, setQuantidade] = useState(parseInt(produto.quantidade));
-  const total = parseFloat(produto.preco) * parseInt(produto.quantidade);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
+    setTotal(parseFloat(produto.preco) * parseInt(produto.quantidade));
     handleUpdateAmount(produto.id, quantidade);
-  }, [quantidade, handleUpdateAmount, produto]);
+  }, [quantidade, handleUpdateAmount, produto, total]);
 
   return (
     <li className="collection-item avatar li-produto-carrinho">
