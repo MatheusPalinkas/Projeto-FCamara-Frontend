@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { RiEmotionLine } from "react-icons/ri";
 import { MdSend } from "react-icons/md";
+import api from "../../services/Api";
 
 import EscolherFormaPagamento from "./EscolherFormaPagamento";
 import FormEnderecoEntrega from "./FormEnderecoEntrega";
@@ -10,7 +12,7 @@ import Modal from "../Modal";
 
 import "./styles.css";
 
-function ModalFinalizarCompra() {
+function ModalFinalizarCompra({ idUser }) {
   const [etapa, setEtapa] = useState(0);
   const [idEndereco, setIdEndereco] = useState(0);
   const [cadastrarNovoEndereco, setCadastrarNovoEndereco] = useState(true);
@@ -32,9 +34,25 @@ function ModalFinalizarCompra() {
           ) : (
             <FormEnderecoEntrega
               initialValues={{}}
-              onSubmit={(values) => {
-                console.log(values);
-                setCadastrarNovoEndereco(true);
+              onSubmit={async (values) => {
+                try {
+                  const formEndereco = {
+                    ...values,
+                    cep: values.cep.replace("-", ""),
+                    logradouro: values.rua,
+                    complemento: values.complemento || " ",
+                    codigoDetentor: idUser,
+                  };
+
+                  delete formEndereco.rua;
+
+                  await api.post(`/endereco/cliente`, {
+                    ...formEndereco,
+                  });
+                  setCadastrarNovoEndereco(true);
+                } catch (error) {
+                  alert(`Erro: ${error}`);
+                }
               }}
               handleBack={() => setCadastrarNovoEndereco(true)}
             />
@@ -77,4 +95,13 @@ function ModalFinalizarCompra() {
   );
 }
 
-export default ModalFinalizarCompra;
+const mapStateToProps = (state) => ({
+  idUser: state.user.id,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalFinalizarCompra);
