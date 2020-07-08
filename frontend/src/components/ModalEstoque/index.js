@@ -29,9 +29,21 @@ const ModalEstoque = ({
     })();
   }, []);
 
-  const handleSubmit = async (values) => {
+  const alteararEStoque = async (values) => {
+    const converter = () => {
+      const vai = values.status;
+      if (vai === "Disponivel") {
+        const produtoEmEstoque = true;
+        return produtoEmEstoque;
+      } else {
+        const produtoEmEstoque = false;
+        return produtoEmEstoque;
+      }
+    };
+
     const { quantidade } = values;
-    const produtoEmEstoque = true;
+    const produtoEmEstoque = converter();
+
     const data = await api.put("/produto/estoque", {
       id,
       produtoEmEstoque,
@@ -40,14 +52,16 @@ const ModalEstoque = ({
   };
 
   return (
-    <Modal tipo="login" id="modal2">
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Modal tipo="login" id={`modal${id}`}>
+      <Formik initialValues={initialValues} onSubmit={alteararEStoque}>
         <Form>
           <div className="titulo">
-            <h1>EDITAR PRODUTO</h1>
+            <h1>PRODUTO</h1>
           </div>
 
-          {produtoDemanda == true ? (
+          <label>{initialValues.id}</label>
+
+          {produtoDemanda ? (
             <></>
           ) : (
             <div className="input-field">
@@ -86,6 +100,7 @@ const ModalEstoque = ({
           <div className="containerBtnLogin">
             <div className="btnSalvarEstoque">
               <Button
+                className="modal-close"
                 position="bottom"
                 tooltip="Salvar alteraçoes"
                 type="submit"
@@ -102,7 +117,6 @@ const ModalEstoque = ({
 };
 
 ModalEstoque.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
 };
 

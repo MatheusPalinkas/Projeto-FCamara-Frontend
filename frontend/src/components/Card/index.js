@@ -12,18 +12,6 @@ import BtnFavoritar from "./BtnFavoritar";
 
 import "./styles.css";
 
-const ButtonEditarProduto = () => (
-  <div
-    className="tooltipped div-editar-produto"
-    data-position="top"
-    data-tooltip="Editar produto"
-  >
-    <a className="waves-effect waves-light  modal-trigger" href="#modal2">
-      <MdEdit className="editar-produto " />
-    </a>
-  </div>
-);
-
 const QuantidadeProduto = ({ quantidade }) => (
   <div
     className="tooltipped div-quantidade-carrinho"
@@ -49,9 +37,24 @@ const Card = ({
   produtoDemanda,
   produtoEstoque,
 }) => {
-  const initialValues = {
-    quantidade: quantidadeEstoque,
-    status: "Disponivel",
+  const converterStatus = () => {
+    if (produtoEstoque) {
+      const status = "Disponivel";
+
+      const initialValues = {
+        status: status,
+        quantidade: quantidadeEstoque,
+      };
+      return initialValues;
+    } else {
+      const status = "Indisponivel";
+      const initialValues = {
+        status: status,
+        quantidade: quantidadeEstoque,
+      };
+
+      return initialValues;
+    }
   };
 
   useEffect(() => {
@@ -66,6 +69,23 @@ const Card = ({
   const deleteProduto = async () => {
     const data = await api.delete(`/produto/${id}`, { id });
     handleUpdate();
+  };
+
+  const ButtonEditarProduto = () => {
+    return (
+      <div
+        className="tooltipped div-editar-produto"
+        data-position="top"
+        data-tooltip="Editar produto"
+      >
+        <a
+          className="waves-effect waves-light  modal-trigger"
+          href={`#modal${id}`}
+        >
+          <MdEdit className="editar-produto " />
+        </a>
+      </div>
+    );
   };
 
   return (
@@ -111,7 +131,7 @@ const Card = ({
                       }}
                     />
                   ) : (
-                    <ButtonEditarProduto />
+                    <ButtonEditarProduto quantidade={quantidade} />
                   )}
                 </>
               )
@@ -168,8 +188,8 @@ const Card = ({
       <ModalEstoque
         produtoDemanda={produtoDemanda}
         produtoEstoque={produtoEstoque}
+        initialValues={converterStatus()}
         id={id}
-        initialValues={initialValues}
       />
     </>
   );
