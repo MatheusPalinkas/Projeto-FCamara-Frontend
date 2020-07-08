@@ -148,23 +148,23 @@ function NovoProduto() {
               <div className="input-field">
                 <div className="div-radio radio-possui-estoque">
                   <p>
-                    <label htmlFor="estoque">
+                    <label htmlFor="true">
                       <Field
                         name="possuiEstoque"
                         type="radio"
-                        value="estoque"
-                        id="estoque"
+                        value="true"
+                        id="true"
                       />
                       <span>Estoque</span>
                     </label>
                   </p>
                   <p>
-                    <label htmlFor="demanda">
+                    <label htmlFor="false">
                       <Field
                         name="possuiEstoque"
                         type="radio"
-                        value="demanda"
-                        id="demanda"
+                        value="false"
+                        id="false"
                       />
                       <span>Por encomenda</span>
                     </label>
@@ -179,7 +179,7 @@ function NovoProduto() {
                   Esse produto é por estoque ou demanda
                 </label>
               </div>
-              {values.possuiEstoque === "estoque" && (
+              {values.possuiEstoque === "true" && (
                 <div className="input-field">
                   <label htmlFor="quantidade">Quantidade</label>
                   <Field name="quantidade" type="text" id="quantidade" />

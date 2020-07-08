@@ -54,6 +54,8 @@ export default function ProdutosVendedor() {
             url={produto.url}
             descricao={produto.descricao}
             produto={{ preco: produto.preco }}
+            produtoDemanda={produto.produtoPorDemanda}
+            produtoEstoque={produto.produtoEmEstoque}
             idVendedor={idComercio}
             handleUpdate={() =>
               setProdutos(produtos.filter((item) => item.id !== produto.id))

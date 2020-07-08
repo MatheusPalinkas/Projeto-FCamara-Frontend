@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { MdSave } from "react-icons/md";
 import { Formik, Form, Field } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
+import api from "../../services/Api";
 
 import Modal from "../Modal";
 import Button from "../Button";
@@ -14,7 +15,12 @@ import "./styles.css";
  * value={quantidade}
  */
 
-const ModalEstoque = ({ handleSubmit, initialValues }) => {
+const ModalEstoque = ({
+  id,
+  initialValues,
+  produtoDemanda,
+  produtoEstoque,
+}) => {
   useEffect(() => {
     (async function () {
       const elems = document.querySelectorAll("select");
@@ -23,27 +29,58 @@ const ModalEstoque = ({ handleSubmit, initialValues }) => {
     })();
   }, []);
 
+  const handleSubmit = async (values) => {
+    const { quantidade } = values;
+    const produtoEmEstoque = true;
+    const data = await api.put("/produto/estoque", {
+      id,
+      produtoEmEstoque,
+      quantidade,
+    });
+  };
+
   return (
     <Modal tipo="login" id="modal2">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form>
           <div className="titulo">
-            <h1>ESTOQUE</h1>
+            <h1>EDITAR PRODUTO</h1>
           </div>
 
-          <div className="input-field">
-            <label htmlFor="quantidade">Quantidade</label>
-            <Field name="quantidade" type="text" />
-          </div>
+          {produtoDemanda == true ? (
+            <></>
+          ) : (
+            <div className="input-field">
+              <label htmlFor="quantidade">Quantidade do produto</label>
+              <Field name="quantidade" type="text" />
+            </div>
+          )}
 
           <div className="input-field">
-            <Field as="select" name="status">
-              <option>Status</option>
-              <option value="Disponivel">Disponivel</option>
-              <option value="Indisponivel">Indisponivel</option>
-              <option value="Encomenda">Encomenda</option>
-            </Field>
-            <label htmlFor="status">Status</label>
+            <div className="div-radio">
+              <p>
+                <label htmlFor="Disponivel">
+                  <Field
+                    name="status"
+                    type="radio"
+                    value="Disponivel"
+                    id="Disponivel"
+                  />
+                  <span>Disponivel</span>
+                </label>
+              </p>
+              <p>
+                <label htmlFor="Indisponivel">
+                  <Field
+                    name="status"
+                    type="radio"
+                    value="Indisponivel"
+                    id="Indisponivel"
+                  />
+                  <span>Indisponivel</span>
+                </label>
+              </p>
+            </div>
           </div>
 
           <div className="containerBtnLogin">

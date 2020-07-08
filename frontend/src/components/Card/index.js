@@ -46,20 +46,12 @@ const Card = ({
   quantidadeEstoque,
   curtido,
   handleUpdate,
+  produtoDemanda,
+  produtoEstoque,
 }) => {
   const initialValues = {
     quantidade: quantidadeEstoque,
     status: "Disponivel",
-  };
-
-  const handleSubmit = async (values) => {
-    const { quantidade } = values;
-    const produtoEmEstoque = true;
-    const data = await api.put("/produto/estoque", {
-      id,
-      produtoEmEstoque,
-      quantidade,
-    });
   };
 
   useEffect(() => {
@@ -117,13 +109,21 @@ const Card = ({
             )}
           </span>
           {produto.preco && (
-            <span className="preco">
-              {produto.preco.toLocaleString("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              })}
-            </span>
+            <>
+              <span className="preco">
+                {produto.preco.toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </span>
+              {produtoEstoque == true ? (
+                <label className="labelDisponivel">Disponivel</label>
+              ) : (
+                <label className="labelDisponivel">Indisponivel</label>
+              )}
+            </>
           )}
+
           <p className="p-descricao-link">
             {idVendedor && (
               <span className="link excluir-produto" onClick={deleteProduto}>
@@ -140,7 +140,13 @@ const Card = ({
             ) : (
               <>
                 <span className="link activator descricao">Ver descrição</span>
-                <label className="labelDisponivel">Disponivel</label>
+                {produtoDemanda == true ? (
+                  <label className="labelDisponivel">
+                    Este produto é vendido por encomenda
+                  </label>
+                ) : (
+                  <></>
+                )}
               </>
             )}
           </p>
@@ -155,7 +161,12 @@ const Card = ({
           </div>
         )}
       </div>
-      <ModalEstoque handleSubmit={handleSubmit} initialValues={initialValues} />
+      <ModalEstoque
+        produtoDemanda={produtoDemanda}
+        produtoEstoque={produtoEstoque}
+        id={id}
+        initialValues={initialValues}
+      />
     </>
   );
 };
