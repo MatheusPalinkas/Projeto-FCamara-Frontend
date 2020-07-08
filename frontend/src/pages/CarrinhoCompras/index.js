@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { MdStore, MdReply } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import ModalFinalizarCompra from "../../components/ModalFinalizarCompra";
+import ModalObservacao from "./ModalObservacao";
 import Button from "../../components/Button";
 import ItemCarrinho from "./ItemCarrinho";
 
 import "./styles.css";
 
 function CarrinhoCompras({ produtos, user }) {
+  const [itemSelected, setItemSelected] = useState(0);
   const { goBack } = useHistory();
 
   const handleFinish = (e) => {
@@ -44,7 +46,11 @@ function CarrinhoCompras({ produtos, user }) {
               </div>
             </li>
             {produtos.map((produto) => (
-              <ItemCarrinho produto={produto} key={produto.id} />
+              <ItemCarrinho
+                produto={produto}
+                key={produto.id}
+                handleComment={() => setItemSelected(produto.id)}
+              />
             ))}
           </ul>
           <div className="div-btn-finalizar-compra">
@@ -71,6 +77,7 @@ function CarrinhoCompras({ produtos, user }) {
         </div>
       </div>
       <ModalFinalizarCompra />
+      <ModalObservacao itemSelected={itemSelected} />
     </>
   );
 }

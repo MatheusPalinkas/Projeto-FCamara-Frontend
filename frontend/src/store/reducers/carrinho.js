@@ -55,5 +55,24 @@ export default function dataUser(state = INICIAL_STATE, action) {
       };
     }
   }
+
+  if (action.type === "UPDATE_OBSERVACAO_ITEM_CART") {
+    const { id, observacao } = action;
+    const { items } = state;
+    const itemExists = items.find((item) => item.id === id);
+
+    if (itemExists) {
+      const itemIndex = items.findIndex((item) => item.id === itemExists.id);
+
+      if (itemIndex >= 0 && !!observacao) {
+        items[itemIndex].observacao = observacao;
+
+        return {
+          ...state,
+          items: items,
+        };
+      }
+    }
+  }
   return state;
 }

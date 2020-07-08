@@ -19,3 +19,11 @@ export function UPDATE_QUANTIDADE_ITEM_CART(id, quantidade) {
     quantidade,
   };
 }
+
+export function UPDATE_OBSERVACAO_ITEM_CART(id, observacao) {
+  return {
+    type: "UPDATE_OBSERVACAO_ITEM_CART",
+    id,
+    observacao,
+  };
+}

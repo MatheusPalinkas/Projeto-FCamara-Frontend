@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-
 import { MdClose, MdEdit } from "react-icons/md";
-
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
+import isImgValid from "../../utils/isImgValid";
 
 import ModalEstoque from "../../components/ModalEstoque";
 import ButtonAddCarrinho from "./ButtonAddCarrinho";
@@ -55,14 +54,6 @@ const Card = ({
       });
     })();
   }, []);
-
-  const isImgValid = (url) => {
-    const img = new Image();
-    img.src = url;
-    if (img.height > 0) return url;
-
-    return null;
-  };
 
   return (
     <>
