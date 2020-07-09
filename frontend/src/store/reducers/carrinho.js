@@ -74,5 +74,9 @@ export default function dataUser(state = INICIAL_STATE, action) {
       }
     }
   }
+
+  if (action.type === "CLEAR_CART") {
+    return INICIAL_STATE;
+  }
   return state;
 }
