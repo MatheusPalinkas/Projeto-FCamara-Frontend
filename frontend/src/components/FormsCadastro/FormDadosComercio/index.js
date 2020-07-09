@@ -27,6 +27,26 @@ const validates = yup.object().shape({
 
 const hoursNumberMask = [/[0-9]/, /\d/, ":", /\d/, /\d/];
 
+const cnpjNumberMask = [
+  /[1-9]/,
+  /\d/,
+  ".",
+  /\d/,
+  /\d/,
+  /\d/,
+  ".",
+  /\d/,
+  /\d/,
+  /\d/,
+  "/",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  "-",
+  /\d/,
+  /\d/,
+];
 const FormDadosComercio = ({
   initialValues,
   handleSubmit,
@@ -182,7 +202,16 @@ const FormDadosComercio = ({
               {values.possuiCnpj === "sim" ? (
                 <div className="input-field">
                   <label htmlFor="cnpj">CNPJ</label>
-                  <Field type="text" id="cnpj" name="cnpj" />
+                  <Field name="cnpj">
+                    {({ field }) => (
+                      <MaskInput
+                        {...field}
+                        mask={cnpjNumberMask}
+                        type="text"
+                        id="cnpj"
+                      />
+                    )}
+                  </Field>
                   <ErrorMessage
                     className="helper-text"
                     name="cnpj"

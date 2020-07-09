@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { MdPersonAdd } from "react-icons/md";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import { HANDLE_LOGIN } from "../../store/actions/user";
-import Api from "../../services/Api";
+import { Logar } from "../../services/login";
 
 import Modal from "../Modal";
 import Button from "../Button";
@@ -25,14 +25,7 @@ const validations = yup.object().shape({
 const ModalLogin = ({ handleLogin }) => {
   const handleSubmit = async (values) => {
     const { email, senha } = values;
-    const resToken = await Api.post("/login", { email, senha });
-    const { token, tipo } = resToken.data;
-
-    const { data } = await Api.get("/usuario", {
-      headers: {
-        authorization: `${tipo} ${token}`,
-      },
-    });
+    const data = await Logar(email, senha);
 
     const user = {
       ...data,

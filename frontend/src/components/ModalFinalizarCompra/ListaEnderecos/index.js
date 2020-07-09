@@ -20,7 +20,7 @@ const ListaEnderecos = ({
       const { data } = await api.get(`/endereco/cliente/${idUser}`);
       setEnderecos(data);
     })();
-  }, []);
+  }, [idUser]);
 
   return (
     <>

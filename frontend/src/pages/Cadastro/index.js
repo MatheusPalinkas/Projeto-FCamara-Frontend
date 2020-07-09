@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { HANDLE_LOGIN } from "../../store/actions/user";
-import api from "../../services/Api";
+
+import { criarFoto } from "../../services/foto";
+import { criarCliente } from "../../services/cliente";
+import { criarEndereco } from "../../services/endereco";
+import { criarComercio } from "../../services/comercio";
+import { criarVendedor } from "../../services/vendedor";
 
 import Breadcrumb from "../../components/Breadcrumb";
 import FormDadosPessoais from "../../components/FormsCadastro/FormDadosPessoais";
@@ -53,21 +58,9 @@ const Cadastro = ({ handleLogin }) => {
 
   const postFoto = async () => {
     try {
-      if (!!foto) {
-        const data = new FormData();
-        data.append("binario", foto);
-
-        const res = await api.post(`/imagem`, data, {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
-        });
-        return `${res.config.baseURL}/imagem/${res.data.id}`;
-      }
-      return "";
+      return await criarFoto(foto);
     } catch (error) {
-      alert(`Erro no upload da foto: ${error}`);
-      return "";
+      alert("erro: ", error);
     }
   };
 
@@ -75,7 +68,7 @@ const Cadastro = ({ handleLogin }) => {
     try {
       const url = (await postFoto()) || null;
       const formCliente = clearFormPost();
-      const { data } = await api.post("/cliente", {
+      const data = await criarCliente({
         ...formCliente,
         urlFoto: url,
       });
@@ -114,7 +107,7 @@ const Cadastro = ({ handleLogin }) => {
 
       delete formEndereco.rua;
 
-      const { data } = await api.post(`/endereco/${tipo}`, { ...formEndereco });
+      const data = await criarEndereco(tipo, formEndereco);
       return data.id;
     } catch (error) {
       alert(`Erro: ${error}`);
@@ -139,7 +132,7 @@ const Cadastro = ({ handleLogin }) => {
           comercio.pagamentos.indexOf("dinheiro") !== -1 || false,
         pagamentoCartao: comercio.pagamentos.indexOf("cartao") !== -1 || false,
       };
-      const { data } = await api.post(`/comercio`, { ...formComercio });
+      const data = await criarComercio(formComercio);
       return data;
     } catch (error) {
       alert(`Erro: ${error}`);
@@ -150,7 +143,7 @@ const Cadastro = ({ handleLogin }) => {
     try {
       const url = await postFoto();
       const formVendedor = clearFormPost();
-      const { data } = await api.post("/vendedor", {
+      const data = await criarVendedor({
         ...formVendedor,
         codigoComercio: comercio.id,
       });
