@@ -9,6 +9,7 @@ ul > li.item-lista-enderecos-finalizar-pedido{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    cursor: pointer;
 }
 li > span.endereco-apelido{
     text-align: left;

@@ -38,7 +38,6 @@ const Pagination = ({ page, totalPages, setPage }) => {
       <li
         className={` ${page + 1 === totalPages ? "disabled" : "waves-effect"}`}
         onClick={() => {
-          alert(page);
           if (page + 1 === totalPages) return;
           setPage(page + 1);
         }}
@@ -64,9 +63,7 @@ function Main() {
       if (idCategoria) filtro = `&idCategoria=${idCategoria}&`;
       if (nomeFiltro) filtro = `&nome=${nomeFiltro}&`;
 
-      const { data } = await api.get(
-        `/comercio?number=${page}&size=10${filtro}`
-      );
+      const { data } = await api.get(`/comercio?page=${page}&size=10${filtro}`);
       setTotalPages(data.totalPages);
       setPage(data.pageable.pageNumber);
       setComercios(data.content);
@@ -83,7 +80,10 @@ function Main() {
       </div>
       <PesquisaHome
         txtFiltro={nomeFiltro}
-        handleChangeFilter={(e) => setNomeFiltro(e.target.value)}
+        handleChangeFilter={(e) => {
+          setNomeFiltro(e.target.value);
+          setPage(0);
+        }}
       />
       <div className="container-comercios">
         {comercios.map((comercio) => {

@@ -16,7 +16,7 @@
 .li-cabecalho-headers{
     display: flex;
     justify-content: flex-start;
-    margin: 32px 80px 0 105px !important ;
+    margin: 32px 116px 0 105px !important ;
 }
 .li-cabecalho-headers > *{
     font-family: NunitoSansSemiBold;

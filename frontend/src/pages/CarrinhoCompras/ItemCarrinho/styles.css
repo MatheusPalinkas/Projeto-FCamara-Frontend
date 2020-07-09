@@ -50,6 +50,9 @@ span.carrinho-nome-produto,
     font-family: Lato;
     font-size: 1em;
 }
+.btn-add-observacao-item-produto{
+    cursor: pointer;
+}
 .btn-deletar-item-produto{
     cursor: pointer;
     margin-left: auto;

@@ -9,6 +9,7 @@ import Button from "../../Button";
 import "./styles.css";
 
 const validates = yup.object().shape({
+  nome: yup.string().required("O nome do endereço não deve ser vazia"),
   cep: yup
     .string()
     .length(9, "O CEP deve ter 8 caracteres")
@@ -40,6 +41,15 @@ const FormEnderecoEntrega = ({ initialValues, onSubmit, handleBack }) => {
     >
       <Form>
         <div className="form-endereco-finalizar-pedido">
+          <div className="input-field">
+            <label htmlFor="nome">Nome para endereço</label>
+            <Field type="text" id="nome" name="nome" />
+            <ErrorMessage
+              className="helper-text"
+              name="nome"
+              component="span"
+            />
+          </div>
           <div className="input-field">
             <label htmlFor="cep">CEP</label>
             <Field type="text" id="cep" name="cep" />
@@ -85,7 +95,6 @@ const FormEnderecoEntrega = ({ initialValues, onSubmit, handleBack }) => {
               />
             </div>
           </div>
-
           <div className="input-field">
             <label htmlFor="bairro">Bairro</label>
             <Field name="bairro" type="text" id="bairro" />
@@ -95,12 +104,10 @@ const FormEnderecoEntrega = ({ initialValues, onSubmit, handleBack }) => {
               component="span"
             />
           </div>
-
           <div className="input-field">
             <label htmlFor="Complemento">Complemento</label>
             <Field name="complemento" type="text" id="complemento" />
           </div>
-
           <div className="div-buttons-form btns-voltar-seguir-finalizar-compra">
             <Button
               text="Voltar"

@@ -34,13 +34,29 @@ const ModalLogin = ({ handleLogin }) => {
       },
     });
 
-    handleLogin({
+    const user = {
       ...data,
-      comercio: {
-        idEndereco: data.codigoComercio,
-      },
       tipo: data.tipoUsuario,
       url: data.urlFoto,
+    };
+
+    delete user.urlFoto;
+    delete user.tipoUsuario;
+
+    if (user.tipo === "VENDEDOR") {
+      user.comercio = {
+        idEndereco: data.codigoComercio,
+      };
+    }
+
+    delete user.tipo;
+
+    const date = data.dataNascimento;
+    handleLogin({
+      ...user,
+      dataNascimento: `${date.split("-")[2]}/${date.split("-")[1]}/${
+        date.split("-")[0]
+      }`,
     });
   };
 

@@ -30,7 +30,12 @@
     font-family: Lato;
     margin-top: 3px;
 }
-.input-field > label.label-formas-pagamento-finalizar-pedido{
+.input-field.input-observacoes{
+    display: flex;
+}
+.input-field > label.label-formas-pagamento-finalizar-pedido,
+.input-field.input-observacoes > input.materialize-textarea,
+.input-field.input-observacoes > *{
     margin: 0px 50px 32px 48px;
 }
 .div-formas-pagamento-finalizar-pedido{
@@ -55,7 +60,9 @@
     }
     .form-escolher-forma-pagamento > div, 
     .inputs-formas-pagamento-finalizar-pedido > div,
-    .input-field > label.label-formas-pagamento-finalizar-pedido{
+    .input-field > label.label-formas-pagamento-finalizar-pedido,
+    .input-field.input-observacoes > input.materialize-textarea,
+    .input-field.input-observacoes > *{
         margin-right: 0;
         margin-left: 0;
     }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { MdAdd, MdRemove, MdDelete } from "react-icons/md";
+import { MdAdd, MdRemove, MdDelete, MdComment } from "react-icons/md";
+import isImgValid from "../../../utils/isImgValid";
+import M from "materialize-css/dist/js/materialize.min.js";
 import {
   REMOVE_ITEM_CART,
   UPDATE_QUANTIDADE_ITEM_CART,
@@ -8,19 +10,28 @@ import {
 
 import "./styles.css";
 
-function ItemCarrinho({ produto, handleRemove, handleUpdateAmount }) {
+function ItemCarrinho({
+  produto,
+  handleRemove,
+  handleUpdateAmount,
+  handleComment,
+}) {
   const [quantidade, setQuantidade] = useState(parseInt(produto.quantidade));
-  const total = parseFloat(produto.preco) * parseInt(produto.quantidade);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
+    setTotal(parseFloat(produto.preco) * parseInt(produto.quantidade));
     handleUpdateAmount(produto.id, quantidade);
-  }, [quantidade, handleUpdateAmount, produto]);
+  }, [quantidade, handleUpdateAmount, produto, total]);
+
   return (
     <li className="collection-item avatar li-produto-carrinho">
       <img
         src={produto.url}
         alt="Foto demostrativa do produto"
-        className="circle img-produto-carrinho"
+        className={`circle img-produto-carrinho ${
+          isImgValid(produto.url) === null && "sem-imagem"
+        }`}
       />
 
       <span className="carrinho-nome-produto">{produto.nome}</span>
@@ -60,6 +71,19 @@ function ItemCarrinho({ produto, handleRemove, handleUpdateAmount }) {
           currency: "BRL",
         })}
       </span>
+
+      <MdComment
+        size={24}
+        color="#148ACC"
+        className="secondary-conten btn-add-observacao-item-produto"
+        onClick={(e) => {
+          e.preventDefault();
+          handleComment();
+          const elem = document.querySelector("#modal-observacoes");
+          const instance = M.Modal.getInstance(elem);
+          instance.open();
+        }}
+      />
 
       <MdDelete
         color="#e74c3c"
