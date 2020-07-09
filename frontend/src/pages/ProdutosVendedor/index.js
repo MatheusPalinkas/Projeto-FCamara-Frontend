@@ -1,24 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import api from "../../services/Api";
-import "./styles.css";
-import Card from "../../components/Card";
 import { MdReply } from "react-icons/md";
+import M from "materialize-css/dist/js/materialize.min.js";
 
+import ModalEstoque from "../../components/ModalEstoque";
 import Button from "../../components/Button";
+import Card from "../../components/Card";
+
+import "./styles.css";
 
 export default function ProdutosVendedor() {
+  const [inicialValuesEstoque, setInicialValuesEstoque] = useState({});
+  const [idProdutoEdit, setIdProdutoEdit] = useState("");
   const [produtos, setProdutos] = useState([]);
+
   const { idComercio } = useParams();
   const { goBack } = useHistory();
 
-  useEffect(() => {
-    (async function () {
-      const { data } = await api.get(`/produto/comercio/${idComercio}`);
+  const getComercio = useCallback(async () => {
+    const { data } = await api.get(`/produto/comercio/${idComercio}`);
+    setProdutos(data.content);
+  }, [idComercio]);
 
-      setProdutos(data.content);
-    })();
-  }, [idComercio, produtos]);
+  useEffect(() => {
+    getComercio();
+  }, [getComercio]);
+
+  useEffect(() => {
+    if (idProdutoEdit) openModal();
+  }, [idProdutoEdit]);
+
+  const openModal = () => {
+    const elem = document.querySelector("#modal-alterar-quantidade");
+    var instance = M.Modal.getInstance(elem);
+    instance.open();
+  };
 
   return (
     <>
@@ -50,12 +67,21 @@ export default function ProdutosVendedor() {
             key={produto.id}
             id={produto.id}
             titulo={produto.nome}
-            quantidadeEstoque={produto.quantidade}
             url={produto.url}
             descricao={produto.descricao}
             produto={{ preco: produto.preco }}
             produtoDemanda={produto.produtoPorDemanda}
-            produtoEstoque={produto.produtoEmEstoque}
+            disponivel={produto.produtoEmEstoque}
+            handleEdit={() => {
+              setInicialValuesEstoque({
+                tipo: !produto.produtoPorDemanda ? "estoque" : "demanda",
+                status: produto.produtoEmEstoque
+                  ? "Disponivel"
+                  : "Indisponivel",
+                quantidade: produto.quantidade,
+              });
+              setIdProdutoEdit(produto.id);
+            }}
             idVendedor={idComercio}
             handleUpdate={() =>
               setProdutos(produtos.filter((item) => item.id !== produto.id))
@@ -63,6 +89,11 @@ export default function ProdutosVendedor() {
           />
         ))}
       </div>
+      <ModalEstoque
+        initialValues={inicialValuesEstoque}
+        idProduto={idProdutoEdit}
+        updateProdutos={getComercio}
+      />
     </>
   );
 }

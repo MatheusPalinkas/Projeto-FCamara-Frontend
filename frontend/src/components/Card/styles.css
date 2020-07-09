@@ -118,7 +118,8 @@ span.span-card-title {
 }
 
 .labelDisponivel,
-.labelIndisponivel {
+.labelIndisponivel,
+.labelPorEncomenda {
   position: absolute;
   font-family: LatoBold;
   font-size: .9em;
@@ -135,6 +136,9 @@ span.span-card-title {
 }
 .labelDisponivel{
   background: #6ab04c;
+}
+.labelPorEncomenda{
+  background: #1D273B;
 }
 .label-demanda{
   position: absolute;

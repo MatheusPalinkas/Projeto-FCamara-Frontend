@@ -27,7 +27,6 @@ const validates = yup.object().shape({
 });
 
 function NovoProduto() {
-  const [dadosProdutos, setDadosProdutos] = useState({});
   const [categorias, setCategorias] = useState([]);
   const { idComercio } = useParams();
   const { goBack } = useHistory();
@@ -49,35 +48,52 @@ function NovoProduto() {
     })();
   }, [idComercio]);
 
-  const clearProduto = (values) => {
-    const converter = () => {
-      const converterDemanda = values.possuiEstoque;
-      if (converterDemanda === "true") {
-        const produtoEstoque = true;
-        const produtoDemanda = false;
-        return produtoEstoque + produtoDemanda;
-      } else {
-        const produtoEstoque = false;
-        const produtoDemanda = true;
-        const quantidade = 0;
-        return produtoEstoque + produtoDemanda + quantidade;
-      }
-    };
+  const postFoto = async () => {
+    try {
+      if (!!thumbnail) {
+        const data = new FormData();
+        data.append("binario", thumbnail);
 
+        const res = await api.post(`/imagem`, data, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        return `${res.config.baseURL}/imagem/${res.data.id}`;
+      }
+      return "";
+    } catch (error) {
+      alert(`Erro no upload da foto: ${error}`);
+      return "";
+    }
+  };
+
+  const clearProduto = (values) => {
     const valuesProdutos = {
       ...values,
       codigoCategoria: values.categoria,
       codigoComercio: idComercio,
+      preco: Number(values.preco),
+      produtoEstoque: values.possuiEstoque === "true",
+      produtoDemanda: values.possuiEstoque !== "true",
+      quantidade: values.possuiEstoque !== "true" ? "0" : values.quantidade,
     };
+
     delete valuesProdutos.possuiEstoque;
     delete valuesProdutos.categoria;
     return valuesProdutos;
   };
 
   const postProduto = async (produto) => {
-    const formProduto = clearProduto(produto);
-    const { data } = await api.post("/produto", { ...formProduto });
-    push(`/produto/vendedor/${idComercio}`);
+    try {
+      const url = await postFoto();
+      const formProduto = clearProduto({ ...produto, urlFoto: url });
+
+      await api.post("/produto", { ...formProduto });
+      push(`/produto/vendedor/${idComercio}`);
+    } catch (error) {
+      alert(`Erro ao criar novo produto: ${error}`);
+    }
   };
 
   return (
@@ -95,7 +111,7 @@ function NovoProduto() {
         />
       </div>
       <Formik
-        initialValues={dadosProdutos}
+        initialValues={{}}
         onSubmit={async (values) => await postProduto(values)}
         validationSchema={validates}
       >

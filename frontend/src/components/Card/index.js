@@ -6,7 +6,6 @@ import { MdClose, MdEdit } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
 
-import ModalEstoque from "../../components/ModalEstoque";
 import ButtonAddCarrinho from "./ButtonAddCarrinho";
 import BtnFavoritar from "./BtnFavoritar";
 
@@ -22,6 +21,24 @@ const QuantidadeProduto = ({ quantidade }) => (
   </div>
 );
 
+const ButtonEditarProduto = ({ handleEdit }) => {
+  return (
+    <div
+      className="tooltipped div-editar-produto"
+      data-position="top"
+      data-tooltip="Editar produto"
+      onClick={(e) => {
+        e.preventDefault();
+        handleEdit();
+      }}
+    >
+      <span className="waves-effect waves-light link">
+        <MdEdit className="editar-produto " />
+      </span>
+    </div>
+  );
+};
+
 const Card = ({
   id,
   url,
@@ -31,32 +48,12 @@ const Card = ({
   idVendedor = null,
   idComercio = null,
   quantidade,
-  quantidadeEstoque,
   curtido,
   handleUpdate,
+  handleEdit,
   produtoDemanda,
-  produtoEstoque,
+  disponivel,
 }) => {
-  const converterStatus = () => {
-    if (produtoEstoque) {
-      const status = "Disponivel";
-
-      const initialValues = {
-        status: status,
-        quantidade: quantidadeEstoque,
-      };
-      return initialValues;
-    } else {
-      const status = "Indisponivel";
-      const initialValues = {
-        status: status,
-        quantidade: quantidadeEstoque,
-      };
-
-      return initialValues;
-    }
-  };
-
   useEffect(() => {
     (async function () {
       const elem = document.querySelectorAll(".tooltipped");
@@ -67,25 +64,8 @@ const Card = ({
   }, []);
 
   const deleteProduto = async () => {
-    const data = await api.delete(`/produto/${id}`, { id });
+    await api.delete(`/produto/${id}`, { id });
     handleUpdate();
-  };
-
-  const ButtonEditarProduto = () => {
-    return (
-      <div
-        className="tooltipped div-editar-produto"
-        data-position="top"
-        data-tooltip="Editar produto"
-      >
-        <a
-          className="waves-effect waves-light  modal-trigger"
-          href={`#modal${id}`}
-        >
-          <MdEdit className="editar-produto " />
-        </a>
-      </div>
-    );
   };
 
   return (
@@ -99,7 +79,7 @@ const Card = ({
           />
           {idComercio === null && (
             <>
-              {produtoEstoque ? (
+              {disponivel ? (
                 <label className="labelDisponivel">Disponivel</label>
               ) : (
                 <label className="labelIndisponivel">Indisponivel</label>
@@ -131,7 +111,7 @@ const Card = ({
                       }}
                     />
                   ) : (
-                    <ButtonEditarProduto quantidade={quantidade} />
+                    <ButtonEditarProduto handleEdit={handleEdit} />
                   )}
                 </>
               )
@@ -163,9 +143,7 @@ const Card = ({
               </Link>
             ) : (
               <>
-                <span className="link activator descricao">
-                  {!produtoDemanda ? "Ver descrição" : "Mais informações"}
-                </span>
+                <span className="link activator descricao">Ver descrição</span>
               </>
             )}
           </p>
@@ -185,12 +163,6 @@ const Card = ({
           </div>
         )}
       </div>
-      <ModalEstoque
-        produtoDemanda={produtoDemanda}
-        produtoEstoque={produtoEstoque}
-        initialValues={converterStatus()}
-        id={id}
-      />
     </>
   );
 };
