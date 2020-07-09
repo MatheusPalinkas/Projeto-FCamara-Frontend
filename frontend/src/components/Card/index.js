@@ -62,7 +62,7 @@ const Card = ({
     })();
   }, []);
 
-  const deleteProduto = async () => {
+  const handleDeleteProduto = async () => {
     await deleteProduto(id);
     handleUpdate();
   };
@@ -129,7 +129,10 @@ const Card = ({
 
           <p className="p-descricao-link">
             {idVendedor && (
-              <span className="link excluir-produto" onClick={deleteProduto}>
+              <span
+                className="link excluir-produto"
+                onClick={handleDeleteProduto}
+              >
                 Excluir produto
               </span>
             )}

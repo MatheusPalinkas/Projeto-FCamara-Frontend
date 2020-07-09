@@ -37,9 +37,7 @@ const ModalLogin = ({ handleLogin }) => {
     delete user.tipoUsuario;
 
     if (user.tipo === "VENDEDOR") {
-      user.comercio = {
-        idEndereco: data.codigoComercio,
-      };
+      user.comercio = { ...data.comercio };
     }
 
     delete user.tipo;

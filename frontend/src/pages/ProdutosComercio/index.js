@@ -24,7 +24,7 @@ const ProdutosComercio = ({ user }) => {
   const cnpj = null;
 
   const getProdutos = useCallback(async () => {
-    const data = listarProdutosComercio(idComercio);
+    const data = await listarProdutosComercio(idComercio);
     setProdutos(data.content);
   }, [idComercio]);
 
@@ -111,6 +111,7 @@ const ProdutosComercio = ({ user }) => {
             url={produto.url}
             descricao={produto.descricao}
             produto={{ preco: produto.preco }}
+            disponivel={produto.produtoDisponivel}
           />
         ))}
       </div>

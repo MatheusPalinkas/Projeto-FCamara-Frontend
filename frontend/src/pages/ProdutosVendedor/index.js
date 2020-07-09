@@ -71,11 +71,11 @@ export default function ProdutosVendedor() {
             descricao={produto.descricao}
             produto={{ preco: produto.preco }}
             produtoDemanda={produto.produtoPorDemanda}
-            disponivel={produto.produtoEmEstoque}
+            disponivel={produto.produtoDisponivel}
             handleEdit={() => {
               setInicialValuesEstoque({
                 tipo: !produto.produtoPorDemanda ? "estoque" : "demanda",
-                status: produto.produtoEmEstoque
+                status: produto.produtoDisponivel
                   ? "Disponivel"
                   : "Indisponivel",
                 quantidade: produto.quantidade,

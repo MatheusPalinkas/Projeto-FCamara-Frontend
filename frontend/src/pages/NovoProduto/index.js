@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { MdReply, MdAddAPhoto } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
-import api from "../../services/Api";
+
 import { listarCategorias } from "../../services/categorias";
 import { criarFoto } from "../../services/foto";
 import { criarProduto } from "../../services/produto";
@@ -40,7 +40,7 @@ function NovoProduto() {
   }, [thumbnail]);
 
   const getCategorias = useCallback(async () => {
-    const data = listarCategorias();
+    const data = await listarCategorias();
 
     setCategorias(data);
   }, []);
@@ -54,7 +54,7 @@ function NovoProduto() {
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
     })();
-  }, []);
+  }, [categorias]);
 
   const postFoto = async () => {
     try {
