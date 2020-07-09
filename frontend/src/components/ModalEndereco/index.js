@@ -11,6 +11,7 @@ import Button from "../Button";
 import "./styles.css";
 
 const validates = yup.object().shape({
+  nome: yup.string().required("O nome do endereço não deve ser vazia"),
   cep: yup
     .string()
     .length(9, "O CEP deve ter 8 caracteres")
@@ -26,7 +27,7 @@ const validates = yup.object().shape({
   complemento: yup.string().optional(),
 });
 
-const ModalEndereco = ({ handleSubmit, initialValues }) => {
+const ModalEndereco = ({ handleSubmit, initialValues, comercio }) => {
   useEffect(() => {
     (async function () {
       const elems = document.querySelectorAll("select");
@@ -48,6 +49,20 @@ const ModalEndereco = ({ handleSubmit, initialValues }) => {
           </div>
 
           <div className="form-dados-cadastro form-dados-pessoais">
+            {comercio ? (
+              <></>
+            ) : (
+              <div className="input-field">
+                <label htmlFor="nome">Nome do endereço</label>
+                <Field type="text" id="nome" name="nome" />
+                <ErrorMessage
+                  className="helper-text"
+                  name="nome"
+                  component="span"
+                />
+              </div>
+            )}
+
             <div className="input-field">
               <label htmlFor="cep">CEP</label>
               <Field type="text" id="cep" name="cep" />

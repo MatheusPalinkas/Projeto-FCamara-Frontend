@@ -193,6 +193,7 @@ function FormEditarDadosComercio({ initialValues, handleSubmit }) {
       <ModalEndereco
         handleSubmit={handleSubmitEnvia}
         initialValues={initialValuesEnvia}
+        comercio={true}
       />
     </>
   );

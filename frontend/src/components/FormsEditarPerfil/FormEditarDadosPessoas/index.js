@@ -75,6 +75,7 @@ function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
   useEffect(() => {
     M.updateTextFields();
   }, []);
+
   return (
     <Formik
       initialValues={initialValues}
@@ -151,6 +152,17 @@ function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
                 component="span"
               />
             </div>
+
+            <div className="input-field">
+              <label htmlFor="nome">Email</label>
+              <Field type="email" id="email" name="email" disabled />
+              <ErrorMessage
+                className="helper-text"
+                name="email"
+                component="span"
+              />
+            </div>
+
             <div className="input-field">
               <label htmlFor="senha">Senha</label>
               <Field name="senha" type="password" id="senha" />
