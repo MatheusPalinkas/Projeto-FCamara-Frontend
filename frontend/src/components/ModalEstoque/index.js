@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdSave } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
-import api from "../../services/Api";
+import { updateProduto } from "../../services/produto";
 
 import Modal from "../Modal";
 import Button from "../Button";
@@ -33,9 +33,7 @@ const ModalEstoque = ({ initialValues, idProduto, updateProdutos }) => {
       quantidade: quantidade || "0",
     };
 
-    await api.put("/produto/estoque", {
-      ...formEstoque,
-    });
+    await updateProduto(formEstoque);
     updateProdutos();
   };
 

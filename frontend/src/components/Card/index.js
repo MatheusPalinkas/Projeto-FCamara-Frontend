@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import api from "../../services/Api";
+import { deleteProduto } from "../../services/produto";
 import { MdClose, MdEdit } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
@@ -63,7 +63,7 @@ const Card = ({
   }, []);
 
   const deleteProduto = async () => {
-    await api.delete(`/produto/${id}`, { id });
+    await deleteProduto(id);
     handleUpdate();
   };
 

@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import { useParams, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { MdReply, MdAddAPhoto } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import api from "../../services/Api";
+import { listarCategorias } from "../../services/categorias";
+import { criarFoto } from "../../services/foto";
+import { criarProduto } from "../../services/produto";
 
 import Button from "../../components/Button";
 
@@ -28,40 +31,34 @@ const validates = yup.object().shape({
 
 function NovoProduto() {
   const [categorias, setCategorias] = useState([]);
-  const { idComercio } = useParams();
-  const { goBack } = useHistory();
   const [thumbnail, setThumbnail] = useState(null);
-  const { push } = useHistory();
+  const { goBack, push } = useHistory();
+  const { idComercio } = useParams();
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
+  const getCategorias = useCallback(async () => {
+    const data = listarCategorias();
+
+    setCategorias(data);
+  }, []);
+
+  useEffect(() => {
+    getCategorias();
+  }, [getCategorias]);
+
   useEffect(() => {
     (async function () {
-      const { data } = await api.get("/categoria");
-
-      setCategorias(data);
-
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
     })();
-  }, [idComercio]);
+  }, []);
 
   const postFoto = async () => {
     try {
-      if (!!thumbnail) {
-        const data = new FormData();
-        data.append("binario", thumbnail);
-
-        const res = await api.post(`/imagem`, data, {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
-        });
-        return `${res.config.baseURL}/imagem/${res.data.id}`;
-      }
-      return "";
+      return await criarFoto(thumbnail);
     } catch (error) {
       alert(`Erro no upload da foto: ${error}`);
       return "";
@@ -89,7 +86,7 @@ function NovoProduto() {
       const url = await postFoto();
       const formProduto = clearProduto({ ...produto, urlFoto: url });
 
-      await api.post("/produto", { ...formProduto });
+      await criarProduto(formProduto);
       push(`/produto/vendedor/${idComercio}`);
     } catch (error) {
       alert(`Erro ao criar novo produto: ${error}`);

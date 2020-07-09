@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { MdAdd } from "react-icons/md";
-import api from "../../../services/Api";
+import { listarEnderecosCliente } from "../../../services/endereco";
 
 import Button from "../../Button";
 import "./styles.css";
@@ -15,12 +15,14 @@ const ListaEnderecos = ({
 }) => {
   const [enderecos, setEnderecos] = useState([]);
 
-  useEffect(() => {
-    (async function () {
-      const { data } = await api.get(`/endereco/cliente/${idUser}`);
-      setEnderecos(data);
-    })();
+  const getEnderecos = useCallback(async () => {
+    const data = await listarEnderecosCliente(idUser);
+    setEnderecos(data);
   }, [idUser]);
+
+  useEffect(() => {
+    getEnderecos();
+  }, [getEnderecos]);
 
   return (
     <>

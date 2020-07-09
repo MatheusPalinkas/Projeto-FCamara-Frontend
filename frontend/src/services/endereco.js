@@ -11,3 +11,14 @@ export async function criarEndereco(tipoUser, formEndereco) {
     return "";
   }
 }
+
+export async function listarEnderecosCliente(idCliente) {
+  try {
+    const { data } = await api.get(`/endereco/cliente/${idCliente}`);
+
+    return data;
+  } catch (error) {
+    alert(`Erro ao listar os endereços: ${error}`);
+    return "";
+  }
+}

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { RiEmotionLine } from "react-icons/ri";
 import { MdSend } from "react-icons/md";
-import api from "../../services/Api";
+import { criarPedido } from "../../services/pedido";
+import { criarEndereco } from "../../services/endereco";
 
 import EscolherFormaPagamento from "./EscolherFormaPagamento";
 import FormEnderecoEntrega from "./FormEnderecoEntrega";
@@ -36,7 +37,7 @@ function ModalFinalizarCompra({ idUser, items }) {
         };
       });
 
-      const { data } = await api.post("/pedido", formPedido);
+      const data = await criarPedido(formPedido);
       return data;
     } catch (error) {
       alert("Erro", error);
@@ -55,9 +56,7 @@ function ModalFinalizarCompra({ idUser, items }) {
 
       delete formEndereco.rua;
 
-      await api.post(`/endereco/cliente`, {
-        ...formEndereco,
-      });
+      await criarEndereco("cliente", formEndereco);
       setCadastrarNovoEndereco(true);
     } catch (error) {
       alert(`Erro: ${error}`);
