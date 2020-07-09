@@ -12,7 +12,7 @@ export async function Logar(email, senha) {
     });
     return data;
   } catch (error) {
-    alert(`Erro no upload da foto: ${error}`);
+    alert(`Erro ao logar: ${error}`);
     return "";
   }
 }

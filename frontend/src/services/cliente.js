@@ -7,7 +7,7 @@ export async function criarCliente(formCliente) {
     });
     return data;
   } catch (error) {
-    alert(`Erro no upload da foto: ${error}`);
+    alert(`Erro ao cadastrar cliente: ${error}`);
     return "";
   }
 }

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { MdReply, MdFavorite, MdLibraryBooks } from "react-icons/md";
 import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
-import api from "../../services/Api";
+import { listarProdutosComercio } from "../../services/produto";
+import { listarCategorias } from "../../services/categorias";
 
 import Card from "../../components/Card";
 import Button from "../../components/Button";
@@ -22,24 +23,23 @@ const ProdutosComercio = ({ user }) => {
 
   const cnpj = null;
 
+  const getProdutos = useCallback(async () => {
+    const data = listarProdutosComercio(idComercio);
+    setProdutos(data.content);
+  }, [idComercio]);
+
+  const getCategorias = useCallback(async () => {
+    const data = await listarCategorias();
+    setCategorias(data);
+  }, []);
+
+  useEffect(() => {
+    getCategorias();
+    getProdutos();
+  }, [getCategorias, getProdutos]);
+
   useEffect(() => {
     (async function () {
-      let urlFiltro = "";
-      urlFiltro += !!filtro ? `&nome=${filtro}` : "";
-      urlFiltro += !!categoriaSelecionada
-        ? `&idCategoria=${categoriaSelecionada}`
-        : "";
-
-      console.log(urlFiltro);
-
-      const [dataProdutos, dataCategorias] = await Promise.all([
-        api.get(`/produto/comercio/${idComercio}`),
-        api.get("/categoria"),
-      ]);
-
-      setCategorias(dataCategorias.data);
-      setProdutos(dataProdutos.data.content);
-
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
     })();

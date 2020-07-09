@@ -7,7 +7,7 @@ export async function criarEndereco(tipoUser, formEndereco) {
     });
     return data;
   } catch (error) {
-    alert(`Erro no upload da foto: ${error}`);
+    alert(`Erro no cadastro do endereco: ${error}`);
     return "";
   }
 }

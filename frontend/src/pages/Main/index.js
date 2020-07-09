@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import api from "../../services/Api";
+import { listarComercio } from "../../services/comercio";
 
 import PesquisaHome from "../../components/PesquisaHome";
 import Card from "../../components/Card";
@@ -57,18 +57,16 @@ function Main() {
   const [nomeFiltro, setNomeFiltro] = useState("");
   const { idCategoria } = useParams();
 
-  useEffect(() => {
-    (async function () {
-      let filtro = "";
-      if (idCategoria) filtro = `&idCategoria=${idCategoria}&`;
-      if (nomeFiltro) filtro = `&nome=${nomeFiltro}&`;
+  const getComercio = useCallback(async () => {
+    const data = await listarComercio(idCategoria, nomeFiltro, page);
+    setTotalPages(data.totalPages);
+    setPage(data.pageable.pageNumber);
+    setComercios(data.content);
+  }, [idCategoria, nomeFiltro, page]);
 
-      const { data } = await api.get(`/comercio?page=${page}&size=10${filtro}`);
-      setTotalPages(data.totalPages);
-      setPage(data.pageable.pageNumber);
-      setComercios(data.content);
-    })();
-  }, [idCategoria, nomeFiltro, totalPages, page]);
+  useEffect(() => {
+    getComercio();
+  }, [getComercio]);
 
   return (
     <>

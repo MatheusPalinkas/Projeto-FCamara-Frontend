@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import api from "../../services/Api";
+import { listarCategorias } from "../../services/categorias";
 
 import "./styles.css";
 
@@ -11,6 +11,15 @@ import "materialize-css/dist/css/materialize.min.css";
 const SideBar = () => {
   const [categoria, setCategoria] = useState([]);
 
+  const getCategorias = useCallback(async () => {
+    const data = await listarCategorias();
+    setCategoria(data);
+  }, []);
+
+  useEffect(() => {
+    getCategorias();
+  }, [getCategorias]);
+
   useEffect(() => {
     (async function () {
       const elem = document.querySelector(".sidenav");
@@ -18,8 +27,6 @@ const SideBar = () => {
         edge: "left",
         inDuration: 250,
       });
-      const { data } = await api.get("/categoria");
-      setCategoria(data);
     })();
   }, []);
 

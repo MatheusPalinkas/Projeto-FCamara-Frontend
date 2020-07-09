@@ -7,7 +7,7 @@ export async function criarVendedor(formVendedor) {
     });
     return data;
   } catch (error) {
-    alert(`Erro no upload da foto: ${error}`);
+    alert(`Erro no cadastro do vendedor: ${error}`);
     return "";
   }
 }
