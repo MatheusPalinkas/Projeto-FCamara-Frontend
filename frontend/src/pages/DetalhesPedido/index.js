@@ -151,15 +151,18 @@ export default function DetalhesPedido() {
             </thead>
 
             <tbody className="tableProdutosBody">
-              {itensPedido.map((item) => (
-                <tr key={item.codigoProduto}>
-                  <td>{item.nome || ""}</td>
-                  <td>{item.valorProduto}</td>
-                  <td>{item.quantidade}</td>
-                  <td>{item.observacao}</td>
-                  <td>{item.quantidade * item.valorProduto}</td>
-                </tr>
-              ))}
+              {itensPedido.map((item) => {
+                const { produto } = item;
+                return (
+                  <tr key={produto.id}>
+                    <td>{produto.nome}</td>
+                    <td>{item.valorProduto}</td>
+                    <td>{item.quantidade}</td>
+                    <td>{item.observacao}</td>
+                    <td>{item.quantidade * item.valorProduto}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

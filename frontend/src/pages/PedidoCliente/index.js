@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { MdReply, MdCancel } from "react-icons/md";
+import { getEndereco } from "../../services/endereco";
 import { detalhesPedido, atualizarStatusPedido } from "../../services/pedido";
 
 import Card from "../../components/Card";
@@ -34,16 +35,19 @@ const CartsPedido = ({ item }) => {
     setProdutos(item);
   }, [item]);
 
-  return produtos.map((produto) => (
-    <Card
-      key={produto.codigoProduto}
-      titulo={produto.nome}
-      url={produto.url}
-      descricao={produto.descricao}
-      produto={{ preco: produto.valorProduto }}
-      quantidade={produto.quantidade}
-    />
-  ));
+  return produtos.map((produto) => {
+    const { id, nome, urlFoto, descricao } = produto.produto;
+    return (
+      <Card
+        key={id}
+        titulo={nome}
+        url={urlFoto}
+        descricao={descricao}
+        produto={{ preco: produto.valorProduto }}
+        quantidade={produto.quantidade}
+      />
+    );
+  });
 };
 
 export default function PedidoCliente() {
@@ -53,9 +57,16 @@ export default function PedidoCliente() {
     frete: "0",
     comercio: { endereco: {} },
   });
+  const [endereco, setEndereco] = useState({});
 
   const { idPedido } = useParams();
   const { goBack } = useHistory();
+
+  const getEnderecoComercio = useCallback(async () => {
+    if (pedido.comercio.codigoEndereco === undefined) return;
+    const data = await getEndereco(pedido.comercio.codigoEndereco);
+    setEndereco(data);
+  }, [pedido]);
 
   const getPedido = useCallback(async () => {
     const data = await detalhesPedido(idPedido);
@@ -64,18 +75,20 @@ export default function PedidoCliente() {
 
   useEffect(() => {
     getPedido();
-  }, [getPedido]);
+    getEnderecoComercio();
+  }, [getPedido, getEnderecoComercio]);
 
+  const { statusPedido } = pedido;
   return (
     <>
       <div className="containerBtnPedidoCliente">
         <div className="containerStatus">
           <div className="statusPedido">
             <label className="descricaoDado">Status do pedido:</label>
-            <p>{pedido.statusPedido}</p>
+            <p>{statusPedido}</p>
           </div>
 
-          {pedido.statusPedido === "PENDENTE" && <StatusPedido id={idPedido} />}
+          {statusPedido === "PENDENTE" && <StatusPedido id={idPedido} />}
         </div>
 
         <Button
@@ -132,31 +145,31 @@ export default function PedidoCliente() {
           <h2>Endereço do Comercio</h2>
           <div className="dadosComercio">
             <label className="descricaoDado">CEP:</label>
-            <p>{pedido.comercio.endereco.cep}</p>
+            <p>{endereco.cep}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">Cidade:</label>
-            <p>{pedido.comercio.endereco.cidade}</p>
+            <p>{endereco.cidade}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">Rua:</label>
-            <p>{pedido.comercio.endereco.logradouro}</p>
+            <p>{endereco.logradouro}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">Complemento:</label>
-            <p>{pedido.comercio.endereco.complemento}</p>
+            <p>{endereco.complemento}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">UF:</label>
-            <p>{pedido.comercio.endereco.uf}</p>
+            <p>{endereco.uf}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">Bairo:</label>
-            <p>{pedido.comercio.endereco.bairro}</p>
+            <p>{endereco.bairro}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">N°:</label>
-            <p>{pedido.comercio.endereco.numero}</p>
+            <p>{endereco.numero}</p>
           </div>
         </div>
       </div>
