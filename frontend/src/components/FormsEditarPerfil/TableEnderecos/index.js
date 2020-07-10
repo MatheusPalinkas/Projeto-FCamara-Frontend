@@ -1,46 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { MdAdd } from "react-icons/md";
-import api from "../../../services/Api";
+
 import Button from "../../Button";
 import ModalEndereco from "../../ModalEndereco";
+
+import { listarEnderecosCliente } from "../../../services/endereco";
 
 import "../styles.css";
 import "./styles.css";
 
-const mocEnderecos = [
-  {
-    nome: "Casa",
-    rua: "Antonio guilherme",
-    numero: 1010,
-    idEndereco: 10,
-  },
-  {
-    nome: "Trabalho",
-    rua: "Ana costa",
-    numero: 4500,
-    idEndereco: 11,
-  },
-  {
-    nome: "Facu",
-    rua: "Maria cristina",
-    numero: 50,
-    idEndereco: 12,
-  },
-];
-
 const handleSubmitEnvia = (values) => alert(JSON.stringify(values));
-const initialValuesEnvia = {
-  cep: "115340704",
-  cidade: "Cubatão",
-  uf: "SP",
-  rua: "Rua Manoel Florêncio da Silva",
-  numero: "423",
-  bairro: "Parque São Luis",
-  complemento: "sobrado",
-};
 
 function TableEnderecos({ id }) {
-  const [enderecos] = useState(mocEnderecos);
+  const [enderecos, setEnderecos] = useState([]);
+
+  const getEndereco = useCallback(async () => {
+    try {
+      const data = await listarEnderecosCliente(id);
+
+      setEnderecos(data);
+    } catch (error) {
+      alert(`Erro: ${error}`);
+    }
+  }, []);
+
+  useEffect(() => {
+    getEndereco();
+  }, [getEndereco]);
 
   return (
     <>
@@ -60,7 +46,7 @@ function TableEnderecos({ id }) {
                 <span className="col-endereco">{endereco.nome}</span>
               </td>
               <td>
-                <span>{endereco.rua}</span>
+                <span>{endereco.logradouro}</span>
               </td>
               <td>
                 <span className="col-endereco"> {endereco.numero}</span>
@@ -87,10 +73,7 @@ function TableEnderecos({ id }) {
         />
       </div>
 
-      <ModalEndereco
-        handleSubmit={handleSubmitEnvia}
-        initialValues={initialValuesEnvia}
-      />
+      <ModalEndereco handleSubmit={handleSubmitEnvia} initialValues={{}} />
     </>
   );
 }
