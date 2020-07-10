@@ -75,9 +75,7 @@ export default function PedidoCliente() {
             <p>{pedido.statusPedido}</p>
           </div>
 
-          {pedido.statusPedido !== "CANCELADO" && (
-            <StatusPedido id={idPedido} />
-          )}
+          {pedido.statusPedido === "PENDENTE" && <StatusPedido id={idPedido} />}
         </div>
 
         <Button

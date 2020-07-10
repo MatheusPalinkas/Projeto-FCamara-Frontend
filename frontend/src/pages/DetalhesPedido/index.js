@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 
 import "./styles.css";
 
-const StatusPedido = ({ idPedido }) => {
+const AlterarStatusPedido = ({ idPedido }) => {
   const { goBack } = useHistory();
 
   const handleAlterStatus = async (e, status) => {
@@ -37,6 +37,7 @@ const StatusPedido = ({ idPedido }) => {
     </div>
   );
 };
+
 export default function DetalhesPedido() {
   const [pedido, setPedido] = useState({});
   const { idPedido } = useParams();
@@ -51,7 +52,13 @@ export default function DetalhesPedido() {
   useEffect(() => {
     getPedido();
   }, [getPedido]);
-  const { cliente = {}, endereco = {}, itensPedido = [] } = pedido;
+
+  const {
+    cliente = {},
+    endereco = {},
+    itensPedido = [],
+    StatusPedido = "PENDENTE",
+  } = pedido;
   return (
     <>
       <div className="containerBtnPedido">
@@ -77,8 +84,8 @@ export default function DetalhesPedido() {
         />
       </div>
 
-      {pedido.StatusPedido === "PENDENTE" && (
-        <StatusPedido idPedido={idPedido} />
+      {StatusPedido === "PENDENTE" && (
+        <AlterarStatusPedido idPedido={idPedido} />
       )}
 
       <div className="containerDadosPedido">
@@ -145,7 +152,7 @@ export default function DetalhesPedido() {
 
             <tbody className="tableProdutosBody">
               {itensPedido.map((item) => (
-                <tr>
+                <tr key={item.codigoProduto}>
                   <td>{item.nome || ""}</td>
                   <td>{item.valorProduto}</td>
                   <td>{item.quantidade}</td>
@@ -158,7 +165,7 @@ export default function DetalhesPedido() {
         </div>
       </div>
 
-      <ModalSituacaoPedido />
+      <ModalSituacaoPedido idPedido={idPedido} />
     </>
   );
 }
