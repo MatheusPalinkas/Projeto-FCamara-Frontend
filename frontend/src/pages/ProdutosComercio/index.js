@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { listarProdutosComercio } from "../../services/produto";
 import { listarCategorias } from "../../services/categorias";
+import { listarComercioID } from "../../services/comercio";
 
 import Card from "../../components/Card";
 import Button from "../../components/Button";
@@ -18,15 +19,24 @@ const ProdutosComercio = ({ user }) => {
   const [categoriaSelecionada, setcategoriaSelecionada] = useState(0);
   const [categorias, setCategorias] = useState([]);
   const [produtos, setProdutos] = useState([]);
+  const [comercio, setComercio] = useState([]);
   const { idComercio } = useParams();
   const { goBack } = useHistory();
 
-  const cnpj = null;
-
   const getProdutos = useCallback(async () => {
     const data = await listarProdutosComercio(idComercio);
+
     setProdutos(data.content);
   }, [idComercio]);
+
+  const getComercio = useCallback(async () => {
+    const id = idComercio;
+    const data = await listarComercioID(id);
+
+    setComercio(data);
+  }, []);
+
+  const cnpj = comercio.cnpj;
 
   const getCategorias = useCallback(async () => {
     const data = await listarCategorias();
@@ -40,6 +50,10 @@ const ProdutosComercio = ({ user }) => {
   useEffect(() => {
     getProdutos();
   }, [getProdutos]);
+
+  useEffect(() => {
+    getComercio();
+  }, [getComercio]);
 
   useEffect(() => {
     (async function () {
@@ -91,7 +105,7 @@ const ProdutosComercio = ({ user }) => {
 
         {Object.keys(user).length !== 0 && user.comercio === undefined && (
           <div className="div-add-favoritos-comercio">
-            {cnpj === null ? (
+            {!cnpj ? (
               <label>Este vendedor não possui CNPJ</label>
             ) : (
               <label></label>
@@ -132,7 +146,7 @@ const ProdutosComercio = ({ user }) => {
         />
       </div>
 
-      <ModalSobre />
+      <ModalSobre initialvalues={comercio} />
     </>
   );
 };
