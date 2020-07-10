@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { MdSave, MdReply } from "react-icons/md";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -14,7 +13,7 @@ const validates = yup.object().shape({
   nome: yup.string().required("O nome do endereço não deve ser vazia"),
   cep: yup
     .string()
-    .length(9, "O CEP deve ter 8 caracteres")
+    .length(8, "O CEP deve ter 8 caracteres")
     .required("O CEP é obrigadotio"),
   cidade: yup.string().required("A cidade não deve ser vazia"),
   uf: yup
@@ -28,20 +27,17 @@ const validates = yup.object().shape({
 });
 
 const ModalEndereco = ({ handleSubmit, initialValues, comercio }) => {
-  useEffect(() => {
-    (async function () {
-      const elems = document.querySelectorAll("select");
-      M.FormSelect.init(elems, {});
-      M.updateTextFields();
-    })();
-  }, []);
-
   return (
-    <Modal tipo={"endereco"} id="modal4">
+    <Modal tipo="endereco" id="modal4">
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validates}
+        enableReinitialize={true}
+        handleChange={(e) => {
+          e.preventDedault();
+          M.updateTextFields();
+        }}
       >
         <Form>
           <div className="titulo">
@@ -137,7 +133,7 @@ const ModalEndereco = ({ handleSubmit, initialValues, comercio }) => {
               />
 
               <Button
-                className="btnSalvarEndereco"
+                className="modal-close btnSalvarEndereco"
                 submit="submit"
                 type="submit"
                 text="Salvar"
@@ -150,11 +146,6 @@ const ModalEndereco = ({ handleSubmit, initialValues, comercio }) => {
       </Formik>
     </Modal>
   );
-};
-
-ModalEndereco.propTypes = {
-  initialValues: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default ModalEndereco;

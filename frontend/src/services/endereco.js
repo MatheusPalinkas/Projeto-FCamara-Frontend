@@ -23,6 +23,16 @@ export async function listarEnderecosCliente(idCliente) {
   }
 }
 
+export async function alterarEndereco(formEndereco) {
+  try {
+    const { data } = await api.put(`/endereco`, { ...formEndereco });
+    return data;
+  } catch (error) {
+    alert(`Erro ao listar os endereços: ${error}`);
+    return "";
+  }
+}
+
 export async function getEndereco(idEndereco) {
   try {
     const { data } = await api.get(`/endereco/${idEndereco}`);
