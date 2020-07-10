@@ -35,8 +35,11 @@ const ProdutosComercio = ({ user }) => {
 
   useEffect(() => {
     getCategorias();
+  }, [getCategorias]);
+
+  useEffect(() => {
     getProdutos();
-  }, [getCategorias, getProdutos]);
+  }, [getProdutos]);
 
   useEffect(() => {
     (async function () {
@@ -108,7 +111,7 @@ const ProdutosComercio = ({ user }) => {
             key={produto.id}
             id={produto.id}
             titulo={produto.nome}
-            url={produto.url}
+            url={produto.urlFoto}
             descricao={produto.descricao}
             produto={{ preco: produto.preco }}
             disponivel={produto.produtoDisponivel}

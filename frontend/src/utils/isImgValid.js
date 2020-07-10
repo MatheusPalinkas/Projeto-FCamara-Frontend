@@ -1,9 +1,9 @@
 const isImgValid = (url) => {
   const img = new Image();
   img.src = url;
-  if (img.height > 0) return url;
+  if (img.src === window.location.href) return null;
 
-  return null;
+  return url;
 };
 
 export default isImgValid;

@@ -3,6 +3,7 @@ import { deleteProduto } from "../../services/produto";
 import { MdClose, MdEdit } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from "react-router-dom";
+
 import isImgValid from "../../utils/isImgValid";
 
 import ButtonAddCarrinho from "./ButtonAddCarrinho";
@@ -72,7 +73,9 @@ const Card = ({
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light div-card-imagem">
           <img
-            className={`activator ${isImgValid(url) === null && "sem-imagem"}`}
+            className={`activator ${
+              isImgValid(url) === null ? "sem-imagem" : ""
+            }`}
             src={isImgValid(url)}
             alt="Sem foto ilustrativa"
           />
