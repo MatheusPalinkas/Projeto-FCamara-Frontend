@@ -80,7 +80,6 @@ function FormEditarDadosPessoas({ initialValues }) {
 
   const putCliente = async (values) => {
     try {
-      console.log(values);
       const { id, nome, senha, telefone } = values;
 
       const formCliente = {
