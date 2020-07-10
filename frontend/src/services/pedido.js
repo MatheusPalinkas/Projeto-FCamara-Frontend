@@ -12,20 +12,20 @@ export async function criarPedido(formPedido) {
 
 export async function listarPedidosComercio(idComercio) {
   try {
-    const { data } = await api.get(`/pedido/comercio/${idComercio}} `);
-    return data.content;
+    const { data } = await api.get(`/pedido/comercio/${idComercio}`);
+    return data;
   } catch (error) {
     alert(`Erro ao listar pedidos do comercio: ${error}`);
-    return "";
+    return [];
   }
 }
 
 export async function listarPedidosCliente(idCliente) {
   try {
-    const { data } = await api.get(`/pedido/cliente/${idCliente}} `);
-    return data.content;
+    const { data } = await api.get(`/pedido/cliente/${idCliente}`);
+    return data;
   } catch (error) {
     alert(`Erro ao listar pedidos do cliente: ${error}`);
-    return "";
+    return [];
   }
 }

@@ -15,6 +15,7 @@ const TablePedido = ({ id, tipoUsuario }) => {
 
   const getPedidosComercio = useCallback(async () => {
     const data = await listarPedidosComercio(id);
+    console.log(data);
     setPedidos(data);
   }, [id]);
 
@@ -26,10 +27,9 @@ const TablePedido = ({ id, tipoUsuario }) => {
   useEffect(() => {
     if (tipoUsuario === "comercio") {
       getPedidosComercio();
-      return;
+    } else {
+      getPedidosCliente();
     }
-
-    getPedidosCliente();
   }, [getPedidosCliente, getPedidosComercio, tipoUsuario]);
 
   useEffect(() => {
@@ -60,20 +60,21 @@ const TablePedido = ({ id, tipoUsuario }) => {
             ? pedidos.map((pedido) => (
                 <ItemTableComercio
                   key={pedido.id}
-                  idComercio={pedido.idComercio}
-                  titulo={pedido.nome}
-                  url={pedido.url}
-                  descricao={pedido.descricao}
-                  preco={pedido.preco}
+                  id={pedido.id}
+                  nome={pedido.cliente.nome}
+                  preco={pedido.total}
+                  status={pedido.statusPedido}
+                  data={pedido.dataCriacao}
                 />
               ))
             : pedidos.map((pedido) => (
                 <ItemTableCliente
                   key={pedido.id}
-                  titulo={pedido.nome}
-                  url={pedido.url}
-                  descricao={pedido.descricao}
-                  preco={pedido.preco}
+                  id={pedido.id}
+                  nome={pedido.cliente.nome}
+                  preco={pedido.total}
+                  status={pedido.statusPedido}
+                  data={pedido.dataCriacao}
                 />
               ))}
         </tbody>
