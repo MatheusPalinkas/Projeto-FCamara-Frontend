@@ -51,9 +51,7 @@ function MinhaConta({ user }) {
           <div className="dados-comercio">
             <h2>Dados do meu comercio</h2>
             <FormEditarDadosComercio
-              handleSubmit={(values) => {
-                console.log(values);
-              }}
+              handleSubmit={(values) => {}}
               initialValues={dadosComercio}
             />
           </div>
