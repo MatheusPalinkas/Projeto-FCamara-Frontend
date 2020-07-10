@@ -54,7 +54,14 @@ function MinhaConta({ user }) {
               handleSubmit={(values) => {
                 console.log(values);
               }}
-              initialValues={dadosComercio}
+              idComercio={user.comercio.id}
+              initialValues={{
+                nome: dadosComercio.nome,
+                cnpj: dadosComercio.cnpj,
+                categoria: dadosComercio.categoria.id,
+                pagamentoCartao: dadosComercio.pagamentoCartao,
+                pagamentoDinheiro: dadosComercio.pagamentoDinheiro,
+              }}
             />
           </div>
         )}
