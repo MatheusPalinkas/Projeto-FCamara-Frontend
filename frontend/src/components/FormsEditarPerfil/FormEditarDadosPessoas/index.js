@@ -11,6 +11,8 @@ import Button from "../../Button";
 
 import "../styles.css";
 
+import { atualizarCliente } from "../../../services/cliente";
+
 const validates = yup.object().shape({
   nome: yup.string().required("O nome não deve ser vazio"),
   email: yup.string().email().required("O email não deve ser vazio"),
@@ -71,107 +73,140 @@ const DateNumberMask = [
   /[0-9]/,
 ];
 
-function FormEditarDadosPessoas({ initialValues, handleSubmit }) {
+function FormEditarDadosPessoas({ initialValues }) {
   useEffect(() => {
     M.updateTextFields();
   }, []);
+
+  const putCliente = async (values) => {
+    try {
+      const { id, nome, senha, telefone } = values;
+
+      const formCliente = {
+        id: id,
+        nome: nome,
+        senha: senha,
+        telefone: telefone,
+      };
+
+      const data = await atualizarCliente({
+        ...formCliente,
+      });
+    } catch (error) {
+      alert(`Erro: ${error}`);
+    }
+  };
+
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={async (values) => await putCliente(values)}
       validationSchema={validates}
     >
-      <Form className="form-editar-dados">
-        <div className="div-form-editar">
-          <div>
-            <div className="input-field">
-              <label htmlFor="nome">Nome completo</label>
-              <Field type="text" id="nome" name="nome" disabled />
-              <ErrorMessage
-                className="helper-text"
-                name="nome"
-                component="span"
-              />
+      {({ values, handleSubmit }) => (
+        <Form className="form-editar-dados" onSubmit={handleSubmit}>
+          <div className="div-form-editar">
+            <div>
+              <div className="input-field">
+                <label htmlFor="nome">Nome completo</label>
+                <Field type="text" id="nome" name="nome" disabled />
+                <ErrorMessage
+                  className="helper-text"
+                  name="nome"
+                  component="span"
+                />
+              </div>
+              <div className="input-field">
+                <label htmlFor="dataNascimento">Data de nascimento</label>
+                <Field name="dataNascimento">
+                  {({ field }) => (
+                    <MaskInput
+                      {...field}
+                      disabled
+                      type="text"
+                      id="dataNascimento"
+                      mask={DateNumberMask}
+                    />
+                  )}
+                </Field>
+                <ErrorMessage
+                  className="helper-text"
+                  name="dataNascimento"
+                  component="span"
+                />
+              </div>
+              <div className="input-field">
+                <label htmlFor="cpf">CPF</label>
+                <Field name="cpf">
+                  {({ field }) => (
+                    <MaskInput
+                      disabled
+                      {...field}
+                      type="text"
+                      id="cpf"
+                      mask={cpfNumberMask}
+                    />
+                  )}
+                </Field>
+                <ErrorMessage
+                  className="helper-text"
+                  name="cpf"
+                  component="span"
+                />
+              </div>
             </div>
-            <div className="input-field">
-              <label htmlFor="dataNascimento">Data de nascimento</label>
-              <Field name="dataNascimento">
-                {({ field }) => (
-                  <MaskInput
-                    {...field}
-                    disabled
-                    type="text"
-                    id="dataNascimento"
-                    mask={DateNumberMask}
-                  />
-                )}
-              </Field>
-              <ErrorMessage
-                className="helper-text"
-                name="dataNascimento"
-                component="span"
-              />
-            </div>
-            <div className="input-field">
-              <label htmlFor="cpf">CPF</label>
-              <Field name="cpf">
-                {({ field }) => (
-                  <MaskInput
-                    disabled
-                    {...field}
-                    type="text"
-                    id="cpf"
-                    mask={cpfNumberMask}
-                  />
-                )}
-              </Field>
-              <ErrorMessage
-                className="helper-text"
-                name="cpf"
-                component="span"
-              />
+            <div className="inputs-editaveis">
+              <div className="input-field">
+                <label htmlFor="telefone">Telefone</label>
+                <Field name="telefone">
+                  {({ field }) => (
+                    <MaskInput
+                      {...field}
+                      type="text"
+                      id="telefone"
+                      mask={phoneNumberMask}
+                    />
+                  )}
+                </Field>
+                <ErrorMessage
+                  className="helper-text"
+                  name="telefone"
+                  component="span"
+                />
+              </div>
+
+              <div className="input-field">
+                <label htmlFor="email">Email</label>
+                <Field type="email" id="email" name="email" disabled />
+                <ErrorMessage
+                  className="helper-text"
+                  name="email"
+                  component="span"
+                />
+              </div>
+
+              <div className="input-field">
+                <label htmlFor="senha">Senha</label>
+                <Field name="senha" type="password" id="senha" />
+                <ErrorMessage
+                  type="password"
+                  className="helper-text"
+                  name="senha"
+                  component="span"
+                />
+              </div>
             </div>
           </div>
-          <div className="inputs-editaveis">
-            <div className="input-field">
-              <label htmlFor="telefone">Telefone</label>
-              <Field name="telefone">
-                {({ field }) => (
-                  <MaskInput
-                    {...field}
-                    type="text"
-                    id="telefone"
-                    mask={phoneNumberMask}
-                  />
-                )}
-              </Field>
-              <ErrorMessage
-                className="helper-text"
-                name="telefone"
-                component="span"
-              />
-            </div>
-            <div className="input-field">
-              <label htmlFor="senha">Senha</label>
-              <Field name="senha" type="password" id="senha" />
-              <ErrorMessage
-                type="password"
-                className="helper-text"
-                name="senha"
-                component="span"
-              />
-            </div>
-          </div>
-        </div>
-        <Button
-          submit="submit"
-          tooltip="Salvar meus dados"
-          text="Salvar"
-          position="bottom"
-          className="btn-salvar-dados-perfil"
-          Icon={MdSave}
-        />
-      </Form>
+          <Button
+            submit="submit"
+            tooltip="Salvar meus dados"
+            text="Salvar"
+            position="bottom"
+            className="btn-salvar-dados-perfil"
+            Icon={MdSave}
+          />
+        </Form>
+      )}
     </Formik>
   );
 }
