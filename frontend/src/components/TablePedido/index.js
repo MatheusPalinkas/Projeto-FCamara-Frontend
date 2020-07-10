@@ -15,7 +15,6 @@ const TablePedido = ({ id, tipoUsuario }) => {
 
   const getPedidosComercio = useCallback(async () => {
     const data = await listarPedidosComercio(id);
-    console.log(data);
     setPedidos(data);
   }, [id]);
 
@@ -71,7 +70,7 @@ const TablePedido = ({ id, tipoUsuario }) => {
                 <ItemTableCliente
                   key={pedido.id}
                   id={pedido.id}
-                  nome={pedido.cliente.nome}
+                  nome={pedido.comercio.nome}
                   preco={pedido.total}
                   status={pedido.statusPedido}
                   data={pedido.dataCriacao}
