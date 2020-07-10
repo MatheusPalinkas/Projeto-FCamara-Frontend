@@ -65,6 +65,28 @@
   font-family: Lato;
   padding-top: 16px;
 }
+div.divPssuiCnpj .div-radio{
+  margin-left: 88px;
+  justify-content: start;
+}
+div.divPssuiCnpj .div-radio > p.p-nao-tenho-cnpj{
+  margin-left: 8px;
+}
+p.p-nao-tem-cnpj{
+  line-height: 1.5em;
+  font-size: 1em;
+  font-family: Lato;
+  text-align: left;
+  color: #1D273B;
+  padding: 8px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+p.p-nao-tem-cnpj > a{
+  font-size: 0.9em;
+  font-family: LatoBold;
+  margin-left: 8px;
+}
 
 @media only screen and (max-width: 400px) {
   .hr-funcionamento > .input-field {

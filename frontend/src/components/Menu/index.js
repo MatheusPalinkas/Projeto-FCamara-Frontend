@@ -56,7 +56,7 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
                 data-position="bottom"
                 data-tooltip="Pagina inicial"
               >
-                <Link to="/">Logo</Link>
+                <Link to="/">Mercado Fácil</Link>
               </div>
             </li>
           </ul>
@@ -82,7 +82,7 @@ const Menu = ({ user = {}, quantidadeItemsCarrinho = 0 }) => {
           </ul>
         </div>
         {!!user.comercio ? (
-          <MenuVendedor idComercio={user.comercio.idComercio} />
+          <MenuVendedor idComercio={user.comercio.id} />
         ) : (
           user.id && <MenuCliente id={user.id} />
         )}

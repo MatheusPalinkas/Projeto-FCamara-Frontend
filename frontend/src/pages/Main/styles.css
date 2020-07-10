@@ -63,7 +63,10 @@
     text-align: center;
     padding: 32px 0;
 }
-
+div.div-paginacao > ul.pagination{
+    width: auto;
+    margin: 0 auto;
+}
 @media only screen and (max-width: 1200px){
     .container-comercios{
         margin: 80px auto ;

@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import { useParams, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { MdReply, MdAddAPhoto } from "react-icons/md";
 import M from "materialize-css/dist/js/materialize.min.js";
-import api from "../../services/Api";
+
+import { listarCategorias } from "../../services/categorias";
+import { criarFoto } from "../../services/foto";
+import { criarProduto } from "../../services/produto";
 
 import Button from "../../components/Button";
 
@@ -27,26 +30,68 @@ const validates = yup.object().shape({
 });
 
 function NovoProduto() {
-  const [dadosProdutos, setDadosProdutos] = useState({});
   const [categorias, setCategorias] = useState([]);
-  const { idComercio } = useParams();
-  const { goBack } = useHistory();
   const [thumbnail, setThumbnail] = useState(null);
+  const { goBack, push } = useHistory();
+  const { idComercio } = useParams();
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
+  const getCategorias = useCallback(async () => {
+    const data = await listarCategorias();
+
+    setCategorias(data);
+  }, []);
+
+  useEffect(() => {
+    getCategorias();
+  }, [getCategorias]);
+
   useEffect(() => {
     (async function () {
-      const dataCategorias = await api.get("/categorias");
-
-      setCategorias(dataCategorias.data);
-
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
     })();
-  }, [idComercio]);
+  }, [categorias]);
+
+  const postFoto = async () => {
+    try {
+      return await criarFoto(thumbnail);
+    } catch (error) {
+      alert(`Erro no upload da foto: ${error}`);
+      return "";
+    }
+  };
+
+  const clearProduto = (values) => {
+    const valuesProdutos = {
+      ...values,
+      codigoCategoria: values.categoria,
+      codigoComercio: idComercio,
+      preco: Number(values.preco),
+      produtoEstoque: values.possuiEstoque === "true",
+      produtoDemanda: values.possuiEstoque !== "true",
+      quantidade: values.possuiEstoque !== "true" ? "0" : values.quantidade,
+    };
+
+    delete valuesProdutos.possuiEstoque;
+    delete valuesProdutos.categoria;
+    return valuesProdutos;
+  };
+
+  const postProduto = async (produto) => {
+    try {
+      const url = await postFoto();
+      const formProduto = clearProduto({ ...produto, urlFoto: url });
+
+      await criarProduto(formProduto);
+      push(`/produto/vendedor/${idComercio}`);
+    } catch (error) {
+      alert(`Erro ao criar novo produto: ${error}`);
+    }
+  };
 
   return (
     <>
@@ -63,18 +108,8 @@ function NovoProduto() {
         />
       </div>
       <Formik
-        initialValues={dadosProdutos}
-        onSubmit={(values) => {
-          const valuesProdutos = {
-            nome: values.nome,
-            descricao: values.descricao,
-            preco: values.preco,
-            possuiEstoque: values.possuiEstoque,
-            quantidade: values.quantidade,
-            categoria: values.categoria,
-          };
-          setDadosProdutos(valuesProdutos);
-        }}
+        initialValues={{}}
+        onSubmit={async (values) => await postProduto(values)}
         validationSchema={validates}
       >
         {({ values, handleSubmit }) => (
@@ -140,23 +175,23 @@ function NovoProduto() {
               <div className="input-field">
                 <div className="div-radio radio-possui-estoque">
                   <p>
-                    <label htmlFor="estoque">
+                    <label htmlFor="true">
                       <Field
                         name="possuiEstoque"
                         type="radio"
-                        value="estoque"
-                        id="estoque"
+                        value="true"
+                        id="true"
                       />
                       <span>Estoque</span>
                     </label>
                   </p>
                   <p>
-                    <label htmlFor="demanda">
+                    <label htmlFor="false">
                       <Field
                         name="possuiEstoque"
                         type="radio"
-                        value="demanda"
-                        id="demanda"
+                        value="false"
+                        id="false"
                       />
                       <span>Por encomenda</span>
                     </label>
@@ -171,7 +206,7 @@ function NovoProduto() {
                   Esse produto é por estoque ou demanda
                 </label>
               </div>
-              {values.possuiEstoque === "estoque" && (
+              {values.possuiEstoque === "true" && (
                 <div className="input-field">
                   <label htmlFor="quantidade">Quantidade</label>
                   <Field name="quantidade" type="text" id="quantidade" />
@@ -202,6 +237,7 @@ function NovoProduto() {
                   submit="submit"
                   text="Cadastrar"
                   tooltip="Cadatrar novo produto"
+                  to={`/produto/vendedor/${idComercio}`}
                 />
               </div>
             </div>

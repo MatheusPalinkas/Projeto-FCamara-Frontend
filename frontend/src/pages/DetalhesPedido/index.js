@@ -1,26 +1,64 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { FiPackage } from "react-icons/fi";
 import { MdReply, MdNotInterested, MdCheck } from "react-icons/md";
+import { detalhesPedido, atualizarStatusPedido } from "../../services/pedido";
 
 import ModalSituacaoPedido from "../../components/ModalSituacaoPedido";
 import Button from "../../components/Button";
 
 import "./styles.css";
 
-const StatusPedido = ({ idComercio }) => (
-  <div className="containerBtnDecisao">
-    <div className="btns-decisao">
-      <Button text="Aceitar" tooltip="Veja o status do pedido" Icon={MdCheck} />
-      <Button text="Recusar" typeButton="secundaria" Icon={MdNotInterested} />
-    </div>
-  </div>
-);
-
-export default function DetalhesPedido() {
-  const { idComercio } = useParams();
+const AlterarStatusPedido = ({ idPedido }) => {
   const { goBack } = useHistory();
 
+  const handleAlterStatus = async (e, status) => {
+    e.preventDefault();
+    await atualizarStatusPedido(idPedido, status);
+    goBack();
+  };
+
+  return (
+    <div className="containerBtnDecisao">
+      <div className="btns-decisao">
+        <Button
+          text="Aceitar"
+          tooltip="Veja o status do pedido"
+          Icon={MdCheck}
+          onClick={(e) => handleAlterStatus(e, "ACEITO")}
+        />
+        <Button
+          text="Recusar"
+          typeButton="secundaria"
+          Icon={MdNotInterested}
+          onClick={(e) => handleAlterStatus(e, "NEGADO")}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default function DetalhesPedido() {
+  const [pedido, setPedido] = useState({});
+  const { idPedido } = useParams();
+  const { goBack } = useHistory();
+
+  const getPedido = useCallback(async () => {
+    const data = await detalhesPedido(idPedido);
+
+    setPedido(data);
+  }, [idPedido]);
+
+  useEffect(() => {
+    getPedido();
+  }, [getPedido]);
+
+  const {
+    cliente = {},
+    endereco = {},
+    itensPedido = [],
+    StatusPedido = "PENDENTE",
+  } = pedido;
   return (
     <>
       <div className="containerBtnPedido">
@@ -46,30 +84,24 @@ export default function DetalhesPedido() {
         />
       </div>
 
-      <StatusPedido idComercio={idComercio} />
+      {StatusPedido === "PENDENTE" && (
+        <AlterarStatusPedido idPedido={idPedido} />
+      )}
 
       <div className="containerDadosPedido">
         <div className="dados-comercio">
           <h2>Dados do comprador</h2>
           <div className="dadosComprador">
             <label className="descricaoDado">Nome:</label>
-            <p>Jose</p>
+            <p>{cliente.nome}</p>
           </div>
           <div className="dadosComprador">
             <label className="descricaoDado">Numero:</label>
-            <p>99999-9999</p>
+            <p>{cliente.telefone || ""}</p>
           </div>
           <div className="dadosComprador">
             <label className="descricaoDado">CPF:</label>
-            <p>999.999.999-99</p>
-          </div>
-          <div className="dadosComprador">
-            <label className="descricaoDado">Pagamento:</label>
-            <p>cartão</p>
-          </div>
-          <div className="dadosComprador">
-            <label className="descricaoDado">email:</label>
-            <p>Jose@teste.com</p>
+            <p>{cliente.cpf}</p>
           </div>
         </div>
 
@@ -77,31 +109,31 @@ export default function DetalhesPedido() {
           <h2>Endereço</h2>
           <div className="dadosComercio">
             <label className="descricaoDado">CEP:</label>
-            <p>99999-999</p>
+            <p>{endereco.cep}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">Cidade:</label>
-            <p>Santos</p>
+            <p>{endereco.cidade}</p>
           </div>
           <div className="dadosComercio">
-            <label className="descricaoDado">Logradouro:</label>
-            <p>Rua sei la</p>
+            <label className="descricaoDado">Rua:</label>
+            <p>{endereco.logradouro}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">Complemento:</label>
-            <p></p>
+            <p>{endereco.complemento || ""}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">UF:</label>
-            <p>SP</p>
+            <p>{endereco.uf}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">Bairo:</label>
-            <p>logo ali</p>
+            <p>{endereco.bairro}</p>
           </div>
           <div className="dadosComercio">
             <label className="descricaoDado">N°:</label>
-            <p>999</p>
+            <p>{endereco.numero}</p>
           </div>
         </div>
 
@@ -119,33 +151,24 @@ export default function DetalhesPedido() {
             </thead>
 
             <tbody className="tableProdutosBody">
-              <tr>
-                <td>Celta amarelo</td>
-                <td>R$ 5,00</td>
-                <td>1</td>
-                <td>blablabla</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Celta amarelo</td>
-                <td>R$ 5,00</td>
-                <td>1</td>
-                <td>blablabla</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>R$ 10,00</td>
-              </tr>
+              {itensPedido.map((item) => {
+                const { produto } = item;
+                return (
+                  <tr key={produto.id}>
+                    <td>{produto.nome}</td>
+                    <td>{item.valorProduto}</td>
+                    <td>{item.quantidade}</td>
+                    <td>{item.observacao}</td>
+                    <td>{item.quantidade * item.valorProduto}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
       </div>
 
-      <ModalSituacaoPedido />
+      <ModalSituacaoPedido idPedido={idPedido} />
     </>
   );
 }

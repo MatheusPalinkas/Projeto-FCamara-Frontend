@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MaskInput from "react-text-mask";
 import { MdReply, MdSave } from "react-icons/md";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import Button from "../../Button";
@@ -20,16 +20,33 @@ const validates = yup.object().shape({
   horaFechamento: yup.string().required("Campo obrigatório"),
   diasParaEntrega: yup.string().required("Campo obrigatório"),
   frete: yup.string().required("Campo obrigatório"),
-  foto: yup.object().optional(),
-  possuiEntregas: yup.string().optional(),
-  categoria: yup.number().required("A sua categoria de comercio é obrigatoria"),
+  categoria: yup.string().required("A sua categoria de comercio é obrigatoria"),
   cnpj: yup.string().optional(),
-  pagamentoCartao: yup.boolean().optional(),
-  pagamentoDinheiro: yup.boolean().optional(),
+  pagamentos: yup.array().optional(),
 });
 
-const hoursNumberMask = [/[1-9]/, /\d/, ":", /\d/, /\d/];
+const hoursNumberMask = [/[0-9]/, /\d/, ":", /\d/, /\d/];
 
+const cnpjNumberMask = [
+  /[1-9]/,
+  /\d/,
+  ".",
+  /\d/,
+  /\d/,
+  /\d/,
+  ".",
+  /\d/,
+  /\d/,
+  /\d/,
+  "/",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  "-",
+  /\d/,
+  /\d/,
+];
 const FormDadosComercio = ({
   initialValues,
   handleSubmit,
@@ -39,7 +56,7 @@ const FormDadosComercio = ({
 
   useEffect(() => {
     (async function () {
-      const { data } = await api.get("/categorias");
+      const { data } = await api.get("/categoria");
       setCategorias(data);
 
       const elems = document.querySelectorAll("select");
@@ -55,7 +72,7 @@ const FormDadosComercio = ({
       validationSchema={validates}
     >
       {({ values, handleSubmit }) => (
-        <Form>
+        <form onSubmit={handleSubmit}>
           <div className="form-dados-cadastro form-dados-pessoais">
             <div className="input-field">
               <label htmlFor="nome">Nome do comercio</label>
@@ -64,6 +81,7 @@ const FormDadosComercio = ({
                 className="helper-text"
                 name="nome"
                 component="span"
+                hoursNumberMask
               />
             </div>
             <div className="input-field">
@@ -77,16 +95,24 @@ const FormDadosComercio = ({
             </div>
             <div className="input-field">
               <label htmlFor="diasParaEntrega">
-                Quantos dias leva para fazer a entrega ?
+                Quantos horas leva para fazer a entrega ?
               </label>
-              <Field type="text" id="diasParaEntrega" name="diasParaEntrega" />
+              <Field name="diasParaEntrega">
+                {({ field }) => (
+                  <MaskInput
+                    {...field}
+                    type="text"
+                    id="diasParaEntrega"
+                    mask={hoursNumberMask}
+                  />
+                )}
+              </Field>
               <ErrorMessage
                 className="helper-text"
                 name="diasParaEntrega"
                 component="span"
               />
             </div>
-
             <div className="input-field">
               <label className="label-hora">Horario de funcionamento</label>
               <div className="div-buttons-form hr-funcionamento">
@@ -107,7 +133,6 @@ const FormDadosComercio = ({
                     component="span"
                   />
                 </div>
-
                 <div className="input-field lbl-ate">
                   <label className="label-hora">Até</label>
 
@@ -148,8 +173,8 @@ const FormDadosComercio = ({
                 component="span"
               />
             </div>
-            <label className="labelCnpj">Possui CNPJ?</label>
             <div className="input-field divPssuiCnpj">
+              <label className="labelCnpj">Possui CNPJ?</label>
               <div className="div-radio">
                 <p>
                   <label htmlFor="sim">
@@ -162,7 +187,7 @@ const FormDadosComercio = ({
                     <span>Sim</span>
                   </label>
                 </p>
-                <p>
+                <p className="p-nao-tenho-cnpj">
                   <label htmlFor="nao">
                     <Field
                       name="possuiCnpj"
@@ -177,7 +202,16 @@ const FormDadosComercio = ({
               {values.possuiCnpj === "sim" ? (
                 <div className="input-field">
                   <label htmlFor="cnpj">CNPJ</label>
-                  <Field type="text" id="cnpj" name="cnpj" />
+                  <Field name="cnpj">
+                    {({ field }) => (
+                      <MaskInput
+                        {...field}
+                        mask={cnpjNumberMask}
+                        type="text"
+                        id="cnpj"
+                      />
+                    )}
+                  </Field>
                   <ErrorMessage
                     className="helper-text"
                     name="cnpj"
@@ -185,15 +219,15 @@ const FormDadosComercio = ({
                   />
                 </div>
               ) : (
-                <p>
-                  Damos prioridade aos usuários que possuem CNPJ, recomendamos
-                  que o tire em{" "}
+                <p className="p-nao-tem-cnpj">
+                  O CNPJ não é obrigatório para o cadastro, porém damos
+                  prioridade aos vendedores que possuem CNPJ.
                   <a
                     href="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConvenJuntaBH/InscCNPJOrientacoes.htm"
-                    target="blamk"
+                    target="blank"
                   >
-                    CNPJ
-                  </a>{" "}
+                    Clique aqui e confira como tirar seu CNPJ
+                  </a>
                 </p>
               )}
               <ErrorMessage
@@ -202,30 +236,29 @@ const FormDadosComercio = ({
                 component="span"
               />
             </div>
-
             <div className="input-field inputs-formas-pagamento">
               <label className="label-formas-pagamento">
                 Quais formas de pagamento vc aceita
               </label>
               <div className="div-radios-form div-formas-pagamento">
                 <p>
-                  <label htmlFor="pagamentoCartao">
+                  <label htmlFor="cartao">
                     <Field
-                      name="pagamentoCartao"
+                      name="pagamentos"
                       type="checkbox"
-                      value="pagamentoCartao"
-                      id="pagamentoCartao"
+                      value="cartao"
+                      id="cartao"
                     />
                     <span>Cartão</span>
                   </label>
                 </p>
                 <p>
-                  <label htmlFor="pagamentoDinheiro">
+                  <label htmlFor="dinheiro">
                     <Field
-                      name="pagamentoDinheiro"
+                      name="pagamentos"
                       type="checkbox"
-                      value="pagamentoDinheiro"
-                      id="pagamentoDinheiro"
+                      value="dinheiro"
+                      id="dinheiro"
                     />
                     <span>Dinheiro</span>
                   </label>
@@ -248,7 +281,7 @@ const FormDadosComercio = ({
               />
             </div>
           </div>
-        </Form>
+        </form>
       )}
     </Formik>
   );

@@ -1,47 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { MdAdd } from "react-icons/md";
+import { criarEndereco, alterarEndereco } from "../../../services/endereco";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 import Button from "../../Button";
 import ModalEndereco from "../../ModalEndereco";
 
+import { listarEnderecosCliente } from "../../../services/endereco";
+
 import "../styles.css";
 import "./styles.css";
 
-const mocEnderecos = [
-  {
-    nome: "Casa",
-    rua: "Antonio guilherme",
-    numero: 1010,
-    idEndereco: 10,
-  },
-  {
-    nome: "Trabalho",
-    rua: "Ana costa",
-    numero: 4500,
-    idEndereco: 11,
-  },
-  {
-    nome: "Facu",
-    rua: "Maria cristina",
-    numero: 50,
-    idEndereco: 12,
-  },
-];
-
-const handleSubmitEnvia = (values) => alert(JSON.stringify(values));
-const initialValuesEnvia = {
-  cep: "115340704",
-  cidade: "Cubatão",
-  uf: "SP",
-  rua: "Rua Manoel Florêncio da Silva",
-  numero: "423",
-  bairro: "Parque São Luis",
-  complemento: "sobrado",
-};
-
 function TableEnderecos({ id }) {
-  const [enderecos] = useState(mocEnderecos);
+  const [openModalEndereco, setOpenModalEndereco] = useState(false);
+  const [selectedEndereco, setSelectedEndereco] = useState({});
+  const [enderecos, setEnderecos] = useState([]);
 
+  const getEndereco = useCallback(async () => {
+    try {
+      const data = await listarEnderecosCliente(id);
+      setEnderecos(data);
+    } catch (error) {
+      alert(`Erro: ${error}`);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    getEndereco();
+  }, [getEndereco, openModalEndereco]);
+
+  useEffect(() => {
+    if (openModalEndereco) openModal();
+  }, [openModalEndereco]);
+
+  const handleSubmitModalEndereco = async (values) => {
+    const formEndereco = {
+      ...values,
+      logradouro: values.rua,
+      complemento: values.complemento || " ",
+    };
+
+    delete formEndereco.rua;
+
+    if (selectedEndereco.id) {
+      delete formEndereco.nome;
+      formEndereco.id = selectedEndereco.id;
+      await alterarEndereco(formEndereco);
+      return;
+    }
+
+    await criarEndereco("cliente", { ...formEndereco, codigoDetentor: id });
+  };
+
+  const openModal = () => {
+    const elem = document.querySelector("#modal4");
+    var instance = M.Modal.getInstance(elem);
+    instance.open();
+  };
   return (
     <>
       <table className="responsive-table highlight table-enderecos">
@@ -55,20 +70,28 @@ function TableEnderecos({ id }) {
         </thead>
         <tbody>
           {enderecos.map((endereco) => (
-            <tr key={endereco.idEndereco}>
+            <tr key={endereco.id}>
               <td>
                 <span className="col-endereco">{endereco.nome}</span>
               </td>
               <td>
-                <span>{endereco.rua}</span>
+                <span>{endereco.logradouro}</span>
               </td>
               <td>
                 <span className="col-endereco"> {endereco.numero}</span>
               </td>
-              <td className="col-editar-endereco">
-                <span className="link  modal-trigger" data-target="modal4">
-                  Editar
-                </span>
+              <td
+                className="col-editar-endereco"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedEndereco({
+                    ...endereco,
+                    rua: endereco.logradouro,
+                  });
+                  setOpenModalEndereco(true);
+                }}
+              >
+                <span className="link">Editar</span>
               </td>
             </tr>
           ))}
@@ -80,16 +103,20 @@ function TableEnderecos({ id }) {
           tooltip="Adicionar novo endereço"
           text="Novo endereço"
           position="bottom"
-          className="modal-trigger btn-salvar-dados-perfil"
+          className="btn-salvar-dados-perfil"
           Icon={MdAdd}
           tipo="Button"
-          dataTarget="modal4"
+          onClick={(e) => {
+            e.preventDefault();
+            setSelectedEndereco({});
+            setOpenModalEndereco(true);
+          }}
         />
       </div>
 
       <ModalEndereco
-        handleSubmit={handleSubmitEnvia}
-        initialValues={initialValuesEnvia}
+        handleSubmit={handleSubmitModalEndereco}
+        initialValues={selectedEndereco}
       />
     </>
   );

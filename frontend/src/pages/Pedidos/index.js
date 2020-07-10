@@ -26,7 +26,7 @@ export default function Pedidos() {
         />
       </div>
       <div className="containerTable">
-        <TablePedido idComercio={id} tipoUsuario={tipoUsuario} />
+        <TablePedido id={id} tipoUsuario={tipoUsuario} />
       </div>
     </>
   );

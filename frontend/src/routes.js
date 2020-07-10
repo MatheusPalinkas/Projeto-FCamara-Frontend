@@ -43,13 +43,13 @@ export default function Routes() {
 
         <Route
           exact
-          path="/dados/cliente/:idComercio"
+          path="/dados/cliente/:idPedido"
           component={PedidoCliente}
         />
 
         <Route
           exact
-          path="/dados/pedido/:idComercio"
+          path="/dados/pedido/:idPedido"
           component={DetalhesPedido}
         />
 

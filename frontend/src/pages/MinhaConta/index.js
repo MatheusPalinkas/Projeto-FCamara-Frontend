@@ -37,24 +37,21 @@ function MinhaConta({ user }) {
         </div>
         <div className="dados-pessoais">
           <h2>Meus dados</h2>
-          <FormEditarDadosPessoas
-            handleSubmit={(values, actions) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                actions.setSubmitting(false);
-              }, 1000);
-            }}
-            initialValues={dadosPessoais}
-          />
+          <FormEditarDadosPessoas initialValues={dadosPessoais} />
         </div>
         {user.comercio && (
           <div className="dados-comercio">
             <h2>Dados do meu comercio</h2>
             <FormEditarDadosComercio
-              handleSubmit={(values) => {
-                console.log(values);
+              handleSubmit={(values) => {}}
+              idComercio={user.comercio.id}
+              initialValues={{
+                nome: dadosComercio.nome,
+                cnpj: dadosComercio.cnpj,
+                categoria: dadosComercio.categoria.id,
+                pagamentoCartao: dadosComercio.pagamentoCartao,
+                pagamentoDinheiro: dadosComercio.pagamentoDinheiro,
               }}
-              initialValues={dadosComercio}
             />
           </div>
         )}

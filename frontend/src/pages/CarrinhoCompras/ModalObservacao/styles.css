@@ -1,0 +1,14 @@
+.containerBtnObservacoes{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+.form-modal-observacao > div.inut-field.input-observacoes{
+    max-width: 90%;
+    width: 100%;
+    margin-top: 40px;
+}
+.form-modal-observacao  > .input-observacoes > *{
+    width: 100% !important;
+    margin: 0 !important;
+}

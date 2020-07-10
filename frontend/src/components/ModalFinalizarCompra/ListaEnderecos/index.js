@@ -1,37 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { connect } from "react-redux";
 import { MdAdd } from "react-icons/md";
+import { listarEnderecosCliente } from "../../../services/endereco";
 
 import Button from "../../Button";
 import "./styles.css";
-
-const addresFakes = [
-  {
-    id: 1,
-    nome: "Casa",
-    rua: "Antonio guilherme",
-    numero: "1010",
-    cidade: "São Vicente",
-  },
-  {
-    id: 2,
-    nome: "Trabalho",
-    rua: "Praça dos Expedicionários",
-    numero: "19",
-    cidade: "Santos",
-  },
-];
 
 const ListaEnderecos = ({
   handleNewAddress,
   handleContinue,
   handleToggleAddress,
   idToggle,
+  idUser,
 }) => {
   const [enderecos, setEnderecos] = useState([]);
 
+  const getEnderecos = useCallback(async () => {
+    const data = await listarEnderecosCliente(idUser);
+    setEnderecos(data);
+  }, [idUser]);
+
   useEffect(() => {
-    setEnderecos(addresFakes);
-  }, []);
+    getEnderecos();
+  }, [getEnderecos]);
 
   return (
     <>
@@ -49,7 +40,7 @@ const ListaEnderecos = ({
           >
             <span className="endereco-apelido">{endereco.nome}</span>
             <div className="endereco-descritivo">
-              <span className="rua">{endereco.rua}</span>
+              <span className="rua">{endereco.logradouro}</span>
               <span className="numero">{endereco.numero}</span>
               <span className="cidade">{endereco.cidade}</span>
             </div>
@@ -73,4 +64,10 @@ const ListaEnderecos = ({
   );
 };
 
-export default ListaEnderecos;
+const mapStateToProps = (state) => ({
+  idUser: state.user.id,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListaEnderecos);

@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
-import api from "../../services/Api";
+import { listarCategorias } from "../../services/categorias";
 
 import "./styles.css";
 
 export default function PesquisaHome({ txtFiltro, handleChangeFilter }) {
   const [categoria, setCategoria] = useState([]);
 
+  const getCategorias = useCallback(async () => {
+    const data = await listarCategorias();
+    setCategoria(data);
+  }, []);
+
+  useEffect(() => {
+    getCategorias();
+  }, [getCategorias]);
+
   useEffect(() => {
     (async function () {
       const elems = document.querySelectorAll(".collapsible");
       M.Collapsible.init(elems, {});
-
-      const { data } = await api.get("/categoria");
-      setCategoria(data);
     })();
   }, []);
 

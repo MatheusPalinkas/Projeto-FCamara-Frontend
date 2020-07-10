@@ -1,23 +1,27 @@
 .background-breadcrumb{
     background: #F47C31;
 }
-.background-breadcrumb > a{
+.background-breadcrumb > a,
+.background-breadcrumb > span.link{
     font-size: 1em;
     font-family: LatoBold;
     padding: 8px 16px;
     color: #FFF !important;
     cursor: default;
 }
-.background-breadcrumb > a.ativo{
+.background-breadcrumb > a.ativo,
+.background-breadcrumb > span.link.ativo{
     color: #1D273B !important;
     font-family: NunitoSans;
 }
-a.breadcrumb::before {
+a.breadcrumb::before,
+span.link.breadcrumb::before{
     content: '';
     width: 0px;
     margin: 0;
 }
-a.breadcrumb::after {
+a.breadcrumb::after,
+span.link.breadcrumb::after {
     content: '\E5CC';
     color: rgba(255, 255, 255, 0.7);
     vertical-align: top;
@@ -31,10 +35,12 @@ a.breadcrumb::after {
 }
 
 @media only screen and (max-width: 850px){
-    div.background-breadcrumb > a.breadcrumb{
+    div.background-breadcrumb > a.breadcrumb,
+    div.background-breadcrumb > span.link.breadcrumb{
         display: none;
     }
-    .background-breadcrumb > a.breadcrumb.ativo{
+    .background-breadcrumb > a.breadcrumb.ativo,
+    .background-breadcrumb > span.link.breadcrumb.ativo{
         display: flex;
         text-align: center;
         justify-content: center;
@@ -42,7 +48,9 @@ a.breadcrumb::after {
         font-size: 1.77em;
     }
     .background-breadcrumb > a.breadcrumb.ativo::before, 
-    .background-breadcrumb > a.breadcrumb.ativo::after{
+    .background-breadcrumb > a.breadcrumb.ativo::after,
+    .background-breadcrumb > span.link.breadcrumb.ativo::before, 
+    .background-breadcrumb > span.link.breadcrumb.ativo::after{
         content: '';
         width: 0;
         margin: 0;

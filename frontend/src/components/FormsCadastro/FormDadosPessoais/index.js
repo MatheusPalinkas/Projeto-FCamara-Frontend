@@ -74,6 +74,7 @@ const validates = yup.object().shape({
     .required("O CPF é obrigatorio"),
   telefone: yup.string("O Telefone deve ser um texto").optional(),
   tipoUser: yup.string().required("O tipo de usuario é obrigatorio"),
+  inputImageCadastro: yup.object().optional(),
 });
 
 const phoneNumberMask = [
@@ -122,7 +123,7 @@ const DateNumberMask = [
   /[0-9]/,
 ];
 
-const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
+const FormDadosPessoais = ({ initialValues, handleSubmit, saveFile }) => {
   const [thumbnail, setThumbnail] = useState(null);
 
   const preview = useMemo(() => {
@@ -138,7 +139,12 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={async (values) => {
+        if (!!thumbnail) {
+          saveFile(thumbnail);
+        }
+        handleSubmit(values);
+      }}
       validationSchema={validates}
     >
       {({ values, handleSubmit }) => (
@@ -207,11 +213,11 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
                 component="span"
               />
             </div>
-            <div className="container-form">
+            <div className="input-field">
               <div className="file-field input-file-upload-foto-cadastro">
                 <label
                   id="thumbnail"
-                  htmlFor="input-image-cadastro"
+                  htmlFor="inputImageCadastro"
                   style={{ backgroundImage: `url(${preview})` }}
                   className={`preview-imgaem-cadastrar ${
                     thumbnail ? "previa-foto" : ""
@@ -223,8 +229,8 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
                   <span>Nova Foto</span>
                   <input
                     type="file"
-                    name="input-image-cadastro"
-                    id="input-image-cadastro"
+                    name="inputImageCadastro"
+                    id="inputImageCadastro"
                     onChange={(event) => setThumbnail(event.target.files[0])}
                   />
                 </div>
@@ -233,33 +239,32 @@ const FormDadosPessoais = ({ initialValues, handleSubmit }) => {
                 </div>
               </div>
             </div>
-
             <div className="input-field div-tipo-user">
               <div className="div-radio">
                 <p>
-                  <label htmlFor="Cliente">
+                  <label htmlFor="cliente">
                     <Field
                       name="tipoUser"
                       type="radio"
-                      value="Cliente"
-                      id="Cliente"
+                      value="cliente"
+                      id="cliente"
                     />
                     <span>Cliente</span>
                   </label>
                 </p>
                 <p>
-                  <label htmlFor="Vendedor">
+                  <label htmlFor="vendedor">
                     <Field
                       name="tipoUser"
                       type="radio"
-                      value="Vendedor"
-                      id="Vendedor"
+                      value="vendedor"
+                      id="vendedor"
                     />
                     <span>Vendedor</span>
                   </label>
                 </p>
               </div>
-              {values.tipoUser === "Cliente" ? (
+              {values.tipoUser === "cliente" ? (
                 <p>Estou a procura de produtos para comprar</p>
               ) : (
                 <p>Estou a procurando divulgar e vender meus produtos</p>

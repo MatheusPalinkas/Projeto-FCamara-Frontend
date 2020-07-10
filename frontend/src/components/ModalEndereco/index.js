@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { MdSave, MdReply } from "react-icons/md";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -11,9 +10,10 @@ import Button from "../Button";
 import "./styles.css";
 
 const validates = yup.object().shape({
+  nome: yup.string().required("O nome do endereço não deve ser vazia"),
   cep: yup
     .string()
-    .length(9, "O CEP deve ter 8 caracteres")
+    .length(8, "O CEP deve ter 8 caracteres")
     .required("O CEP é obrigadotio"),
   cidade: yup.string().required("A cidade não deve ser vazia"),
   uf: yup
@@ -26,21 +26,18 @@ const validates = yup.object().shape({
   complemento: yup.string().optional(),
 });
 
-const ModalEndereco = ({ handleSubmit, initialValues }) => {
-  useEffect(() => {
-    (async function () {
-      const elems = document.querySelectorAll("select");
-      M.FormSelect.init(elems, {});
-      M.updateTextFields();
-    })();
-  }, []);
-
+const ModalEndereco = ({ handleSubmit, initialValues, comercio }) => {
   return (
-    <Modal tipo={"endereco"} id="modal4">
+    <Modal tipo="endereco" id="modal4">
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validates}
+        enableReinitialize={true}
+        handleChange={(e) => {
+          e.preventDedault();
+          M.updateTextFields();
+        }}
       >
         <Form>
           <div className="titulo">
@@ -48,6 +45,20 @@ const ModalEndereco = ({ handleSubmit, initialValues }) => {
           </div>
 
           <div className="form-dados-cadastro form-dados-pessoais">
+            {comercio ? (
+              <></>
+            ) : (
+              <div className="input-field">
+                <label htmlFor="nome">Nome do endereço</label>
+                <Field type="text" id="nome" name="nome" />
+                <ErrorMessage
+                  className="helper-text"
+                  name="nome"
+                  component="span"
+                />
+              </div>
+            )}
+
             <div className="input-field">
               <label htmlFor="cep">CEP</label>
               <Field type="text" id="cep" name="cep" />
@@ -122,7 +133,7 @@ const ModalEndereco = ({ handleSubmit, initialValues }) => {
               />
 
               <Button
-                className="btnSalvarEndereco"
+                className="modal-close btnSalvarEndereco"
                 submit="submit"
                 type="submit"
                 text="Salvar"
@@ -135,11 +146,6 @@ const ModalEndereco = ({ handleSubmit, initialValues }) => {
       </Formik>
     </Modal>
   );
-};
-
-ModalEndereco.propTypes = {
-  initialValues: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default ModalEndereco;

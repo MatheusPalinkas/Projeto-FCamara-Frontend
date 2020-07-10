@@ -9,6 +9,7 @@ import "./styles.css";
 
 const validates = yup.object().shape({
   formaPagamento: yup.string().required("A forma de pagamento é obrigatorio"),
+  observacao: yup.string().optional(),
 });
 const frete = 20;
 const valorSemFrete = 200;
@@ -71,6 +72,15 @@ function EscolherFormaPagamento({ initialValues, onSubmit, handleBack }) {
               </label>
             </p>
           </div>
+        </div>
+        <div className="input-field input-observacoes">
+          <label htmlFor="observacao">Observações</label>
+          <Field
+            name="observacao"
+            className="materialize-textarea"
+            type="text"
+            id="observacao"
+          />
         </div>
         <div
           className="div-buttons-forma-pagamento-finzalizar-pedido
