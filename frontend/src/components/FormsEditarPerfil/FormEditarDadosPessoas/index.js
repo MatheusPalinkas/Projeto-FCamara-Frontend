@@ -211,9 +211,4 @@ function FormEditarDadosPessoas({ initialValues }) {
   );
 }
 
-FormEditarDadosPessoas.propTypes = {
-  initialValues: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-};
-
 export default FormEditarDadosPessoas;
