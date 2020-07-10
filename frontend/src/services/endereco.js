@@ -22,6 +22,7 @@ export async function listarEnderecosCliente(idCliente) {
     return "";
   }
 }
+
 export async function getEndereco(idEndereco) {
   try {
     const { data } = await api.get(`/endereco/${idEndereco}`);

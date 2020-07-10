@@ -91,6 +91,7 @@ const FormAvaliarComprador = ({ initialValues, onSubmit }) => {
             position="bottom"
           />
           <Button
+            className="modal-close"
             text="Confirmar"
             submit="submit"
             Icon={MdCheck}

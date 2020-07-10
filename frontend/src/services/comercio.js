@@ -10,6 +10,16 @@ export async function criarComercio(formComercio) {
   }
 }
 
+export async function listarComercioID(id) {
+  try {
+    const { data } = await api.get(`/comercio/${id}`);
+    return data;
+  } catch (error) {
+    alert(`Erro ao criar comercio: ${error}`);
+    return "";
+  }
+}
+
 export async function listarComercio(idCategoria, nomeFiltro, page) {
   try {
     let filtro = "";
