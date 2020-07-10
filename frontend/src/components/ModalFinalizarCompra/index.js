@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { RiEmotionLine } from "react-icons/ri";
 import { MdSend } from "react-icons/md";
+import { CLEAR_CART } from "../../store/actions/carrinho";
 import { criarPedido } from "../../services/pedido";
 import { criarEndereco } from "../../services/endereco";
 
@@ -13,7 +14,7 @@ import Modal from "../Modal";
 
 import "./styles.css";
 
-function ModalFinalizarCompra({ idUser, items }) {
+function ModalFinalizarCompra({ idUser, items, handleClearCart }) {
   const [etapa, setEtapa] = useState(0);
   const [idEndereco, setIdEndereco] = useState(0);
   const [cadastrarNovoEndereco, setCadastrarNovoEndereco] = useState(true);
@@ -124,6 +125,10 @@ function ModalFinalizarCompra({ idUser, items }) {
             text="Concluir"
             className="modal-close btn-pedido-enviado"
             Icon={MdSend}
+            onClick={(e) => {
+              e.preventDefault();
+              handleClearCart();
+            }}
           />
         </>
       )}
@@ -136,7 +141,9 @@ const mapStateToProps = (state) => ({
   items: state.carrinho.items,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  handleClearCart: () => CLEAR_CART(),
+});
 
 export default connect(
   mapStateToProps,

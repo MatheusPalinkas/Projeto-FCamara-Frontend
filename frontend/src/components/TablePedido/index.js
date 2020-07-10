@@ -1,28 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
-import api from "../../services/Api";
-import "./styles.css";
+import {
+  listarPedidosComercio,
+  listarPedidosCliente,
+} from "../../services/pedido";
+
 import ItemTableComercio from "./ItemTableComercio";
 import ItemTableCliente from "./ItemTableCliente";
 
-const TablePedido = ({ idComercio, tipoUsuario, idCliente }) => {
-  const [produtos, setProdutos] = useState([]);
+import "./styles.css";
+
+const TablePedido = ({ id, tipoUsuario }) => {
+  const [pedidos, setPedidos] = useState([]);
+
+  const getPedidosComercio = useCallback(async () => {
+    const data = await listarPedidosComercio(id);
+    setPedidos(data);
+  }, [id]);
+
+  const getPedidosCliente = useCallback(async () => {
+    const data = await listarPedidosCliente(id);
+    setPedidos(data);
+  }, [id]);
+
+  useEffect(() => {
+    if (tipoUsuario === "comercio") {
+      getPedidosComercio();
+    } else {
+      getPedidosCliente();
+    }
+  }, [getPedidosCliente, getPedidosComercio, tipoUsuario]);
 
   useEffect(() => {
     (async function () {
-      let filtro = "";
-
-      if (idComercio) filtro = `?idComercio=${idComercio}`;
-
-      const { data } = await api.get(`/produtos${filtro}`);
-      setProdutos(data);
-
       const elem = document.querySelectorAll(".tooltipped");
       M.Tooltip.init(elem, {
         position: "bottom",
       });
     })();
-  }, [idComercio]);
+  }, []);
 
   return (
     <>
@@ -40,23 +56,24 @@ const TablePedido = ({ idComercio, tipoUsuario, idCliente }) => {
         </thead>
         <tbody>
           {tipoUsuario === "comercio"
-            ? produtos.map((produto) => (
+            ? pedidos.map((pedido) => (
                 <ItemTableComercio
-                  key={produto.id}
-                  idComercio={produto.idComercio}
-                  titulo={produto.nome}
-                  url={produto.url}
-                  descricao={produto.descricao}
-                  preco={produto.preco}
+                  key={pedido.id}
+                  id={pedido.id}
+                  nome={pedido.cliente.nome}
+                  preco={pedido.total}
+                  status={pedido.statusPedido}
+                  data={pedido.dataCriacao}
                 />
               ))
-            : produtos.map((produto) => (
+            : pedidos.map((pedido) => (
                 <ItemTableCliente
-                  key={produto.id}
-                  titulo={produto.nome}
-                  url={produto.url}
-                  descricao={produto.descricao}
-                  preco={produto.preco}
+                  key={pedido.id}
+                  id={pedido.id}
+                  nome={pedido.comercio.nome}
+                  preco={pedido.total}
+                  status={pedido.statusPedido}
+                  data={pedido.dataCriacao}
                 />
               ))}
         </tbody>

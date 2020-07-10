@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import { MdEdit, MdSave } from "react-icons/md";
 import MaskInput from "react-text-mask";
 import M from "materialize-css/dist/js/materialize.min.js";
-
-import api from "../../../services/Api";
+import { listarCategorias } from "../../../services/categorias";
 
 import Button from "../../Button";
 import ModalEndereco from "../../ModalEndereco";
@@ -34,19 +33,24 @@ const validates = yup.object().shape({
   possuiEntregas: yup.string().optional(),
   pagamentoCartao: yup.boolean().optional(),
   pagamentoDinheiro: yup.boolean().optional(),
-  pagamentoBoleto: yup.boolean().optional(),
 });
 
 const hoursNumberMask = [/[1-9]/, /\d/, ":", /\d/, /\d/];
 
-function FormEditarDadosComercio({ initialValues, handleSubmit }) {
+function FormEditarDadosComercio({ initialValues, handleSubmit, idComercio }) {
   const [categorias, setCategorias] = useState([]);
+
+  const getCategorias = useCallback(async () => {
+    const data = await listarCategorias();
+    setCategorias(data);
+  }, []);
+
+  useEffect(() => {
+    getCategorias();
+  }, [getCategorias]);
 
   useEffect(() => {
     (async function () {
-      const { data } = await api.get("/categorias");
-      setCategorias(data);
-
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
       M.updateTextFields();

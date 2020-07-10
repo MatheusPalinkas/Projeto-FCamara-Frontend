@@ -30,6 +30,7 @@ const ModalEstoque = ({ initialValues, idProduto, updateProdutos }) => {
     const formEstoque = {
       id: idProduto,
       produtoEmEstoque: status === "Disponivel",
+      produtoDisponivel: status === "Disponivel",
       quantidade: quantidade || "0",
     };
 

@@ -27,3 +27,9 @@ export function UPDATE_OBSERVACAO_ITEM_CART(id, observacao) {
     observacao,
   };
 }
+
+export function CLEAR_CART() {
+  return {
+    type: "CLEAR_CART",
+  };
+}

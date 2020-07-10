@@ -51,8 +51,17 @@ function MinhaConta({ user }) {
           <div className="dados-comercio">
             <h2>Dados do meu comercio</h2>
             <FormEditarDadosComercio
-              handleSubmit={(values) => {}}
-              initialValues={dadosComercio}
+              handleSubmit={(values) => {
+                console.log(values);
+              }}
+              idComercio={user.comercio.id}
+              initialValues={{
+                nome: dadosComercio.nome,
+                cnpj: dadosComercio.cnpj,
+                categoria: dadosComercio.categoria.id,
+                pagamentoCartao: dadosComercio.pagamentoCartao,
+                pagamentoDinheiro: dadosComercio.pagamentoDinheiro,
+              }}
             />
           </div>
         )}

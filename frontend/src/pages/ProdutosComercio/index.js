@@ -43,7 +43,7 @@ const ProdutosComercio = ({ user }) => {
       const elems = document.querySelectorAll("select");
       M.FormSelect.init(elems, {});
     })();
-  }, [idComercio, filtro, categoriaSelecionada]);
+  }, [categorias]);
 
   return (
     <>

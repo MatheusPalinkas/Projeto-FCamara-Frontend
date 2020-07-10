@@ -1,19 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "../styles.css";
 
-const ItemTableCliente = (
-  nome,
-  descricao,
-  status,
-  preco = 300,
-  idCliente = null,
-  data
-) => {
+const ItemTableCliente = ({ nome, status, preco, id, data }) => {
+  const dataFormatada = `${data.split("-")[2].split("T")[0]}/${
+    data.split("-")[1]
+  }/${data.split("-")[0]}`;
   return (
     <tr className="linha-pedido">
       <td>
-        <span className="card-title span-card-title">Nome Do comercio</span>
+        <span className="card-title span-card-title">{nome}</span>
       </td>
       <td>
         <span className="preco-pedido">
@@ -23,10 +20,10 @@ const ItemTableCliente = (
           })}
         </span>
       </td>
-      <td>Status</td>
-      <td>Data</td>
+      <td>{status}</td>
+      <td>{dataFormatada}</td>
       <td>
-        <Link to={"/dados/cliente/1"}>DETALHES</Link>
+        <Link to={`/dados/cliente/${id}`}>DETALHES</Link>
       </td>
     </tr>
   );

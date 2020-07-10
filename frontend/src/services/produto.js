@@ -39,3 +39,13 @@ export async function listarProdutosComercio(idComercio) {
     return "";
   }
 }
+
+export async function listarUnicoProduto(id) {
+  try {
+    const { data } = await api.get(`/produto/${id}`);
+    return data;
+  } catch (error) {
+    alert(`Erro ao listar os produtos: ${error}`);
+    return "";
+  }
+}

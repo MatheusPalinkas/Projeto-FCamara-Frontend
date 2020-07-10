@@ -68,6 +68,8 @@ const Cadastro = ({ handleLogin }) => {
     try {
       const url = (await postFoto()) || null;
       const formCliente = clearFormPost();
+
+      delete formCliente.codigoComercio;
       const data = await criarCliente({
         ...formCliente,
         urlFoto: url,
